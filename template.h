@@ -99,13 +99,13 @@ namespace JJ{
         std::ostream &os;
     };
 
-    class NoDefault{
-    public:
-        // NoDefault() = delete;
-        NoDefault(int m) : a(m){}
-    private:
-        int a;
-    };
+    // class NoDefault{
+    // public:
+    //     // NoDefault() = delete;
+    //     NoDefault(int m) : a(m){}
+    // private:
+    //     int a;
+    // };
 
     // template class std::vector<DebugDelete>;
 
@@ -116,5 +116,19 @@ namespace JJ{
     private:
         
     };
+
+    template <class T> int compare(T &t1, T &t2){
+        std::cout << t1 << " " << t2 << std::endl;
+        return t1 > t2;
+    }
+
+    template <class T>
+    T calc(T lhs, T rhs){
+        std::cout << lhs << " " << rhs << std::endl;
+    }
+    template <class T>
+    const T& my_max(const T &t1, const T &t2){
+        return std::max(t1, t2);
+    }
 }
 #endif //_TEMPLATE_H_

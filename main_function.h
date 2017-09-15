@@ -5,7 +5,7 @@
 #include <list>
 using namespace std;
 
-template class vector<JJ::NoDefault>;
+// template class vector<JJ::NoDefault>;
 
 void main_compare(){
     char buf1[] = "abcdfas";
@@ -53,4 +53,21 @@ void main_debug_delete(){
     ptr->push_back("asd");
     ptr->push_back("poqwe");
     JJ::visit_containers(*ptr);
+}
+
+void main_compare_template(){
+    //此处的类型推断是char 数组的引用
+    char a = 'q';
+    JJ::calc(a, 'a');
+    // std::cout << JJ::compare("qwe", "asd") << " ";
+    //编译错误template argument deduction/substitution failed
+    //两个数组的类型不同
+    // std::cout << JJ::compare("qwe", "asdf") << " ";
+}
+
+void main_max(){
+    int a = 0;
+    double b = 1;
+    // cout << JJ::my_max(a, b);
+    cout << std::max<double>(a, b);
 }
