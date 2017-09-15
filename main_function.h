@@ -107,5 +107,31 @@ void main_l_r_ref(){
     JJ::ref(r2);//string &
     JJ::ref(r3);//string &&
     JJ::ref(r4);//const string &&
-    std::forward
+    // std::forward
+}
+
+void main_debug_rep(){
+    string s("hi");
+    const string *ps = &s;
+    cout << JJ::debug_rep(&s) << endl;
+    cout << JJ::debug_rep(s) << endl;
+    cout << JJ::debug_rep(ps) << endl;
+    cout << JJ::debug_rep("qwe") << endl;
+}
+
+void test_16_50(){
+    int i = 42;
+    int *p = &i;
+    const int ci = 0, *p2 = &ci;
+    string s = "qwe";
+    string *sp = &s;
+    const string *s2 = sp;
+    JJ::g(42);
+    JJ::g(p);//
+    JJ::g(ci);
+    JJ::g(p2);
+    JJ::f(42);
+    JJ::f(p);
+    JJ::f(ci);
+    JJ::f(p2);
 }

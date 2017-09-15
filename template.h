@@ -1,6 +1,7 @@
 #ifndef _TEMPLATE_H_
 #define _TEMPLATE_H_
 
+#include <sstream>
 #include <vector>
 #include <memory>
 #include <string>
@@ -146,6 +147,56 @@ namespace JJ{
     //     std::cout << "r" << std::endl;
     // }
 
-        
-}
+    //16.3重载与模版
+    template <typename T> 
+    std::string debug_rep(const T &t){
+        std::ostringstream ret;
+        ret << t;
+        return ret.str();
+    }       
+
+    template <typename T>
+    std::string debug_rep(T *p){
+        std::ostringstream ret;
+        ret << "pointer: " << p;
+        if(p) 
+            ret << " " <<debug_rep(*p);
+        else
+            ret << " null pointer";
+        return ret.str();
+    }
+
+    std::string debug_rep(const std::string &s){
+        return '"' + s + '"';
+    }
+    std::string debug_rep(char *p){
+        return debug_rep(std::string(p));
+    }
+    std::string debug_rep(const char *p){
+        return debug_rep(std::string(p));
+    }
+
+    //习题16.49
+    template <typename T>
+    void f(T t){
+        std::cout << "f 1" << " ";
+        std::cout << t << std::endl;
+    }
+    template <typename T>
+    void f(const T *t){
+        std::cout << "f 2" << std::endl;
+    }
+
+    template <class T>
+    void g(T t){
+        std::cout << "g 1" << " ";
+        std::cout << t << std::endl;
+    }
+    template <class T>
+    void g(const T *t){
+        std::cout << "g 2" << std::endl;
+    }
+
+};
+
 #endif //_TEMPLATE_H_

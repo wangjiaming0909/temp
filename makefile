@@ -13,6 +13,7 @@ $(target):$(objects)
 
 $(objects):%.o:%.cpp
 # @echo compiling...
+	@rm -f *.exe
 	g++ -std=c++11 -c -O1  $< -o $@ -g 
 	
 

@@ -10,7 +10,9 @@ int main(){
     // main_max();
     // main_return_type();
     // main_ref_ref();
-    main_l_r_ref();
+    // main_l_r_ref();
+    // main_debug_rep();
+    test_16_50();
     return 0;
 }
 

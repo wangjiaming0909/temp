@@ -30,6 +30,7 @@
         "utility": "cpp",
         "cmath": "cpp",
         "vector": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "string": "cpp"
     }
 }
