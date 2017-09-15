@@ -130,5 +130,22 @@ namespace JJ{
     const T& my_max(const T &t1, const T &t2){
         return std::max(t1, t2);
     }
+
+    template <typename It>
+    auto return_r_ref(It beg, It end) ->decltype(*beg + 0){//返就是一个右值引用，不是引用类型
+        return *beg;
+    }
+
+    //检查左右值引用模版的调用问题
+    template <typename T>
+    void ref(const T &l){
+        std::cout << "l" << std::endl;
+    }
+    // template <typename T>
+    // void ref(T &&r){
+    //     std::cout << "r" << std::endl;
+    // }
+
+        
 }
 #endif //_TEMPLATE_H_

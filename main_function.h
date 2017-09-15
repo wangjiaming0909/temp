@@ -2,6 +2,7 @@
 #include "template.h"
 #include <vector>
 #include <string>
+#include <set>
 #include <list>
 using namespace std;
 
@@ -70,4 +71,39 @@ void main_max(){
     double b = 1;
     // cout << JJ::my_max(a, b);
     cout << std::max<double>(a, b);
+}
+
+void main_return_type(){
+    set<int> s = {10,2,3,4};
+    JJ::visit_containers(s);//2,3,4,10 自动排序
+    auto &&ref = JJ::return_r_ref(s.begin(), s.end());
+    cout << ref << endl; 
+    ref = 1;//返回的是一个右值引用，因此与原set没有任何关系
+    JJ::visit_containers(s);//2,3,4,10
+}
+
+void main_ref_ref(){
+    //定义一个引用的引用
+    std::string s = "1bc", s2 = "abc";
+    auto &ref_s = s;
+    using ref = std::string &;
+    ref &r = ref_s;
+    r = s2;
+    cout << ref_s << endl;
+    cout << r << endl;
+    // r = s2;
+}
+
+void main_l_r_ref(){
+    string s = "123";
+    const string & r1 = s;
+    string &r2 = s;
+    string &&r3 = "qwe";
+    const string &&r4 = "12345";
+
+    //lrrl
+    JJ::ref(r1);//const string&
+    JJ::ref(r2);//string &
+    JJ::ref(r3);//string &&
+    JJ::ref(r4);//const string &&
 }
