@@ -5,6 +5,8 @@
 #include <list>
 using namespace std;
 
+template class vector<JJ::NoDefault>;
+
 void main_compare(){
     char buf1[] = "abcdfas";
     char buf2[] = "qwe";
@@ -43,4 +45,11 @@ void main_visit_containers(){
     JJ::visit_containers2(v);
     JJ::visit_containers(l);
     JJ::visit_containers2(l);
+}
+
+void main_debug_delete(){
+    shared_ptr<vector<string>> ptr(new vector<string>(), JJ::DebugDelete());
+    ptr->push_back("asd");
+    ptr->push_back("poqwe");
+    JJ::visit_containers(*ptr);
 }

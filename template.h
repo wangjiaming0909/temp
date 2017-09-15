@@ -89,6 +89,7 @@ namespace JJ{
 
     class DebugDelete{
     public:
+        DebugDelete(std::ostream &o = std::cerr) : os(o){}
         template <class T>
         void operator()(T *p) const {
             os << "deleted.." << std::endl;
@@ -98,5 +99,14 @@ namespace JJ{
         std::ostream &os;
     };
 
+    class NoDefault{
+    public:
+        // NoDefault() = delete;
+        NoDefault(int m) : a(m){}
+    private:
+        int a;
+    };
+
+    // template class std::vector<DebugDelete>;
 }
 #endif //_TEMPLATE_H_
