@@ -48,6 +48,23 @@ namespace JJ{
         return N;
     }
 
+    template <typename T>
+    void visit_containers(const T &l){
+        auto it = l.begin();
+        for(; it != l.end(); it++){
+            std::cout << *it << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    template <typename T>
+    void visit_containers2(const T &l){
+        auto it = begin(l);
+        for(; it != end(l); it++)
+           std::cout << *it << " ";   
+        std::cout << std::endl;
+    }
+
     template <class T>
     class Blob{
     public:
@@ -68,6 +85,17 @@ namespace JJ{
         void check(size_type i, const std::string &msg) const;
     private:
         std::shared_ptr<std::vector<T>> data;
+    };
+
+    class DebugDelete{
+    public:
+        template <class T>
+        void operator()(T *p) const {
+            os << "deleted.." << std::endl;
+            delete p;
+        }
+    private:
+        std::ostream &os;
     };
 
 }

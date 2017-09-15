@@ -35,3 +35,12 @@ void main_array_size(){
     int buf[] = {1,2,3, 12,12, 123,1,24,12};
     cout << JJ::array_size(buf);
 }
+
+void main_visit_containers(){
+    vector<int> v = {1,2,3,4,5};
+    list<string> l = {"abc", "lop", "qwe", "lm2", "-0l,"};
+    JJ::visit_containers(v);
+    JJ::visit_containers2(v);
+    JJ::visit_containers(l);
+    JJ::visit_containers2(l);
+}
