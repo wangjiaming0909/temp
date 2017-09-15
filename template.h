@@ -108,5 +108,13 @@ namespace JJ{
     };
 
     // template class std::vector<DebugDelete>;
+
+    template <typename T>
+    class my_shared_ptr{
+    public:
+
+    private:
+        
+    };
 }
 #endif //_TEMPLATE_H_
