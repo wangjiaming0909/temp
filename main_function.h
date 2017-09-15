@@ -48,6 +48,7 @@ void main_visit_containers(){
 }
 
 void main_debug_delete(){
+    // unique_ptr()
     shared_ptr<vector<string>> ptr(new vector<string>(), JJ::DebugDelete());
     ptr->push_back("asd");
     ptr->push_back("poqwe");
