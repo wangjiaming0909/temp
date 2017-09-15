@@ -4,6 +4,7 @@
 #include <string>
 #include <set>
 #include <list>
+#include <utility>
 using namespace std;
 
 // template class vector<JJ::NoDefault>;
@@ -106,5 +107,5 @@ void main_l_r_ref(){
     JJ::ref(r2);//string &
     JJ::ref(r3);//string &&
     JJ::ref(r4);//const string &&
-    std::move
+    std::forward
 }
