@@ -215,6 +215,20 @@ namespace JJ{
         os << t << ", ";
         return print(os, rest...);//少了const T&t，因此每次调用包内少一个参数，最终调用非模版的函数
     }
+
+    template <class T>
+    struct template_C{
+        T i;
+    };
+    template <class T>
+    struct template_C<T *>{
+        T i;
+    };
+    template <class T>
+    struct template_C<T&>{
+        T i;
+    };
+
 };
 
 #endif //_TEMPLATE_H_

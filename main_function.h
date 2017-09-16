@@ -5,6 +5,7 @@
 #include <set>
 #include <list>
 #include <utility>
+#include <memory>
 using namespace std;
 
 // template class vector<JJ::NoDefault>;
@@ -147,4 +148,9 @@ void main_template_print(){
     string s = "asd";
     // vector<int> v = {1,2,3,4};
     JJ::print(cout, i, s, 10);
+}
+
+void main_partial_specialization(){
+    JJ::template_C<int> t; 
+    cout << t.i << " ";
 }

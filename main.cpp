@@ -23,7 +23,8 @@ int main(){
     // char buf2[] = "123";
     // cout << sizeof(buf2);
     // main_g_();
-    main_template_print();
+    // main_template_print();
+    main_partial_specialization();
     return 0;
 }
 
