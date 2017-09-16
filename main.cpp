@@ -24,7 +24,8 @@ int main(){
     // cout << sizeof(buf2);
     // main_g_();
     // main_template_print();
-    main_partial_specialization();
+    // main_partial_specialization();
+    main_hash_Sales_data();
     return 0;
 }
 

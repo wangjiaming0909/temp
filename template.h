@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <functional>
 #include <initializer_list>
 //定义一个非类型模版参数
 template <unsigned N, unsigned M>
@@ -215,20 +216,74 @@ namespace JJ{
         os << t << ", ";
         return print(os, rest...);//少了const T&t，因此每次调用包内少一个参数，最终调用非模版的函数
     }
-
+    using std::cout;
+    using std::endl;
     template <class T>
     struct template_C{
         T i;
+        void print(){
+            cout << "template_C" << endl;
+        }
     };
     template <class T>
     struct template_C<T *>{
         T i;
+        void print(){
+            cout << "template_C<T*>" << endl;
+        }
     };
     template <class T>
     struct template_C<T&>{
-        T i;
+        // T i;
+        void print(){
+            cout << "template_C<T&>" << endl;
+        }
     };
 
+    template <class T>
+    struct template_C<T &&>{
+        void print(){
+            cout << "template_C<T&&>" << endl;
+        }
+    };
+    using std::string;
+    class Sales_data{
+    friend ostream& operator<<(ostream &os, const Sales_data& sd);
+    friend class std::hash<Sales_data>;
+    friend bool eqOp(const Sales_data &lhs, const Sales_data &rhs);
+    friend bool operator==(const Sales_data &lhs, const Sales_data &rhs);
+    public:
+        Sales_data(string _s, int _a) : s(_s), a(_a){}
+
+    private:
+        string s;
+        int a; 
+    };
+
+    ostream& operator<<(ostream &os, const Sales_data& sd){
+        return os << sd.s << " " << sd.a << " ";
+    }
+    bool eqOp(const Sales_data &lhs, const Sales_data &rhs){
+        return lhs.s == rhs.s;
+    }
+    bool operator==(const Sales_data &lhs, const Sales_data &rhs){
+        return lhs.s == rhs.s &&
+            lhs.a == rhs.a;
+    }
 };
+using JJ::Sales_data;
+namespace std{
+    template <>
+    struct hash<Sales_data>{
+        typedef size_t result_type;
+        typedef Sales_data argument_type;
+        size_t operator()(const Sales_data& s) const;
+    };
+    size_t hash<Sales_data>::operator()(const Sales_data& s)const{
+        return hash<string>()(s.s) ^
+                hash<int>()(s.a);
+    }
+}
+
 
 #endif //_TEMPLATE_H_

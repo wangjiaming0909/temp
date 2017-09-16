@@ -6,6 +6,10 @@
 #include <list>
 #include <utility>
 #include <memory>
+#include <unordered_set>
+#include <tuple>
+#include <bitset>
+#include <regex>
 using namespace std;
 
 // template class vector<JJ::NoDefault>;
@@ -151,6 +155,36 @@ void main_template_print(){
 }
 
 void main_partial_specialization(){
+    string i = "asd";
+    string * p = &i;
     JJ::template_C<int> t; 
-    cout << t.i << " ";
+    t.print();//调用原始版本
+    JJ::template_C<decltype(42)> t2;
+    t2.print();//调用原始版本
+    JJ::template_C<decltype(*p)> t3;
+    t3.print();//调用引用版本
+    JJ::template_C<decltype(&i)> t4;
+    t4.print();
+    JJ::template_C<decltype(std::move(i))> t5;
+    t5.print();
+}
+
+void main_hash_Sales_data(){
+    using JJ::Sales_data;
+    Sales_data s1("abc", 12), s2("bcd", 13), s3("cde", 14);
+    // using SD_multiset = unordered_multiset<Sales_data, hash<Sales_data>, decltype(JJ::eqOp)*>;
+    // unordered_multiset<Sales_data> sDest;
+    // sDest.insert(s1);
+    // sDest.insert(s2);
+    // sDest.insert(s3);
+    // sDest.insert(s1);
+    // JJ::visit_containers(sDest);//cde 14  bcd 13  abc 12  abc 12
+
+    //unordered_set
+    unordered_set<Sales_data> uset;
+    uset.insert(s1);
+    uset.insert(s2);
+    uset.insert(s3);
+    uset.insert(s1);
+    JJ::visit_containers2(uset);//cde 14  bcd 13  abc 12
 }
