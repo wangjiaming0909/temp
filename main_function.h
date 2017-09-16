@@ -135,3 +135,16 @@ void test_16_50(){
     JJ::f(ci);
     JJ::f(p2);
 }
+
+void main_g_(){
+    string s1, s2;
+    int a1, a2;
+    JJ::g(s1,a1,a2,s2);
+}
+
+void main_template_print(){
+    int i = 10;
+    string s = "asd";
+    // vector<int> v = {1,2,3,4};
+    JJ::print(cout, i, s, 10);
+}

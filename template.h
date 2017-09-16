@@ -196,7 +196,25 @@ namespace JJ{
     void g(const T *t){
         std::cout << "g 2" << std::endl;
     }
+    //可变参数模版
+    template <typename ...Args>
+    void g(Args ... args){
+        using std::cout;
+        using std::endl;
+        cout << sizeof...(Args) << endl;
+        cout << sizeof...(args) << endl;
+    }
 
+    template <class T>
+    std::ostream &print(std::ostream &os, const T&t){
+        return os << t;
+    }
+    using std::ostream;
+    template <typename T, typename... Args>
+    ostream &print(ostream &os, const T&t, const Args&... rest){
+        os << t << ", ";
+        return print(os, rest...);//少了const T&t，因此每次调用包内少一个参数，最终调用非模版的函数
+    }
 };
 
 #endif //_TEMPLATE_H_
