@@ -230,6 +230,21 @@ namespace abc{
     void print(int x){cout << "int" << endl;}
     void print(const string &s){cout << "string" << endl;}
     void print(double d){cout << "double2" << endl;}
+
+
+    class A{
+    public:
+        A(){}
+        void print(){cout << "A" << endl;}
+        void print(int){cout << "int" << endl;}
+    };
+    class B : public A{
+    public:
+        using A::print;//因为定义了自己的print()，因此就将A中的所有print函数都隐藏了，虽然隐藏了，但是还是存在的
+        //使用using，将所有A中的print函数都引进当前作用域，可以直接调用
+        void print(){cout << "B" << endl;}
+        B() = default;
+    };
 }
 
 void print(double d){

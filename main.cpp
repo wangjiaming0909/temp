@@ -16,7 +16,10 @@ int main(){
     // main_exception();
     // using namespace abc;
     // abc::print(1.1);
-    c(0);
+    // c(0);
+    abc::B b;
+    b.print();
+    b.print(1);
     return 0;
 }
 
