@@ -220,5 +220,9 @@ void main_regex()
     if (regex_search(test_str, results, r))
         cout << results.str() << endl;
 }
-
+void main_exception(){
+    using EXCEPTION_H_::print;
+    string s = "qwe";
+    cout << noexcept(print(s));
+}
 #endif //MAIN_FUNCTION_H_

@@ -1,7 +1,13 @@
 #include "main_function.h" //C++ primer ??
 #include "cpp.h"           //??????
 
-int main()
+int main(){
+    main_exception();
+    return 0;
+}
+
+
+int main02()
 {
     while (true)
     {
