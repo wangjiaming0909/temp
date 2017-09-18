@@ -1,17 +1,18 @@
-#include "main_function.h"//C++ primer ??
-// #include "cpp.h"//??????
+#include "main_function.h" //C++ primer ??
+#include "cpp.h"           //??????
 
-int main(){
-    while(true){
+int main()
+{
+    while (true)
+    {
         cout << "$: ";
         main_linux();
     }
-    // print();    
+    // print();
 }
 
-
-
-int main01(){
+int main01()
+{
     // main_begin_end();
     // main_array_size();
     // main_visit_containers()；
@@ -39,6 +40,3 @@ int main01(){
     // main_regex();
     return 0;
 }
-
-
-

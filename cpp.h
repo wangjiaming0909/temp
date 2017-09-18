@@ -60,7 +60,7 @@ void main_linux()
                     return;
                 }
                 stack_string.pop();
-                if(stack_string.empty())
+                if (stack_string.empty())
                     stack_string.push(string("/"));
                 it_ = it2;
                 break;
@@ -73,7 +73,7 @@ void main_linux()
             else
             {
                 it_ = it2;
-                if(stack_string.top() == string("/"))
+                if (stack_string.top() == string("/"))
                     stack_string.pop();
                 stack_string.push(last);
             }
@@ -93,10 +93,11 @@ void main_linux()
                 cout << "already in the root dir" << endl;
                 return;
             }
-            if(!stack_string.empty()){
+            if (!stack_string.empty())
+            {
                 stack_string.pop();
             }
-            if(stack_string.empty())
+            if (stack_string.empty())
                 stack_string.push("/");
             it_ = it2;
             continue;
@@ -109,7 +110,7 @@ void main_linux()
         else
         {
             it_ = it2;
-            if(stack_string.top() == string("/"))
+            if (stack_string.top() == string("/"))
                 stack_string.pop();
             stack_string.push(ss);
         }
