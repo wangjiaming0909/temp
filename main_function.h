@@ -225,4 +225,14 @@ void main_exception(){
     string s = "qwe";
     cout << noexcept(print(s));
 }
+
+namespace abc{
+    void print(int x){cout << "int" << endl;}
+    void print(const string &s){cout << "string" << endl;}
+    void print(double d){cout << "double2" << endl;}
+}
+
+void print(double d){
+    cout << "double" << endl;
+}
 #endif //MAIN_FUNCTION_H_

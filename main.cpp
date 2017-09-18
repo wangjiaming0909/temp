@@ -1,8 +1,22 @@
 #include "main_function.h" //C++ primer ??
 #include "cpp.h"           //??????
 
+void c(char *p){
+    cout << "*P" << endl;
+}
+
+void c(int i){
+    cout << "int" << endl;
+}
+
+void c(double d){
+    cout << "double" <<endl;
+}
 int main(){
-    main_exception();
+    // main_exception();
+    // using namespace abc;
+    // abc::print(1.1);
+    c(0);
     return 0;
 }
 
