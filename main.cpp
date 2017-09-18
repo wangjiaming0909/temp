@@ -1,7 +1,17 @@
-#include "main_function.h"
-
+// #include "main_function.h"
+#include "cpp.h"
 
 int main(){
+    while(true){
+        cout << "$: ";
+        main_linux();
+    }
+    // print();    
+}
+
+
+
+int main01(){
     // main_begin_end();
     // main_array_size();
     // main_visit_containers()；
@@ -26,7 +36,7 @@ int main(){
     // main_template_print();
     // main_partial_specialization();
     // main_hash_Sales_data();
-    main_regex();
+    // main_regex();
     return 0;
 }
 
