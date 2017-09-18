@@ -1,5 +1,5 @@
-// #include "main_function.h"
-#include "cpp.h"
+#include "main_function.h"//C++ primer ??
+// #include "cpp.h"//??????
 
 int main(){
     while(true){

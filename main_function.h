@@ -1,5 +1,6 @@
+#ifndef MAIN_FUNCTION_H_
+#define MAIN_FUNCTION_H_
 #include <iostream>
-#include "template.h"
 #include <vector>
 #include <string>
 #include <set>
@@ -11,6 +12,9 @@
 #include <bitset>
 #include <regex>
 #include <type_traits>
+
+// #include "template.h"
+#include "exception.h"
 using namespace std;
 
 // template class vector<JJ::NoDefault>;
@@ -199,3 +203,5 @@ void main_regex(){
     if(regex_search(test_str, results, r))
         cout << results.str() << endl;
 }
+
+#endif //MAIN_FUNCTION_H_
