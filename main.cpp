@@ -25,7 +25,8 @@ int main(){
     // main_g_();
     // main_template_print();
     // main_partial_specialization();
-    main_hash_Sales_data();
+    // main_hash_Sales_data();
+    main_regex();
     return 0;
 }
 

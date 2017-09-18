@@ -31,6 +31,8 @@
         "cmath": "cpp",
         "vector": "cpp",
         "list": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "regex": "cpp",
+        "ios": "cpp"
     }
 }

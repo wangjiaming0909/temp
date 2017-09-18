@@ -10,6 +10,7 @@
 #include <tuple>
 #include <bitset>
 #include <regex>
+#include <type_traits>
 using namespace std;
 
 // template class vector<JJ::NoDefault>;
@@ -187,4 +188,14 @@ void main_hash_Sales_data(){
     uset.insert(s3);
     uset.insert(s1);
     JJ::visit_containers2(uset);//cde 14  bcd 13  abc 12
+}
+
+void main_regex(){
+    string pattern("[^c]ei");
+    pattern = "[[:alpha:]]*" + pattern + "[[:alpha:]]*";
+    regex r(pattern);
+    smatch results;
+    string test_str = "receipt friend theif receive";
+    if(regex_search(test_str, results, r))
+        cout << results.str() << endl;
 }
