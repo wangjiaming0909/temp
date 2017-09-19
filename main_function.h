@@ -11,7 +11,8 @@
 #include <tuple>
 #include <bitset>
 #include <regex>
-#include <type_traits>
+// #include <type_traits>
+#include <fstream>
 
 #include "template.h"
 #include "exception.h"
@@ -255,6 +256,21 @@ void print(double d){
 void main_multiple_inheritance(){
     using _MULTI_INHERITANCE::Inheritance;
     Inheritance in;
+    cout << in.i << endl;
     in.print(cout, "ss");
 }
+
+void main_multiple_inheritance2(){
+
+    using _MULTI_INHERITANCE2::VMI;
+    VMI vmi;
+    vmi.print();
+    // cout << vmi.ival << " ";
+    // cout << vmi.cval << " ";
+    // vmi.bar(1);//父类的bar(int)被隐藏了
+    // vmi.bar('q');
+    // vmi.foo(1);
+    // vmi.foo('q');
+}
+
 #endif //MAIN_FUNCTION_H_

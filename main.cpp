@@ -12,9 +12,10 @@ void c(int i){
 void c(double d){
     cout << "double" <<endl;
 }
-int main(){
 
-    main_multiple_inheritance();
+int main(){
+    main_multiple_inheritance2();
+    return 0;
     // main_exception();
     // using namespace abc;
     // abc::print(1.1);
@@ -22,9 +23,7 @@ int main(){
     // abc::B b;
     // b.print();
     // b.print(1);
-    return 0;
 }
-
 
 int main02()
 {
