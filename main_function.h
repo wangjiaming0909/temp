@@ -15,6 +15,7 @@
 
 #include "template.h"
 #include "exception.h"
+#include "multiple_inheritance.h"
 using namespace std;
 
 // template class vector<JJ::NoDefault>;
@@ -249,5 +250,11 @@ namespace abc{
 
 void print(double d){
     cout << "double" << endl;
+}
+
+void main_multiple_inheritance(){
+    using _MULTI_INHERITANCE::Inheritance;
+    Inheritance in;
+    in.print(cout, "ss");
 }
 #endif //MAIN_FUNCTION_H_

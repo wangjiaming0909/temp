@@ -13,13 +13,15 @@ void c(double d){
     cout << "double" <<endl;
 }
 int main(){
+
+    main_multiple_inheritance();
     // main_exception();
     // using namespace abc;
     // abc::print(1.1);
     // c(0);
-    abc::B b;
-    b.print();
-    b.print(1);
+    // abc::B b;
+    // b.print();
+    // b.print(1);
     return 0;
 }
 
