@@ -3,6 +3,7 @@
 
 #include <string>
 #include <ostream>
+#include <typeinfo>
 using namespace std;
 
 namespace _MULTI_INHERITANCE{
@@ -62,6 +63,10 @@ namespace _MULTI_INHERITANCE2{
 
     class VMI : public Derived1, public Derived2{
     public:
+        string& print(const string &s) const{
+            cout << s << endl;
+            return const_cast<string &>(s);
+        }
         void print(){
             // cout << ival << " ";
             // ival = 12;
@@ -82,6 +87,14 @@ namespace _MULTI_INHERITANCE2{
         }
     };
 
+}
+namespace type{
+    enum class type_ : int{
+        a = 255,
+        b = 123,
+        c = 32767,
+        d = 11111111
+    };
 }
 
 #endif //_MULTIPLE_INHERIANCE_H_

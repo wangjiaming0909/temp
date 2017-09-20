@@ -258,19 +258,32 @@ void main_multiple_inheritance(){
     Inheritance in;
     cout << in.i << endl;
     in.print(cout, "ss");
+    
 }
 
 void main_multiple_inheritance2(){
 
     using _MULTI_INHERITANCE2::VMI;
-    VMI vmi;
-    vmi.print();
+    using PRINT = string& (VMI::*)(const string &s) const;
+    PRINT prt = &VMI::print;
+    // VMI vmi;
+    // vmi.print();
     // cout << vmi.ival << " ";
     // cout << vmi.cval << " ";
     // vmi.bar(1);//父类的bar(int)被隐藏了
     // vmi.bar('q');
     // vmi.foo(1);
     // vmi.foo('q');
+}
+void main_type_info(){
+     cout << typeid(22).name() << endl
+    << typeid(1.1).name() << endl
+    << typeid(std::string).name() << endl
+    << typeid(_MULTI_INHERITANCE2::VMI).name() << endl;
+
+    using type::type_;
+    type_ ty = type_::d;
+    // int ty2 = type_::d;//限定作用域枚举不会进行隐式转换
 }
 
 #endif //MAIN_FUNCTION_H_

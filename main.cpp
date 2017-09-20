@@ -14,7 +14,8 @@ void c(double d){
 }
 
 int main(){
-    main_multiple_inheritance2();
+    // main_multiple_inheritance2();
+    main_type_info();
     return 0;
     // main_exception();
     // using namespace abc;
