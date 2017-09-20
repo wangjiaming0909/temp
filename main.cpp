@@ -1,5 +1,6 @@
 #include "main_function.h" //C++ primer ??
 #include "cpp.h"           //??????
+#include <cstring>
 
 void c(char *p){
     cout << "*P" << endl;
@@ -13,9 +14,17 @@ void c(double d){
     cout << "double" <<endl;
 }
 
+
 int main(){
+    using std::placeholders::_1;
+    vector<string> v = {"qwe", "", "asd", "", "", "qe"};
+    function<bool (const string&)> f = &string::empty;
+    int i = count_if(v.begin(), v.end(), bind(&string::empty, _1));
+    int j = count_if(v.begin(), v.end(), mem_fn(&string::empty));
+    int k = count_if(v.begin(), v.end(), f);
+    cout << i << " " << j << " " << k <<endl;
     // main_multiple_inheritance2();
-    main_type_info();
+    // main_type_info();
     return 0;
     // main_exception();
     // using namespace abc;

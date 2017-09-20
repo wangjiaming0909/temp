@@ -10,7 +10,9 @@
 #include <unordered_set>
 #include <tuple>
 #include <bitset>
+#include <algorithm>
 #include <regex>
+#include <functional>
 // #include <type_traits>
 #include <fstream>
 
@@ -285,5 +287,6 @@ void main_type_info(){
     type_ ty = type_::d;
     // int ty2 = type_::d;//限定作用域枚举不会进行隐式转换
 }
+
 
 #endif //MAIN_FUNCTION_H_
