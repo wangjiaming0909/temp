@@ -1,0 +1,17 @@
+#Declare data file type. optional {microct, raw, binary}, default is raw.
+datatype: microct
+
+#Specify data file name. (Do not give the extension file name)
+datafile: F42Ad_random
+
+#Specify the size of image
+x: 300
+y: 300
+z: 300
+
+#Specify image resolution (µm). The default is 3.
+precision: 10
+
+
+#Specify minimum R*R of pores. The default is 2.
+minr2: 1
