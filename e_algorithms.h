@@ -22,4 +22,5 @@ int *insert_sort(int *nums, int n)
 }
 /*--------------------1-insertsort-------------------*/
 
+
 }//namespace algorithms
