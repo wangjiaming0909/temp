@@ -33,6 +33,7 @@
         "list": "cpp",
         "string": "cpp",
         "regex": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "bitset": "cpp"
     }
 }
