@@ -1,5 +1,5 @@
 #include "e_algorithms.h"
-
+#include "coursera_algorithms.h"
 void main_insertsort()
 {
     using algorithms::insert_sort;
@@ -11,4 +11,13 @@ void main_insertsort()
         cout << *(p++) << " ";
     }
     cout << endl;
+}
+
+void main_quickfind(){
+    using coursera::quickfind;
+    quickfind qf(10);
+    qf.union_(1,2);
+    qf.union_(3,4);
+    qf.union_(1,6);
+    cout << qf.connected(2,6) << " ";
 }
