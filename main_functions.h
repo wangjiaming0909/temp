@@ -98,5 +98,6 @@ void main_ds1_19(){
 }
 
 void main_ds1_20(){
-    cout << ds::fibonacci(3);
+    cout << ds::fibonacci(10) << endl;
+    cout << ds::fibonacci2(1, 2, 10) << endl;
 }

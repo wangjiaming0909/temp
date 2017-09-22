@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include <vector>
 using namespace std;
 
 //2,返回数组a[0:n-1]的数值个数
@@ -45,13 +46,22 @@ long long int jiecheng(int t){
 //20
 //递归计算斐波纳挈数
 int fibonacci(int n){
-    if(n = 0)
+    if(0 == n)
         return 1;
-    else if(n = 1)
+    else if(1 == n)
         return 2;
     else
         return  fibonacci(n - 1) + fibonacci(n - 2);
-
+}
+//20 非递归计算斐波那契数
+int fibonacci2(int f0, int f1, int n){
+    vector<int> v(n + 1);
+    v[0] = f0;
+    v[1] = f1;
+    for(int i = 2; i < n + 1; i++){
+        v[i] = v[i-1] + v[i-2];
+    }
+    return v[n];
 }
 
 }
