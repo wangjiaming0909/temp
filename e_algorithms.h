@@ -36,13 +36,6 @@ public:
     virtual void pop() = 0;
     virtual void push(const T& element) = 0; 
 };
-
-
-private:
-    T *arr;
-    int cap;
-    int m_size;
-};
 /*--------------------1-maxpriorityqueue-------------------*/
 
 }//namespace algorithms

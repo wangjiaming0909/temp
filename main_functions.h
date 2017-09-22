@@ -2,6 +2,7 @@
 #include "coursera_algorithms.h"
 #include <string>
 #include <functional>
+#include "ds.h"
 void main_insertsort()
 {
     using algorithms::insert_sort;
@@ -71,8 +72,31 @@ void main_multi_set_map(){
     cout << "bucket_size(n): " << md_map.bucket_size(3) << endl;
     cout << "bucket: " << md_map.bucket(A("qwe")) << endl;
     cout << "bucket: " << md_map.bucket(A("asd")) << endl;
-
-    
-
 }
 
+void main_ds1_2(){
+    using ds::count;
+    int a[] = {1,2,3,4};
+    cout << count(a) << endl;
+}
+
+void main_ds1_3(){
+    int a[10] = {1,2,3,4};
+    ds::fill(a, 2, 11, 12);
+    ds::visitarray(a);
+}
+
+void main_ds1_4(){
+    int a[10] = {1,1,4};
+    int b[10] = {2,3,0};
+    cout << ds::inner_product(a, b) << endl;
+}
+
+void main_ds1_19(){
+    int i = 2;
+    cout << ds::jiecheng(i);
+}
+
+void main_ds1_20(){
+    cout << ds::fibonacci(3);
+}
