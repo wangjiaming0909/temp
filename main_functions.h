@@ -36,7 +36,7 @@ void main_quickunion(){
 
 class A{
 public:
-    A(const string &s_) : s(s_){}
+    A(const string &s_) : s(s_), i(0){}
     const string& str()const {return s;}
 private:
     int i;

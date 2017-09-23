@@ -5,7 +5,7 @@ namespace coursera{
     //union find
     class unionfind{
     public:
-        unionfind(int n){}
+        explicit unionfind(int n){}
         void union_(int p, int q);
         bool connected(int p, int q); 
     };
@@ -13,7 +13,7 @@ namespace coursera{
     class quickfind{
     public:
     //initialize id to its index
-        quickfind(int n) : size(n){//初始化        O(N)
+        explicit quickfind(int n) : size(n){//初始化        O(N)
             id = new int[n];
             for(int i = 0; i < n; i++)
                 *(id+i) = i;
@@ -41,7 +41,7 @@ namespace coursera{
 
     class quickunion{
     public:
-        quickunion(int i) : size(i){//初始化   O(N)
+        explicit quickunion(int i) : size(i){//初始化   O(N)
             id = new int[size];
             for(int i = 0; i < size; i++)
                 id[i] = i;
@@ -51,6 +51,10 @@ namespace coursera{
         }
         void union_(int p, int q){ //union  O(N+)包括了find的复杂度
             id[root(p)] = id[root(q)];           
+        }
+        ~quickunion(){
+            if(id)
+                delete [] id;
         }
     private:
         int root(int i){
