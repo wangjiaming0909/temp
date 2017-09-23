@@ -64,6 +64,14 @@ int fibonacci2(int f0, int f1, int n){
     return v[n];
 }
 
+//21
+//递归  x是奇数 f(x)=f(3x+1), x是偶数，f(x)=x/2
+int fx(int x){
+    return (0 == x % 2) ? x/2 : fx(3*x+1);
+}
+// min
+
+
 }
 
 //为一个二维数组分配内存空间

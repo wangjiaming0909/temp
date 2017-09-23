@@ -8,7 +8,7 @@ void main_insertsort()
     using algorithms::insert_sort;
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     // int nums[4] = {2,3,1,0};
-    int *p = insert_sort(nums, 10);
+    int *p = algorithms::insert_sort2(nums, 10);
     for (int i = 0; i < 10; i++)
     {
         cout << *(p++) << " ";
@@ -22,7 +22,15 @@ void main_quickfind(){
     qf.union_(1,2);
     qf.union_(3,4);
     qf.union_(1,6);
-    cout << qf.connected(2,6) << " ";
+    cout << qf.connected(2,6) << endl;;
+}
+
+void main_quickunion(){
+    coursera::quickunion qu(10);
+    qu.union_(1,2);
+    qu.union_(3,4);
+    qu.union_(1,6);
+    cout << qu.connected(2,6) << " "<< endl;
 }
 
 
@@ -100,4 +108,7 @@ void main_ds1_19(){
 void main_ds1_20(){
     cout << ds::fibonacci(10) << endl;
     cout << ds::fibonacci2(1, 2, 10) << endl;
+}
+void main_ds1_21(){
+    cout << ds::fx(5) << " " << ds::fx(7) << endl;
 }
