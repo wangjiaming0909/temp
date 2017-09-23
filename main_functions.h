@@ -22,7 +22,15 @@ void main_quickfind(){
     qf.union_(1,2);
     qf.union_(3,4);
     qf.union_(1,6);
-    cout << qf.connected(2,6) << " ";
+    cout << qf.connected(2,6) << endl;;
+}
+
+void main_quickunion(){
+    coursera::quickunion qu(10);
+    qu.union_(1,2);
+    qu.union_(3,4);
+    qu.union_(1,6);
+    cout << qu.connected(2,6) << " "<< endl;
 }
 
 
