@@ -67,4 +67,49 @@ namespace coursera{
         int size;
     };
 
+
+    class weightedquickunion{
+    public:
+        explicit weightedquickunion(int i) : size(i){//初始化  O(N)
+            id = new int[size];
+            sz = new int[size];
+            for(int i = 0; i < size; i++){
+                id[i] = i;
+                sz[i] = 1;
+            }
+        }
+        void union_(int p, int q){ //union的复杂度主要是root的复杂度
+                                   //此法生成的树的高度最高为lg2(N)
+                                   //因此  复杂度为 O(lg N)
+            int i = root(p);
+            int j = root(q);
+            if(sz[i] < sz[j]){
+                sz[j] += sz[i];
+                id[i] = j;
+            }else{
+                sz[i] += sz[j];
+                id[j] = i;
+            }
+        }
+        bool connected(int p, int q){ //O(N)
+            return root(p) == root(q);
+        }
+        ~weightedquickunion(){
+            if(id)
+                delete [] id;
+        }
+    private:
+    int root(int i){
+        while(id[i] != i){
+            id[i] = id[id[i]];
+            i = id[i];
+        }
+        return i;
+    }
+    private:
+        int *id;
+        int *sz;
+        int size;
+    };
+
 }

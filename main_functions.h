@@ -1,8 +1,41 @@
 #include "e_algorithms.h"
+#include <random>
 #include "coursera_algorithms.h"
 #include <string>
 #include <functional>
 #include "ds.h"
+// #include <windows.h>
+#include "microtime.h"
+
+//定义一个函数可以计算一个函数调用所用的时间间隔
+//return ms
+
+// template <typename T, typename... Args>
+// using bool_fun_type = bool (T::*)(const Args&... args);
+// template <typename T, typename... Args>
+// using void_fun_type = void (T::*)(const Args&... args);
+
+
+// template <typename T, typename... Args>
+// double timeuse(T &t, (bool (T::*)(const Args&...)) f, const Args&... args){
+//     SYSTEMTIME time1, time2;
+//     GetLocalTime(&time1);
+//     t.*f(args...);
+//     GetLocalTime(&time2);
+//     return time2.wMilliseconds - time1.wMilliseconds;
+// }
+
+// template <typename T, typename... Args>
+// double timeuse(T &t, void_fun_type<T, Args...> f, const Args&... args){
+//     SYSTEMTIME time1, time2;
+//     GetLocalTime(&time1);
+//     t.*f(args...);
+//     GetLocalTime(&time2);
+//     return time2.wMilliseconds - time1.wMilliseconds;
+// }
+
+
+
 void main_insertsort()
 {
     using algorithms::insert_sort;
@@ -17,14 +50,29 @@ void main_insertsort()
 }
 
 void main_quickfind(){
-    using coursera::quickfind;
-    quickfind qf(10);
-    qf.union_(1,2);
-    qf.union_(3,4);
-    qf.union_(1,6);
-    cout << qf.connected(2,6) << endl;;
-}
 
+    using coursera::quickfind;
+    // vector<unsigned> v;
+    // uniform_int_distribution<unsigned> u(0, 1000000);
+    // default_random_engine e;
+    // for(int i = 0; i < 1000000; i++){
+        // v.push_back(u(e));
+    // }
+    quickfind qf(1000000);
+    // for(int i = 0; i < 40000; i++){
+
+    // }
+    for(int i = 0; i < 800000; i++){
+        uniform_int_distribution<unsigned> u(0, 800000);
+        default_random_engine e;
+        qf.union_(u(e), u(e));
+    }
+    auto time1 = GetSysTimeMicros();
+    qf.union_(2000, 890090); 
+    auto time2 = GetSysTimeMicros();
+    qf.connected(200, 703902);//O(1)
+    cout << time2 << " " << time1 << endl;
+}
 void main_quickunion(){
     coursera::quickunion qu(10);
     qu.union_(1,2);
@@ -33,6 +81,14 @@ void main_quickunion(){
     cout << qu.connected(2,6) << " "<< endl;
 }
 
+void main_weighted_quickunion(){
+    coursera::weightedquickunion wqu(10);
+    wqu.union_(1,2);
+    wqu.union_(3,4);
+    wqu.union_(1,6);
+    cout << wqu.connected(2,6) << endl;
+
+}
 
 class A{
 public:
