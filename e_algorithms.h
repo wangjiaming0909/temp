@@ -39,6 +39,23 @@ int *insert_sort2(int *nums, int n)
     return nums;
 }
 /*--------------------1-insertsort-------------------*/
+/*--------------------2-selectsort-------------------*/
+int* selectsort(int *nums, size_t n){
+    for(size_t i = n-1; i > 0; i--){
+        int max = nums[0];
+        size_t maxindex = 0;
+        for(size_t j = 0; j <= i; j++){//找出最大值
+            if(nums[j] > max){
+                max = nums[j];
+                maxindex = j;
+            }
+        }
+        nums[maxindex] = nums[i];
+        nums[i] = max;
+    }
+    return nums;
+}
+
 
 /*--------------------1-maxpriorityqueue-------------------*/
 //数据结构p299练习1

@@ -13,6 +13,7 @@ int main()
     // main_quickunion();
     // main_weighted_quickunion();
     // cout << "asd" << endl;
-    ABCD<int> abcd;
+    // ABCD<int> abcd;
+    main_selectsort();
     return 0;
 }

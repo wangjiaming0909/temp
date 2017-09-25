@@ -46,6 +46,17 @@ void main_insertsort()
     cout << endl;
 }
 
+void main_selectsort(){
+    int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
+    int*p = algorithms::selectsort(nums, 10);
+    for (int i = 0; i < 10; i++)
+    {
+        cout << *(p++) << " ";
+    }
+    cout << endl;
+
+}
+
 void main_quickfind()
 {
 

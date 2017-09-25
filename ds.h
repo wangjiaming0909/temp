@@ -14,14 +14,14 @@ template <class T, size_t N>
 void fill(T(&t)[N], size_t begin, size_t end, const T &value){
     size_t nums = (end - begin);
     if(end > N) throw range_error("out of array range");
-    for(int i = 0; i < nums; i++){
+    for(size_t i = 0; i < nums; i++){
         t[begin + i] = value;
     }
 }
 //遍历可以打印的数组
 template <class T, size_t N>
 void visitarray(const T(&t)[N]){
-    for(int i = 0; i < N; i++){
+    for(size_t i = 0; i < N; i++){
         cout << t[i] << " ";
     }
     cout << endl;
@@ -30,7 +30,7 @@ void visitarray(const T(&t)[N]){
 template <class T, size_t N>
 T inner_product(const T(&t1)[N], const T(&t2)[N]){
     T r = 0;
-    for(int i = 0; i < N; i++){
+    for(size_t i = 0; i < N; i++){
         r += t1[i] * t2[i];
     }
     return r;
