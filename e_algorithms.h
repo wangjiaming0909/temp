@@ -40,9 +40,9 @@ int *insert_sort2(int *nums, int n)
 }
 /*--------------------1-insertsort-------------------*/
 /*--------------------2-selectsort-------------------*/
-int* selectsort(int *nums, size_t n){
+int* selectsort(int *nums, size_t n){//及时终止
     bool sorted = false;;
-    for(size_t i = n-1; (i > 0) && !sorted; i--){
+    for(size_t i = n-1; (i > 0) && !sorted; i--){//从后往前排，最大的往后扔
         sorted = true;
         int max = nums[0];
         size_t maxindex = 0;
@@ -59,6 +59,19 @@ int* selectsort(int *nums, size_t n){
     return nums;
 }
 
+int * selectsort2(int *nums, size_t n){
+    for(size_t i = n - 1; i > 0; i--){//为什么不需要=1，因为只有一个元素的时候，就不需要找最大值了
+        int max = nums[0];
+        size_t maxindex = 0;
+        for(size_t j = 1; j <= i; j++){
+            maxindex = nums[maxindex] < nums[j] ? j : maxindex;
+        }
+        max = nums[maxindex];
+        nums[maxindex] = nums[i];
+        nums[i] = max;
+    }
+    return nums;
+}
 
 /*--------------------1-maxpriorityqueue-------------------*/
 //数据结构p299练习1
