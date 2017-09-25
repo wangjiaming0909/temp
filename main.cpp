@@ -9,9 +9,10 @@ int main()
     // main_multi_set_map();
     // main_insertsort();
 
-    main_quickfind();
+    // main_quickfind();
     // main_quickunion();
     // main_weighted_quickunion();
     // cout << "asd" << endl;
+    ABCD<int> abcd;
     return 0;
 }
