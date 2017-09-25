@@ -6,7 +6,7 @@ using namespace std;
 //2,返回数组a[0:n-1]的数值个数
 namespace ds{
 template <class T, size_t N>
-constexpr size_t count(const T (&t)[N] ){//数组的引用const T(&t)[N]
+constexpr size_t count(const T (&)[N] ){//数组的引用const T(&t)[N]
     return N;
 }
 //3,给数组begin-end-1赋值value

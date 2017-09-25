@@ -5,9 +5,11 @@ namespace coursera{
     //union find
     class unionfind{
     public:
-        explicit unionfind(int n){}
+        explicit unionfind(int n) : nn(n){}
         void union_(int p, int q);
         bool connected(int p, int q); 
+    private:
+        int nn;
     };
 
     class quickfind{

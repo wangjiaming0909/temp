@@ -108,8 +108,8 @@ class A
     const string &str() const { return s; }
 
   private:
-    int i;
     string s;
+    int i;
 };
 
 bool eqOp(const A &lhs, const A &rhs)
@@ -190,12 +190,13 @@ void main_ds1_21()
 {
     cout << ds::fx(5) << " " << ds::fx(7) << endl;
 }
+/*
 template <class T, class Sequence>
 class ABCD;
 
 template <class T, class Sequence>
 bool operator==(const ABCD<T, Sequence> &x, const ABCD<T, Sequence> &y);
-
+*/
 template <class T, class R = vector<T>>
 class ABCD
 {

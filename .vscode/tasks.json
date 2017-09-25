@@ -4,15 +4,17 @@
     "version": "0.1.0",
     "command": "mingw32-make",
     "isShellCommand": true,
-    "showOutput": "always",
+    "showOutput": "silent",
     "tasks": [
         {
             "taskName": "all",
             "isBuildCommand": true,
+            "isBackground": true,
             "args": [
             ],
             "problemMatcher": "$msCompile"
-        },
+        }
+        ,
         {
             "taskName": "clean",
             "args": [
