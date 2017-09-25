@@ -2,6 +2,7 @@
 #include <random>
 #include "coursera_algorithms.h"
 #include <string>
+#include <algorithm>
 #include <functional>
 #include "ds.h"
 // #include <windows.h>
@@ -190,19 +191,27 @@ void main_ds1_21()
 {
     cout << ds::fx(5) << " " << ds::fx(7) << endl;
 }
-/*
+///*
 template <class T, class Sequence>
 class ABCD;
 
 template <class T, class Sequence>
 bool operator==(const ABCD<T, Sequence> &x, const ABCD<T, Sequence> &y);
-*/
+//*/
 template <class T, class R = vector<T>>
 class ABCD
 {
     friend bool operator==<>(const ABCD &, const ABCD &);
-    // friend bool operator==(const ABCD &, const ABCD &);
+    // friend bool operator==(const ABCD &, const ABCD &);//只是警告
     friend bool operator==<T>(const ABCD&, const ABCD&);
-  public:
-    ABCD() {}
+public:
+    explicit ABCD(const T &t) : i(t){}
+private:
+    T i;
 };
+
+void main_non_template_friend(){
+    ABCD<int> a(1), b(2);
+    cout << (a == b) << endl;
+    // sort
+}

@@ -14,6 +14,7 @@ int main()
     // main_weighted_quickunion();
     // cout << "asd" << endl;
     // ABCD<int> abcd;
-    main_selectsort();
+    // main_selectsort();
+    main_non_template_friend();
     return 0;
 }
