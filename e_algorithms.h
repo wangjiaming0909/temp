@@ -41,15 +41,18 @@ int *insert_sort2(int *nums, int n)
 /*--------------------1-insertsort-------------------*/
 /*--------------------2-selectsort-------------------*/
 int* selectsort(int *nums, size_t n){
-    for(size_t i = n-1; i > 0; i--){
+    bool sorted = false;;
+    for(size_t i = n-1; (i > 0) && !sorted; i--){
+        sorted = true;
         int max = nums[0];
         size_t maxindex = 0;
-        for(size_t j = 0; j <= i; j++){//找出最大值
-            if(nums[j] > max){
-                max = nums[j];
+        for(size_t j = 1; j <= i; j++){//找出0-i中的最大值, 0和1， 0大：sorted=false，然后0和2，1大1和2
+            if(nums[j] > nums[maxindex])
                 maxindex = j;
-            }
+            else//如果在整个for循环中，都是nums[j]>nums[maxindex]，说明从0-j都是排完序的（J++， maxindex=j）
+                sorted = false;
         }
+        max = nums[maxindex];
         nums[maxindex] = nums[i];
         nums[i] = max;
     }
