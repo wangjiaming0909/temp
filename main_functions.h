@@ -189,8 +189,8 @@ template <class T, class R = vector<T>>
 class ABCD
 {
     friend bool operator==<>(const ABCD &, const ABCD &);
-    friend bool operator==(const ABCD &, const ABCD &);
-    // friend bool operator!=<T>(const ABCD&, const ABCD&);
+    // friend bool operator==(const ABCD &, const ABCD &);
+    friend bool operator==<T>(const ABCD&, const ABCD&);
   public:
     ABCD() {}
 };
