@@ -57,7 +57,6 @@ void main_selectsort(){
     cout << endl;
 
 }
-
 void main_quickfind()
 {
 
