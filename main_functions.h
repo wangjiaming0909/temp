@@ -195,15 +195,18 @@ void main_ds1_21()
 template <class T, class Sequence>
 class ABCD;
 
-template <class T, class Sequence>
-bool operator==(const ABCD<T, Sequence> &x, const ABCD<T, Sequence> &y);
+// template <class T, class Sequence>
+// bool operator==(const ABCD<T, Sequence> &x, const ABCD<T, Sequence> &y);
+
+// template <class T>
+// bool operator==(const ABCD<T, vector<T>> &x, const ABCD<T, vector<T>> &y);
 //*/
 template <class T, class R = vector<T>>
 class ABCD
 {
-    friend bool operator==<>(const ABCD &, const ABCD &);
+    // friend bool operator==<>(const ABCD &, const ABCD &);
     // friend bool operator==(const ABCD &, const ABCD &);//只是警告
-    friend bool operator==<T>(const ABCD&, const ABCD&);
+    // friend bool operator==<T>(const ABCD&, const ABCD&);
 public:
     explicit ABCD(const T &t) : i(t){}
 private:
@@ -211,7 +214,41 @@ private:
 };
 
 void main_non_template_friend(){
-    ABCD<int> a(1), b(2);
-    cout << (a == b) << endl;
+    // ABCD<int> a(1), b(2);
+    // cout << (a == b) << endl;
     // sort
+}
+
+class nodefault{
+// private:
+    nodefault() = delete;
+};
+
+// template class vector<nodefault>;
+
+void main_no_default(){
+    // vector<nodefault> v;
+    cout << "qwe" << endl;    
+}
+
+template <class T>
+int compare(const T &t1, const T &t2){
+    cout << "asd" << endl;
+    cout << t1 << "  " << t2 << endl;
+    cout << typeid(t1).name();
+    cout <<*t1 << endl;
+    return 0;
+}
+
+template <class T>
+T fcn(T, T){
+    cout << "asd" << endl;
+    return 'c';
+}
+
+
+void main_compare(){
+    // compare("qwe", "asd");
+    char c = 'c';
+    fcn(c, 'c');
 }

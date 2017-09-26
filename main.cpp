@@ -15,6 +15,8 @@ int main()
     // cout << "asd" << endl;
     // ABCD<int> abcd;
     // main_selectsort();
-    main_non_template_friend();
+    // main_non_template_friend();
+    // main_no_default();
+    main_compare();
     return 0;
 }
