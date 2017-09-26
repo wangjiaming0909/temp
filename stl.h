@@ -2,6 +2,7 @@
 #define _STL_H_
 #include <iostream>
 #include <new>
+#include <memory>
 using namespace std;
 
 namespace JJ
