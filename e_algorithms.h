@@ -5,7 +5,7 @@ using namespace std;
 namespace algorithms
 {
 
-/*--------------------1-insertsort-------------------*/
+/*--------------------1-insertsort-------------------O(n2)-------------*/
 //升序排序
 int *insert_sort(int *nums, int n)
 {
@@ -73,6 +73,7 @@ int* selectsort(int *nums, size_t n){//及时终止
     return nums;
 }
 
+//没有及时终止
 int * selectsort2(int *nums, size_t n){
     for(size_t i = n - 1; i > 0; i--){//为什么不需要=1，因为只有一个元素的时候，就不需要找最大值了
         int max = nums[0];
@@ -87,7 +88,7 @@ int * selectsort2(int *nums, size_t n){
     return nums;
 }
 
-/*--------------------3-mergesort-------------------*/
+/*--------------------3-mergesort--------------------O(n)-*/
 //将数组A[p..q] 和A[q+1...r]合并
 //其中这两个数组是已经排完序的
 void merge(int *nums, size_t p, size_t q, size_t r){
@@ -116,7 +117,7 @@ void merge(int *nums, size_t p, size_t q, size_t r){
 /*----------------------------------------------*/
 }
 
-int *merge_sort(int *nums, size_t p, size_t r){
+int *merge_sort(int *nums, size_t p, size_t r){//-------------------加上merge   O(nlgn)
     if(p < r){
         size_t q = (p+r) / 2;
         merge_sort(nums, p, q);
@@ -128,15 +129,15 @@ int *merge_sort(int *nums, size_t p, size_t r){
 /*--------------------3-mergesort-------------------*/
 /*--------------------4-binaryserarch-------------------*/
 //返回一个数组索引,递归
-int binary_search(int *nums, size_t p, size_t r, int target){
+int binary_search(int *nums, const size_t p, const size_t r, const int target){//--------O(lgn)
     if(p <= r){
         size_t q = (r + p) / 2;
         if(nums[q] == target)
             return q;
-        else if(nums[q] < target){
+        else if((p != r) && (nums[q] < target)){
             return binary_search(nums, q+1, r, target);
-        }else if(nums[q] > target){
-            return binary_search(nums, p, q, target);
+        }else if((p != r) && (nums[q] > target)){//当 使用twosum时，可能target被减成负数，如果不加p != r，则无限循环
+            return binary_search(nums, p, q-1, target);
         }
     }
     return -1;
@@ -157,6 +158,29 @@ int binary_search2(int *nums, size_t p, size_t r, int target){
 }
 
 /*--------------------4-binaryserarch-------------------*/
+/*--------------------5-two sum -------------------------*/
+//算法导论p39 练习2.3-7
+//复杂度为O(nlgn) -----使用merge_sort
+void two_sum(int *nums, size_t n, int target, int *index1, int *index2){//不返回index，直接返回值
+    merge_sort(nums, 0, n-1);//O(nlgn)
+    int arr[n];
+    for(size_t i = 0; i < n; i++){
+        // if()        
+        arr[i] = target - nums[i];
+    }
+    for(size_t i = 0; i < n; i++){//O(n)
+        int in1 = binary_search(nums, 0, n-1, arr[i]);//O(lgn)
+        if(in1 != -1){
+            *index1 = nums[i];
+            *index2 = nums[in1];
+            return ;
+        }
+    }
+    *index1 = 0;
+    *index2 = 0;
+}
+
+/*--------------------5-two sum -------------------------*/
 /*--------------------1-maxpriorityqueue-------------------*/
 //数据结构p299练习1
 //使用数组线性表实现最大优先级队列

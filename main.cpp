@@ -29,7 +29,8 @@ int main()
     // main_multi_set_map();
     // main_insertsort();
     // main_merge_sort();
-    main_binary_search();
+    // main_binary_search();
+    main_twosum();
 
     // main_quickfind();
     // main_quickunion();

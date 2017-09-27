@@ -74,6 +74,13 @@ void main_binary_search(){
     cout << index << endl;
 }
 
+void main_twosum(){
+    int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
+    int index1 = 0, index2 = 0;
+    algorithms::two_sum(nums, 10, 76, &index1, &index2);
+    cout << index1 << " " << index2 << endl;
+}
+
 void main_quickfind()
 {
     using coursera::quickfind;
