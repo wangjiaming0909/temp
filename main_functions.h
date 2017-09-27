@@ -67,6 +67,13 @@ void main_merge_sort(){
     cout << endl;
 }
 
+void main_binary_search(){
+    int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
+    algorithms::merge_sort(nums, 0, 9);
+    size_t index  = algorithms::binary_search2(nums, 0, 9, 12);
+    cout << index << endl;
+}
+
 void main_quickfind()
 {
     using coursera::quickfind;

@@ -126,6 +126,37 @@ int *merge_sort(int *nums, size_t p, size_t r){
     return nums;
 }
 /*--------------------3-mergesort-------------------*/
+/*--------------------4-binaryserarch-------------------*/
+//返回一个数组索引,递归
+int binary_search(int *nums, size_t p, size_t r, int target){
+    if(p <= r){
+        size_t q = (r + p) / 2;
+        if(nums[q] == target)
+            return q;
+        else if(nums[q] < target){
+            return binary_search(nums, q+1, r, target);
+        }else if(nums[q] > target){
+            return binary_search(nums, p, q, target);
+        }
+    }
+    return -1;
+}
+
+//二分查找迭代版本
+int binary_search2(int *nums, size_t p, size_t r, int target){
+    while(p <= r){
+        size_t q = (r + p) /2;
+        if(nums[q] == target)
+            return q;
+        else if(target > nums[q])
+            p = q + 1;
+        else if(target < nums[q])
+            r = q - 1;
+    }
+    return -1;
+}
+
+/*--------------------4-binaryserarch-------------------*/
 /*--------------------1-maxpriorityqueue-------------------*/
 //数据结构p299练习1
 //使用数组线性表实现最大优先级队列

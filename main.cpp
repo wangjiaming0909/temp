@@ -28,7 +28,8 @@ int main()
     // main_ds1_2();
     // main_multi_set_map();
     // main_insertsort();
-    main_merge_sort();
+    // main_merge_sort();
+    main_binary_search();
 
     // main_quickfind();
     // main_quickunion();
