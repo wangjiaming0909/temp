@@ -1,4 +1,4 @@
-// #include "main_functions.h"
+#include "main_functions.h"
 #include "stl.h"
 #include <vector>
 #include <string>
@@ -7,9 +7,17 @@ void main_stl(){
     v.push_back(12);
     vector<string, JJ::alloctor<string>> v2;
     vector<int, std::allocator<int>> v3;
-    vector<string, std::alloc> v4;
+    // vector<string, std::alloc> v4;
     v2.push_back("qwe");
     cout << v[0] << " " << v2[0] << endl;
+}
+
+void ajd(){
+    cout << "ajd" << endl;
+}
+
+void main_function_pointer(){
+    JJ::abc(ajd);
 }
 
 int main()
@@ -20,6 +28,7 @@ int main()
     // main_ds1_2();
     // main_multi_set_map();
     // main_insertsort();
+    main_merge_sort();
 
     // main_quickfind();
     // main_quickunion();
@@ -30,6 +39,7 @@ int main()
     // main_non_template_friend();
     // main_no_default();
     // main_compare();
-    main_stl();
+    // main_stl();
+    // main_function_pointer();
     return 0;
 }

@@ -38,6 +38,20 @@ int *insert_sort2(int *nums, int n)
     }
     return nums;
 }
+//insert 的递归形式
+int *insert_sort3(int *nums, int n){
+    if(n >= 2){
+        insert_sort3(nums, n-1);
+        int last = nums[n-1];
+        size_t i = n-2;
+        while(nums[i] > last){
+            nums[i+1] = nums[i];
+            i--;
+        }
+        nums[i+1] = last;
+    }
+    return nums;
+}
 /*--------------------1-insertsort-------------------*/
 /*--------------------2-selectsort-------------------*/
 int* selectsort(int *nums, size_t n){//及时终止
@@ -73,6 +87,45 @@ int * selectsort2(int *nums, size_t n){
     return nums;
 }
 
+/*--------------------3-mergesort-------------------*/
+//将数组A[p..q] 和A[q+1...r]合并
+//其中这两个数组是已经排完序的
+void merge(int *nums, size_t p, size_t q, size_t r){
+    size_t n1 = q-p+1;
+    size_t n2 = r-q;
+
+    int L[n1+1];
+    int R[n2+1];
+    for(size_t i = 0; i < n1; i++)
+        L[i] = nums[p+i];
+    for(size_t i = 0; i < n2; i++)
+        R[i] = nums[q+1+i];
+
+    size_t i = 0, j = 0, k = p;
+/*----------------------------------------------*/
+    while((i != n1) && (j != n2)){
+        if(L[i] < R[j])
+            nums[k++] = L[i++];
+        else
+            nums[k++] = R[j++];
+    }
+    while(i != n1)
+        nums[k++] = L[i++];
+    while(j != n2)
+        nums[k++] = R[j++];
+/*----------------------------------------------*/
+}
+
+int *merge_sort(int *nums, size_t p, size_t r){
+    if(p < r){
+        size_t q = (p+r) / 2;
+        merge_sort(nums, p, q);
+        merge_sort(nums, q+1, r);
+        merge(nums, p ,q, r);
+    }
+    return nums;
+}
+/*--------------------3-mergesort-------------------*/
 /*--------------------1-maxpriorityqueue-------------------*/
 //数据结构p299练习1
 //使用数组线性表实现最大优先级队列

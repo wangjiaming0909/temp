@@ -39,7 +39,7 @@ void main_insertsort()
     using algorithms::insert_sort;
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     // int nums[4] = {2,3,1,0};
-    int *p = algorithms::insert_sort2(nums, 10);
+    int *p = algorithms::insert_sort3(nums, 10);
     for (int i = 0; i < 10; i++)
     {
         cout << *(p++) << " ";
@@ -55,11 +55,20 @@ void main_selectsort(){
         cout << *(p++) << " ";
     }
     cout << endl;
-
 }
+
+void main_merge_sort(){
+    int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
+    int*p = algorithms::merge_sort(nums, 0, 9);
+    for (int i = 0; i < 10; i++)
+    {
+        cout << *(p++) << " ";
+    }
+    cout << endl;
+}
+
 void main_quickfind()
 {
-
     using coursera::quickfind;
     // vector<unsigned> v;
     // uniform_int_distribution<unsigned> u(0, 1000000);
@@ -83,6 +92,7 @@ void main_quickfind()
     qf.connected(200, 703902); //O(1)
     cout << time2 << " " << time1 << endl;
 }
+
 void main_quickunion()
 {
     coursera::quickunion qu(10);
