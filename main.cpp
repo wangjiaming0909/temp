@@ -30,7 +30,8 @@ int main()
     // main_insertsort();
     // main_merge_sort();
     // main_binary_search();
-    main_twosum();
+    // main_twosum();
+    main_merge_inversions();
 
     // main_quickfind();
     // main_quickunion();

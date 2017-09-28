@@ -182,6 +182,51 @@ void two_sum(int *nums, size_t n, int target, int *index1, int *index2){//不返
 }
 
 /*--------------------5-two sum -------------------------*/
+/*--------------------6-找出数组中inversions对的个数 -------------------------*/
+// i < j  but A[i] > A[j]
+//方法：
+/** 
+ * 使用merge方法， L中的元素index肯定小于R中元素index，从L和R中取出所有的值，如果L[i] > L[j]，则inversions++ir
+ * */
+size_t merge_inversions(int *nums, size_t p, size_t q, size_t r);
+size_t count_inversions(int *nums, size_t p, size_t r){
+    size_t inversions = 0;
+    if(p < r){
+        size_t q = (r + p) / 2;
+        inversions += count_inversions(nums, p, q);
+        inversions += count_inversions(nums, q+1, r);
+        inversions += merge_inversions(nums, p, q, r);        
+    }
+    return inversions;
+}
+//return inversions
+size_t merge_inversions(int *nums, const size_t p, const size_t q, const size_t r){
+    size_t n1 = q - p + 1;
+    size_t n2 = r - q;
+    int L[n1+1];
+    int R[n2+1];
+    for(size_t i = 0; i < n1; i++){
+        L[i] = nums[p+i];
+    }
+    for(size_t i = 0; i < n2; i++){
+        R[i] = nums[q+1+i];
+    }
+    size_t i = 0, j = 0, inversions = 0, k = p;
+    while((i < n1) && (j < n2)){//---------------------------------------------最坏情况下O(n)，且此时下面的两个while循环中的一个只执行一次
+        if(L[i] > R[j]){
+            inversions += n2-j;//左值大，右侧剩余几个都加到inversions上
+            nums[k++] = L[i++];//还是一样进行排序
+        }else
+            nums[k++] = R[j++];
+    }
+    while(i != n1)
+        nums[k++] = L[i++];
+    while(j != n2)
+        nums[k++] = R[j++];
+    return inversions;
+}
+/*--------------------6-找出数组中inversions对的个数 -------------------------*/
+
 /*--------------------1-maxpriorityqueue-------------------*/
 //数据结构p299练习1
 //使用数组线性表实现最大优先级队列

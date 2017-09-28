@@ -81,6 +81,12 @@ void main_twosum(){
     cout << index1 << " " << index2 << endl;
 }
 
+void main_merge_inversions(){
+    int nums[10] = {9,8,7,6,5,4,3,2,1,0};
+    size_t n = algorithms::count_inversions(nums, 0, 9);
+    cout << n << endl;
+}
+
 void main_quickfind()
 {
     using coursera::quickfind;
