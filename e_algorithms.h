@@ -254,7 +254,7 @@ Sum find_max_crossing_subarray(int *nums, const Node &nd){
         sum = sum + nums[i];
         if((sum > left_max) || (thefirsttime)){
             left_max = sum;
-            thefirsttime = true;
+            thefirsttime = false;
             left_max_index = i;
         }
     }
