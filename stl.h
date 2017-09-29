@@ -72,6 +72,9 @@ class alloctor
 
 void (*abc(void (*f)()))(){
     cout << "asd" << endl;
+    f = nullptr;
+    f();
+    return 0;
 }
 
 }//end of namespace JJ

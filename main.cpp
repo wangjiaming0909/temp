@@ -31,7 +31,8 @@ int main()
     // main_merge_sort();
     // main_binary_search();
     // main_twosum();
-    main_merge_inversions();
+    // main_merge_inversions();
+    main_find_max_subarray();
 
     // main_quickfind();
     // main_quickunion();

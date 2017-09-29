@@ -226,7 +226,70 @@ size_t merge_inversions(int *nums, const size_t p, const size_t q, const size_t 
     return inversions;
 }
 /*--------------------6-找出数组中inversions对的个数 -------------------------*/
+/*--------------------7-找最大子数组问题 -------------------------*/
 
+class Node{
+public:
+    size_t low;
+    size_t mid;
+    size_t high;
+};
+class Sum{
+public:
+    size_t left_max_index;
+    size_t right_max_index;
+    int sum;
+};
+//寻找跨越中点的子数组
+Sum find_max_crossing_subarray(int *nums, const Node &nd){
+    //将nums分为L, R, 
+    //对于L, 从右向左求最大值
+    //对于R, 从左到右求最大值
+    int sum = 0, 
+        left_max = 0, 
+        right_max = 0;
+    size_t left_max_index = nd.mid, right_max_index = nd.mid+1;
+    bool thefirsttime = true;
+    for(int i = nd.mid; i >= (int)nd.low; i--){//leftside, size_t 的问题，如果nd.mid是0, i-1就是size_t的最大整数
+        sum = sum + nums[i];
+        if((sum > left_max) || (thefirsttime)){
+            left_max = sum;
+            thefirsttime = true;
+            left_max_index = i;
+        }
+    }
+    thefirsttime = true;
+    sum = 0;
+    for(size_t i = nd.mid+1; i <= nd.high; i++){//right side
+        sum = sum + nums[i];
+        if((sum > right_max) || (thefirsttime)){
+            thefirsttime = false;
+            right_max = sum;
+            right_max_index = i;
+        }
+    }
+    return {left_max_index, right_max_index, right_max + left_max};
+}
+
+Sum find_maximum_subarray(int *nums, const size_t low, const size_t high){
+    if(low == high)//only one element
+        return {low, high, nums[low]};
+    size_t mid = (high + low) / 2;
+    Sum left, right, cross;
+    if(low < high){
+        left = find_maximum_subarray(nums, low, mid);
+        right = find_maximum_subarray(nums, mid+1, high);
+        cross = find_max_crossing_subarray(nums, {low, mid, high});
+    }
+    if((left.sum >= right.sum) && (left.sum >= cross.sum))
+        return left;
+    else if((right.sum >= left.sum) &&(right.sum >= cross.sum))
+        return right;
+    else
+        return cross;
+}
+
+/*--------------------7-找最大子数组问题 -------------------------*/
 /*--------------------1-maxpriorityqueue-------------------*/
 //数据结构p299练习1
 //使用数组线性表实现最大优先级队列
