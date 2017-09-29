@@ -6,7 +6,7 @@
 #include <functional>
 #include "ds.h"
 // #include <windows.h>
-#include "microtime.h"
+// #include "microtime.h"
 
 //定义一个函数可以计算一个函数调用所用的时间间隔
 //return ms
@@ -106,11 +106,11 @@ void main_quickfind()
         default_random_engine e;
         qf.union_(u(e), u(e));
     }
-    auto time1 = GetSysTimeMicros();
+    // auto time1 = GetSysTimeMicros();
     qf.union_(2000, 890090);
-    auto time2 = GetSysTimeMicros();
+    // auto time2 = GetSysTimeMicros();
     qf.connected(200, 703902); //O(1)
-    cout << time2 << " " << time1 << endl;
+    // cout << time2 << " " << time1 << endl;
 }
 
 void main_quickunion()
