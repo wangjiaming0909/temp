@@ -3,6 +3,7 @@
 #include "coursera_algorithms.h"
 #include <string>
 #include <algorithm>
+#include <memory>
 #include <functional>
 #include "ds.h"
 // #include <windows.h>
@@ -287,4 +288,15 @@ void main_find_max_subarray(){
     int nums[16] = {-13, -3, -25, -20, -3, -16, -23, -18, -20, -7, -12, -5, -22, -15, -4, -7};
     algorithms::Sum s = algorithms::find_maximum_subarray(nums, 0, 15);
     cout << s.left_max_index << " " << s.right_max_index << " " << s.sum << endl;
+}
+
+//关于位或与的问题
+void main_or_and(){
+    enum {__ALIGN = 8};
+    enum {MAX_BYTES = 128};
+    size_t bytes = 73;
+    size_t temp = ~(__ALIGN - 1) ;
+    size_t tmp2 = (bytes+__ALIGN-1) & temp;
+    cout << temp << endl;
+    cout << tmp2 << endl;
 }
