@@ -1,6 +1,23 @@
 {
     "configurations": [
         {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include/",
+                "/usr/include/c++/5/",
+                "${workspaceRoot}"
+            ],
+            "browse": {
+                "path": [
+                    "/usr/include/",
+                    "/usr/include/c++/5/",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "intelliSenseMode": "clang-x64"
+        },
+        {
             "name": "Win32",
             "includePath": [
                 "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++",
