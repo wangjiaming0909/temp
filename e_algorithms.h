@@ -2,6 +2,7 @@
 using namespace std;
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 namespace algorithms
 {
 
@@ -287,6 +288,55 @@ Sum find_maximum_subarray(int *nums, const size_t low, const size_t high){
         return right;
     else
         return cross;
+}
+void print_2darray(int **nums, size_t M, size_t N){
+    for(size_t i = 0; i < M; i++){
+        for(size_t j = 0; j < i; j++){
+            cout << "  ";
+        }
+        for(size_t k = i; k < N; k++){
+            cout << nums[M][N] << " ";
+        }
+    }
+    cout << endl;
+}
+//暴力求解方法
+Sum find_maximum_subarray(int *nums, size_t N){
+    size_t left, right[N];
+    int** sum = new int*[N];
+    for(size_t i = 0; i < N; i++){
+        sum[i] = new int[N];
+    }
+    for(size_t i = 0; i < N; i++){
+        sum[i][i] = nums[i];
+        for(size_t j = i; j < N; j++){
+            sum[i][j] = (j == i) ? sum[i][j] : (nums[j] + sum[i][j-1]);
+        }
+    }
+    print_2darray(sum, N, N);
+    int max[N];
+    for(size_t i = 0; i < N; i++){
+        max[i] = sum[i][i];
+        for(size_t j = i; j < N; j++){
+            if(sum[i][j] > max[i]){
+                max[i] = sum[i][j];
+                right[i] = j;   
+            }
+        }
+    }
+    int max_value = max[0];
+    left = 0;
+    for(size_t i = 0; i < N; i++){
+        if(max[i] > max_value){
+            max_value = max[i];
+            left = i;
+        }
+    }
+    for(size_t i = 0; i < N; i++){
+        delete[] sum[i];
+    }
+    delete[] sum;
+    return {left, right[left], max_value};
 }
 
 /*--------------------7-找最大子数组问题 -------------------------*/

@@ -32,8 +32,8 @@ int main()
     // main_binary_search();
     // main_twosum();
     // main_merge_inversions();
-    // main_find_max_subarray();
-    main_or_and();
+    main_find_max_subarray();
+    // main_or_and();
 
     // main_quickfind();
     // main_quickunion();

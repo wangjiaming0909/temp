@@ -1,41 +1,45 @@
 {
     "version": "0.2.0",
     "configurations": [
+        // {
+        //     "name": "(gdb) Launch",
+        //     "type": "cppdbg",
+        //     "request": "launch",
+        //     "program": "${workspaceRoot}/a.exe",
+        //     "args": [],
+        //     "stopAtEntry": true,
+        //     "cwd": "${workspaceRoot}",
+        //     "environment": [],
+        //     "externalConsole": true,
+        //     "MIMode": "gdb",
+        //     "windows": {
+        //         "iDebuggerPath": "C:/MinGW/bin/gdb.exe"
+        //     },
+        //     "setupCommands": [
+        //         {
+        //             "description": "Enable pretty-printing for gdb",
+        //             "text": "-enable-pretty-printing",
+        //             "ignoreFailures": true
+        //         }
+        //     ]
+        // },
         {
             "name": "(gdb) Launch",
-            "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/a.out",
-            "args": [],
+            "type": "cppdbg",
             "stopAtEntry": true,
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",
-            "windows": {
-                "iDebuggerPath": "C:/MinGW/bin/gdb.exe"
-            },
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "(gdb) Launch",
-            "request": "launch",
-            "type": "cppdbg",
-            "stopAtEntry": true,
-            "cwd": "${workspaceRoot}",
-            "environment": [],
-            "externalConsole": true,
-            "MIMode": "gdb",
-            "program": "${workspaceRoot}/a.out",
             "args": [],
             "linux": {
-                    "miDebuggerPath": "/usr/bin/gdb"
+                "program": "${workspaceRoot}/a.out",
+                "miDebuggerPath": "/usr/bin/gdb"
+            },
+            "windows": {
+                "program": "${workspaceRoot}/a.exe",
+                "miDebuggerPath": "D:/Qt5.5.1/Tools/mingw492_32/bin/gdb.exe"
             },
             "setupCommands": [
                 {
