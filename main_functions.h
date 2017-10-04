@@ -300,3 +300,25 @@ void main_or_and(){
     cout << temp << endl;
     cout << tmp2 << endl;
 }
+
+template <class T>
+struct myiter{
+    typedef T value_type;
+    T* ptr;
+    T& operator*() const{return *ptr;}
+};
+
+template <class I>
+typename I::value_type 
+func(I ite){
+    return *ite;
+}
+
+void mian_traits(){
+    // typedef int* value_type;
+    // int i =- 12;
+    // value_type p = &i;
+    // cout << p << endl;
+    myiter<int *> m;
+    cout << func(m) << endl;
+}
