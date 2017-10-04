@@ -12,14 +12,14 @@
                 "isBuildCommand": true,
                 "isBackground": true,
                 "args": [
-                    
+                   "makefile.linux" 
                 ],
                 "problemMatcher": "$msCompile"
             },
             {
                 "taskName": "clean",
                 "args": [
-                    
+                    "makefile.linux"
                 ],
                 "problemMatcher": "$msCompile"
             }
@@ -28,13 +28,14 @@
     "windows": {
         "command": "mingw32-make",
         "isShellCommand": true,
-        "showOutput": "silent",
+        "showOutput": "always",
         "tasks": [
             {
                 "taskName": "all",
                 "isBuildCommand": true,
                 "isBackground": true,
                 "args": [
+                    "-fmakefile.windows"
                 ],
                 "problemMatcher": "$msCompile"
             }
@@ -42,6 +43,7 @@
             {
                 "taskName": "clean",
                 "args": [
+                    "-fmakefile.windows"
                 ],
                 "problemMatcher": "$msCompile"
             }
