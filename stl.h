@@ -4,7 +4,7 @@
 #include <new>
 #include <memory>
 using namespace std;
-
+#define UINT_MAX 65535
 namespace JJ
 {
 template <class T>

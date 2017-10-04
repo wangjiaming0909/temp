@@ -2,24 +2,50 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "command": "mingw32-make",
-    "isShellCommand": true,
-    "showOutput": "silent",
-    "tasks": [
-        {
-            "taskName": "all",
-            "isBuildCommand": true,
-            "isBackground": true,
-            "args": [
-            ],
-            "problemMatcher": "$msCompile"
-        }
-        ,
-        {
-            "taskName": "clean",
-            "args": [
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+    "linux": {
+        "command": "make",
+        "isShellCommand": true,
+        "showOutput": "always",
+        "tasks": [
+            {
+                "taskName": "all",
+                "isBuildCommand": true,
+                "isBackground": true,
+                "args": [
+                    
+                ],
+                "problemMatcher": "$msCompile"
+            },
+            {
+                "taskName": "clean",
+                "args": [
+                    
+                ],
+                "problemMatcher": "$msCompile"
+            }
+        ]
+    },
+    "windows": {
+        "command": "mingw32-make",
+        "isShellCommand": true,
+        "showOutput": "silent",
+        "tasks": [
+            {
+                "taskName": "all",
+                "isBuildCommand": true,
+                "isBackground": true,
+                "args": [
+                ],
+                "problemMatcher": "$msCompile"
+            }
+            ,
+            {
+                "taskName": "clean",
+                "args": [
+                ],
+                "problemMatcher": "$msCompile"
+            }
+        ]
+        
+    }
 }
