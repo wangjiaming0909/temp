@@ -1,4 +1,4 @@
-target = a.exe
+target = a.out
 objects = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 LIB = a
 
@@ -13,14 +13,14 @@ $(target):$(objects)
 
 $(objects):%.o:%.cpp
 # @echo compiling...
-	@rm -f *.exe
+	# @rm -f *.exe
 	@rm -f *.out
 	g++ -Wall -Wextra -std=c++11 -c -O1  $< -o $@ -g -Wfatal-errors
 	
 
 clean:FORCE
 	rm -f *.o 
-	rm -f *.exe
+	# rm -f *.exe
 	rm -f *.out
 	@echo ok..
 FORCE:
