@@ -12,14 +12,14 @@
                 "isBuildCommand": true,
                 "isBackground": true,
                 "args": [
-                   "-f makefile.linux" 
+                   "-fmakefile.linux" 
                 ],
                 "problemMatcher": "$msCompile"
             },
             {
                 "taskName": "clean",
                 "args": [
-                    "-f makefile.linux"
+                    "-fmakefile.linux"
                 ],
                 "problemMatcher": "$msCompile"
             }
