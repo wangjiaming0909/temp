@@ -284,9 +284,9 @@ void main_compare(){
 }
 
 void main_find_max_subarray(){
-    // int nums[16] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+    int nums[16] = {13, -3, -5, 20, -13, -6, 13, 18, 20, -7, 12, -15, -22, 15, -4, 17};
     // int nums[3] = {-2,3,2};
-    int nums[16] = {-13, -3, -25, -20, -3, -16, -23, -18, -20, -7, -12, -5, -22, -15, -4, -7};
+    // int nums[16] = {-13, -3, -25, -20, -3, -16, -23, -18, -20, -7, -12, -5, -22, -15, -4, -7};
     // algorithms::Sum s = algorithms::find_maximum_subarray(nums, 0, 15);
     algorithms::Sum s = algorithms::find_maximum_subarray(nums, 15);
     cout << s.left_max_index << " " << s.right_max_index << " " << s.sum << endl;

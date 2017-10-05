@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <unordered_map>
+#include <iomanip>
 #include <unordered_set>
 #include <vector>
 namespace algorithms
@@ -292,13 +293,13 @@ Sum find_maximum_subarray(int *nums, const size_t low, const size_t high){
 void print_2darray(int **nums, size_t M, size_t N){
     for(size_t i = 0; i < M; i++){
         for(size_t j = 0; j < i; j++){
-            cout << "  ";
+            cout << std::right << setw(4) << "___";
         }
         for(size_t k = i; k < N; k++){
-            cout << nums[M][N] << " ";
+            cout << std::right << std::setw(4) << nums[i][k];
         }
+        cout << endl;
     }
-    cout << endl;
 }
 //暴力求解方法
 Sum find_maximum_subarray(int *nums, size_t N){
@@ -323,6 +324,10 @@ Sum find_maximum_subarray(int *nums, size_t N){
                 right[i] = j;   
             }
         }
+    }
+    cout << endl;
+    for(size_t i = 0; i < N; i++){
+        cout << max[i] << endl;
     }
     int max_value = max[0];
     left = 0;
