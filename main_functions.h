@@ -132,10 +132,10 @@ void main_weighted_quickunion()
     cout << wqu.connected(2, 6) << endl;
 }
 
-class A
+class _A
 {
   public:
-    A(const string &s_) : s(s_), i(0) {}
+    _A(const string &s_) : s(s_), i(0) {}
     const string &str() const { return s; }
 
   private:
@@ -143,12 +143,12 @@ class A
     int i;
 };
 
-bool eqOp(const A &lhs, const A &rhs)
+bool eqOp(const _A &lhs, const _A &rhs)
 {
     return lhs.str() == rhs.str();
 }
 
-size_t hasher(const A &a)
+size_t hasher(const _A &a)
 {
     return hash<string>()(a.str());
 }
@@ -156,33 +156,33 @@ size_t hasher(const A &a)
 void main_multi_set_map()
 {
     //unordered_set
-    using SD_multiset = unordered_set<A, decltype(hasher) *, decltype(eqOp) *>;
+    using SD_multiset = unordered_set<_A, decltype(hasher) *, decltype(eqOp) *>;
     SD_multiset sd_set(4, hasher, eqOp);                      //4代表容器中元素的个数
-    SD_multiset sd_set2({A("23"), A("ds")}, 4, hasher, eqOp); //初始化列表中的元素不能实现隐式的类型转换，需要手动调用构造函数
-    sd_set.insert(A("qwe"));
+    SD_multiset sd_set2({_A("23"), _A("ds")}, 4, hasher, eqOp); //初始化列表中的元素不能实现隐式的类型转换，需要手动调用构造函数
+    sd_set.insert(_A("qwe"));
 
     //unordered_multiset
-    using msd_multiset = unordered_multiset<A, decltype(hasher) *, decltype(eqOp) *>;
+    using msd_multiset = unordered_multiset<_A, decltype(hasher) *, decltype(eqOp) *>;
     msd_multiset msd_set(4, hasher, eqOp);
-    msd_multiset msd_set2({A("a"), A("b")}, 4, hasher, eqOp);
-    msd_set.insert(A("qwe"));
+    msd_multiset msd_set2({_A("a"), _A("b")}, 4, hasher, eqOp);
+    msd_set.insert(_A("qwe"));
 
-    using sd_ms = unordered_map<A, int, decltype(hasher) *, decltype(eqOp) *>;
-    using md_ms = unordered_multimap<A, int, decltype(hasher) *, decltype(eqOp) *>;
+    using sd_ms = unordered_map<_A, int, decltype(hasher) *, decltype(eqOp) *>;
+    using md_ms = unordered_multimap<_A, int, decltype(hasher) *, decltype(eqOp) *>;
     sd_ms sd_map(4, hasher, eqOp);
     md_ms md_map(4, hasher, eqOp);
-    sd_map.insert(make_pair<A, int>(A("asd"), 12)); //make_pair中不会进行类型自动转换
-    md_map.insert(make_pair<A, int>(A("asd"), 12));
-    md_map.insert(make_pair<A, int>(A("qwe"), 11));
-    sd_map[A("asss")] = 11;
+    sd_map.insert(make_pair<_A, int>(_A("asd"), 12)); //make_pair中不会进行类型自动转换
+    md_map.insert(make_pair<_A, int>(_A("asd"), 12));
+    md_map.insert(make_pair<_A, int>(_A("qwe"), 11));
+    sd_map[_A("asss")] = 11;
     for (auto &it : md_map)
         cout << it.first.str() << " " << it.second << endl;
     cout << "bucket_count: " << md_map.bucket_count() << endl;
     cout << "max_bucket_count: " << md_map.max_bucket_count() << endl;
     cout << "bucket_size(n): " << md_map.bucket_size(2) << endl;
     cout << "bucket_size(n): " << md_map.bucket_size(3) << endl;
-    cout << "bucket: " << md_map.bucket(A("qwe")) << endl;
-    cout << "bucket: " << md_map.bucket(A("asd")) << endl;
+    cout << "bucket: " << md_map.bucket(_A("qwe")) << endl;
+    cout << "bucket: " << md_map.bucket(_A("asd")) << endl;
 }
 
 void main_ds1_2()
