@@ -188,6 +188,7 @@ public:
     void preOrder();
     void inOrder();
     void postOrder();
+    void levelOrder();
     size_t height(){return h;}
 private:
     void setheight(){
@@ -252,7 +253,14 @@ void array_BT<T>::postOrder(size_t it){
 }
 
 /*------postOrder------*/
-
+/*------levelOrder------*/
+template <class T>
+void array_BT<T>::levelOrder(){
+    for(size_t it = 0; it < v.size(); it++)
+        visit(it);
+}
+/*------levelOrder------*/
+//visit
 template <class T>
 void array_BT<T>::visit(size_t it){
     if(v[it].second == false)
