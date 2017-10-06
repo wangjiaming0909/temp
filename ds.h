@@ -193,9 +193,8 @@ private:
     void setheight(){
         h = log2(v.size()) + 1;
     }
-    void visit(vector<pair<T, bool>>::iterator p);
-    void preOrder(vector<pair<T, bool>>::iterator p);
-);
+    void visit(pair<T, bool> *p);
+    void preOrder(pair<T, bool>*p);
 private:
     vector<pair<T, bool>> v;
     size_t h;
@@ -203,14 +202,14 @@ private:
 
 template <class T>
 void array_BT<T>::preOrder(){
-    // visit(&(v[0]));
-    visit(v.begin());
+    visit(&(v[0]));
+    // visit(v.begin());
     preOrder(&(v[1]));
     preOrder(&(v[2]));
 }
 template <class T>
-void array_BT<T>::preOrder(decltype(v.begin()) p){
-    auto leftchild = p - v.begin() + 1;
+void array_BT<T>::preOrder(pair<T, bool> *p){
+    pair<T, bool> *leftchild = p - &(v[0]) + 1;
     auto rightchild = leftchild + 1;
     visit(p);
     visit(leftchild);
