@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
+#include <queue>
 using namespace std;
 
 //2,返回数组a[0:n-1]的数值个数
@@ -91,7 +92,7 @@ struct binaryTreeNode{
 template <class T>
 class binaryTree{
 public:
-    virtual ~binaryTree();
+    virtual ~binaryTree() = default;
     virtual bool empty() const = 0;
     virtual int size() const = 0;
     virtual void preOrder(void (*) (T*)) = 0;
@@ -99,12 +100,15 @@ public:
     virtual void postOrder(void (*)(T*)) = 0;
     virtual void levelOrder(void (*)(T*)) = 0;
 };
+template <class T>
+void myvisit(binaryTreeNode<T> *);
 
 //linked binaryTree
 template <class T>
 class linkedBinaryTree : public binaryTree<binaryTreeNode<T>>{
 public:
     linkedBinaryTree() : root(nullptr), treeSize(0){}
+    linkedBinaryTree(binaryTreeNode<T> *r) : root(r), treeSize(0){}
     ~linkedBinaryTree(){erase();}
     bool empty()const {return treeSize == 0;}
     int size() const {return treeSize;}
@@ -126,18 +130,21 @@ public:
         root = NULL;
         treeSize = 0;
     }
-    int height() const;
+    // int height() const;
 private:
     binaryTreeNode<T>   *root;
     int                 treeSize;
+    static void (*visit) (binaryTreeNode<T> *);//静态变量需要初始化
 private:
-    static void (*visit) (binaryTreeNode<T> *);
     static void preOrder(binaryTreeNode<T> *t);
     static void inOrder(binaryTreeNode<T> *t);
     static void postOrder(binaryTreeNode<T> *t);
     static void dispose(binaryTreeNode<T> *t){delete t;}
     int height(binaryTreeNode<T> *);
 };
+
+template <class T>
+void (*linkedBinaryTree<T>::visit)(binaryTreeNode<T> *) = myvisit;
 
 template <class T>
 void linkedBinaryTree<T>::preOrder(binaryTreeNode<T> *t){
@@ -151,7 +158,7 @@ template <class T>
 void linkedBinaryTree<T>::inOrder(binaryTreeNode<T> *t){
     if(t != NULL){
         inOrder(t->leftChild);
-        linkedBinaryTree<T>::viist(t);
+        linkedBinaryTree<T>::visit(t);
         inOrder(t->rightChild);
     }
 }
@@ -177,6 +184,17 @@ int linkedBinaryTree<T>::height(binaryTreeNode<T> *t){
         return ++hr;
 }
 
+template <class T>
+void linkedBinaryTree<T>::levelOrder(void (*)(binaryTreeNode<T> *)){
+    queue<binaryTreeNode<T>*> q;
+}
+
+
+template <class E>
+void myvisit(binaryTreeNode<E> *x){
+    std::cout << x->element << " ";
+}
+/*--------------------------数组描述的二叉树----------------------------*/
 //遍历数组描述的二叉树
 template <class T>
 class array_BT{

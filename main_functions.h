@@ -352,15 +352,17 @@ void main_array_BT(){
 
 }
 
-void main_vector_move(){
-    vector<int> v1 = {1,2,3,4};
-    auto v2 = v1;
-    vector<int> v3 = std::move(v1);
-    vector<int> v4;
-    v4 = std::move(v1);
-    // string s1 = "123";
-    // string s2 = s1;
-    // string s3 = std::move(s1);
-    // string s4;
-    // s4 = std::move(s1);
+
+void main_binary_tree(){
+    ds::binaryTreeNode<string> root, l1, l2, ll1;
+    root.element = "root";
+    l1.element = "l1";
+    l2.element = "l2";
+    ll1.element = "ll1";
+    root.leftChild = &l1;
+    root.rightChild = &l2;
+    l1.leftChild = &ll1;
+
+    ds::linkedBinaryTree<string> lbt(&root);
+    lbt.preOrder(ds::myvisit);
 }

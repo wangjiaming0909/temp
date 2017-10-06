@@ -46,7 +46,8 @@ int main()
     // main_compare();
     // main_stl();
     // main_function_pointer();
-    main_array_BT();
+    // main_array_BT();
     // main_vector_move();
+    main_binary_tree();
     return 0;
 }
