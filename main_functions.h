@@ -338,10 +338,8 @@ void main_array_BT(){
                 make_pair(8, true),
     };
     ds::array_BT<int> abt(v);
-    abt.print_v_addr();
-    cout << &v << endl;
-    cout << v[0].first << endl;
-    cout << v[1].first << endl;
+    ds::array_BT<int> abt2 = abt;
+    abt2.preOrder();
     // cout << &v << endl;
     // cout << abt.height() << endl;
     // abt.preOrder();

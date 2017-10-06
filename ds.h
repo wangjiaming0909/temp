@@ -184,6 +184,7 @@ public:
     array_BT(const vector<pair<T, bool>> &p) : v(std::move(p)){
         setheight();
     }
+    array_BT(const array_BT &abt) : v(abt.v), h(abt.h){}
     void preOrder();
     void inOrder();
     void postOrder();
