@@ -325,3 +325,20 @@ void mian_traits(){
     myiter<int *> m;
     cout << func(m) << endl;
 }
+
+void main_array_BT(){
+    vector<pair<int, bool>> v = {make_pair(1, true), 
+                make_pair(2, true), 
+                make_pair(3, true), 
+                make_pair(4, true),
+                make_pair(5, false),
+                make_pair(6, true),
+                make_pair(7, false),
+                make_pair(8, true),
+                make_pair(9, true),
+    };
+    ds::array_BT<int> abt(v);
+    cout << abt.height() << endl;
+    abt.preOrder();
+
+}

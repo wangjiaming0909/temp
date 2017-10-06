@@ -176,6 +176,54 @@ int linkedBinaryTree<T>::height(binaryTreeNode<T> *t){
     else
         return ++hr;
 }
+
+//遍历数组描述的二叉树
+template <class T>
+class array_BT{
+public:
+    array_BT(const vector<pair<T, bool>> &p){
+        v = std::move(p);
+        setheight();
+    }
+    void preOrder();
+    void inOrder();
+    void postOrder();
+    size_t height(){return h;}
+private:
+    void setheight(){
+        h = log2(v.size()) + 1;
+    }
+    void visit(vector<pair<T, bool>>::iterator p);
+    void preOrder(vector<pair<T, bool>>::iterator p);
+);
+private:
+    vector<pair<T, bool>> v;
+    size_t h;
+};
+
+template <class T>
+void array_BT<T>::preOrder(){
+    // visit(&(v[0]));
+    visit(v.begin());
+    preOrder(&(v[1]));
+    preOrder(&(v[2]));
+}
+template <class T>
+void array_BT<T>::preOrder(decltype(v.begin()) p){
+    auto leftchild = p - v.begin() + 1;
+    auto rightchild = leftchild + 1;
+    visit(p);
+    visit(leftchild);
+    visit(rightchild);
+}
+
+template <class T>
+void array_BT<T>::visit(pair<T, bool> *p){
+    if(p->second == false)
+        return ;
+    cout << p->first << " " << ends;
+}
+
 /*-----------------------------tree--------------------------*/
 }
 

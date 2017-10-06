@@ -32,7 +32,7 @@ int main()
     // main_binary_search();
     // main_twosum();
     // main_merge_inversions();
-    main_find_max_subarray();
+    // main_find_max_subarray();
     // main_or_and();
 
     // main_quickfind();
@@ -46,5 +46,6 @@ int main()
     // main_compare();
     // main_stl();
     // main_function_pointer();
+    main_array_BT();
     return 0;
 }
