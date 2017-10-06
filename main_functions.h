@@ -327,18 +327,23 @@ void mian_traits(){
 }
 
 void main_array_BT(){
-    vector<pair<int, bool>> v = {make_pair(1, true), 
+    vector<pair<int, bool>> v = {make_pair(0, true), 
+                make_pair(1, true), 
                 make_pair(2, true), 
-                make_pair(3, true), 
-                make_pair(4, true),
-                make_pair(5, false),
-                make_pair(6, true),
-                make_pair(7, false),
+                make_pair(3, true),
+                make_pair(4, false),
+                make_pair(5, true),
+                make_pair(6, false),
+                make_pair(7, true),
                 make_pair(8, true),
-                make_pair(9, true),
     };
     ds::array_BT<int> abt(v);
-    cout << abt.height() << endl;
+    // cout << abt.height() << endl;
     abt.preOrder();
+    cout << endl;
+    abt.inOrder();
+    cout << endl;
+    abt.postOrder();
+    cout << endl;
 
 }

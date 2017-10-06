@@ -193,37 +193,73 @@ private:
     void setheight(){
         h = log2(v.size()) + 1;
     }
-    void visit(pair<T, bool> *p);
-    void preOrder(pair<T, bool>*p);
+    
+    void visit(size_t it);
+    void preOrder(size_t it);
+    void inOrder(size_t);
+    void postOrder(size_t);
 private:
     vector<pair<T, bool>> v;
     size_t h;
 };
-
+/*------preOrder------*/
 template <class T>
 void array_BT<T>::preOrder(){
-    visit(&(v[0]));
-    // visit(v.begin());
-    preOrder(&(v[1]));
-    preOrder(&(v[2]));
+    preOrder(0);
 }
 template <class T>
-void array_BT<T>::preOrder(pair<T, bool> *p){
-    pair<T, bool> *leftchild = p - &(v[0]) + 1;
+void array_BT<T>::preOrder(size_t it){
+    auto leftchild = it * 2 + 1;
     auto rightchild = leftchild + 1;
-    visit(p);
-    visit(leftchild);
-    visit(rightchild);
+    visit(it);
+    if(leftchild <= v.size())
+    preOrder(leftchild);
+    if(rightchild <= v.size())
+    preOrder(rightchild);
+}
+/*------preOrder------*/
+/*------INOrder------*/
+template <class T>
+void array_BT<T>::inOrder(){
+    inOrder(0);    
+}
+template <class T>
+void array_BT<T>::inOrder(size_t it){
+    auto leftchild = it*2 + 1;
+    auto rightchild = leftchild + 1;
+    if(leftchild <= v.size())
+        inOrder(leftchild);
+    visit(it);
+    if(rightchild <= v.size())
+        inOrder(rightchild);
+}
+/*------INOrder------*/
+/*------postOrder------*/
+template <class T>
+void array_BT<T>::postOrder(){
+    postOrder(0);
 }
 
 template <class T>
-void array_BT<T>::visit(pair<T, bool> *p){
-    if(p->second == false)
+void array_BT<T>::postOrder(size_t it){
+    auto leftchild = it*2 + 1;
+    auto rightchild = leftchild + 1;
+    if(leftchild <= v.size())
+        postOrder(leftchild);
+    if(rightchild <= v.size())
+        postOrder(rightchild);
+    visit(it);
+}
+
+/*------postOrder------*/
+
+template <class T>
+void array_BT<T>::visit(size_t it){
+    if(v[it].second == false)
         return ;
-    cout << p->first << " " << ends;
+    cout << v[it].first << " " << ends;
 }
 
 /*-----------------------------tree--------------------------*/
 }
 
-//为一个二维数组分配内存空间
