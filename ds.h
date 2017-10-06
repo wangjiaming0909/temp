@@ -181,14 +181,16 @@ int linkedBinaryTree<T>::height(binaryTreeNode<T> *t){
 template <class T>
 class array_BT{
 public:
-    array_BT(const vector<pair<T, bool>> &p){
-        v = std::move(p);
+    array_BT(const vector<pair<T, bool>> &p) : v(std::move(p)){
         setheight();
     }
     void preOrder();
     void inOrder();
     void postOrder();
     void levelOrder();
+    void print_v_addr(){
+        cout << &v << endl;
+    }
     size_t height(){return h;}
 private:
     void setheight(){

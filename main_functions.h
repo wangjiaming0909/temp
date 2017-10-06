@@ -338,13 +338,31 @@ void main_array_BT(){
                 make_pair(8, true),
     };
     ds::array_BT<int> abt(v);
+    abt.print_v_addr();
+    cout << &v << endl;
+    cout << v[0].first << endl;
+    cout << v[1].first << endl;
+    // cout << &v << endl;
     // cout << abt.height() << endl;
     // abt.preOrder();
     // cout << endl;
     // abt.inOrder();
     // cout << endl;
     // abt.postOrder();
-    abt.levelOrder();
+    // abt.levelOrder();
     cout << endl;
 
+}
+
+void main_vector_move(){
+    vector<int> v1 = {1,2,3,4};
+    auto v2 = v1;
+    vector<int> v3 = std::move(v1);
+    vector<int> v4;
+    v4 = std::move(v1);
+    // string s1 = "123";
+    // string s2 = s1;
+    // string s3 = std::move(s1);
+    // string s4;
+    // s4 = std::move(s1);
 }

@@ -24,11 +24,7 @@
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/um",
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/shared",
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/tr1",
-                "${workspaceRoot}",
-                "C:/MinGW/include",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include"
+                "${workspaceRoot}"
             ],
             "defines": [
                 "_DEBUG",
@@ -41,8 +37,6 @@
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/um",
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/shared",
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt",
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32",
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/tr1",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
