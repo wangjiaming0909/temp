@@ -340,10 +340,10 @@ void main_array_BT(){
     ds::array_BT<int> abt(v);
     // cout << abt.height() << endl;
     abt.preOrder();
-    cout << endl;
-    abt.inOrder();
-    cout << endl;
-    abt.postOrder();
+    // cout << endl;
+    // abt.inOrder();
+    // cout << endl;
+    // abt.postOrder();
     cout << endl;
 
 }

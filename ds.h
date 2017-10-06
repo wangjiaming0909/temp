@@ -212,10 +212,10 @@ void array_BT<T>::preOrder(size_t it){
     auto leftchild = it * 2 + 1;
     auto rightchild = leftchild + 1;
     visit(it);
-    if(leftchild <= v.size())
-    preOrder(leftchild);
-    if(rightchild <= v.size())
-    preOrder(rightchild);
+    if(leftchild < v.size())
+        preOrder(leftchild);
+    if(rightchild < v.size())
+        preOrder(rightchild);
 }
 /*------preOrder------*/
 /*------INOrder------*/
@@ -227,10 +227,10 @@ template <class T>
 void array_BT<T>::inOrder(size_t it){
     auto leftchild = it*2 + 1;
     auto rightchild = leftchild + 1;
-    if(leftchild <= v.size())
+    if(leftchild < v.size())
         inOrder(leftchild);
     visit(it);
-    if(rightchild <= v.size())
+    if(rightchild < v.size())
         inOrder(rightchild);
 }
 /*------INOrder------*/
@@ -244,9 +244,9 @@ template <class T>
 void array_BT<T>::postOrder(size_t it){
     auto leftchild = it*2 + 1;
     auto rightchild = leftchild + 1;
-    if(leftchild <= v.size())
+    if(leftchild < v.size())
         postOrder(leftchild);
-    if(rightchild <= v.size())
+    if(rightchild < v.size())
         postOrder(rightchild);
     visit(it);
 }
@@ -257,7 +257,7 @@ template <class T>
 void array_BT<T>::visit(size_t it){
     if(v[it].second == false)
         return ;
-    cout << v[it].first << " " << ends;
+    cout << v[it].first << " ";
 }
 
 /*-----------------------------tree--------------------------*/
