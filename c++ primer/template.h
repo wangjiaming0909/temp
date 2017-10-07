@@ -285,5 +285,20 @@ namespace std{
     }
 }
 
+template <class T, class U>
+class temp{
+};
+
+// template <class T>
+// class temp<T*, T*>{
+// };
+
+// template <class T, class U>
+// class temp<T, U*>{
+// };
+
+template <class T>
+class temp<T**, T*>{};
+
 
 #endif //_TEMPLATE_H_

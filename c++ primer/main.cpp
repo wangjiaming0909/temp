@@ -17,7 +17,7 @@ void c(double d){
 
 int main(){
     int i = 1;
-    typeof(i) j = 12;
+    // typeof(i) j = 12;
     // using std::placeholders::_1;
     // vector<string> v = {"qwe", "", "asd", "", "", "qe"};
     // function<bool (const string&)> f = &string::empty;
