@@ -288,5 +288,9 @@ void main_type_info(){
     // int ty2 = type_::d;//限定作用域枚举不会进行隐式转换
 }
 
+void main_my_add_const(){
+    // i = 13;
+}
+
 
 #endif //MAIN_FUNCTION_H_

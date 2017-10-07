@@ -301,4 +301,11 @@ template <class T>
 class temp<T**, T*>{};
 
 
+template <class T>
+struct my_add_const{
+    typedef T const type;
+};
+int ii = 12;
+my_add_const<int*>::type i = &ii;//int * const i = 12; 
+
 #endif //_TEMPLATE_H_
