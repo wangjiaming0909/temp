@@ -360,6 +360,24 @@ class maxpriorityqueue
     virtual void pop() = 0;
     virtual void push(const T &element) = 0;
 };
+
+//max heap
+template <class T>
+class maxheap : public maxpriorityqueue<T>{
+public:
+    maxheap(T *t, size_t capacity, size_t size) : heap(t), arraylength(capacity), heapsize(size){}
+    void push(const T& theElement);
+    bool empty() const;
+    int m_size() const;
+    const T& top();
+    void pop();
+    void initialize(T *theHeap, int theSize);
+    ~maxheap(){}
+private:
+    T       *heap;
+    size_t  arraylength;//capacity of array heap 
+    size_t  heapsize;//nums of elements in heap
+};
 /*--------------------1-maxpriorityqueue-------------------*/
 
 } //namespace algorithms
