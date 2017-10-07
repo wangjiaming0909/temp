@@ -12,14 +12,14 @@
                 "isBuildCommand": true,
                 "isBackground": true,
                 "args": [
-                   "-fmakefile.linux" 
+                   "-flinux.makefile" 
                 ],
                 "problemMatcher": "$msCompile"
             },
             {
                 "taskName": "clean",
                 "args": [
-                    "-fmakefile.linux"
+                    "-flinux.makefile"
                 ],
                 "problemMatcher": "$msCompile"
             }
@@ -35,7 +35,7 @@
                 "isBuildCommand": true,
                 "isBackground": true,
                 "args": [
-                    "-fmakefile.windows"
+                    "-fwindows.makefile"
                 ],
                 "problemMatcher": "$msCompile"
             }
@@ -43,7 +43,7 @@
             {
                 "taskName": "clean",
                 "args": [
-                    "-fmakefile.windows"
+                    "-fwindows.makefile"
                 ],
                 "problemMatcher": "$msCompile"
             }

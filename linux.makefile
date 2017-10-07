@@ -14,7 +14,7 @@ $(target):$(objects)
 $(objects):%.o:%.cpp
 # @echo compiling...
 	@rm -f *.out
-	g++ -Wall -Wextra -std=c++11 -c -O1  $< -o $@ -g -Wfatal-errors
+	g++ -Wall -Wextra -std=c++11 -c -O0  $< -o $@ -g2 -ggdb -Wfatal-errors
 	
 
 clean:FORCE
