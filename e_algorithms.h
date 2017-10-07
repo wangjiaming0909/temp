@@ -365,19 +365,41 @@ class maxpriorityqueue
 template <class T>
 class maxheap : public maxpriorityqueue<T>{
 public:
-    maxheap(T *t, size_t capacity, size_t size) : heap(t), arraylength(capacity), heapsize(size){}
+    // maxheap(T *t, size_t capacity, size_t size) : heap(t), arraylength(capacity), heapsize(size){}
+    void initialize(T *theHeap, int theSize);
     void push(const T& theElement);
     bool empty() const;
     int m_size() const;
     const T& top();
     void pop();
-    void initialize(T *theHeap, int theSize);
     ~maxheap(){}
 private:
     T       *heap;
     size_t  arraylength;//capacity of array heap 
     size_t  heapsize;//nums of elements in heap
 };
+
+template <class T>
+void maxheap<T>::initialize(T *theHeap, int theSize){
+    delete [] heap;
+    heap = theHeap;
+    heapsize = theSize;
+
+    for(int root = heapsize / 2; root >= 1; root--){
+        T rootElement = heap[root];
+        int child = 2 * root;
+        while(child <= heapsize){
+            if(child < heapsize && heap[child] < heap[child+1])
+            child++;
+        }
+
+        if(rootElement >= heap[child])
+            break;
+        heap[child/2] = heap[child];
+        child *= 2;
+    }
+    heap[child/2] = rootElement;
+}
 /*--------------------1-maxpriorityqueue-------------------*/
 
 } //namespace algorithms
