@@ -370,6 +370,7 @@ public:
     void initialize(T *theHeap, int theSize);
     void initialize2(T *theheap, int thesize);
     void push(const T& theElement);
+    T remove(int i);
     bool empty() const;
     int m_size() const;
     const T& top();
@@ -377,13 +378,32 @@ public:
     ~maxheap(){}
     void levelOrder(){
         for(int i = 1; i <= heapsize; i++)
-            cout << heap[i] << " ";
+            cout << std::right << setw(3) << heap[i] << " ";
     }
 private:
     T       *heap;
     int  arraylength;//capacity of array heap 
     int  heapsize;//nums of elements in heap
 };
+
+template <class T>
+T maxheap<T>::remove(int i){
+    T ret = heap[i];
+    T lastelement = heap[heapsize--];//记住最后一个节点，删除最后一个节点
+    int currentnode = i, child = 2 * currentnode;
+    while(child <= heapsize){
+        if(child < heapsize && heap[child] < heap[child+1])//判断左右子节点哪个大
+            child++;
+        if(lastelement >= heap[child])//判断最后一个节点与当前child节点大小
+            break;
+        //将child上移一层
+        heap[currentnode] = heap[child];
+        currentnode = child;
+        child *= 2;
+    }
+    heap[currentnode] = lastelement;
+    return ret;
+}
 
 template <class T>
 void maxheap<T>::push(const T& theElement){
@@ -487,6 +507,98 @@ void maxheap<T>::initialize2(T *theheap, int thesize){
             heap[leftchild/2] = rootElement;
     }
 }
+
+//minheap
+template <class T>
+class minheap : public maxpriorityqueue<T>{
+ public:
+    minheap() : heap(nullptr), arraylength(0), heapsize(0){}
+    // maxheap(T *t, size_t capacity, size_t size) : heap(t), arraylength(capacity), heapsize(size){}
+    minheap(const minheap &mh) : heap(mh.heap), arraylength(mh.arraylength), heapsize(mh.heapsize){}
+    void initialize(T *theHeap, int theSize);
+    void push(const T& theElement);
+    bool empty() const;
+    int m_size() const;
+    const T& top();
+    void pop();
+    ~minheap(){}
+    void levelOrder(){
+        for(int i = 1; i <= heapsize; i++)
+            cout << std::right << setw(3) << heap[i] << " ";
+    }
+private:
+    T       *heap;
+    int  arraylength;//capacity of array heap 
+    int  heapsize;//nums of elements in heap   
+};
+//此为编号从1-size的版本
+template <class T>
+void minheap<T>::initialize(T *theHeap, int theSize){
+    delete [] heap;
+    heap = theHeap;
+    heapsize = theSize;
+
+    for(int root = heapsize / 2; root >= 1; root--){
+        T rootElement = heap[root];
+        int child = 2 * root;//leftchild
+        while(child <= heapsize){
+            if(child < heapsize && heap[child] > heap[child+1])//child is not the last element, and right child > left child
+                child++;    
+            if(rootElement <= heap[child])
+                break;
+            heap[child/2] = heap[child];//子节点大于rootElement, 因此，将子节点上移一层
+            child *= 2;
+        }
+        heap[child/2] = rootElement;
+    }
+}
+
+template <class T>
+void minheap<T>::push(const T& theElement){
+    int currentnode = ++heapsize;//新插入的节点index为heapsize+1
+    while(currentnode != 1 && heap[currentnode / 2] > theElement){//如果父节点小于新插入的节点
+        heap[currentnode] = heap[currentnode / 2];//将currentnode向下移一层
+        currentnode /= 2;
+    }
+    //currentnode = 1 或者theElement < heap[currentnode / 2]
+    heap[currentnode] = theElement;
+}
+
+template <class T>
+bool minheap<T>::empty() const{
+    return heapsize == 0;
+}
+
+template <class T>
+int minheap<T>::m_size()const {
+    return heapsize;
+}
+
+template <class T>
+const T& minheap<T>::top(){
+    return heap[1];
+}
+
+template <class T>
+void minheap<T>::pop(){
+//heapsize - 1  需要重排堆
+//获取最后一位的元素
+    T lastelement = heap[heapsize--];
+    //从根开始重排 
+    int root = 1;
+    int child = 2 * root;
+    while(child <= heapsize){
+        if(child < heapsize && heap[child] > heap[child+1])//右节点大
+            child++;
+        if(lastelement <= heap[child])
+            break;
+        heap[root] = heap[child];
+        root = child;
+        child *= 2;
+    }
+    heap[root] = lastelement;
+}
+
 /*--------------------1-maxpriorityqueue-------------------*/
 
 } //namespace algorithms

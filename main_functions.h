@@ -399,3 +399,37 @@ void main_max_heap(){
     // cout << endl << mx.m_size() << endl;
     // cout << mx.top() << endl;
 }
+
+void main_exams(){
+    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
+    algorithms::maxheap<int> mx;
+    mx.initialize(arr, 12);
+    mx.levelOrder();
+    cout << endl;
+    mx.remove(5);
+    // mx.push(15);
+    // mx.push(20);
+    // mx.push(45);
+    mx.levelOrder();
+    // cout << endl;
+    // mx.pop();
+    // mx.pop();
+    // mx.pop();
+    // mx.pop();
+    // mx.levelOrder();
+}
+
+void main_minheap(){
+    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
+    algorithms::minheap<int> mh;
+    mh.initialize(arr, 12);
+    mh.levelOrder();
+    cout << endl;
+    algorithms::minheap<int> mh2 = mh;
+    mh.levelOrder();
+    // mh.push(1);
+    // mh.levelOrder();
+    // cout << endl;
+    // mh.pop();
+    // mh.levelOrder();
+}
