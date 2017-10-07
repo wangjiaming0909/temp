@@ -354,15 +354,32 @@ void main_array_BT(){
 
 
 void main_binary_tree(){
-    ds::binaryTreeNode<string> root, l1, l2, ll1;
-    root.element = "root";
-    l1.element = "l1";
-    l2.element = "l2";
-    ll1.element = "ll1";
-    root.leftChild = &l1;
-    root.rightChild = &l2;
-    l1.leftChild = &ll1;
+    ds::binaryTreeNode<string> *root = new ds::binaryTreeNode<string>;
+    ds::binaryTreeNode<string> *l1 = new ds::binaryTreeNode<string>;
+    ds::binaryTreeNode<string> *l2 = new ds::binaryTreeNode<string>;
+    ds::binaryTreeNode<string> *ll1 = new ds::binaryTreeNode<string>;
+    root->element = "root";
+    l1->element = "l1";
+    l2->element = "l2";
+    ll1->element = "ll1";
+    root->leftChild = l1;
+    root->rightChild = l2;
+    l1->leftChild = ll1;
 
-    ds::linkedBinaryTree<string> lbt(&root);
-    lbt.preOrder(ds::myvisit);
+    ds::linkedBinaryTree<string> lbt(root);
+    // ds::linkedBinaryTree<string> lbt2 = lbt;
+    // // lbt.preOrder(ds::myvisit);
+    // cout << endl;
+    // lbt2.inOrder(ds::myvisit);
+    // cout << (lbt == lbt2);
+    lbt.inOrder(ds::myvisit);
+    lbt.swap_trees();
+    cout << endl;
+    lbt.inOrder(ds::myvisit);
+}
+
+void main_delete_noheap(){
+    int a = 12, *p = &a;
+    delete p;
+    cout << "asd" << *p << endl;
 }

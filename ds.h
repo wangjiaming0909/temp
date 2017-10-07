@@ -108,6 +108,7 @@ template <class T>
 class linkedBinaryTree : public binaryTree<binaryTreeNode<T>>{
 public:
     linkedBinaryTree() : root(nullptr), treeSize(0){}
+    linkedBinaryTree(const linkedBinaryTree &lbt) : root(lbt.root), treeSize(lbt.treeSize){}
     linkedBinaryTree(binaryTreeNode<T> *r) : root(r), treeSize(0){}
     ~linkedBinaryTree(){erase();}
     bool empty()const {return treeSize == 0;}
@@ -124,12 +125,20 @@ public:
         visit = thevisit;
         postOrder(root);
     }
-    void levelOrder(void (*)(binaryTreeNode<T> *));
+    void levelOrder(void (*)(binaryTreeNode<T> *)){
+        visit = myvisit;
+        levelOrder(root);
+    }
     void erase(){
         postOrder(dispose);
         root = NULL;
         treeSize = 0;
     }
+    bool operator==(const linkedBinaryTree &bt){
+        return compare(root, bt.root);
+    }
+    void swap_trees();//swap all the left and right child in the tree 
+    // size_t max_nodes_level();
     // int height() const;
 private:
     binaryTreeNode<T>   *root;
@@ -139,12 +148,47 @@ private:
     static void preOrder(binaryTreeNode<T> *t);
     static void inOrder(binaryTreeNode<T> *t);
     static void postOrder(binaryTreeNode<T> *t);
+    static void levelOrder(binaryTreeNode<T> *);
     static void dispose(binaryTreeNode<T> *t){delete t;}
+    bool compare(binaryTreeNode<T> *ltn, binaryTreeNode<T> *rtn);
+    void swap_trees(binaryTreeNode<T> *);
     int height(binaryTreeNode<T> *);
 };
 
 template <class T>
 void (*linkedBinaryTree<T>::visit)(binaryTreeNode<T> *) = myvisit;
+
+template <class T>
+void linkedBinaryTree<T>::swap_trees(){
+    swap_trees(root);
+}
+
+template <class T>
+void linkedBinaryTree<T>::swap_trees(binaryTreeNode<T> *tn){
+    if(!tn)
+        return;
+    if(!tn->leftChild && !tn->rightChild)
+        return;
+    else{
+        swap_trees(tn->leftChild);
+        swap_trees(tn->rightChild);
+        auto node = tn->leftChild;
+        tn->leftChild = tn->rightChild;
+        tn->rightChild = node;
+    }
+} 
+
+template <class T>
+bool linkedBinaryTree<T>::compare(binaryTreeNode<T> *ltn, binaryTreeNode<T> *rtn){//时间复杂度与先序遍历相同
+    if(ltn == NULL && rtn == NULL)
+        return true;
+    else if(ltn->element == rtn->element){
+        if(compare(ltn->leftChild, rtn->leftChild))
+            if(compare(ltn->rightChild, rtn->rightChild))
+                return true;
+    }
+    return false;
+}
 
 template <class T>
 void linkedBinaryTree<T>::preOrder(binaryTreeNode<T> *t){
@@ -185,9 +229,26 @@ int linkedBinaryTree<T>::height(binaryTreeNode<T> *t){
 }
 
 template <class T>
-void linkedBinaryTree<T>::levelOrder(void (*)(binaryTreeNode<T> *)){
+void linkedBinaryTree<T>::levelOrder(binaryTreeNode<T> *t){
     queue<binaryTreeNode<T>*> q;
+    while(t != NULL){
+        visit(t);
+        if(t->leftChild != NULL)
+            q.push(t->leftChild);
+        if(t->rightChild != NULL)
+            q.push(t->rightChild);
+        try{t = q.front();}
+        catch(...){
+            return ;
+        }
+        q.pop();
+    }
 }
+
+// size_t max_nodes_level(){//max_width
+//     queue<binaryTreeNode<T> *> q;
+
+// }
 
 
 template <class E>
