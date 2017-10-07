@@ -365,20 +365,72 @@ class maxpriorityqueue
 template <class T>
 class maxheap : public maxpriorityqueue<T>{
 public:
+    maxheap() : heap(nullptr), arraylength(0), heapsize(0){}
     // maxheap(T *t, size_t capacity, size_t size) : heap(t), arraylength(capacity), heapsize(size){}
     void initialize(T *theHeap, int theSize);
+    void initialize2(T *theheap, int thesize);
     void push(const T& theElement);
     bool empty() const;
     int m_size() const;
     const T& top();
     void pop();
     ~maxheap(){}
+    void levelOrder(){
+        for(int i = 1; i <= heapsize; i++)
+            cout << heap[i] << " ";
+    }
 private:
     T       *heap;
-    size_t  arraylength;//capacity of array heap 
-    size_t  heapsize;//nums of elements in heap
+    int  arraylength;//capacity of array heap 
+    int  heapsize;//nums of elements in heap
 };
 
+template <class T>
+void maxheap<T>::push(const T& theElement){
+    int currentnode = ++heapsize;//新插入的节点index为heapsize+1
+    while(currentnode != 1 && heap[currentnode / 2] < theElement){//如果父节点小于新插入的节点
+        heap[currentnode] = heap[currentnode / 2];//将currentnode向下移一层
+        currentnode /= 2;
+    }
+    //currentnode = 1 或者theElement < heap[currentnode / 2]
+    heap[currentnode] = theElement;
+}
+
+template <class T>
+bool maxheap<T>::empty() const{
+    return heapsize == 0;
+}
+
+template <class T>
+int maxheap<T>::m_size()const {
+    return heapsize;
+}
+
+template <class T>
+const T& maxheap<T>::top(){
+    return heap[1];
+}
+
+template <class T>
+void maxheap<T>::pop(){
+//heapsize - 1  需要重排堆
+//获取最后一位的元素
+    T lastelement = heap[heapsize--];
+    //从根开始重排 
+    int root = 1;
+    int child = 2 * root;
+    while(child <= heapsize){
+        if(child < heapsize && heap[child] < heap[child+1])//右节点大
+            child++;
+        if(lastelement >= heap[child])
+            break;
+        heap[root] = heap[child];
+        root = child;
+        child *= 2;
+    }
+    heap[root] = lastelement;
+}
+//此为编号从1-size的版本
 template <class T>
 void maxheap<T>::initialize(T *theHeap, int theSize){
     delete [] heap;
@@ -387,18 +439,53 @@ void maxheap<T>::initialize(T *theHeap, int theSize){
 
     for(int root = heapsize / 2; root >= 1; root--){
         T rootElement = heap[root];
-        int child = 2 * root;
+        int child = 2 * root;//leftchild
         while(child <= heapsize){
-            if(child < heapsize && heap[child] < heap[child+1])
-            child++;
+            if(child < heapsize && heap[child] < heap[child+1])//child is not the last element, and right child > left child
+                child++;    
+            if(rootElement >= heap[child])
+                break;
+            heap[child/2] = heap[child];//子节点大于rootElement, 因此，将子节点上移一层
+            child *= 2;
         }
-
-        if(rootElement >= heap[child])
-            break;
-        heap[child/2] = heap[child];
-        child *= 2;
+        heap[child/2] = rootElement;
     }
-    heap[child/2] = rootElement;
+}
+
+//此为编号从0-size-1的版本
+template <class T>
+void maxheap<T>::initialize2(T *theheap, int thesize){
+    delete [] heap;
+    heap = theheap;
+    heapsize = thesize;
+    int root = heapsize / 2 - 1;
+    for(; root >= 0; root--){
+        T rootElement = heap[root];
+        int leftchild = 2*root + 1;
+        int rightchild = leftchild + 1;
+        while(leftchild < heapsize){
+            //判断左右子节点哪个大
+            if(leftchild < heapsize && heap[leftchild] < heap[leftchild+1]){//如果右节点大
+                if(rootElement >= heap[rightchild])//比较根与右节点
+                    break;//root is larger, break
+                else{//否则右节点上移一层
+                    heap[rightchild/2 - 1] = heap[rightchild];
+                    leftchild = rightchild * 2 + 1;
+                    rightchild = leftchild + 1;
+                }
+            }
+            else{//如果还是左节点大
+                if(rootElement >= heap[leftchild])//比较跟与左节点
+                    break;
+                else{//否则左节点上移一层
+                    heap[leftchild/2] = heap[leftchild];
+                    leftchild = leftchild * 2 + 1;
+                    rightchild = leftchild + 1;
+                }
+            }
+        }
+            heap[leftchild/2] = rootElement;
+    }
 }
 /*--------------------1-maxpriorityqueue-------------------*/
 

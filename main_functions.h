@@ -383,3 +383,19 @@ void main_delete_noheap(){
     delete p;
     cout << "asd" << *p << endl;
 }
+
+void main_max_heap(){
+    int arr[20] = {0,2,4,7,3,5,9,6,1,10,0,0,0};
+    algorithms::maxheap<int> mx;
+    // mx.initialize2(arr, 9);
+    mx.initialize(arr, 9);
+    mx.levelOrder();
+    cout << endl;
+    mx.push(11);
+    mx.levelOrder();
+    cout << endl;
+    mx.pop();
+    mx.levelOrder();
+    // cout << endl << mx.m_size() << endl;
+    // cout << mx.top() << endl;
+}
