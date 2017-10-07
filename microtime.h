@@ -5,6 +5,7 @@
 #endif  // _WIND32
 
 
+
 // 定义64位整形
 #if defined(_WIN32) && !defined(CYGWIN)
 typedef __int64 int64_t;
