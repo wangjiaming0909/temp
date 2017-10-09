@@ -6,6 +6,7 @@
 #include <memory>
 #include <functional>
 #include "ds.h"
+#include <type_traits>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -432,4 +433,10 @@ void main_minheap(){
     // cout << endl;
     // mh.pop();
     // mh.levelOrder();
+}
+
+void main_type_traits(){
+    cout << std::is_array<int>::value << endl;
+    cout << std::is_array<int*>::value << endl;
+    cout << std::is_array<int[10]>::value << endl;
 }

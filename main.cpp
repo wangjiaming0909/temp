@@ -51,7 +51,8 @@ int main()
     // main_binary_tree();
     // main_delete_noheap();
     // main_max_heap();
-    main_exams();
+    // main_exams();
     // main_minheap();
+    main_type_traits();
     return 0;
 }

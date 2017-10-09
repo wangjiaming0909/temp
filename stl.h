@@ -3,7 +3,9 @@
 #include <iostream>
 #include <new>
 #include <memory>
+#include <type_traits>
 using namespace std;
+
 #ifndef UINT_MAX
     #define UINT_MAX 65535
 #endif
@@ -81,6 +83,7 @@ void (*abc(void (*f)()))(){
 
 }//end of namespace JJ
 
+//type_traits
 
 
 #endif //_STL_H_
