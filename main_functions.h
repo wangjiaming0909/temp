@@ -444,7 +444,8 @@ void main_type_traits(){
 
 void main_courera_max_heap(){
     int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
-    coursera::build_heap(arr, 12);
+    // coursera::build_heap(arr, 12);
+    coursera::heap_sort(arr, 12);
     for (size_t i = 1; i <= 12; i++)
         cout << std::right << setw(3) << arr[i] << " ";
 }

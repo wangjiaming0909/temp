@@ -151,5 +151,17 @@ void build_heap(int *arr, size_t heap_size){//O(n)
         max_heapify(arr, i, heap_size);
 }
 
+void heap_sort(int *arr, size_t heap_size){//O(nlgn)
+    build_heap(arr, heap_size);//O(n)
+    for (size_t i = heap_size; i >= 2; i--)//O(nlgn)
+    {
+        int temp = arr[1];
+        arr[1] = arr[i];
+        arr[i] = temp;
+        heap_size -= 1;
+        max_heapify(arr, 1, heap_size);
+    }
+}
+
 } //namespace coursera
 
