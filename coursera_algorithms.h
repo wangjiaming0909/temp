@@ -125,5 +125,31 @@ size_t right(size_t i){
     return left(i) + 1;
 }
 
+//initialize maxheap
+//not really initialize the maxheap, just part of it
+void max_heapify(int *arr, size_t i, size_t heap_size){//O(logn)
+    size_t l = left(i);
+    size_t r = right(i);
+    size_t largest = 0;
+    if (l <= heap_size && arr[l] > arr[i])
+        largest = l;
+    else
+        largest = i;
+    if(r <= heap_size && arr[r] > arr[largest])
+        largest = r;
+    if(largest != i){
+        int temp = arr[largest];
+        arr[largest] = arr[i];
+        arr[i] = temp;
+        max_heapify(arr, largest, heap_size);
+    }
+}
+
+//from heap_size / 2 to 1 call max_heapify
+void build_heap(int *arr, size_t heap_size){//O(n)
+    for (size_t i = heap_size / 2; i >= 1; i--)
+        max_heapify(arr, i, heap_size);
+}
+
 } //namespace coursera
 

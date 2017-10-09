@@ -386,17 +386,18 @@ void main_delete_noheap(){
 }
 
 void main_max_heap(){
-    int arr[20] = {0,2,4,7,3,5,9,6,1,10,0,0,0};
+    // int arr[20] = {0,2,4,7,3,5,9,6,1,10,0,0,0};
+    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
     algorithms::maxheap<int> mx;
     // mx.initialize2(arr, 9);
-    mx.initialize(arr, 9);
+    mx.initialize(arr, 12);
     mx.levelOrder();
     cout << endl;
-    mx.push(11);
-    mx.levelOrder();
-    cout << endl;
-    mx.pop();
-    mx.levelOrder();
+    // mx.push(11);
+    // mx.levelOrder();
+    // cout << endl;
+    // mx.pop();
+    // mx.levelOrder();
     // cout << endl << mx.m_size() << endl;
     // cout << mx.top() << endl;
 }
@@ -439,4 +440,11 @@ void main_type_traits(){
     cout << std::is_array<int>::value << endl;
     cout << std::is_array<int*>::value << endl;
     cout << std::is_array<int[10]>::value << endl;
+}
+
+void main_courera_max_heap(){
+    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
+    coursera::build_heap(arr, 12);
+    for (size_t i = 1; i <= 12; i++)
+        cout << std::right << setw(3) << arr[i] << " ";
 }
