@@ -114,4 +114,16 @@ namespace coursera{
         int size;
     };
 
+//max heap 
+//algorithms chapter 6
+
+//left child
+size_t left(size_t i){
+    return i << 1;
 }
+size_t right(size_t i){
+    return left(i) + 1;
+}
+
+} //namespace coursera
+
