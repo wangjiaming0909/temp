@@ -49,9 +49,10 @@ void main_insertsort()
     cout << endl;
 }
 
-void main_selectsort(){
+void main_selectsort()
+{
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
-    int*p = algorithms::selectsort2(nums, 10);
+    int *p = algorithms::selectsort2(nums, 10);
     for (int i = 0; i < 10; i++)
     {
         cout << *(p++) << " ";
@@ -59,9 +60,10 @@ void main_selectsort(){
     cout << endl;
 }
 
-void main_merge_sort(){
+void main_merge_sort()
+{
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
-    int*p = algorithms::merge_sort(nums, 0, 9);
+    int *p = algorithms::merge_sort(nums, 0, 9);
     for (int i = 0; i < 10; i++)
     {
         cout << *(p++) << " ";
@@ -69,22 +71,25 @@ void main_merge_sort(){
     cout << endl;
 }
 
-void main_binary_search(){
+void main_binary_search()
+{
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     algorithms::merge_sort(nums, 0, 9);
-    size_t index  = algorithms::binary_search2(nums, 0, 9, 12);
+    size_t index = algorithms::binary_search2(nums, 0, 9, 12);
     cout << index << endl;
 }
 
-void main_twosum(){
+void main_twosum()
+{
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     int index1 = 0, index2 = 0;
     algorithms::two_sum(nums, 10, 76, &index1, &index2);
     cout << index1 << " " << index2 << endl;
 }
 
-void main_merge_inversions(){
-    int nums[10] = {9,8,7,6,5,4,3,2,1,0};
+void main_merge_inversions()
+{
+    int nums[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
     size_t n = algorithms::count_inversions(nums, 0, 9);
     cout << n << endl;
 }
@@ -158,7 +163,7 @@ void main_multi_set_map()
 {
     //unordered_set
     using SD_multiset = unordered_set<_A, decltype(hasher) *, decltype(eqOp) *>;
-    SD_multiset sd_set(4, hasher, eqOp);                      //4代表容器中元素的个数
+    SD_multiset sd_set(4, hasher, eqOp);                        //4代表容器中元素的个数
     SD_multiset sd_set2({_A("23"), _A("ds")}, 4, hasher, eqOp); //初始化列表中的元素不能实现隐式的类型转换，需要手动调用构造函数
     sd_set.insert(_A("qwe"));
 
@@ -238,53 +243,60 @@ class ABCD
     // friend bool operator==<>(const ABCD &, const ABCD &);
     // friend bool operator==(const ABCD &, const ABCD &);//只是警告
     // friend bool operator==<T>(const ABCD&, const ABCD&);
-public:
-    explicit ABCD(const T &t) : i(t){}
-private:
+  public:
+    explicit ABCD(const T &t) : i(t) {}
+
+  private:
     T i;
 };
 
-void main_non_template_friend(){
+void main_non_template_friend()
+{
     // ABCD<int> a(1), b(2);
     // cout << (a == b) << endl;
     // sort
 }
 
-class nodefault{
-// private:
+class nodefault
+{
+    // private:
     nodefault() = delete;
 };
 
 // template class vector<nodefault>;
 
-void main_no_default(){
+void main_no_default()
+{
     // vector<nodefault> v;
-    cout << "qwe" << endl;    
+    cout << "qwe" << endl;
 }
 
 template <class T>
-int compare(const T &t1, const T &t2){
+int compare(const T &t1, const T &t2)
+{
     cout << "asd" << endl;
     cout << t1 << "  " << t2 << endl;
     cout << typeid(t1).name();
-    cout <<*t1 << endl;
+    cout << *t1 << endl;
     return 0;
 }
 
 template <class T>
-T fcn(T, T){
+T fcn(T, T)
+{
     cout << "asd" << endl;
     return 'c';
 }
 
-
-void main_compare(){
+void main_compare()
+{
     // compare("qwe", "asd");
     char c = 'c';
     fcn(c, 'c');
 }
 
-void main_find_max_subarray(){
+void main_find_max_subarray()
+{
     int nums[16] = {13, -3, -5, 20, -13, -6, 13, 18, 20, -7, 12, -15, -22, 15, -4, 17};
     // int nums[3] = {-2,3,2};
     // int nums[16] = {-13, -3, -25, -20, -3, -16, -23, -18, -20, -7, -12, -5, -22, -15, -4, -7};
@@ -294,31 +306,41 @@ void main_find_max_subarray(){
 }
 
 //关于位或与的问题
-void main_or_and(){
-    enum {__ALIGN = 8};
-    enum {MAX_BYTES = 128};
+void main_or_and()
+{
+    enum
+    {
+        __ALIGN = 8
+    };
+    enum
+    {
+        MAX_BYTES = 128
+    };
     size_t bytes = 73;
-    size_t temp = ~(__ALIGN - 1) ;
-    size_t tmp2 = (bytes+__ALIGN-1) & temp;
+    size_t temp = ~(__ALIGN - 1);
+    size_t tmp2 = (bytes + __ALIGN - 1) & temp;
     cout << temp << endl;
     cout << tmp2 << endl;
 }
 
 template <class T>
-struct myiter{
-    myiter() : ptr(nullptr){}
+struct myiter
+{
+    myiter() : ptr(nullptr) {}
     typedef T value_type;
-    T* ptr;
-    T& operator*() const{return *ptr;}
+    T *ptr;
+    T &operator*() const { return *ptr; }
 };
 
 template <class I>
-typename I::value_type 
-func(I ite){
+typename I::value_type
+func(I ite)
+{
     return *ite;
 }
 
-void mian_traits(){
+void mian_traits()
+{
     // typedef int* value_type;
     // int i =- 12;
     // value_type p = &i;
@@ -327,16 +349,18 @@ void mian_traits(){
     cout << func(m) << endl;
 }
 
-void main_array_BT(){
-    vector<pair<int, bool>> v = {make_pair(0, true), 
-                make_pair(1, true), 
-                make_pair(2, true), 
-                make_pair(3, true),
-                make_pair(4, false),
-                make_pair(5, true),
-                make_pair(6, false),
-                make_pair(7, true),
-                make_pair(8, true),
+void main_array_BT()
+{
+    vector<pair<int, bool>> v = {
+        make_pair(0, true),
+        make_pair(1, true),
+        make_pair(2, true),
+        make_pair(3, true),
+        make_pair(4, false),
+        make_pair(5, true),
+        make_pair(6, false),
+        make_pair(7, true),
+        make_pair(8, true),
     };
     ds::array_BT<int> abt(v);
     ds::array_BT<int> abt2 = abt;
@@ -350,11 +374,10 @@ void main_array_BT(){
     // abt.postOrder();
     // abt.levelOrder();
     cout << endl;
-
 }
 
-
-void main_binary_tree(){
+void main_binary_tree()
+{
     ds::binaryTreeNode<string> *root = new ds::binaryTreeNode<string>;
     ds::binaryTreeNode<string> *l1 = new ds::binaryTreeNode<string>;
     ds::binaryTreeNode<string> *l2 = new ds::binaryTreeNode<string>;
@@ -379,15 +402,17 @@ void main_binary_tree(){
     lbt.inOrder(ds::myvisit);
 }
 
-void main_delete_noheap(){
+void main_delete_noheap()
+{
     int a = 12, *p = &a;
     delete p;
     cout << "asd" << *p << endl;
 }
 
-void main_max_heap(){
+void main_max_heap()
+{
     // int arr[20] = {0,2,4,7,3,5,9,6,1,10,0,0,0};
-    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
+    int arr[30] = {0, 3, 5, 6, 7, 20, 8, 2, 9, 12, 15, 30, 17};
     algorithms::maxheap<int> mx;
     // mx.initialize2(arr, 9);
     mx.initialize(arr, 12);
@@ -402,8 +427,9 @@ void main_max_heap(){
     // cout << mx.top() << endl;
 }
 
-void main_exams(){
-    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
+void main_exams()
+{
+    int arr[30] = {0, 3, 5, 6, 7, 20, 8, 2, 9, 12, 15, 30, 17};
     algorithms::maxheap<int> mx;
     mx.initialize(arr, 12);
     mx.levelOrder();
@@ -421,8 +447,9 @@ void main_exams(){
     // mx.levelOrder();
 }
 
-void main_minheap(){
-    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
+void main_minheap()
+{
+    int arr[30] = {0, 3, 5, 6, 7, 20, 8, 2, 9, 12, 15, 30, 17};
     algorithms::minheap<int> mh;
     mh.initialize(arr, 12);
     mh.levelOrder();
@@ -436,16 +463,30 @@ void main_minheap(){
     // mh.levelOrder();
 }
 
-void main_type_traits(){
+void main_type_traits()
+{
     cout << std::is_array<int>::value << endl;
-    cout << std::is_array<int*>::value << endl;
+    cout << std::is_array<int *>::value << endl;
     cout << std::is_array<int[10]>::value << endl;
 }
 
-void main_courera_max_heap(){
-    int arr[30] = {0,3,5,6,7,20,8,2,9,12,15,30,17};
+void main_courera_max_heap()
+{
+    int arr[30] = {0, 3, 5, 6, 7, 20, 8, 2, 9, 12, 15, 30, 17};
     // coursera::build_heap(arr, 12);
     coursera::heap_sort(arr, 12);
     for (size_t i = 1; i <= 12; i++)
         cout << std::right << setw(3) << arr[i] << " ";
+}
+
+void main_priority_queue(){
+    int arr[30] = {0, 3, 5, 6, 7, 20, 8, 2, 9, 12, 15, 30, 17};
+    size_t heap_size = 12;
+    // coursera::heap_sort(arr, heap_size);
+    coursera::build_heap(arr, 12);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+    coursera::heap_extreact_max(arr, heap_size);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
 }

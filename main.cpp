@@ -50,11 +50,12 @@ int main()
     // main_vector_move();
     // main_binary_tree();
     // main_delete_noheap();
-    main_max_heap();
+    // main_max_heap();
     // main_exams();
     // main_minheap();
     // main_type_traits();
-    main_courera_max_heap();
+    // main_courera_max_heap();
+    main_priority_queue();
 
     return 0;
 }
