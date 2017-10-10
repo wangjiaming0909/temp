@@ -156,6 +156,10 @@ size_t right(size_t i)
     return left(i) + 1;
 }
 
+size_t parent(size_t i){
+    return i >> 1;
+}
+
 //initialize maxheap
 //not really initialize the maxheap, just part of it
 void max_heapify(int *arr, size_t i, size_t heap_size){ //O(logn)
@@ -211,11 +215,22 @@ int heap_extreact_max(int *arr, size_t &heap_size){//O(lgn)
     if(heap_size < 1)
         return -1;
     int max = arr[1];
-    arr[1] = arr[heap_size];
+    arr[1] = arr[heap_size];//swap arr[1] and arr[heap-size]
     arr[heap_size] = max;
     heap_size--;
-    max_heapify(arr, 1, heap_size);
+    max_heapify(arr, 1, heap_size);//heapify
     return max;
+}
+//set the arr[i] to key if key > arr[i]
+void heap_increase_key(int *arr, size_t i, int key){
+    if(key < arr[i])
+        return;
+    arr[i] = key;
+    while(arr[parent(i)] < key && parent(i) >= 1){
+        arr[i] = arr[parent(i)];
+        arr[parent(i)] = key;
+        i = parent(i);
+    }
 }
 
 } //namespace coursera
