@@ -489,7 +489,9 @@ void main_priority_queue(){
     coursera::heap_extreact_max(arr, heap_size);
     coursera::levelOrder(arr, heap_size);
     cout << endl;
-    coursera::heap_increase_key(arr, 4, 40);
+    // coursera::heap_increase_key(arr, 4, 40);
+    coursera::max_heap_insert(arr, heap_size, 30);
     coursera::levelOrder(arr, heap_size);
     cout << endl;
 }
+

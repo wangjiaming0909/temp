@@ -145,21 +145,16 @@ class weightedquickunion
 
 //max heap
 //algorithms chapter 6
-
 //left child
-size_t left(size_t i)
-{
+size_t left(size_t i){
     return i << 1;
 }
-size_t right(size_t i)
-{
+size_t right(size_t i){
     return left(i) + 1;
 }
-
 size_t parent(size_t i){
     return i >> 1;
 }
-
 //initialize maxheap
 //not really initialize the maxheap, just part of it
 void max_heapify(int *arr, size_t i, size_t heap_size){ //O(logn)
@@ -188,8 +183,7 @@ void build_heap(int *arr, size_t heap_size)
         max_heapify(arr, i, heap_size);
 }
 
-void heap_sort(int *arr, size_t heap_size)
-{                                           //O(nlgn)
+void heap_sort(int *arr, size_t heap_size){//O(nlgn)
     build_heap(arr, heap_size);             //O(n)
     for (size_t i = heap_size; i >= 2; i--) //O(nlgn)
     {
@@ -226,11 +220,20 @@ void heap_increase_key(int *arr, size_t i, int key){
     if(key < arr[i])
         return;
     arr[i] = key;
-    while(arr[parent(i)] < key && parent(i) >= 1){
+    //in the worest, will swap for lgn times 
+    while(arr[parent(i)] < key && parent(i) >= 1){//O(lgn)
         arr[i] = arr[parent(i)];
         arr[parent(i)] = key;
         i = parent(i);
     }
+}
+//insert a new element
+//insert a new node in the heap
+void max_heap_insert(int *arr, size_t &heap_size, int key){
+    heap_size++;
+    int temp = key - 1;
+    arr[heap_size] = temp;
+    heap_increase_key(arr, heap_size, key);
 }
 
 } //namespace coursera
