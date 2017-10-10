@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.makefile": "makefile",
         "array": "cpp",
         "*.tcc": "cpp",
         "cctype": "cpp",
@@ -34,6 +35,8 @@
         "string": "cpp",
         "regex": "cpp",
         "ios": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "queue": "cpp",
+        "cassert": "cpp"
     }
 }
