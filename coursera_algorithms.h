@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 namespace coursera
@@ -292,7 +293,37 @@ void min_heap_insert(int *arr, int key, size_t &heap_size){
     arr[++heap_size] = temp;
     heap_decrease_key(arr, heap_size, key);
 }
-
-
-
 } //namespace coursera
+
+//牛客网 剑指offer算法题 1
+namespace offer{
+//1
+bool offer_1(vector<vector<int>> arr, int target){//O(mn)
+    for (size_t i = 0; i < arr.size(); i++){
+        for (size_t j = 0; j < arr[i].size(); j++){
+            if(arr[i][j] == target)
+                return true;
+        }
+    }
+    return false;
+}
+
+bool offer_1_2(vector<vector<int>> array, int target){
+    int i = array.size() - 1;
+    size_t j = 0;
+    while(i >= 0 && j < array[0].size()){
+        if(array[i][j] == target)
+            return true;
+        else if(array[i][j] > target)
+            i--;
+        else if(array[i][j] < target)
+            j++;
+    }
+    return false;
+}
+
+}
+
+void sep(){
+
+}

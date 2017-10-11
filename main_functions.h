@@ -6,6 +6,7 @@
 #include <memory>
 #include <functional>
 #include "ds.h"
+#include <vector>
 #include <type_traits>
 // #include <windows.h>
 // #include "microtime.h"
@@ -526,4 +527,15 @@ void main_min_heap(){
     coursera::max_heap_delete(arr, 6, heap_size);
     coursera::levelOrder(arr, heap_size);
     cout << endl;
+}
+
+void main_offer_1(){
+    vector<vector<int>> arr = {
+        {1, 2, 3, 4, 5},
+        {2, 3, 4, 5, 6},
+        {3, 4, 5, 6, 7},
+        {4, 5, 6, 7, 8},
+        {5, 6, 7, 8, 9}};
+    cout << offer::offer_1(arr, 7) << endl;
+    cout << offer::offer_1_2(arr, 7) << endl;
 }
