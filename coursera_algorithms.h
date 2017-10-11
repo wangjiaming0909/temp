@@ -201,7 +201,7 @@ int heap_maximum(int *arr){//O(1)
 }
 //levelOrder visit the heap
 void levelOrder(int *arr, size_t heap_size){
-    for (size_t i = 1; i < heap_size; i++)
+    for (size_t i = 1; i <= heap_size; i++)
         cout << std::right << setw(3) << arr[i];
 }
 //return the max element and pop the max 
@@ -235,5 +235,64 @@ void max_heap_insert(int *arr, size_t &heap_size, int key){
     arr[heap_size] = temp;
     heap_increase_key(arr, heap_size, key);
 }
+
+void max_heap_delete(int *arr, size_t i, size_t &heap_size){//O(lgn)
+    int temp = arr[heap_size];
+    arr[heap_size--] = arr[i];
+    arr[i] = temp;
+    max_heapify(arr, i, heap_size);
+}
+
+//-------------------------------------------min_heap
+//assume that the left and right child tree of node i are min heap
+void min_heapify(int *arr, size_t i, size_t heap_size){
+    size_t l = left(i);
+    size_t r = right(i);
+    size_t smallest = i;
+    if (l <= heap_size && arr[l] < arr[i])
+        smallest = l;
+    if(r <= heap_size && arr[smallest ] > arr[r])
+        smallest = r;
+    if(i != smallest){
+        int temp = arr[i];
+        arr[i] = arr[smallest];
+        arr[smallest] = temp;
+        min_heapify(arr, smallest, heap_size);
+    }
+}
+void build_min_heap(int *arr, size_t heap_size){
+    for (size_t i = heap_size / 2; i >= 1; i--){
+        min_heapify(arr, i, heap_size);
+    }
+}
+int heap_minimum(int *arr){//O(1)
+    return arr[1];
+}
+int heap_extract_min(int *arr, size_t &heap_size){
+    int ret = arr[1];
+    arr[1] = arr[heap_size];
+    arr[heap_size--] = ret;
+    min_heapify(arr, 1, heap_size);
+    return ret;
+}
+void heap_decrease_key(int *arr, size_t i, int key){
+    if(key >= arr[i])
+        return;
+    arr[i] = key;
+    while(parent(i) && arr[parent(i)] > arr[i]){
+        int temp = arr[i];
+        arr[i] = arr[parent(i)];
+        arr[parent(i)] = temp;
+        i = parent(i);
+    }
+}
+
+void min_heap_insert(int *arr, int key, size_t &heap_size){
+    int temp = key + 1;
+    arr[++heap_size] = temp;
+    heap_decrease_key(arr, heap_size, key);
+}
+
+
 
 } //namespace coursera

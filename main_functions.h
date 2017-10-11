@@ -495,3 +495,35 @@ void main_priority_queue(){
     cout << endl;
 }
 
+//exams P92
+void main_6_5_1(){
+    int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
+    size_t heap_size = 12;
+    coursera::build_heap(arr, heap_size);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+    // coursera::heap_extreact_max(arr, heap_size);
+    coursera::max_heap_insert(arr, heap_size, 10);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+}
+
+void main_min_heap(){
+    int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
+    size_t heap_size = 12;
+    coursera::build_min_heap(arr, heap_size);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+    int min = coursera::heap_extract_min(arr, heap_size);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl << std::right << setw(3) << "min: " << min << endl;
+    coursera::heap_decrease_key(arr, 3, 0);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+    coursera::min_heap_insert(arr, -1, heap_size);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+    coursera::max_heap_delete(arr, 6, heap_size);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+}

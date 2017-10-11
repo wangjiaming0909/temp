@@ -55,7 +55,9 @@ int main()
     // main_minheap();
     // main_type_traits();
     // main_courera_max_heap();
-    main_priority_queue();
+    // main_priority_queue();
+    // main_6_5_1();
+    main_min_heap();
 
     return 0;
 }
