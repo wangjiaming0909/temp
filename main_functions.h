@@ -539,3 +539,24 @@ void main_offer_1(){
     cout << offer::offer_1(arr, 7) << endl;
     cout << offer::offer_1_2(arr, 7) << endl;
 }
+
+void main_merge_lists(){
+    list<int> l1 = {1, 2, 3, 4, 5};
+    list<int> l2 = {2, 4, 5, 7, 9};
+    list<int> l3 = {3, 4, 5, 6, 8};
+    list<int> l4 = {2, 3, 8, 9, 11};
+    list<int> l5 = {5, 7, 12, 13, 20};
+    list<int> l6 = {0, 2, 5, 9, 12};
+
+    vector<list<int>> v;
+    v.push_back(l1);
+    v.push_back(l2);
+    v.push_back(l3);
+    v.push_back(l4);
+    v.push_back(l5);
+    v.push_back(l6);
+
+    list<int> l = coursera::mergelists(v);
+    for(auto &it : l)
+        cout << it << " ";
+}

@@ -1,9 +1,13 @@
+#ifndef E_ALGORITHMS_H_
+#define E_ALGORITHMS_H_
+
 #include <iostream>
 #include <unordered_map>
 #include <iomanip>
 #include <utility>
 #include <unordered_set>
 #include <vector>
+#include <list>
 using namespace std;
 namespace algorithms
 {
@@ -602,3 +606,6 @@ void minheap<T>::pop(){
 /*--------------------1-maxpriorityqueue-------------------*/
 
 } //namespace algorithms
+
+
+#endif  //E_ALGORITHMS_H_

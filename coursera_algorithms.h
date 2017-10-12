@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "e_algorithms.h"
 using namespace std;
 
 namespace coursera
@@ -246,7 +247,7 @@ void max_heap_delete(int *arr, size_t i, size_t &heap_size){//O(lgn)
 
 //-------------------------------------------min_heap
 //assume that the left and right child tree of node i are min heap
-void min_heapify(int *arr, size_t i, size_t heap_size){
+void min_heapify(int *arr, size_t i, size_t heap_size){//O(lgn)
     size_t l = left(i);
     size_t r = right(i);
     size_t smallest = i;
@@ -261,14 +262,17 @@ void min_heapify(int *arr, size_t i, size_t heap_size){
         min_heapify(arr, smallest, heap_size);
     }
 }
-void build_min_heap(int *arr, size_t heap_size){
+
+void build_min_heap(int *arr, size_t heap_size){//O(n)
     for (size_t i = heap_size / 2; i >= 1; i--){
         min_heapify(arr, i, heap_size);
     }
 }
+
 int heap_minimum(int *arr){//O(1)
     return arr[1];
 }
+
 int heap_extract_min(int *arr, size_t &heap_size){
     int ret = arr[1];
     arr[1] = arr[heap_size];
@@ -293,6 +297,68 @@ void min_heap_insert(int *arr, int key, size_t &heap_size){
     arr[++heap_size] = temp;
     heap_decrease_key(arr, heap_size, key);
 }
+
+void min_heapify_with_index(int *arr, size_t i, size_t heap_size, size_t *index){
+    size_t l = left(i);
+    size_t r = right(i);
+    size_t smallest = i;
+    if (l <= heap_size && arr[l] < arr[i])
+        smallest = l;
+    if(r <= heap_size && arr[smallest ] > arr[r])
+        smallest = r;
+    if(i != smallest){
+        int temp = arr[i];
+        arr[i] = arr[smallest];
+        arr[smallest] = temp;
+        size_t tempindex = index[i-1];
+        index[i-1] = index[smallest];
+        index[smallest] = tempindex;
+        min_heapify_with_index(arr, smallest, heap_size, index);
+    }
+}
+
+void build_min_heap_with_index(int *arr, size_t heap_size, size_t *index){
+    for (size_t i = heap_size / 2; i >= 1; i--){
+        min_heapify_with_index(arr, i, heap_size, index);
+    }
+}
+//算法导论p93 6.5-9
+//将k个有序链表重拍成1个有序链表，共n个元素
+list<int> mergelists(vector<list<int>> &v){
+    size_t k = v.size();
+    size_t n = 0;
+    for (size_t i = 0; i < k; i++){
+        n += v.size();
+    }
+        //取每一个list的最小元素创建最小堆
+    list<int> ret;
+    int minheap[k+1] = {0};//存最小堆
+    int minheaptemp[k] = {0};
+    size_t index[k] = {0};//存最小堆中每个元素对应的list索引
+    for (size_t i = 0; i < k; i++){//O(k)
+        minheap[i+1] = v[i].front();
+        minheaptemp[i] = v[i].front();
+        index[i] = i;
+    }
+    build_min_heap_with_index(minheap, k, index);
+    // build_min_heap(minheap, k);//O(k)
+    // //设置minheap中的每个值属于哪一个list，用index记录
+    // for (size_t i = 0; i < k; i++){//O(klgk)
+    //     size_t ind = algorithms::binary_search2(minheaptemp, 0, k - 1, minheap[i+1]);//O(lgk)
+    //     index[ind] = i;
+    // }
+
+    int nums[k] = {0};
+    for (size_t i = 0; i < n; i++){
+        ret.push_back(heap_minimum(minheap));//O(1)
+        v[index[0]].pop_front();
+        minheap[1] = v[index[0]].front();
+        nums[index[0]]++;
+        min_heapify_with_index(minheap, 1, k, index);
+    }
+    return ret;
+}
+
 } //namespace coursera
 
 //牛客网 剑指offer算法题 1
@@ -321,5 +387,6 @@ bool offer_1_2(vector<vector<int>> array, int target){
     }
     return false;
 }
+
 
 }//namespace offer

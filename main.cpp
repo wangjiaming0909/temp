@@ -139,7 +139,8 @@ int main()
     // main_priority_queue();
     // main_6_5_1();
     // main_min_heap();
-    main_offer_1();
+    // main_offer_1();
+    main_merge_lists();
 
     // string s;
     // vector<string> v;
