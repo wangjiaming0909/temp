@@ -323,12 +323,20 @@ void build_min_heap_with_index(int *arr, size_t heap_size, size_t *index){//O(n)
     }
 }
 
+int minheap_pop_with_index(int *arr, size_t &heap_size, size_t *index){
+    int ret = arr[1];
+    arr[1] = arr[heap_size--];
+    index[0] = index[heap_size];
+    min_heapify_with_index(arr, 1, heap_size, index);
+    return ret;
+}
+
 //算法导论p93 6.5-9
 //将k个有序链表重拍成1个有序链表，共n个元素
-list<int> mergelists(vector<list<int>> &v){
+list<int> mergelists(vector<list<int>> &v){//O(nlgk)
     size_t k = v.size();
     size_t n = 0;
-    for (size_t i = 0; i < k; i++){
+    for (size_t i = 0; i < k; i++){//O(k)
         n += v[i].size();
     }
         //取每一个list的最小元素创建最小堆
@@ -336,25 +344,21 @@ list<int> mergelists(vector<list<int>> &v){
     int minheap[k+1] = {0};//存最小堆
     int minheaptemp[k] = {0};
     size_t index[k] = {0};//存最小堆中每个元素对应的list索引
-    for (size_t i = 0; i < k; i++){//O(k
+    for (size_t i = 0; i < k; i++){//O(k)
         minheap[i+1] = v[i].front();
         minheaptemp[i] = v[i].front();
         index[i] = i;
     }
     build_min_heap_with_index(minheap, k, index);//O(k)
-    // build_min_heap(minheap, k);//O(k)
-    // //设置minheap中的每个值属于哪一个list，用index记录
-    // for (size_t i = 0; i < k; i++){//O(klgk)
-    //     size_t ind = algorithms::binary_search2(minheaptemp, 0, k - 1, minheap[i+1]);//O(lgk)
-    //     index[ind] = i;
-    // }
-    for (size_t i = 0; i < n; i++){//O(n) * 
+
+    for (size_t i = 0; i < n; i++){//O(n) * O(lgk) = O(nlgk)
         ret.push_back(heap_minimum(minheap));//O(1)
         v[index[0]].pop_front();
-        // if(v[index[0]].size() != 0) 
-        minheap[1] = v[index[0]].front();
-        // else//此list中的元素都已经被pop了
-        min_heapify_with_index(minheap, 1, k, index);//O(lgk)
+        if(v[index[0]].size() != 0) {
+            minheap[1] = v[index[0]].front();
+            min_heapify_with_index(minheap, 1, k, index);//O(lgk)
+        }else//此list中的元素都已经被pop了
+            minheap_pop_with_index(minheap, k, index);//O(lgk)
     }
     return ret;
 }
