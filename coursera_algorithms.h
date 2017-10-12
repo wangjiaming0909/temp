@@ -179,8 +179,7 @@ void max_heapify(int *arr, size_t i, size_t heap_size){ //O(logn)
 }
 
 //from heap_size / 2 to 1 call max_heapify
-void build_heap(int *arr, size_t heap_size)
-{ //O(n)
+void build_heap(int *arr, size_t heap_size){ //O(n)
     for (size_t i = heap_size / 2; i >= 1; i--)
         max_heapify(arr, i, heap_size);
 }
@@ -196,20 +195,23 @@ void heap_sort(int *arr, size_t heap_size){//O(nlgn)
         max_heapify(arr, 1, heap_size);
     }
 }
+
 //priority queue
 //return the maximum element in the heap
 int heap_maximum(int *arr){//O(1)
     return arr[1];
 }
+
 //levelOrder visit the heap
 void levelOrder(int *arr, size_t heap_size){
     for (size_t i = 1; i <= heap_size; i++)
-        cout << std::right << setw(3) << arr[i];
+    cout << std::right << setw(3) << arr[i];
 }
+
 //return the max element and pop the max 
 int heap_extreact_max(int *arr, size_t &heap_size){//O(lgn)
     if(heap_size < 1)
-        return -1;
+    return -1;
     int max = arr[1];
     arr[1] = arr[heap_size];//swap arr[1] and arr[heap-size]
     arr[heap_size] = max;
@@ -217,10 +219,11 @@ int heap_extreact_max(int *arr, size_t &heap_size){//O(lgn)
     max_heapify(arr, 1, heap_size);//heapify
     return max;
 }
+
 //set the arr[i] to key if key > arr[i]
 void heap_increase_key(int *arr, size_t i, int key){
     if(key < arr[i])
-        return;
+    return;
     arr[i] = key;
     //in the worest, will swap for lgn times 
     while(arr[parent(i)] < key && parent(i) >= 1){//O(lgn)
@@ -229,13 +232,23 @@ void heap_increase_key(int *arr, size_t i, int key){
         i = parent(i);
     }
 }
+
 //insert a new element
 //insert a new node in the heap
-void max_heap_insert(int *arr, size_t &heap_size, int key){
+void max_heap_insert(int *arr, size_t &heap_size, int key){//O(lgn)
     heap_size++;
     int temp = key - 1;
     arr[heap_size] = temp;
     heap_increase_key(arr, heap_size, key);
+}
+
+void build_heap2(int *arr, size_t heap_size){//O(nlgn)
+    int buf[heap_size] = {0};
+    size_t size = 0;
+    buf[1] = arr[1];
+    for (size_t i = 2; i < heap_size; i++){//O(n)
+        max_heap_insert(buf, size, arr[i]);
+    }
 }
 
 void max_heap_delete(int *arr, size_t i, size_t &heap_size){//O(lgn)

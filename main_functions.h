@@ -560,3 +560,13 @@ void main_merge_lists(){
     for(auto &it : l)
         cout << it << " ";
 }
+
+void main_build_maxheap2(){
+    int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
+    size_t heap_size = 12;
+    // coursera::build_heap2(arr, heap_size);
+    coursera::build_heap(arr, heap_size);
+    coursera::levelOrder(arr, heap_size);
+    cout << endl;
+
+}
