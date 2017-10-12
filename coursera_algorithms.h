@@ -322,8 +322,4 @@ bool offer_1_2(vector<vector<int>> array, int target){
     return false;
 }
 
-}
-
-void sep(){
-
-}
+}//namespace offer
