@@ -38,5 +38,6 @@
         "bitset": "cpp",
         "queue": "cpp",
         "cassert": "cpp"
-    }
+    },
+    "git.ignoreLimitWarning": true
 }
