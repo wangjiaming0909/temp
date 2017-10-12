@@ -562,8 +562,9 @@ void main_merge_lists(){
 }
 
 void main_build_maxheap2(){
-    int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
-    size_t heap_size = 12;
+    // int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
+    int arr[30] = {0, 4, 3, 5, 6, 7};
+    size_t heap_size = 5;
     // coursera::build_heap2(arr, heap_size);
     coursera::build_heap(arr, heap_size);
     coursera::levelOrder(arr, heap_size);

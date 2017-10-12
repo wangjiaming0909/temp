@@ -244,10 +244,13 @@ void max_heap_insert(int *arr, size_t &heap_size, int key){//O(lgn)
 
 void build_heap2(int *arr, size_t heap_size){//O(nlgn)
     int buf[heap_size] = {0};
-    size_t size = 0;
+    size_t size = 1;
     buf[1] = arr[1];
-    for (size_t i = 2; i < heap_size; i++){//O(n)
-        max_heap_insert(buf, size, arr[i]);
+    for (size_t i = 2; i <= heap_size; i++){//O(n) * O(lgn)
+        max_heap_insert(buf, size, arr[i]);//O(lgn)
+    }
+    for (size_t i = 1; i <= heap_size; i++){//O(n)
+        arr[i] = buf[i];
     }
 }
 
