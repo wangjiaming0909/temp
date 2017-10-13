@@ -85,5 +85,10 @@ void (*abc(void (*f)()))(){
 
 //type_traits
 
+template <class T>
+void print(T &){
+    cout << typeid(T).name() << endl;
+}
+
 
 #endif //_STL_H_

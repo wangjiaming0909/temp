@@ -8,6 +8,7 @@
 #include "ds.h"
 #include <vector>
 #include <type_traits>
+#include "stl.h"
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -570,4 +571,9 @@ void main_build_maxheap2(){
     coursera::levelOrder(arr, heap_size);
     cout << endl;
 
+}
+
+void main_template_(){
+    string *sp = ::new (1, nothrow) string;
+    print(*sp);
 }

@@ -141,7 +141,8 @@ int main()
     // main_min_heap();
     // main_offer_1();
     // main_merge_lists();
-    main_build_maxheap2();
+    // main_build_maxheap2();
+    main_template_();
 
     // string s;
     // vector<string> v;

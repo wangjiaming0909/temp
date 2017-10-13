@@ -2,6 +2,7 @@ target = a.exe
 objects = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 LIB = a
 
+
 all:$(target)
 
 $(target):$(objects) 
