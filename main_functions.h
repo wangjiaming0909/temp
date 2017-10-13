@@ -574,6 +574,6 @@ void main_build_maxheap2(){
 }
 
 void main_template_(){
-    string *sp = ::new (1, nothrow) string;
+    string *sp = ::new (nothrow) string;
     print(*sp);
 }
