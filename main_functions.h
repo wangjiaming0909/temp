@@ -9,6 +9,7 @@
 #include <vector>
 #include <type_traits>
 #include "stl.h"
+#include <list>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -574,6 +575,9 @@ void main_build_maxheap2(){
 }
 
 void main_template_(){
-    string *sp = ::new (nothrow) string;
-    print(*sp);
+    // string *sp = ::new (nothrow) string;
+    // vector<int, JJ::alloctor<int>> vp;
+    // vp.push_back(1);
+    list<int> l;
+    // print(*sp);
 }

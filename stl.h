@@ -2,8 +2,6 @@
 #define _STL_H_
 #include <iostream>
 #include <new>
-#include <memory>
-#include <type_traits>
 using namespace std;
 
 #ifndef UINT_MAX
@@ -69,9 +67,6 @@ class alloctor
     size_type max_size() const{
         return size_type(UINT_MAX/sizeof(T));
     }
-
-
-
 };
 
 void (*abc(void (*f)()))(){
