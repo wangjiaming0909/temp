@@ -122,7 +122,7 @@ void merge(int *nums, size_t p, size_t q, size_t r){
         nums[k++] = L[i++];
     while(j != n2)
         nums[k++] = R[j++];
-/*----------------------------------------------*/
+/*-----------------------------------------G-----*/
 }
 
 int *merge_sort(int *nums, size_t p, size_t r){//-------------------加上merge   O(nlgn)
@@ -606,12 +606,16 @@ void minheap<T>::pop(){
 /*--------------------1-maxpriorityqueue-------------------*/
 
 /*--------------------quicksort-----------------------------*/
-//assume that all elements are different
-size_t partition(int *arr, size_t begin, size_t end){
-    size_t mid = end;//partition中间的元素，首先定位于最后
-    size_t i = begin - 1;//begin----i all < arr[mid]
-    for (size_t j = begin; j <= end - 1; j++){//i+1------j all > arr[mid]-----------------O(n)--|n = end - begin - 1|
-        if(arr[j] < arr[mid]){//swap arr[i++] and arr[j], set the element in arr[i+1] which < arr[mid] 
+
+int num = 0;//记录比较了多少次
+int num2 = 0;//记录partition调用多少次
+int partition(int *arr, int begin, int end){
+    num2++;
+    int mid = end;//partition中间的元素，首先定位于最后
+    int i = begin - 1;//begin----i all < arr[mid]-----------i是size_t类型，初始值i = 4294967295
+    for (int j = begin; j <= end - 1; j++){//i+1------j all > arr[mid]-----------------O(n)--|n = end - begin - 1|
+        num++;
+        if(arr[j] >= arr[mid]){//swap arr[i++] and arr[j], set the element in arr[i+1] which < arr[mid] 
             int temp = arr[j];
             arr[j] = arr[++i];
             arr[i] = temp;
@@ -622,13 +626,15 @@ size_t partition(int *arr, size_t begin, size_t end){
     arr[mid] = temp;
     return i;
 }
-void quicksort(int *arr, size_t begin, size_t end){
+void quicksort(int *arr, int begin, int end){//O(nlgn) -----O(n2)
     if(begin < end){
-        size_t mid = partition(arr, begin, end);
+        int mid = partition(arr, begin, end);
         quicksort(arr, begin, mid - 1);
         quicksort(arr, mid + 1, end);
     }
 }
+
+//快速排序的随机化版本
 
 /*--------------------quicksort-----------------------------*/
 } //namespace algorithms
