@@ -8,7 +8,7 @@ all:$(target)
 $(target):$(objects) 
 	@echo linking...
 #	g++ -O1 $^ -L. -la -o $@ 
-	g++ -std=c++11 -O1 $^ -o $@ 
+	g++ -std=c++11 $^ -o $@ 
 	@echo ok...
 	rm *.o
 

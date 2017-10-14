@@ -24,7 +24,7 @@
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/um",
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/shared",
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt",
-                "D:/boost_1_64_0/boost",
+                "D:/boost_1_64_0/",
                 "${workspaceRoot}"
             ],
             "defines": [
@@ -38,7 +38,7 @@
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/um",
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/shared",
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt",
-                    "D:/boost_1_64_0/boost",
+                    "D:/boost_1_64_0/",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
