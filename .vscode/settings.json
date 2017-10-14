@@ -37,7 +37,8 @@
         "ios": "cpp",
         "bitset": "cpp",
         "queue": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "thread": "cpp"
     },
     "git.ignoreLimitWarning": true
 }

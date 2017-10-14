@@ -605,6 +605,32 @@ void minheap<T>::pop(){
 
 /*--------------------1-maxpriorityqueue-------------------*/
 
+/*--------------------quicksort-----------------------------*/
+//assume that all elements are different
+size_t partition(int *arr, size_t begin, size_t end){
+    size_t mid = end;//partition中间的元素，首先定位于最后
+    size_t i = begin - 1;//begin----i all < arr[mid]
+    for (size_t j = begin; j <= end - 1; j++){//i+1------j all > arr[mid]-----------------O(n)--|n = end - begin - 1|
+        if(arr[j] < arr[mid]){//swap arr[i++] and arr[j], set the element in arr[i+1] which < arr[mid] 
+            int temp = arr[j];
+            arr[j] = arr[++i];
+            arr[i] = temp;
+        }
+    }
+    int temp = arr[++i];
+    arr[i] = arr[mid];
+    arr[mid] = temp;
+    return i;
+}
+void quicksort(int *arr, size_t begin, size_t end){
+    if(begin < end){
+        size_t mid = partition(arr, begin, end);
+        quicksort(arr, begin, mid - 1);
+        quicksort(arr, mid + 1, end);
+    }
+}
+
+/*--------------------quicksort-----------------------------*/
 } //namespace algorithms
 
 

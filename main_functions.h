@@ -571,7 +571,7 @@ void main_build_maxheap2(){
     coursera::build_heap(arr, heap_size);
     coursera::levelOrder(arr, heap_size);
     cout << endl;
-
+    
 }
 
 void main_template_(){
@@ -580,4 +580,11 @@ void main_template_(){
     // vp.push_back(1);
     list<int> l;
     // print(*sp);
+}
+
+void main_quicksort(){
+    int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 6, 2, 1};
+    algorithms::quicksort(arr, 0, 11);
+    coursera::levelOrder(arr, 11);
+    cout << endl;
 }

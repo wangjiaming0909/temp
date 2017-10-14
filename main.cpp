@@ -144,7 +144,8 @@ int main()
     // main_merge_lists();
     // main_build_maxheap2();
     // main_template_();
-    main_scoped_ptr();
+    // main_scoped_ptr();
+    main_quicksort();
 
     // string s;
     // vector<string> v;
