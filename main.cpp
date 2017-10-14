@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include "boost_test.h"
 using namespace std;
 bool hasdigit(const string &s){
     for (size_t i = 0; i < s.size(); i++)
@@ -142,7 +143,8 @@ int main()
     // main_offer_1();
     // main_merge_lists();
     // main_build_maxheap2();
-    main_template_();
+    // main_template_();
+    main_scoped_ptr();
 
     // string s;
     // vector<string> v;
