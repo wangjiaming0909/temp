@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include <vector>
 #include <list>
+#include <random>
 using namespace std;
 namespace algorithms
 {
@@ -634,7 +635,91 @@ void quicksort(int *arr, int begin, int end){//O(nlgn) -----O(n2)
     }
 }
 
+//能够对重复元素进行处理，返回一个q和一个t
+//arr[begin----q-1]都小于arr[q]
+//arr[q----t]都等arr[q]
+//arr[t+1----r]都大于arr[q]
+struct q_t{
+    int q;
+    int t;
+};
+q_t partition2(int *arr, int begin, int end){//------O(end-begin)
+    int mid = end;
+    int i = begin - 1;
+    int t = i;
+    for (int j = begin; j < end; j++){
+        if(arr[j] > arr[mid]){
+            int tempi = arr[++i];
+            int tempt = arr[++t];
+            arr[t] = tempi;
+            arr[i] = arr[j];
+            arr[j] = tempt;
+        }else if(arr[j] == arr[mid]){
+            int temp = arr[++t];
+            arr[t] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    int temp = arr[++t];
+    arr[t] = arr[mid];
+    arr[mid] = temp;
+    return {++i, t};
+}
+
+void quicksort2(int *arr, int begin, int end){
+    if(begin < end){
+        q_t qt = partition2(arr, begin, end);
+        quicksort2(arr, begin, qt.q - 1);
+        quicksort2(arr, qt.t + 1, end);
+    }
+}
+
 //快速排序的随机化版本
+static default_random_engine e2;
+int randomized_partition(int *arr, int begin, int end){
+    uniform_int_distribution<unsigned> u(begin, end);
+    default_random_engine e;
+    e.seed(e2());
+    int mid = u(e);
+    int temp = arr[end];
+    arr[end] = arr[mid];
+    arr[mid] = temp;
+    return partition(arr, begin, end);
+}
+
+void randomized_quicksort(int *arr, int begin, int end){
+    if(begin < end){
+        int mid = randomized_partition(arr, begin, end);
+        randomized_quicksort(arr, begin, mid - 1);
+        randomized_quicksort(arr, mid + 1, end);
+    }
+}
+//hoare-partition
+int hoare_partition(int *arr, int begin, int end){
+    int x = arr[begin];
+    int i = begin - 1;
+    int j = end + 1;
+    while(true){
+        while(arr[--j] > x)
+            ;
+        while(arr[++i] < x)
+            ;
+        if(i < j){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }else
+        return j;
+    }
+}
+void hoare_quicksort(int *arr, int begin, int end){
+    if(begin < end){
+        int mid = hoare_partition(arr, begin, end);
+        hoare_quicksort(arr, begin, mid - 1);
+        hoare_quicksort(arr, mid + 1, end);
+    }
+}
+
 
 /*--------------------quicksort-----------------------------*/
 /*--------------------矩阵计算-----------------------------*/

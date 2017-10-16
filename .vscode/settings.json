@@ -38,7 +38,9 @@
         "bitset": "cpp",
         "queue": "cpp",
         "cassert": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "random": "cpp"
     },
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "editor.mouseWheelZoom": true
 }
