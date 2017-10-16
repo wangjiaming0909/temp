@@ -637,6 +637,31 @@ void quicksort(int *arr, int begin, int end){//O(nlgn) -----O(n2)
 //快速排序的随机化版本
 
 /*--------------------quicksort-----------------------------*/
+/*--------------------矩阵计算-----------------------------*/
+void visitmatrix(vector<vector<int>> &m){
+    int row = m.size();
+    int column = m[0].size();
+    for (int i = 0; i < row; i++){
+        for (int j = 0; j < column; j++){
+            cout << m[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+//multiply
+void square_matrix_multiply(vector<vector<int>> & ma, vector<vector<int>> &mb, int m, int n, int q, vector<vector<int>> &ret){
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < q; j++){
+            for (int k = 0; k < n; k++){
+                ret[i][k] += ma[i][j] * mb[j][k];
+            }
+        }
+    }
+}
+//maxtrix multiply 分治算法
+/*--------------------矩阵计算-----------------------------*/
 } //namespace algorithms
 
 

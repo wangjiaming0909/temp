@@ -145,7 +145,8 @@ int main()
     // main_build_maxheap2();
     // main_template_();
     // main_scoped_ptr();
-    main_quicksort();
+    // main_quicksort();
+    main_matrix_multiply();
 
     // string s;
     // vector<string> v;

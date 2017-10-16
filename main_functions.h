@@ -594,3 +594,31 @@ void main_quicksort(){
          << "compare: " << algorithms::num << endl
          << "partition: " << algorithms::num2 << endl;
 }
+
+
+
+void main_matrix_multiply(){
+    vector<vector<int>> ma= {
+        {1, 1, 1, 1, 1, 1},
+        {2, 2, 2, 2, 2, 2},
+        {3, 3, 3, 3, 3, 3},
+        {4, 4, 4, 4, 4, 4},
+        {5, 5, 5, 5, 5, 5}};
+
+    vector<vector<int>> mb= {
+        {1, 2, 3, 4},
+        {1, 2, 3, 4},
+        {1, 2, 3, 4},
+        {1, 2, 3, 4},
+        {1, 2, 3, 4},
+        {1, 2, 3, 4}};
+    vector<vector<int>> ret;
+    ret.resize(5);
+    for (int i = 0; i < 5; i++){
+        ret[i].resize(4);
+    }
+        algorithms::square_matrix_multiply(ma, mb, 5, 4, 6, ret);
+    algorithms::visitmatrix(ma);
+    algorithms::visitmatrix(mb);
+    algorithms::visitmatrix(ret);
+}
