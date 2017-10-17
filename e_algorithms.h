@@ -784,9 +784,13 @@ void counting_sort(int *arr, int *B, int length, int k){
         C[arr[i]]++;
     for (int i = 1; i < k + 1; i++)
         C[i] = C[i] + C[i - 1];
-    for (int i = length; i > 0; i--){
-        B[C[arr[i]]] = arr[i];
-        C[arr[i]] = C[arr[i]] - 1;
+    /*对于每一个arr[i]中的元素来说
+      C[arr[i]]中存储了 <= arr[i]的元素的个数
+    */
+    for (int i = length; i > 0; i--){//从后往前
+        B[C[arr[i]]] = arr[i];//arr[i]的位置应该是C[arr[i]]
+        C[arr[i]]--;//减一，下一个与arr[i]相同的元素会放在前一个位置
+                        //因为是从后往前，因此它是稳定的原本元素的顺序不变
     }
 }
 /*----------------------counting-sort--------------------*/
