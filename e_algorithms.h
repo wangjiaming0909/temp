@@ -787,13 +787,64 @@ void counting_sort(int *arr, int *B, int length, int k){
     /*对于每一个arr[i]中的元素来说
       C[arr[i]]中存储了 <= arr[i]的元素的个数
     */
-    for (int i = length; i > 0; i--){//从后往前
+    for (int i = length; i >= 0; i--){//从后往前
         B[C[arr[i]]] = arr[i];//arr[i]的位置应该是C[arr[i]]
         C[arr[i]]--;//减一，下一个与arr[i]相同的元素会放在前一个位置
                         //因为是从后往前，因此它是稳定的原本元素的顺序不变
     }
 }
 /*----------------------counting-sort--------------------*/
+/*----------------------radix-sort--------------------*/
+
+void get_sort_data(int *arr, int *sort_data, int length, int radix){
+    if(radix == 1)
+        for (int i = 0; i < length; i++)//-----------O(length)
+            sort_data[i] = (arr[i] % 100) % 10;
+    else if(radix == 2)
+        for (int i = 0; i < length; i++)
+            sort_data[i] = (arr[i] % 100) / 10;
+    else if(radix == 3)
+        for (int i = 0; i < length; i++)
+            sort_data[i] = arr[i] / 100;
+}
+
+void counting_sort_radix(int *in, int *B, int length, int k, int radix){//-----O(k+length)
+    int arr[length];
+    for (int i = 0; i < length; i++)//------------O(length)
+        arr[i] = in[i];
+    get_sort_data(in, arr, length, radix);//--------O(length)
+    int C[k + 1];
+    for (int i = 0; i < k + 1; i++)//-------------O(k)
+        C[i] = 0;
+    for (int i = 0; i < length; i++)//--------O(length)
+        C[arr[i]]++;
+    for (int i = 1; i < k + 1; i++)//-------------O(k)
+        C[i] = C[i] + C[i - 1];
+    /*对于每一个arr[i]中的元素来说
+      C[arr[i]]中存储了 <= arr[i]的元素的个数
+    */
+    for (int i = length-1; i >= 0; i--){//从后往前------------------O(length)
+        B[C[arr[i]]] = in[i];//arr[i]的位置应该是C[arr[i]]
+        C[arr[i]]--;//减一，下一个与arr[i]相同的元素会放在前一个位置
+                        //因为是从后往前，因此它是稳定的原本元素的顺序不变
+    }
+}
+
+void radix_sort(int *arr, int d, int length){//-------------O(d*(k+length))
+    int temp[length];
+    for (int i = 0; i < length; i++)//--------O(length)
+        temp[i] = arr[i];
+    int ret[length+1];
+    for (int i = 0; i < d; i++){//----------O(d) * O(k+length) = O(d*(k+length))
+        counting_sort_radix(temp, ret, length, 9, i+1);//---------O(k+length)
+        for (int i = 1; i <= length;i++)//----O(length)
+            temp[i-1] = ret[i];
+    }
+    for (int i = 0; i < length; i++)//-----O(length)
+        arr[i] = temp[i];
+}
+
+/*----------------------radix-sort--------------------*/
 /*--------------------矩阵计算-----------------------------*/
 } //namespace algorithms
 

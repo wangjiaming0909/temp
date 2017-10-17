@@ -631,10 +631,15 @@ void main_matrix_multiply(){
 }
 
 void main_counting_sort(){
-    int arr[30] = {2, 3, 20, 5, 6, 6, 19, 10, 20, 5, 3, 20};
+    // int arr[30] = {2, 3, 20, 5, 6, 6, 19, 10, 20, 5, 3, 20};
+    int arr[30] = {21, 12, 42, 123, 124, 42, 12, 32, 16, 86, 456, 33, 237, 886, 764};
     int B[30];
-    algorithms::counting_sort(arr, B, 12, 20);
-    for (size_t i = 0; i < 12; i++)
+    algorithms::counting_sort(arr, B, 15, 886);
+    for (size_t i = 1; i < 16; i++)
         cout << B[i] << " ";
+    cout << endl;
+    algorithms::radix_sort(arr, 3, 15);
+    for (size_t i = 0; i < 15; i++)
+        cout << arr[i] << " ";
     cout << endl;
 }
