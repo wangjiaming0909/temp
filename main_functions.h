@@ -592,7 +592,8 @@ void main_quicksort(){
     // algorithms::quicksort(arr, 0, 11);
     // algorithms::randomized_quicksort(arr, 0, 11);
     // algorithms::hoare_quicksort(arr, 0, 11);
-    algorithms::quicksort2(arr, 0, 11);
+    // algorithms::quicksort2(arr, 0, 11);
+    algorithms::tail_recursive_quicksort2(arr, 0, 11);
     for (size_t i = 0; i < 12; i++)
         cout << arr[i] << " ";
     cout << endl

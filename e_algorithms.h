@@ -720,6 +720,30 @@ void hoare_quicksort(int *arr, int begin, int end){
     }
 }
 
+//尾递归
+void tail_recursive_quicksort(int *arr, int begin, int end){//最坏情况下栈深度是O(n)
+    while(begin < end){
+        int mid = partition(arr, begin, end);
+        tail_recursive_quicksort(arr, begin, mid - 1);
+        begin = mid + 1;
+    }
+}
+
+//尾递归减少最坏情况下栈深度
+//上一个版本的尾递归，存在的问题：可能存在每次递归都与前一次的范围很接近，只是减去了mid
+//因此在此版本中，每次递归选择较小的一个范围进行递归，此时partition中的代码调用次数会较少
+void tail_recursive_quicksort2(int *arr, int begin, int end){
+    while(begin < end){
+        int mid = partition(arr, begin, end);
+        if(mid - begin < end - mid){//选择较小的一边进行递归
+            tail_recursive_quicksort2(arr, begin, mid - 1);
+            begin = mid + 1;
+        }else{
+            tail_recursive_quicksort2(arr, mid + 1, end);
+            end = mid - 1;
+        }
+    }
+}
 
 /*--------------------quicksort-----------------------------*/
 /*--------------------矩阵计算-----------------------------*/
@@ -736,7 +760,10 @@ void visitmatrix(vector<vector<int>> &m){
 }
 
 //multiply
-void square_matrix_multiply(vector<vector<int>> & ma, vector<vector<int>> &mb, int m, int n, int q, vector<vector<int>> &ret){
+void square_matrix_multiply(vector<vector<int>> & ma, 
+                            vector<vector<int>> &mb, 
+                            int m, int n, int q, 
+                            vector<vector<int>> &ret){
     for (int i = 0; i < m; i++){
         for (int j = 0; j < q; j++){
             for (int k = 0; k < n; k++){
