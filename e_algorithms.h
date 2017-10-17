@@ -773,6 +773,23 @@ void square_matrix_multiply(vector<vector<int>> & ma,
     }
 }
 //maxtrix multiply 分治算法
+
+/*----------------------counting-sort--------------------*/
+//此算法是稳定的
+void counting_sort(int *arr, int *B, int length, int k){
+    int C[k + 1];
+    for (int i = 0; i < k + 1; i++)
+        C[i] = 0;
+    for (int i = 0; i < length; i++)
+        C[arr[i]]++;
+    for (int i = 1; i < k + 1; i++)
+        C[i] = C[i] + C[i - 1];
+    for (int i = length; i > 0; i--){
+        B[C[arr[i]]] = arr[i];
+        C[arr[i]] = C[arr[i]] - 1;
+    }
+}
+/*----------------------counting-sort--------------------*/
 /*--------------------矩阵计算-----------------------------*/
 } //namespace algorithms
 

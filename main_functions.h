@@ -630,3 +630,11 @@ void main_matrix_multiply(){
     algorithms::visitmatrix(ret);
 }
 
+void main_counting_sort(){
+    int arr[30] = {2, 3, 20, 5, 6, 6, 19, 10, 20, 5, 3, 20};
+    int B[30];
+    algorithms::counting_sort(arr, B, 12, 20);
+    for (size_t i = 0; i < 12; i++)
+        cout << B[i] << " ";
+    cout << endl;
+}
