@@ -39,7 +39,10 @@
         "queue": "cpp",
         "cassert": "cpp",
         "thread": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "unordered_map": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "editor.mouseWheelZoom": true

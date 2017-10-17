@@ -643,3 +643,28 @@ void main_counting_sort(){
         cout << arr[i] << " ";
     cout << endl;
 }
+class test_trivial{
+public:
+  test_trivial() = default;
+  test_trivial(int _a) : a(_a) {}
+  test_trivial(const test_trivial &) = delete;
+  test_trivial &operator=(const test_trivial &) = delete;
+
+private:
+  int a;
+};
+//关于vector的size与capacity
+void main_vector_size_capacity(){
+    // vector<test_trivial> v2(2,2);
+    vector<test_trivial> v2(2);
+    vector<int> v(2, 3);
+    cout << v.size() << " " << v.capacity() << endl;
+    v.push_back(1);
+    cout << v.size() << " " << v.capacity() << endl;
+    v.push_back(1);
+    cout << v.size() << " " << v.capacity() << endl;
+    v.push_back(1);
+    cout << v.size() << " " << v.capacity() << endl;
+    v.push_back(1);
+    cout << v.size() << " " << v.capacity() << endl;
+}

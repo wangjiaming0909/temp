@@ -146,8 +146,9 @@ int main()
     // main_template_();
     // main_scoped_ptr();
     // main_quicksort();
-    main_counting_sort();
+    // main_counting_sort();
     // main_matrix_multiply();
+    main_vector_size_capacity();
 
     // string s;
     // vector<string> v;
