@@ -24,6 +24,7 @@
         //     ]
         // },
         {
+            "program": "",
             "name": "(gdb) Launch",
             "request": "launch",
             "type": "cppdbg",
