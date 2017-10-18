@@ -656,10 +656,11 @@ private:
 //关于vector的size与capacity
 void main_vector_size_capacity(){
     // vector<test_trivial> v2(2,2);
-    vector<test_trivial> v2(2);
-    vector<int> v(2, 3);
+    // vector<test_trivial> v2(2);
+    vector<int> v(3, 3);
     cout << v.size() << " " << v.capacity() << endl;
-    v.push_back(1);
+    int c = 12;
+    v.push_back(c);
     cout << v.size() << " " << v.capacity() << endl;
     v.push_back(1);
     cout << v.size() << " " << v.capacity() << endl;

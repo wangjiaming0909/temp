@@ -39,7 +39,7 @@
             },
             "windows": {
                 "program": "${workspaceRoot}/a.exe",
-                "miDebuggerPath": "D:/Qt5.5.1/Tools/mingw492_32/bin/gdb.exe"
+                "miDebuggerPath": "C:/MinGW/bin/gdb.exe"
             },
             "setupCommands": [
                 {

@@ -42,7 +42,8 @@
         "random": "cpp",
         "iterator": "cpp",
         "memory_resource": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "ratio": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "editor.mouseWheelZoom": true
