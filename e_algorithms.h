@@ -846,6 +846,7 @@ void radix_sort(int *arr, int d, int length){//-------------O(d*(k+length))
 }
 /*----------------------radix-sort--------------------*/
 /*----------------------bucket-sort--------------------*/
+/*
 struct bucket_sort_node{
     int value;
     bucket_sort_node *next;
@@ -869,6 +870,7 @@ void bucket_sort(int *arr, int length){
     for (int i = 0; i < length; i++)
         
 }
+*/
 /*----------------------bucket-sort--------------------*/
 } //namespace algorithms
 
