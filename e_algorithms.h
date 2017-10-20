@@ -761,18 +761,19 @@ void visitmatrix(vector<vector<int>> &m){
 
 //multiply
 void square_matrix_multiply(vector<vector<int>> & ma, 
-                            vector<vector<int>> &mb, 
-                            int m, int n, int q, 
-                            vector<vector<int>> &ret){
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < q; j++){
-            for (int k = 0; k < n; k++){
-                ret[i][k] += ma[i][j] * mb[j][k];
+    vector<vector<int>> &mb, 
+    int m, int n, int q, 
+    vector<vector<int>> &ret){
+        for (int i = 0; i < m; i++){
+            for (int j = 0; j < q; j++){
+                for (int k = 0; k < n; k++){
+                    ret[i][k] += ma[i][j] * mb[j][k];
+                }
             }
         }
     }
-}
-//maxtrix multiply 分治算法
+    //maxtrix multiply 分治算法
+    /*--------------------矩阵计算-----------------------------*/
 
 /*----------------------counting-sort--------------------*/
 //此算法是稳定的
@@ -843,9 +844,32 @@ void radix_sort(int *arr, int d, int length){//-------------O(d*(k+length))
     for (int i = 0; i < length; i++)//-----O(length)
         arr[i] = temp[i];
 }
-
 /*----------------------radix-sort--------------------*/
-/*--------------------矩阵计算-----------------------------*/
+/*----------------------bucket-sort--------------------*/
+struct bucket_sort_node{
+    int value;
+    bucket_sort_node *next;
+};
+//insert the new node and sort the list
+void bucket_sort_node_insert(bucket_sort_node *header, bucket_sort_node *thenode){
+    bucket_sort_node *currentnode = header;
+    while(currentnode->next != nullptr){
+        if(thenode->value <= currentnode->value){
+            header = thenode;
+            thenode->next = currentnode;
+        }
+    }
+}
+void bucket_sort(int *arr, int length){
+    bucket_sort_node B[length];
+    for (int i = 0; i < length; i++){
+        B[i].value = 0;
+        B[i].next = nullptr;
+    }
+    for (int i = 0; i < length; i++)
+        
+}
+/*----------------------bucket-sort--------------------*/
 } //namespace algorithms
 
 
