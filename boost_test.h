@@ -28,14 +28,14 @@ void main_scoped_array(){
         // boost::scoped_array<int> scop_int(new int[10]);
         // boost::scoped_array<test> scop_test = boost::make_unique<test[]>(10);
         // unique_ptr<test> unitest = boost::make_unique<test>(10);
-        test t(10);
+        // test t(10);
         //call the rvalue reference of make_unique
         // unique_ptr<test> unitestrvalue = boost::make_unique<test>(std::move(t));
-        unique_ptr<test[]> uniarr = boost::make_unique<test[]>(10);
+        // unique_ptr<test[]> uniarr = boost::make_unique<test[]>(10);
         shared_ptr<test> st = make_shared<test>();
         shared_ptr<test> st2 = st;
         // cout << st2 << endl;// cout the address of the pointer
-        cout << (*st2 < *st) << endl;
+        // cout << (*st2 < *st) << endl;
         // unique_ptr<test[]> unitest2 = boost::make_unique<test[]>();
         // fill_n(&scop_int[0], 10, 1);
         // fill_n(scop_int, 10, 1);
