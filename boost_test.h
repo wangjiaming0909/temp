@@ -25,7 +25,9 @@ void main_scoped_array(){
         // unique_ptr<test> unitest = boost::make_unique<test>(10);
         test t(10);
         //call the rvalue reference of make_unique
-        unique_ptr<test> unitestrvalue = boost::make_unique<test>(std::move(t));
+        // unique_ptr<test> unitestrvalue = boost::make_unique<test>(std::move(t));
+        unique_ptr<test[]> uniarr = boost::make_unique<test[]>(10);
+
         // unique_ptr<test[]> unitest2 = boost::make_unique<test[]>();
         // fill_n(&scop_int[0], 10, 1);
         // fill_n(scop_int, 10, 1);
