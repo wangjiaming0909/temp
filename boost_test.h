@@ -3,6 +3,8 @@
 #include <boost/pool/pool_alloc.hpp>
 #include <memory>
 #include <boost/make_unique.hpp>
+#include <boost/make_shared.hpp>
+#include <boost/shared_ptr.hpp>
 #include <thread>
 #include <vector>
 
@@ -15,7 +17,7 @@ public:
         // test(const test &&nb) : b(nb.b){}
         void print() { cout << "asd" << b << endl; }
         ~test() { cout << "test deconstructor.." << endl; }
-
+        int i;
 private:
         bool b = true;
 };
@@ -33,14 +35,17 @@ void main_scoped_array(){
         //call the rvalue reference of make_unique
         // unique_ptr<test> unitestrvalue = boost::make_unique<test>(std::move(t));
         // unique_ptr<test[]> uniarr = boost::make_unique<test[]>(10);
-        shared_ptr<test> st = make_shared<test>();
-        shared_ptr<test> st2 = st;
+        boost::shared_ptr<test> st = boost::make_shared<test>();
+        st->i = 12;
+        test *tp = static_cast<test*>(st.get());
+        boost::shared_ptr<test> st2 = boost::shared_ptr<test>(st, tp);
+        // shared_ptr<test> st2 = st;
         // cout << st2 << endl;// cout the address of the pointer
         // cout << (*st2 < *st) << endl;
         // unique_ptr<test[]> unitest2 = boost::make_unique<test[]>();
         // fill_n(&scop_int[0], 10, 1);
         // fill_n(scop_int, 10, 1);
-        cout << " endl " << endl;
+        cout << "endl " << endl;
 }
 
 void main_scoped_ptr()

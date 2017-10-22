@@ -7,7 +7,7 @@ all:$(target)
 $(target):$(objects) 
 	@echo linking...
 #	g++ -O1 $^ -L. -la -o $@ 
-	g++  $^ -o $@ 
+	g++  $^ -o $@  -lpthread
 	@echo ok...
 	rm *.o
 

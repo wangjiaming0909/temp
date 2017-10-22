@@ -10,6 +10,8 @@
 #include <type_traits>
 #include "stl.h"
 #include <list>
+#include <exception>
+#include <thread>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -672,7 +674,42 @@ void main_vector_size_capacity(){
 
 void main_vector_insert(){
     vector<int> v1;
-    v1.push_back(2);
-    v1.insert(v1.begin()+1, 10);
-    cout << v1[1] << endl;
+    v1.push_back(12);
+    v1.insert(v1.begin() + 1, 2);
+}
+
+class Base{
+  public:
+    void print(){cout << "asd" << endl;}
+    virtual void print2(){cout << "virtual" << endl;}
+    virtual ~Base() {}
+};
+
+class D : public Base{
+  public:
+    virtual void print2(){cout << "D" << endl; }
+};
+
+void main_dynamic_cast(){
+    Base b, *bp = &b;
+    // D d, *bp = &d;
+    if (D *dp = dynamic_cast<D *>(bp))
+    {
+        dp->print2();
+        cout << "cast success" << endl;
+    }else
+        cout << "cast fail" << endl;
+
+    Base &br = b;
+    try{
+        D &dr = dynamic_cast<D &>(br);
+        dr.print2();
+        cout << "cast success" << endl;
+    }catch(bad_cast){
+        cout << "bad_cast" << endl;
+    }
+}
+
+void main_thread(){
+    std::thread thr(main_delete_noheap);
 }

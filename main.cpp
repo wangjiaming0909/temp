@@ -151,7 +151,9 @@ int main()
     // main_vector_size_capacity();
     // main_scoped_ptr();
     // main_scoped_array();
-    main_vector_insert();
+    main_thread();
+    // main_dynamic_cast();
+    // main_vector_insert();
 
     // string s;
     // vector<string> v;
