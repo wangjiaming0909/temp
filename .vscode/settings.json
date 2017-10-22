@@ -44,7 +44,8 @@
         "memory_resource": "cpp",
         "unordered_map": "cpp",
         "ratio": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "algorithm": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "editor.mouseWheelZoom": true
