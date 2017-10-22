@@ -1,6 +1,8 @@
 #ifndef _STL_H_
 #define _STL_H_
+
 #include <iostream>
+#include <vector>
 #include <new>
 using namespace std;
 

@@ -4,15 +4,13 @@
             "name": "Linux",
             "includePath": [
                 "/boost_1_65_1/",
-                "/usr/include/",
-                "/usr/include/c++/5/",
+                "/usr/include/c++/6/",
                 "${workspaceRoot}"
             ],
             "browse": {
                 "path": [
                     "/boost_1_65_1/",
-                    "/usr/include/",
-                    "/usr/include/c++/5/",
+                    "/usr/include/c++/6/",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true
