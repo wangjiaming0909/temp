@@ -150,7 +150,8 @@ int main()
     // main_matrix_multiply();
     // main_vector_size_capacity();
     // main_scoped_ptr();
-    main_scoped_array();
+    // main_scoped_array();
+    main_vector_insert();
 
     // string s;
     // vector<string> v;

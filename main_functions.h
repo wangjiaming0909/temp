@@ -669,3 +669,10 @@ void main_vector_size_capacity(){
     v.push_back(1);
     cout << v.size() << " " << v.capacity() << endl;
 }
+
+void main_vector_insert(){
+    vector<int> v1;
+    v1.push_back(2);
+    v1.insert(v1.begin()+1, 10);
+    cout << v1[1] << endl;
+}
