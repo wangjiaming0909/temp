@@ -3,6 +3,7 @@
 #include <boost/pool/pool_alloc.hpp>
 #include <memory>
 #include <boost/make_unique.hpp>
+#include <thread>
 #include <vector>
 
 class test{

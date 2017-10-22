@@ -43,7 +43,8 @@
         "iterator": "cpp",
         "memory_resource": "cpp",
         "unordered_map": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "chrono": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "editor.mouseWheelZoom": true
