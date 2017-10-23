@@ -20,7 +20,19 @@ vector(size_type __n,
 ```c++
 void _M_fill_initialize(size_type __n, const value_type& __value){
     this->_M_impl._M_finish =
-    std::__uninitialized_fill_n_a(this->_M_impl._M_start, __n, __value, _M_get_Tp_allocator());
+        std::__uninitialized_fill_n_a(this->_M_impl._M_start, __n, __value, _M_get_Tp_allocator());
+}
+```
+### 4. `vector<typename _Tp, typename _Alloc = std::allocator<_Tp>>::vector(size_type __n, const allocator_type &__a = allocator_type())`
+```c++
+vector(size_type __n, const allocator_type &__a = allocator_type()) : _Base(__n, __a)
+    {_M_default_initialize(__n);}
+```
+#### `vector<typename _Tp, typename _Alloc = std::allocator<_Tp>>::_M_default_initialize(size_type __n)`
+```c++
+void _M_default_initialize(size_type __n){
+    this->_M_impl._M_finish = 
+        std::__uninitialized_default_n_a(this->_M_impl._M_start, __n, _M_get_Tp_allocator());
 }
 ```
 ```c++

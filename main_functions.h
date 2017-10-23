@@ -12,6 +12,7 @@
 #include <list>
 #include <exception>
 #include <thread>
+#include <boost/pool/pool_alloc.hpp>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -647,10 +648,16 @@ void main_counting_sort(){
 }
 class test_trivial{
 public:
-  test_trivial() = default;
-  test_trivial(int _a) : a(_a) {}
-  test_trivial(const test_trivial &) = delete;
-  test_trivial &operator=(const test_trivial &) = delete;
+  test_trivial(){
+      cout << "default constructor called" << endl;
+  }
+  test_trivial(int _a) : a(_a) {
+      cout << "test_trivial called" << endl;
+  }
+  test_trivial(const test_trivial &){
+      cout << "copy constructor called" << endl;
+  }
+  test_trivial &operator=(const test_trivial &) = default;
 
 private:
   int a;
@@ -673,7 +680,10 @@ void main_vector_size_capacity(){
 }
 
 void main_vector_insert(){
-    vector<string> v2(2, "asd");
+    // int buf[10] = {10};
+    // int *ia = ::new(buf) int(1);
+//    vector<test_trivial> v2(2, test_trivial(2));
+    vector<test_trivial, boost::pool_allocator<int>> v3(2, boost::pool_allocator<int>());
     vector<int> v1;
     v1.push_back(12);
     v1.insert(v1.begin() + 1, 2);
