@@ -45,7 +45,8 @@
         "unordered_map": "cpp",
         "ratio": "cpp",
         "chrono": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "deque": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "editor.mouseWheelZoom": true

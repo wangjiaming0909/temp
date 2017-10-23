@@ -673,6 +673,7 @@ void main_vector_size_capacity(){
 }
 
 void main_vector_insert(){
+    vector<string> v2(2, "asd");
     vector<int> v1;
     v1.push_back(12);
     v1.insert(v1.begin() + 1, 2);

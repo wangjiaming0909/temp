@@ -1,6 +1,7 @@
 #include "main_functions.h"
 #include "stl.h"
 #include <vector>
+#include <queue>
 #include <string>
 #include <sstream>
 #include "boost_test.h"
@@ -128,7 +129,7 @@ int main()
     // main_compare();
     // main_stl();
     // main_function_pointer();
-    // main_array_BT();
+    // main_array_BT();gggvv
     // main_vector_move();
     // main_binary_tree();
     // main_delete_noheap();
@@ -151,9 +152,9 @@ int main()
     // main_vector_size_capacity();
     // main_scoped_ptr();
     // main_scoped_array();
-    main_thread();
+    // main_thread();
     // main_dynamic_cast();
-    // main_vector_insert();
+    main_vector_insert();
 
     // string s;
     // vector<string> v;
