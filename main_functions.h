@@ -683,7 +683,9 @@ void main_vector_insert(){
     // int buf[10] = {10};
     // int *ia = ::new(buf) int(1);
 //    vector<test_trivial> v2(2, test_trivial(2));
-    vector<test_trivial, boost::pool_allocator<int>> v3(2, boost::pool_allocator<int>());
+    // vector<test_trivial, boost::pool_allocator<test_trivial>> v3(2, boost::pool_allocator<test_trivial>());
+    vector<int, boost::pool_allocator<int>> v4(2, boost::pool_allocator<int>());
+    // vector<int, boost::pool_allocator<>>
     vector<int> v1;
     v1.push_back(12);
     v1.insert(v1.begin() + 1, 2);

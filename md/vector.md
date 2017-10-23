@@ -58,12 +58,18 @@ inline _ForwardIterator __uninitialized_default_n(_ForwardIterator __first, _Siz
 ```c++
 //带 n 个元素， 带allocator的 uninitialized_default版本
 //此为自定义allocator所调用的版本
+//当使用boost的 pool_allocator 时会调用此版本
 template<typename _ForwardIterator, typename _Size, typename _Allocator>
 _ForwardIterator __uninitialized_default_n_a(_ForwardIterator __first, _Size __n, _Allocator& __alloc){
     _ForwardIterator __cur = __first;
     __try{
+        //利用 alloc_traits 调用pool_allocator的construct
         typedef __gnu_cxx::__alloc_traits<_Allocator> __traits;
         for (; __n > 0; --__n, ++__cur)
+        //alloc_traits 的construct会根据当前构造的类型
+        /*?是否有构造函数而调用不同的函数?*/
+        //一个使用pool_allocator 的construct 
+        //一个直接使用 new
             __traits::construct(__alloc, std::__addressof(*__cur));
         return __cur;
     }
@@ -73,7 +79,16 @@ _ForwardIterator __uninitialized_default_n_a(_ForwardIterator __first, _Size __n
     }
 }
 ```
-
+### 5. `vector(const vector &__x)`
+```c++
+vector(const vector &__x)
+ : _Base(__X.size(), _Alloc_traits::_S_select_on_copy(__x._M_get_Tp_allocator())){
+    this->_M_impl._M_finish =
+    std::__uninitialized_copy_a(__x.begin(), __x.end(),
+                    this->_M_impl._M_start,
+                    _M_get_Tp_allocator());
+}
+```
 ## 基类 _Vector_base
 ### 1. `_Vector_base()`
 ```c++
