@@ -110,7 +110,7 @@ int main()
     // main_ds1_20();
     // main_ds1_2();
     // main_multi_set_map();
-    // main_insertsort();
+    main_insertsort();
     // main_merge_sort();
     // main_binary_search();
     // main_twosum();
@@ -154,7 +154,7 @@ int main()
     // main_scoped_array();
     // main_thread();
     // main_dynamic_cast();
-    main_vector_insert();
+    // main_vector_insert();
 
     // string s;
     // vector<string> v;
