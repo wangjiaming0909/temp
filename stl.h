@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <new>
+#include <list>
 using namespace std;
 
 #ifndef UINT_MAX
@@ -87,6 +88,28 @@ void print(T &){
     cout << typeid(T).name() << endl;
 }
 
+struct nn{
+    char c;
+    int i;
+    int j;
+};
+void main_list(){
+    // list<nn> l(4);
+    // list<nn> l(3, {'a', 1, 2});
+    // list<nn>::iterator it = l.begin();
+    // cout << it->c << endl;
+    list<char> l(4, 'q');
+    list<char>::iterator it = l.begin();
+    cout << *it << endl;
+    it = ++it;
+    char z = 'z';
+    l.insert(it, z);
+    // l.remove('z');
+    // l.erase(it);
+    l.unique();
+    // l.clear();
+    cout << *it << endl;
+}
 
 
 

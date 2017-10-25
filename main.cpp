@@ -110,13 +110,14 @@ int main()
     // main_ds1_20();
     // main_ds1_2();
     // main_multi_set_map();
-    main_insertsort();
+    // main_insertsort();
     // main_merge_sort();
     // main_binary_search();
     // main_twosum();
     // main_merge_inversions();
     // main_find_max_subarray();
     // main_or_and();
+    main_list();
 
     // main_quickfind();
     // main_quickunion();

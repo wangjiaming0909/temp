@@ -4,13 +4,16 @@
             "name": "Linux",
             "includePath": [
                 "/boost_1_65_1/",
-                "usr/include/c++/7/",
-                "${workspaceRoot}"
+                "${workspaceRoot}",
+                "/usr/include/linux",
+                "/usr/include/x86_64-linux-gnu/c++/7/",
+                "/home/www/Documents/7"
             ],
             "browse": {
                 "path": [
                     "/boost_1_65_1/",
-                    "/usr/include/c++/7/",
+                    "/home/www/Documents/7",
+                    "/usr/include/x86_64-linux-gnu/c++/7/",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true
