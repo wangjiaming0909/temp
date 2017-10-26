@@ -117,7 +117,8 @@ int main()
     // main_merge_inversions();
     // main_find_max_subarray();
     // main_or_and();
-    main_list();
+    // main_list();
+    main_shellsort();
 
     // main_quickfind();
     // main_quickunion();

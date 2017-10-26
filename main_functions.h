@@ -726,3 +726,12 @@ void main_dynamic_cast(){
 void main_thread(){
     std::thread thr(main_delete_noheap);
 }
+
+void main_shellsort(){
+    int arr[30] = {21, 12, 42, 123, 124, 42, 12, 32, 16, 86, 456, 33, 237, 886, 764};
+    algorithms::shellsort(arr, 15);
+    for (int i = 0; i < 15; i++){
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}

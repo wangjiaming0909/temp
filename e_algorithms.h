@@ -95,7 +95,24 @@ int * selectsort2(int *nums, size_t n){
     }
     return nums;
 }
-
+/*---------------------shellsort--------------------O(n)-*/
+void shellsort(int *nums, int size){
+    //选取h-sort 序列有多种，3x + 1
+    int h = 1;
+    while(h < size / 3)//序列是：1， 4， 13， 40， 121， 364
+        h = 3 * h + 1;
+    while(h >= 1){//对每个h间隔的数组进行插入排序
+        for (int i = h; i < size; i++){//从第h个开始，一直到最后，一个一个的连续和前面相隔h个元素进行比较
+            for (int j = i; j >= h && nums[j] < nums[j - h]; j-=h){//小的话，就交换，一直交换到比前面的大
+                int temp = nums[j];
+                nums[j] = nums[j - h];
+                nums[j - h] = temp;
+            }
+        }
+        h = h / 3;//一轮完成将h/3
+    }
+}
+/*---------------------shellsort--------------------O(n)-*/
 /*--------------------3-mergesort--------------------O(n)-*/
 //将数组A[p..q] 和A[q+1...r]合并
 //其中这两个数组是已经排完序的
