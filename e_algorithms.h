@@ -51,12 +51,12 @@ int *insert_sort3(int *nums, int n){
     if(n >= 2){
         insert_sort3(nums, n-1);
         int last = nums[n-1];
-        size_t i = n-2;
-        while(nums[i] > last){
-            nums[i+1] = nums[i];
-            i--;
+        int i = n-2;//i为最后一个的前一个元素
+        while(nums[i] > last && i >= 0){
+            nums[i+1] = nums[i];//右移一格
+            i--;//从最后一个的前一个元素一直比较到 当前元素 不比 保存的最后一个元素 大 时结束
         }
-        nums[i+1] = last;
+        nums[i+1] = last;//再把之前保存的last的值填入i+1
     }
     return nums;
 }

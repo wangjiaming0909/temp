@@ -42,38 +42,29 @@
 //     return time2.wMilliseconds - time1.wMilliseconds;
 // }
 
-void main_insertsort()
-{
+void main_insertsort(){
     using algorithms::insert_sort;
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     // int nums[4] = {2,3,1,0};
     int *p = algorithms::insert_sort3(nums, 10);
     for (int i = 0; i < 10; i++)
-    {
         cout << *(p++) << " ";
-    }
     cout << endl;
 }
 
-void main_selectsort()
-{
+void main_selectsort(){
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     int *p = algorithms::selectsort2(nums, 10);
     for (int i = 0; i < 10; i++)
-    {
         cout << *(p++) << " ";
-    }
     cout << endl;
 }
 
-void main_merge_sort()
-{
+void main_merge_sort(){
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     int *p = algorithms::merge_sort(nums, 0, 9);
     for (int i = 0; i < 10; i++)
-    {
         cout << *(p++) << " ";
-    }
     cout << endl;
 }
 
