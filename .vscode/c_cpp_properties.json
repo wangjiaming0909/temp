@@ -5,14 +5,16 @@
             "includePath": [
                 "/boost_1_65_1/",
                 "${workspaceRoot}",
-                "/usr/include/c++/5",
-                "/home/www/Documents/7"
+                "/usr/include/c++/5/",
+                "/usr/include/x86_64-linux-gnu/c++/5/"
+                
             ],
             "browse": {
                 "path": [
                     "/boost_1_65_1/",
-                    "/usr/include/c++/5",
-                    "${workspaceRoot}"
+                    "/usr/include/c++/5/",
+                    "${workspaceRoot}",
+                    "/usr/include/x86_64-linux-gnu/c++/5/"
                 ],
                 "limitSymbolsToIncludedHeaders": true
             },
