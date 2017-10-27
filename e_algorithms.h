@@ -771,8 +771,8 @@ void randomized_quicksort(int *arr, int begin, int end){
 //hoare-partition
 int hoare_partition(int *arr, int begin, int end){
     int x = arr[begin];
-    int i = begin - 1;
-    int j = end + 1;
+    int i = begin;
+    int j = end+1;
     while(true){
         while(arr[--j] > x)
             ;
@@ -782,8 +782,11 @@ int hoare_partition(int *arr, int begin, int end){
             int temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
-        }else
-        return j;
+        }else{//最终的时候交换key与最后一个小于key的值
+            arr[begin] = arr[j];
+            arr[j] = x;
+            return j;
+        }
     }
 }
 void hoare_quicksort(int *arr, int begin, int end){

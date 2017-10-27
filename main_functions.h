@@ -578,17 +578,17 @@ void main_template_(){
 }
 
 void main_quicksort(){
-    // int arr[30] = {30, 100, 19, 10, 5, 6, 2, 3, 1, 4, 9, 20};
+    int arr[30] = {30, 100, 19, 10, 5, 6, 2, 3, 1, 4, 9, 20};
     // int arr[30] = {2, 3, 1, 5, 6, 4, 19, 10, 9, 30, 100, 20};
-    int arr[30] = {2, 3, 20, 5, 6, 6, 19, 10, 20, 5, 3, 20};
+    // int arr[30] = {9, 3, 18, 5, 6, 12, 19, 10, 21, 7, 4, 20};
     
     // int arr[30] = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
     // int arr[30] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     // algorithms::quicksort(arr, 0, 11);
     // algorithms::randomized_quicksort(arr, 0, 11);
-    // algorithms::hoare_quicksort(arr, 0, 11);
+    algorithms::hoare_quicksort(arr, 0, 11);
     // algorithms::quicksort2(arr, 0, 11);
-    algorithms::tail_recursive_quicksort2(arr, 0, 11);
+    // algorithms::tail_recursive_quicksort(arr, 0, 11);
     for (size_t i = 0; i < 12; i++)
         cout << arr[i] << " ";
     cout << endl

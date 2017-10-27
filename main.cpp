@@ -111,7 +111,7 @@ int main()
     // main_ds1_2();
     // main_multi_set_map();
     // main_insertsort();
-    main_merge_sort();
+    // main_merge_sort();
     // main_binary_search();
     // main_twosum();
     // main_merge_inversions();
@@ -148,7 +148,7 @@ int main()
     // main_build_maxheap2();
     // main_template_();
     // main_scoped_ptr();
-    // main_quicksort();
+    main_quicksort();
     // main_counting_sort();
     // main_matrix_multiply();
     // main_vector_size_capacity();
