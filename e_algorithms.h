@@ -196,6 +196,19 @@ void merge_sort3(int *nums, int p, int r){
     merge(nums, p, q, r);
 } 
 //3,reduce the times of copy array P175
+
+//自底向上的merge sort
+void merge_sort4(int *nums, int p, int r){
+    int N = r-p+1;
+    for(int sz = 1; sz < N; sz = sz*2){//外层循环，从1, 2, 4, 8, 16
+        for(int i = 0; i < N - sz; i += sz*2){
+            //内层循环，sz = 1, i从0, 2, 4, 8
+            //sz = 2, i 0, 4, 8
+            //sz = 4, i 0, 8, 16
+            merge(nums, i, i+sz-1, std::min(i+2*sz-1, N-1));//merge i-i+sz和 i+sz+1-2*sz
+        }
+    }
+}
 /*--------------------3-mergesort-------------------*/
 /*--------------------4-binaryserarch-------------------*/
 //返回一个数组索引,递归
