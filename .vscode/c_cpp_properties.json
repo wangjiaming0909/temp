@@ -6,14 +6,13 @@
                 "/boost_1_65_1/",
                 "${workspaceRoot}",
                 "/usr/include/linux",
-                "/usr/include/x86_64-linux-gnu/c++/7/",
+                "/usr/include/x86_64-linux-gnu/c++/5/",
                 "/home/www/Documents/7"
             ],
             "browse": {
                 "path": [
                     "/boost_1_65_1/",
-                    "/home/www/Documents/7",
-                    "/usr/include/x86_64-linux-gnu/c++/7/",
+                    "/usr/include/x86_64-linux-gnu/c++/5/",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true
