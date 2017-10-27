@@ -60,6 +60,7 @@ int *insert_sort3(int *nums, int n){
     }
     return nums;
 }
+
 /*--------------------1-insertsort-------------------*/
 /*--------------------2-selectsort-------------------*/
 int* selectsort(int *nums, size_t n){//及时终止
@@ -113,9 +114,12 @@ void shellsort(int *nums, int size){
     }
 }
 /*---------------------shellsort--------------------O(n)-*/
+
 /*--------------------3-mergesort--------------------O(n)-*/
 //将数组A[p..q] 和A[q+1...r]合并
 //其中这两个数组是已经排完序的
+
+int mergetimes = 0;
 void merge(int *nums, size_t p, size_t q, size_t r){
     size_t n1 = q-p+1;
     size_t n2 = r-q;
@@ -141,6 +145,7 @@ void merge(int *nums, size_t p, size_t q, size_t r){
     while(j != n2)
         nums[k++] = R[j++];
 /*-----------------------------------------G-----*/
+    mergetimes++;
 }
 
 int *merge_sort(int *nums, size_t p, size_t r){//-------------------加上merge   O(nlgn)
@@ -152,6 +157,45 @@ int *merge_sort(int *nums, size_t p, size_t r){//-------------------加上merge 
     }
     return nums;
 }
+
+//new insertion sort
+void insertion_sort_new(int *nums, int p, int r){
+    int i, j, temp;
+    for(i = p+1; i <= r; i++){
+        temp = nums[i];
+        for(j = i - 1; j >= p && nums[j] > temp; j--)
+            nums[j+1] = nums[j];
+        nums[j+1] = temp;
+    }
+}
+//merge sort optimization
+//1,when the size of the array is smaller than 4 we use insertion sort
+//but the insertion sort need to use the index of the array as the parm, not the size
+void merge_sort2(int *nums, int p, int r){
+    if(r - p < 4){//insertion sort
+        insertion_sort_new(nums, p, r);
+        return;
+    }
+    int q = (p+r) / 2;
+    merge_sort2(nums, p, q);
+    merge_sort2(nums, q+1, r);
+    merge(nums, p, q, r);
+} 
+//2,
+void merge_sort3(int *nums, int p, int r){
+    if(r - p < 4){//insertion sort
+        insertion_sort_new(nums, p, r);
+        return;
+    }
+    int q = (p+r) / 2;
+    merge_sort3(nums, p, q);
+    merge_sort3(nums, q+1, r);
+    //when the max of left is smallest than the min of right so we step over the merge
+    if(nums[q] < nums[q+1])
+        return;
+    merge(nums, p, q, r);
+} 
+//3,reduce the times of copy array P175
 /*--------------------3-mergesort-------------------*/
 /*--------------------4-binaryserarch-------------------*/
 //返回一个数组索引,递归

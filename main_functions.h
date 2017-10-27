@@ -62,10 +62,11 @@ void main_selectsort(){
 
 void main_merge_sort(){
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
-    int *p = algorithms::merge_sort(nums, 0, 9);
+    // int *p = algorithms::merge_sort(nums, 0, 9);
+    algorithms::merge_sort3(nums, 0, 9);
     for (int i = 0; i < 10; i++)
-        cout << *(p++) << " ";
-    cout << endl;
+        cout << nums[i] << " ";
+    cout << endl << algorithms::mergetimes << endl;
 }
 
 void main_binary_search()
