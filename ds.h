@@ -116,11 +116,11 @@ public:
     int size() const {return treeSize;}
     void preOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
-        preOrder2(root);
+        preOrder3(root);
     }
     void inOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
-        inOrder(root);
+        inOrder2(root);
     }
     void postOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
@@ -157,7 +157,8 @@ private:
     bool compare(binaryTreeNode<T> *ltn, binaryTreeNode<T> *rtn);
     void swap_trees(binaryTreeNode<T> *);
     int height(binaryTreeNode<T> *);
-    static void visitalongleftbranch(binaryTreeNode<T> *t, stack<binaryTreeNode<T>> &s);
+    static void visitalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T>*> &);
+    static void goalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
 };
 
 template <class T>
@@ -223,21 +224,50 @@ void linkedBinaryTree<T>::preOrder2(binaryTreeNode<T> *t){
     }
 }
 
+//给此函数一个root node, 和一个栈，
+//访问次节点，右节点入栈，将此节点置换成左节点
+template <typename T>
+void linkedBinaryTree<T>::visitalongleftbranch(binaryTreeNode<T> *tt, stack<binaryTreeNode<T>*> &s){
+    binaryTreeNode<T> *t = tt;
+    while(t){
+        visit(t);
+        if(t->rightChild)//如果不判断空，则会插入空的元素，pop时，耽误时间
+            s.push(t->rightChild);
+        t = t->leftChild;
+    }   
+}
 //非递归版本， 自定义栈 版本2
 template <typename T>
 void linkedBinaryTree<T>::preOrder3(binaryTreeNode<T> *t){
     stack<binaryTreeNode<T> *> s;
-    s.push(t);
-
+    while(true){
+        visitalongleftbranch(t, s);
+        if (s.empty())
+            break;
+        t = s.top();
+        s.pop();
+    }
 }
 
+template <typename T>
+void linkedBinaryTree<T>::goalongleftbranch(binaryTreeNode<T> *t, stack<binaryTreeNode<T> *> &s){
+    binaryTreeNode<T> *tt = t;
+    while(tt){
+        s.push(tt);
+        tt = tt->leftChild;
+    }
+}
 //非递归版本的中序遍历
 template <typename T>
 void linkedBinaryTree<T>::inOrder2(binaryTreeNode<T> *t){
     stack<binaryTreeNode<T> *> s;
-    binaryTreeNode<T> *p = t;
-    s.push(t);
-    while(){
+    while(true){
+        if(t) goalongleftbranch(t, s);
+        if(s.empty()) break;
+        t = s.top();
+        s.pop();
+        visit(t);
+        t = t->rightChild;
     }
 }
 
@@ -296,7 +326,7 @@ void linkedBinaryTree<T>::levelOrder(binaryTreeNode<T> *t){
 
 template <class E>
 void myvisit(binaryTreeNode<E> *x){
-    std::cout << x->element << " ";
+    std::cout << x->element << " " << std::flush;
 }
 /*--------------------------数组描述的二叉树----------------------------*/
 //遍历数组描述的二叉树
