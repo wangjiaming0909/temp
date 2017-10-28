@@ -124,7 +124,7 @@ public:
     }
     void postOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
-        postOrder2(root);
+        postOrder(root);
     }
     void levelOrder(void (*)(binaryTreeNode<T> *)){
         visit = myvisit;
@@ -293,16 +293,20 @@ void linkedBinaryTree<T>::goalongleftbranch2(binaryTreeNode<T> *t, stack<binaryT
         tt = tt->leftChild;
     }
 }
+/*
 template <typename T>
 void linkedBinaryTree<T>::postOrder2(binaryTreeNode<T> *t){
     stack<binaryTreeNode<T> *> s;
+    bool first = true;
+    bool second = true;
     while(true){
         if(t)
             goalongleftbranch(t, s);
-        if(s.top()->rightChild){
+        if(s.top()->rightChild && first && second){
             t = s.top()->rightChild;
             continue;
         }
+        first = false;
         if(s.empty()) break;
         t = s.top();
         visit(t);
@@ -310,6 +314,7 @@ void linkedBinaryTree<T>::postOrder2(binaryTreeNode<T> *t){
         t = nullptr;
     }
 }
+*/
 
 template <class T>
 void linkedBinaryTree<T>::postOrder(binaryTreeNode<T> *t){
