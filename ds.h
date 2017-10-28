@@ -124,7 +124,7 @@ public:
     }
     void postOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
-        postOrder(root);
+        postOrder2(root);
     }
     void levelOrder(void (*)(binaryTreeNode<T> *)){
         visit = myvisit;
@@ -152,6 +152,7 @@ private:
     static void inOrder(binaryTreeNode<T> *t);
     static void inOrder2(binaryTreeNode<T> *t);
     static void postOrder(binaryTreeNode<T> *t);
+    static void postOrder2(binaryTreeNode<T> *);
     static void levelOrder(binaryTreeNode<T> *);
     static void dispose(binaryTreeNode<T> *t){delete t;}
     bool compare(binaryTreeNode<T> *ltn, binaryTreeNode<T> *rtn);
@@ -159,6 +160,7 @@ private:
     int height(binaryTreeNode<T> *);
     static void visitalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T>*> &);
     static void goalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
+    static void goalongleftbranch2(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
 };
 
 template <class T>
@@ -257,6 +259,8 @@ void linkedBinaryTree<T>::goalongleftbranch(binaryTreeNode<T> *t, stack<binaryTr
         tt = tt->leftChild;
     }
 }
+
+
 //非递归版本的中序遍历
 template <typename T>
 void linkedBinaryTree<T>::inOrder2(binaryTreeNode<T> *t){
@@ -277,6 +281,33 @@ void linkedBinaryTree<T>::inOrder(binaryTreeNode<T> *t){
         inOrder(t->leftChild);
         linkedBinaryTree<T>::visit(t);
         inOrder(t->rightChild);
+    }
+}
+
+template <typename T>
+void linkedBinaryTree<T>::goalongleftbranch2(binaryTreeNode<T> *t, stack<binaryTreeNode<T>*> &s){
+    binaryTreeNode<T> *tt = t;
+    while(tt){
+        s.push(tt);
+        if(tt->rightChild) s.push(tt->rightChild);
+        tt = tt->leftChild;
+    }
+}
+template <typename T>
+void linkedBinaryTree<T>::postOrder2(binaryTreeNode<T> *t){
+    stack<binaryTreeNode<T> *> s;
+    while(true){
+        if(t)
+            goalongleftbranch(t, s);
+        if(s.top()->rightChild){
+            t = s.top()->rightChild;
+            continue;
+        }
+        if(s.empty()) break;
+        t = s.top();
+        visit(t);
+        s.pop();
+        t = nullptr;
     }
 }
 
