@@ -390,11 +390,11 @@ void main_binary_tree()
 
     ds::linkedBinaryTree<string> lbt(root);
     // ds::linkedBinaryTree<string> lbt2 = lbt;
-    // // lbt.preOrder(ds::myvisit);
+    lbt.preOrder(ds::myvisit);
     // cout << endl;
     // lbt2.inOrder(ds::myvisit);
     // cout << (lbt == lbt2);
-    lbt.inOrder(ds::myvisit);
+    // lbt.inOrder(ds::myvisit);
     lbt.swap_trees();
     cout << endl;
     lbt.inOrder(ds::myvisit);

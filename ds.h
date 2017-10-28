@@ -2,6 +2,7 @@
 #include <cassert>
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std;
 
 //2,返回数组a[0:n-1]的数值个数
@@ -115,7 +116,7 @@ public:
     int size() const {return treeSize;}
     void preOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
-        preOrder(root);
+        preOrder2(root);
     }
     void inOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
@@ -146,6 +147,7 @@ private:
     static void (*visit) (binaryTreeNode<T> *);//静态变量需要初始化
 private:
     static void preOrder(binaryTreeNode<T> *t);
+    static void preOrder2(binaryTreeNode<T> *t);
     static void inOrder(binaryTreeNode<T> *t);
     static void postOrder(binaryTreeNode<T> *t);
     static void levelOrder(binaryTreeNode<T> *);
@@ -176,6 +178,7 @@ void linkedBinaryTree<T>::swap_trees(binaryTreeNode<T> *tn){
         tn->leftChild = tn->rightChild;
         tn->rightChild = node;
     }
+       
 } 
 
 template <class T>
@@ -198,6 +201,25 @@ void linkedBinaryTree<T>::preOrder(binaryTreeNode<T> *t){
         preOrder(t->rightChild);
     }
 }
+
+//非迭代版本，自定义栈  版本1
+template <class T>
+void linkedBinaryTree<T>::preOrder2(binaryTreeNode<T> *t){
+    stack<binaryTreeNode<T>*> s;
+    binaryTreeNode<T> *node;
+    s.push(t);
+    while(!s.empty()){
+        assert(!s.empty());
+        node = s.top();
+        s.pop();
+        visit(node);
+        if(node->rightChild != nullptr)
+            s.push(node->rightChild);
+        if(node->leftChild != nullptr)
+            s.push(node->leftChild);
+    }
+}
+
 template <class T>
 void linkedBinaryTree<T>::inOrder(binaryTreeNode<T> *t){
     if(t != NULL){

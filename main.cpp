@@ -133,7 +133,7 @@ int main()
     // main_function_pointer();
     // main_array_BT();gggvv
     // main_vector_move();
-    // main_binary_tree();
+    main_binary_tree();
     // main_delete_noheap();
     // main_max_heap();
     // main_exams();
@@ -148,7 +148,7 @@ int main()
     // main_build_maxheap2();
     // main_template_();
     // main_scoped_ptr();
-    main_quicksort();
+    // main_quicksort();
     // main_counting_sort();
     // main_matrix_multiply();
     // main_vector_size_capacity();
