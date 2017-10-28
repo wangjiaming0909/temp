@@ -140,7 +140,7 @@ public:
     }
     void swap_trees();//swap all the left and right child in the tree 
     // size_t max_nodes_level();
-    // int height() const;
+    int height() const;
 private:
     binaryTreeNode<T>   *root;
     int                 treeSize;
@@ -157,7 +157,7 @@ private:
     static void dispose(binaryTreeNode<T> *t){delete t;}
     bool compare(binaryTreeNode<T> *ltn, binaryTreeNode<T> *rtn);
     void swap_trees(binaryTreeNode<T> *);
-    int height(binaryTreeNode<T> *);
+    int height(binaryTreeNode<T> *) const;
     static void visitalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T>*> &);
     static void goalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
     static void goalongleftbranch2(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
@@ -326,7 +326,7 @@ void linkedBinaryTree<T>::postOrder(binaryTreeNode<T> *t){
 }
 
 template <class T>
-int linkedBinaryTree<T>::height(binaryTreeNode<T> *t){
+int linkedBinaryTree<T>::height(binaryTreeNode<T> *t) const{
     if(t == NULL)
         return 0;
     int hl = height(t->leftChild);
@@ -358,7 +358,10 @@ void linkedBinaryTree<T>::levelOrder(binaryTreeNode<T> *t){
 //     queue<binaryTreeNode<T> *> q;
 
 // }
-
+template <typename T>
+int linkedBinaryTree<T>::height() const{
+    return height(root);
+}
 
 template <class E>
 void myvisit(binaryTreeNode<E> *x){
@@ -460,5 +463,14 @@ void array_BT<T>::visit(size_t it){
 }
 
 /*-----------------------------tree--------------------------*/
+
+//二叉搜索树
+template <typename T>
+class BST : public linkedBinaryTree<T>{
+public:
+    
+private:
+    
+};
 }
 

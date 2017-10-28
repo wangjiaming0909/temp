@@ -29,6 +29,7 @@
             "name": "(gdb) Launch",
             "request": "launch",
             "type": "cppdbg",
+            "stopAtEntry": true,
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": true,

@@ -401,7 +401,8 @@ void main_binary_tree()
     ll4->leftChild = ll5;
 
     ds::linkedBinaryTree<string> lbt(root);
-    lbt.postOrder(ds::myvisit);
+    cout << lbt.height();
+    // lbt.postOrder(ds::myvisit);
     // ds::linkedBinaryTree<string> lbt2 = lbt;
     // lbt.preOrder(ds::myvisit);
     // cout << endl;
@@ -409,7 +410,7 @@ void main_binary_tree()
     // cout << (lbt == lbt2);
     // lbt.inOrder(ds::myvisit);
     // lbt.swap_trees();
-    // cout << endl;
+    cout << endl;
     // lbt.inOrder(ds::myvisit);
 }
 
@@ -740,3 +741,4 @@ void main_shellsort(){
     }
     cout << endl;
 }
+
