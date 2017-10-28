@@ -148,13 +148,16 @@ private:
 private:
     static void preOrder(binaryTreeNode<T> *t);
     static void preOrder2(binaryTreeNode<T> *t);
+    static void preOrder3(binaryTreeNode<T> *t);
     static void inOrder(binaryTreeNode<T> *t);
+    static void inOrder2(binaryTreeNode<T> *t);
     static void postOrder(binaryTreeNode<T> *t);
     static void levelOrder(binaryTreeNode<T> *);
     static void dispose(binaryTreeNode<T> *t){delete t;}
     bool compare(binaryTreeNode<T> *ltn, binaryTreeNode<T> *rtn);
     void swap_trees(binaryTreeNode<T> *);
     int height(binaryTreeNode<T> *);
+    static void visitalongleftbranch(binaryTreeNode<T> *t, stack<binaryTreeNode<T>> &s);
 };
 
 template <class T>
@@ -202,7 +205,7 @@ void linkedBinaryTree<T>::preOrder(binaryTreeNode<T> *t){
     }
 }
 
-//非迭代版本，自定义栈  版本1
+//非递归版本，自定义栈  版本1
 template <class T>
 void linkedBinaryTree<T>::preOrder2(binaryTreeNode<T> *t){
     stack<binaryTreeNode<T>*> s;
@@ -217,6 +220,24 @@ void linkedBinaryTree<T>::preOrder2(binaryTreeNode<T> *t){
             s.push(node->rightChild);
         if(node->leftChild != nullptr)
             s.push(node->leftChild);
+    }
+}
+
+//非递归版本， 自定义栈 版本2
+template <typename T>
+void linkedBinaryTree<T>::preOrder3(binaryTreeNode<T> *t){
+    stack<binaryTreeNode<T> *> s;
+    s.push(t);
+
+}
+
+//非递归版本的中序遍历
+template <typename T>
+void linkedBinaryTree<T>::inOrder2(binaryTreeNode<T> *t){
+    stack<binaryTreeNode<T> *> s;
+    binaryTreeNode<T> *p = t;
+    s.push(t);
+    while(){
     }
 }
 
