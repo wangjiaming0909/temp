@@ -6,6 +6,7 @@
 using namespace std;
 
 //2,返回数组a[0:n-1]的数值个数
+
 namespace ds{
 template <class T, size_t N>
 constexpr size_t count(const T (&)[N] ){//数组的引用const T(&t)[N]
@@ -490,13 +491,5 @@ void array_BT<T>::visit(size_t it){
 
 /*-----------------------------tree--------------------------*/
 
-//二叉搜索树
-template <typename T>
-class BST : public linkedBinaryTree<T>{
-public:
-    
-private:
-    
-};
 }
 

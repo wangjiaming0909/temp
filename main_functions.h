@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <memory>
 #include <functional>
-#include "ds.h"
+// #include "ds.h"
 #include <vector>
 #include <type_traits>
 #include "stl.h"
@@ -13,6 +13,7 @@
 #include <exception>
 #include <thread>
 #include <boost/pool/pool_alloc.hpp>
+#include "bst.h"
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -756,3 +757,6 @@ void main_shellsort(){
     cout << endl;
 }
 
+void main_BST(){
+    BST<string> bst;
+}

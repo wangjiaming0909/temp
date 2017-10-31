@@ -133,7 +133,8 @@ int main()
     // main_function_pointer();
     // main_array_BT();gggvv
     // main_vector_move();
-    main_binary_tree();
+    // main_binary_tree();
+    main_BST();
     // main_delete_noheap();
     // main_max_heap();
     // main_exams();
