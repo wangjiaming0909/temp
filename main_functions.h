@@ -415,10 +415,11 @@ void main_binary_tree()
     ll2->rightChild = ll7;
 
     ds::linkedBinaryTree<string> lbt(root);
-    // cout << lbt.height();
-    lbt.postOrder(ds::myvisit);
+    cout << lbt.height();
+    // lbt.postOrder(ds::myvisit);
     // ds::linkedBinaryTree<string> lbt2 = lbt;
     // lbt.preOrder(ds::myvisit);
+    // lbt.levelOrder(ds::myvisit);
     cout << endl;
     // lbt.inOrder(ds::myvisit);
     // cout << (lbt == lbt2);

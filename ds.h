@@ -161,6 +161,7 @@ private:
     bool compare(binaryTreeNode<T> *ltn, binaryTreeNode<T> *rtn);
     void swap_trees(binaryTreeNode<T> *);
     int height(binaryTreeNode<T> *) const;
+    int height2(binaryTreeNode<T> *) const;
     static void visitalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T>*> &);
     static void goalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
     static void goalongleftbranch2(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
@@ -342,6 +343,26 @@ int linkedBinaryTree<T>::height(binaryTreeNode<T> *t) const{
         return ++hr;
 }
 
+//非递归版本，使用queue
+template <typename T>
+int linkedBinaryTree<T>::height2(binaryTreeNode<T> *t) const{
+    queue<binaryTreeNode<T>*> q;
+    if(!t) return 0;
+    q.push(t);
+    int level = 0;
+    while(!q.empty()){//大循环一次代表一层
+        int len = q.size();
+        level++;
+        while(len--){//在这里将每一层的所有元素（上一次循环插入的）都pop一遍
+            binaryTreeNode<T> *tmp = q.front();
+            q.pop();
+            if(tmp->leftChild) q.push(tmp->leftChild);
+            if(tmp->rightChild) q.push(tmp->rightChild);
+        }
+    }
+    return level;
+}
+
 template <class T>
 void linkedBinaryTree<T>::levelOrder(binaryTreeNode<T> *t){
     queue<binaryTreeNode<T>*> q;
@@ -365,7 +386,7 @@ void linkedBinaryTree<T>::levelOrder(binaryTreeNode<T> *t){
 // }
 template <typename T>
 int linkedBinaryTree<T>::height() const{
-    return height(root);
+    return height2(root);
 }
 
 template <class E>
