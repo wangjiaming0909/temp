@@ -124,7 +124,10 @@ public:
     }
     void postOrder(void (*thevisit)(binaryTreeNode<T> *)){
         visit = thevisit;
-        postOrder(root);
+        // postOrder(root);
+        // cout << endl;
+        postOrder2(root);
+        // cout << endl;
     }
     void levelOrder(void (*)(binaryTreeNode<T> *)){
         visit = myvisit;
@@ -287,34 +290,36 @@ void linkedBinaryTree<T>::inOrder(binaryTreeNode<T> *t){
 template <typename T>
 void linkedBinaryTree<T>::goalongleftbranch2(binaryTreeNode<T> *t, stack<binaryTreeNode<T>*> &s){
     binaryTreeNode<T> *tt = t;
-    while(tt){
+    while(true){
         s.push(tt);
-        if(tt->rightChild) s.push(tt->rightChild);
-        tt = tt->leftChild;
+        if(tt->leftChild)//确保tt不是0
+            tt = tt->leftChild;
+        else if(tt->rightChild){
+            s.push(tt->rightChild);    
+            if(tt->rightChild->leftChild)//确保tt不是0
+                tt = tt->rightChild->leftChild;
+            else break;
+        }else
+            break;
     }
 }
-/*
+
 template <typename T>
 void linkedBinaryTree<T>::postOrder2(binaryTreeNode<T> *t){
     stack<binaryTreeNode<T> *> s;
-    bool first = true;
-    bool second = true;
     while(true){
         if(t)
-            goalongleftbranch(t, s);
-        if(s.top()->rightChild && first && second){
-            t = s.top()->rightChild;
-            continue;
-        }
-        first = false;
+            goalongleftbranch2(t, s);
         if(s.empty()) break;
         t = s.top();
         visit(t);
         s.pop();
-        t = nullptr;
+        if(! s.empty() && t== s.top()->leftChild)
+            t = s.top()->rightChild;
+        else
+            t = nullptr;
     }
 }
-*/
 
 template <class T>
 void linkedBinaryTree<T>::postOrder(binaryTreeNode<T> *t){

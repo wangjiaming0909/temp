@@ -218,8 +218,13 @@ void main_ds1_19()
 
 void main_ds1_20()
 {
-    cout << ds::fibonacci(10) << endl;
-    cout << ds::fibonacci2(1, 2, 10) << endl;
+    for(int i = 0; i < 99; i++){
+        cout << ds::fibonacci2(1, 2, i) << endl;
+    }
+    for(int i = 0; i < 67; i ++){
+        cout << "第" << i << "项: " << ds::fibonacci(i) << endl;
+    }
+
 }
 void main_ds1_21()
 {
@@ -384,6 +389,9 @@ void main_binary_tree()
     ds::binaryTreeNode<string> *ll3 = new ds::binaryTreeNode<string>;
     ds::binaryTreeNode<string> *ll4 = new ds::binaryTreeNode<string>;
     ds::binaryTreeNode<string> *ll5 = new ds::binaryTreeNode<string>;
+    ds::binaryTreeNode<string> *ll6 = new ds::binaryTreeNode<string>;
+    auto ll7 = new ds::binaryTreeNode<string>;
+    auto ll8 = new ds::binaryTreeNode<string>;
     root->element = "1";
     l1->element = "2";
     l2->element = "3";
@@ -392,6 +400,10 @@ void main_binary_tree()
     ll3->element = "6";
     ll4->element = "7";
     ll5->element = "8";
+    ll6->element = "9";
+    ll7->element = "10";
+    ll8->element = "11";
+    ll4->rightChild = ll8;
     root->leftChild = l1;
     root->rightChild = l2;
     l1->leftChild = ll1;
@@ -399,18 +411,19 @@ void main_binary_tree()
     l2->rightChild = ll3;
     ll1->rightChild = ll4;
     ll4->leftChild = ll5;
+    ll3->leftChild = ll6;
+    ll2->rightChild = ll7;
 
     ds::linkedBinaryTree<string> lbt(root);
-    cout << lbt.height();
-    // lbt.postOrder(ds::myvisit);
+    // cout << lbt.height();
+    lbt.postOrder(ds::myvisit);
     // ds::linkedBinaryTree<string> lbt2 = lbt;
     // lbt.preOrder(ds::myvisit);
-    // cout << endl;
+    cout << endl;
     // lbt.inOrder(ds::myvisit);
     // cout << (lbt == lbt2);
     // lbt.inOrder(ds::myvisit);
     // lbt.swap_trees();
-    cout << endl;
     // lbt.inOrder(ds::myvisit);
 }
 
