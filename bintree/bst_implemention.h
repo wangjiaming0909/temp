@@ -123,12 +123,12 @@ bool BST<T, V>::remove(const T& t){
             //将y的右孩子移植到y的位置
             succ->rightChild->transplantTo(succ);
             succ->transplantTo(node);
-            succ->leftChild = node->leftChild;
-            succ->rightChild = node->rightChild;
-            node->leftChild->parent = succ;
-            node->rightChild->parent = succ;
             r = succ;
         }       
+        succ->leftChild = node->leftChild;
+        succ->rightChild = node->rightChild;
+        // node->leftChild->parent = succ;
+        // node->rightChild->parent = succ;
     }
     this->dispose(node);
     if(this->root == node)
