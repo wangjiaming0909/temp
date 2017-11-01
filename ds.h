@@ -145,7 +145,7 @@ public:
     void swap_trees();//swap all the left and right child in the tree 
     // size_t max_nodes_level();
     int height() const;
-private:
+protected:
     binaryTreeNode<T>   *root;
     int                 treeSize;
     static void (*visit) (binaryTreeNode<T> *);//静态变量需要初始化
@@ -392,8 +392,17 @@ int linkedBinaryTree<T>::height() const{
 
 template <class E>
 void myvisit(binaryTreeNode<E> *x){
+    std::cout << &x->element << " " << std::flush;
+}
+template <>
+void myvisit(binaryTreeNode<string> *x){
     std::cout << x->element << " " << std::flush;
 }
+template <typename T, typename V>
+void myvisit(binaryTreeNode<pair<T, V>> *x){
+    std::cout << x->element.second << " " << std::flush;
+}
+
 /*--------------------------数组描述的二叉树----------------------------*/
 //遍历数组描述的二叉树
 template <class T>
