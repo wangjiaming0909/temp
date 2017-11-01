@@ -18,6 +18,7 @@ typename BST<T, V>::node_pointer BST<T, V>::min(node_pointer node){
         node = node->leftChild;
     return node;
 }
+
 template <typename T, typename V>
 typename BST<T, V>::node_pointer BST<T, V>::max(node_pointer node){
     while(node->rightChild)
@@ -80,7 +81,58 @@ typename BST<T, V>::node_pointer BST<T, V>::successor(node_pointer node){
 
 template <typename T, typename V>
 typename BST<T, V>::node_pointer BST<T, V>::predecessor(node_pointer node){
-    
+    if(node->leftChild)//如果有左孩子，那其左孩子就是前驱
+        return max(node->leftChild);
+    auto y = node->parent;//左孩子为空
+    while(y && node == y->leftChild){
+        node = y;
+        y = node->parent;
+    }
+    return y;
+}
+
+//remove,选用后继替换当前节点
+/*分为2种情况
+1, t只有一个孩子，或者没有孩子，直接将自己替换为孩子
+2, t有两个孩子，找到t的后继y，如果y是t的右孩子，则直接用y替换t
+                          如果y不是t的右孩子，首先y必定没有左孩子，
+                          用y的右孩子替换y，y的右孩子的父亲是y的父亲
+                          将y替换t，将y的左孩子设置为t的左孩子，y的右孩子设置为t的右孩子
+                          y的parent设置为t的parent
+*/
+template <typename T, typename V>
+bool BST<T, V>::remove(const T& t){
+    node_pointer r = nullptr;//备用根节点
+    auto node = search(t);
+    if(!node)//node not found 
+        return false;
+    //t只有一个孩子，或者没有孩子，直接将自己替换为孩子
+    if(!node->leftChild){//不需要管其右孩子是否有节点，直接移植就可以
+        node->rightChild->transplantTo(node);
+        r = node->rightChild;
+    }
+    else if(!node->rightChild){
+        node->leftChild->transplantTo(node);
+        r = node->leftChild;
+    }
+    else{//node有两个孩子
+        auto succ = min(node->rightChild);//后继
+        if(succ->parent == node)//y是t的右孩子
+            succ->transplantTo(node);
+        else{//y不是t的右孩子
+            //将y的右孩子移植到y的位置
+            succ->rightChild->transplantTo(succ);
+            succ->transplantTo(node);
+            succ->leftChild = node->leftChild;
+            succ->rightChild = node->rightChild;
+            node->leftChild->parent = succ;
+            node->rightChild->parent = succ;
+            r = succ;
+        }       
+    }
+    this->dispose(node);
+    this->root = r;
+    return true;
 }
 
 #endif // _BST_IMP_H_

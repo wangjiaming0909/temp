@@ -3,6 +3,15 @@
 #include "../ds.h"
 
 using namespace ds;
+
+#define hasLC(node) ((node)->leftChild)
+#define hasRC(node) ((node)->rightChild)
+#define hasOneChild(node) \
+    ((hasLC(node) && (!hasRC(node))) || (hasRC(node) && (!hasLC(node))))
+#define hasC(node)  (hasLC(node) || hasRC(node))
+#define isLeaf(node) (!hasC(node))
+#define hasBothChild (hasLC(node) && hasRC(node))
+
 template <typename T, typename V>
 class BST : public ds::linkedBinaryTree<pair<T, V>>{
 public:
@@ -12,7 +21,7 @@ public:
     BST(node_pointer r) : _Base_type(r){}
     virtual node_pointer search(const T&);
     virtual node_pointer insert(const pair<T, V>&);
-    // virtual bool remove(const T&);
+    virtual bool remove(const T&);
     void setparent(node_pointer p);//设置自己的parent
     
     node_pointer min();
