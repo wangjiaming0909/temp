@@ -11,7 +11,7 @@ $(target):$(objects)
 	@echo ok...
 	rm *.o
 
-$(objects):%.o:%.cpp, %.h
+$(objects):%.o:%.cpp
 # @echo compiling...
 	@rm -f *.out
 	g++ -Wall -Wextra -std=c++11 -I /boost_1_65_1/ -c -O0  $< -o $@ -g2 -ggdb -Wfatal-errors

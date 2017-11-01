@@ -13,7 +13,7 @@
 #include <exception>
 #include <thread>
 #include <boost/pool/pool_alloc.hpp>
-#include "bst.h"
+#include "bintree/bst_header.h"
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -770,10 +770,34 @@ void main_BST(){
     auto b11 = new binaryTreeNode<pair<int, string>>(pair<int, string>(11, "11"), b9, nullptr);
     auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), b4, b11);
     
+    b2->setparent(b3);
+    b3->setparent(b1);
+    b1->setparent(b4);
+    b5->setparent(b6);
+    b7->setparent(b6);
+    b6->setparent(b4);
+    b4->setparent(b8);
+    b8->setparent(nullptr);
+    b9->setparent(b11);
+    b10->setparent(b9);
+    b11->setparent(b8);
+
     BST<int, string> bst(b8);
     auto p = bst.search(12);
     if(p)
         cout << p->element.first << " " << p->element.second << endl;
     else
         cout << "not found" << endl;
+    bst.insert(pair<int, string>(18, "18"));
+    bst.inOrder(myvisit<int, string>);
+    cout << endl;
+    bst.insert(pair<int, string>(17, "17"));
+    bst.inOrder(myvisit<int, string>);
+    cout << endl;
+    auto n = bst.search(18);
+    auto n2 = bst.successor(n);
+    if(n2)
+        myvisit<int, string>(n2);
+    // myvisit<int, string>(bst.min());
+    // myvisit<int, string>(bst.max());
 }

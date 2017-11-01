@@ -79,15 +79,19 @@ int fx(int x){
 template <class T>
 struct binaryTreeNode{
     T element;
-    binaryTreeNode *leftChild, *rightChild;
+    binaryTreeNode *leftChild, *rightChild, *parent;
 
-    binaryTreeNode(): leftChild(nullptr), rightChild(nullptr){}
+    binaryTreeNode(): leftChild(nullptr), rightChild(nullptr), parent(nullptr){}
     binaryTreeNode(const binaryTreeNode& theElement) : 
         element(theElement), leftChild(nullptr), rightChild(nullptr){}
     binaryTreeNode( const T& theElement, 
                     binaryTreeNode *theLeftChild, 
-                    binaryTreeNode *theRightChild)
-       : element(theElement), leftChild(theLeftChild), rightChild(theRightChild){}
+                    binaryTreeNode *theRightChild,
+                    binaryTreeNode *theparent = nullptr)
+       : element(theElement), leftChild(theLeftChild), rightChild(theRightChild), parent(theparent){}
+    void setparent(binaryTreeNode<T> *p){
+        this->parent = p;
+    }
 };
 
 //binaryTree abstract data structure
@@ -109,9 +113,10 @@ void myvisit(binaryTreeNode<T> *);
 template <class T>
 class linkedBinaryTree : public binaryTree<binaryTreeNode<T>>{
 public:
+    typedef binaryTreeNode<T>* node_pointer;
     linkedBinaryTree() : root(nullptr), treeSize(0){}
     linkedBinaryTree(const linkedBinaryTree &lbt) : root(lbt.root), treeSize(lbt.treeSize){}
-    linkedBinaryTree(binaryTreeNode<T> *r) : root(r), treeSize(0){}
+    linkedBinaryTree(node_pointer r) : root(r), treeSize(0){}
     ~linkedBinaryTree(){erase();}
     bool empty()const {return treeSize == 0;}
     int size() const {return treeSize;}
@@ -146,11 +151,10 @@ public:
     // size_t max_nodes_level();
     int height() const;
 protected:
-// private:
-  binaryTreeNode<T> *root;
-  int treeSize;
-  static void (*visit)(binaryTreeNode<T> *); //静态变量需要初始化
-private:
+    binaryTreeNode<T> *root;
+    int treeSize;
+protected:
+    static void (*visit)(binaryTreeNode<T> *); //静态变量需要初始化
     static void preOrder(binaryTreeNode<T> *t);
     static void preOrder2(binaryTreeNode<T> *t);
     static void preOrder3(binaryTreeNode<T> *t);
