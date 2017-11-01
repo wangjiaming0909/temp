@@ -146,9 +146,10 @@ public:
     // size_t max_nodes_level();
     int height() const;
 protected:
-    binaryTreeNode<T>   *root;
-    int                 treeSize;
-    static void (*visit) (binaryTreeNode<T> *);//静态变量需要初始化
+// private:
+  binaryTreeNode<T> *root;
+  int treeSize;
+  static void (*visit)(binaryTreeNode<T> *); //静态变量需要初始化
 private:
     static void preOrder(binaryTreeNode<T> *t);
     static void preOrder2(binaryTreeNode<T> *t);
