@@ -93,15 +93,39 @@ struct binaryTreeNode{
     {this->parent = p;}
     binaryTreeNode<T>* transplantTo(const binaryTreeNode<T> *node){//将自己移植到node的位置
         if(node->parent == nullptr){//如果node是一个根节点
-            this->parent = nullptr;//需要将this的父节点设置为nullptr
+            if(this)
+                this->parent = nullptr;//需要将this的父节点设置为nullptr
             return this;//就扔掉node，直接返回this
-        }
-        else if(node == node->parent->leftChild)//如果node是一个左孩子
+        }else if(node == node->parent->leftChild)//如果node是一个左孩子
             node->parent->leftChild = this;//就把node的父亲的左孩子设置为this
         else//如果node是一个右孩子
             node->parent->rightChild = this;//就把node的父亲的右孩子设置为this
         if(this)//this 可能为null，不加这句否则调用出错
             this->parent = node->parent;//设置this的父亲为node的父亲
+        return this;
+    }
+    //此函数不处理this指针原来位置的关系
+    //只处理移动后的位置关系
+    binaryTreeNode* transnodeto(const binaryTreeNode *node){//将this节点移动到node处
+        bool isroot = false;
+        if(!node->parent)//根节点
+            isroot = true;
+        else if(node == node->parent->leftChild)
+            node->parent->leftChild = this;
+        else
+            node->parent->rightChild = this;
+        if(this){
+            if(isroot)
+                this->parent = nullptr;
+            else
+                this->parent = node->parent;
+            this->leftChild = node->leftChild;
+            this->rightChild = node->rightChild;
+        }
+        if(node->leftChild)
+            node->leftChild->parent = this;
+        if(node->rightChild)
+            node->rightChild->parent = this;
         return this;
     }
 };
