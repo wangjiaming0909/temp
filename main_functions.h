@@ -794,7 +794,7 @@ void main_BST(){
     // bst.insert(pair<int, string>(17, "17"));
     // bst.inOrder(myvisit<int, string>);
     // cout << endl;
-   bst.remove(8);
+   bst.remove(11);
     bst.inOrder(myvisit<int, string>);
     cout << endl;
     // auto n = bst.search(18);

@@ -131,7 +131,8 @@ bool BST<T, V>::remove(const T& t){
         }       
     }
     this->dispose(node);
-    this->root = r;
+    if(this->root == node)
+        this->root = r;
     return true;
 }
 
