@@ -175,10 +175,28 @@ bool BST<T, V>::remove(const T& t){
 template <typename T, typename V>
 void BST<T, V>::outputRange(const T& low, const T& hi){
     auto low_node = search(low);
-    if(!low_node)
+    if(!low_node){
         low_node = _hot;
+        if(low_node->element.first < low){
+            low_node = successor(_hot);
+        }
+    }
     auto hi_node = search(hi);
-    if(!hi_node)
+    if(!hi_node){
         hi_node = _hot;
+        if(hi_node->element.first > hi)
+            hi_node = predecessor(_hot);
+    }
+    binaryTreeNode<pair<T, V>>* tmp = low_node;
+    this->visit = myvisit<int, string>;
+    while(true){
+        this->visit(tmp);
+        if(!(tmp = successor(tmp)))
+            break;
+        else if(tmp == hi_node){
+            this->visit(tmp);
+            break;
+        }
+    }
 }
 #endif // _BST_IMP_H_

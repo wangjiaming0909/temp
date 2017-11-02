@@ -783,21 +783,23 @@ void main_BST(){
     b11->setparent(b8);
 
     BST<int, string> bst(b8);
+    bst.insert(pair<int, string>(18, "18"));
+    bst.insert(pair<int, string>(16, "16"));
+    bst.remove(5);
     // auto p = bst.search(12);
     // if(p)
     //     cout << p->element.first << " " << p->element.second << endl;
     // else
     //     cout << "not found" << endl;
-    // bst.insert(pair<int, string>(18, "18"));
     bst.inOrder(myvisit<int, string>);
     cout << endl;
-    // bst.insert(pair<int, string>(17, "17"));
+    bst.outputRange(0, 18);
     // bst.inOrder(myvisit<int, string>);
     // cout << endl;
-    bst.remove(11);
-    bst.remove(8);
-    bst.inOrder(myvisit<int, string>);
-    cout << endl;
+    // bst.remove(11);
+    // bst.remove(8);
+    // bst.inOrder(myvisit<int, string>);
+    // cout << endl;
     // auto n = bst.search(18);
     // auto n4 = bst.search(5);
     // auto n2 = bst.successor(n);

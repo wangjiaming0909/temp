@@ -38,6 +38,8 @@ protected:
     );
     void transplant(node_pointer dest, node_pointer source);
     node_pointer rotateAt(node_pointer);
+    //为了在查找的时候，如果没有找到元素，此值会指向最终查找停下的节点
+    //此节点也就是将来插入该元素的后继节点或者前驱
     node_pointer _hot;
 private:
     node_pointer min(node_pointer);
