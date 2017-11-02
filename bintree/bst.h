@@ -35,6 +35,7 @@ protected:
         node_pointer, node_pointer, node_pointer,
         node_pointer
     );
+    void transplant(node_pointer dest, node_pointer source);
     node_pointer rotateAt(node_pointer);
     node_pointer _hot;
 private:

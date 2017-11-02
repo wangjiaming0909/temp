@@ -100,6 +100,7 @@ typename BST<T, V>::node_pointer BST<T, V>::predecessor(node_pointer node){
                           将y替换t，将y的左孩子设置为t的左孩子，y的右孩子设置为t的右孩子
                           y的parent设置为t的parent
 */
+/*
 template <typename T, typename V>
 bool BST<T, V>::remove(const T& t){
     node_pointer r = nullptr;//备用根节点
@@ -133,6 +134,41 @@ bool BST<T, V>::remove(const T& t){
     this->dispose(node);
     if(this->root == node)
         this->root = r;
+    return true;
+}
+*/
+
+template <typename T, typename V>
+void BST<T, V>::transplant(node_pointer dest, node_pointer source){
+    if(!dest->parent)//dest为根节点
+        this->root = source;
+    else if(dest == dest->parent->leftChild)//dest作为左孩子
+        dest->parent->leftChild = source;
+    else dest->parent->rightChild = source;//dest作为右孩子
+    if(source)
+        source->parent = dest->parent;
+}
+
+template <typename T, typename V>
+bool BST<T, V>::remove(const T& t){
+    auto node = search(t);
+    if(!node) return false;
+    if(!node->leftChild)//没有左孩子
+        transplant(node, node->rightChild);
+    else if(!node->rightChild)//meiyou 右孩子
+        transplant(node, node->leftChild);
+    else{//you 两个孩子
+        auto succ = min(node->rightChild);
+        if(succ != node->rightChild){//succ不是node的右孩子
+            transplant(succ, succ->rightChild);//将succ的右孩子移到succ处
+            succ->rightChild = node->rightChild;
+            succ->rightChild->parent = succ;
+        }
+        //如果succ是node的右孩子
+        transplant(node, succ);//将succ移动到node
+        succ->leftChild = node->leftChild;
+        succ->leftChild->parent = succ;
+    }
     return true;
 }
 
