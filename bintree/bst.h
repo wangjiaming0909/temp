@@ -28,6 +28,7 @@ public:
     node_pointer max();
     node_pointer successor(node_pointer);
     node_pointer predecessor(node_pointer);
+    void outputRange(const T& low, const T& hi);//输出在low和hi范围内的元素
 
 protected:    
     binaryTreeNode<T>* connect34(

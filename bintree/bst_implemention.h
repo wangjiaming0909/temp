@@ -31,7 +31,7 @@ typename BST<T, V>::node_pointer BST<T, V>::search(const T& t){
     node_pointer p = this->root;
     while(p != NULL){
         this->_hot = p;
-        if(t < p->element.first)
+        if(t < p->element.first)//可以先判断是不是已经查找到了，可以较少比较的次数
             p = p->leftChild;
         else
             if(t > p->element.first)
@@ -59,7 +59,7 @@ typename BST<T, V>::node_pointer BST<T,V>::insert(const pair<T, V>& t){
 }
 
 template <typename T, typename V>
-typename BST<T, V>::node_pointer BST<T, V>::successor(node_pointer node){
+typename BST<T, V>::node_pointer BST<T, V>::successor(node_pointer node){//最多O(h)
     //如果node有右子树，则其后继肯定是其右子树的最左边节点
     if(node->rightChild)
         return min(node->rightChild);
@@ -172,4 +172,13 @@ bool BST<T, V>::remove(const T& t){
     return true;
 }
 
+template <typename T, typename V>
+void BST<T, V>::outputRange(const T& low, const T& hi){
+    auto low_node = search(low);
+    if(!low_node)
+        low_node = _hot;
+    auto hi_node = search(hi);
+    if(!hi_node)
+        hi_node = _hot;
+}
 #endif // _BST_IMP_H_
