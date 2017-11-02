@@ -757,18 +757,19 @@ void main_shellsort(){
     cout << endl;
 }
 
-void main_BST(){
-    auto b2 = new binaryTreeNode<pair<int, string>>(pair<int, string>(2, "2"), nullptr, nullptr);
-    auto b5 = new binaryTreeNode<pair<int, string>>(pair<int, string>(5, "5"), nullptr, nullptr);
-    auto b7 = new binaryTreeNode<pair<int, string>>(pair<int, string>(7, "7"), nullptr, nullptr);
-    auto b10 = new binaryTreeNode<pair<int, string>>(pair<int, string>(10, "10"), nullptr, nullptr);
-    auto b3 = new binaryTreeNode<pair<int, string>>(pair<int, string>(3, "3"), b2, nullptr);
-    auto b1 = new binaryTreeNode<pair<int, string>>(pair<int, string>(1, "1"), nullptr, b3);
-    auto b6 = new binaryTreeNode<pair<int, string>>(pair<int, string>(6, "6"), b5, b7);
-    auto b4 = new binaryTreeNode<pair<int, string>>(pair<int, string>(4, "4"), b1, b6);
-    auto b9 = new binaryTreeNode<pair<int, string>>(pair<int, string>(9, "9"), nullptr, b10);
-    auto b11 = new binaryTreeNode<pair<int, string>>(pair<int, string>(11, "11"), b9, nullptr);
-    auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), b4, b11);
+template <typename T, typename V>
+typename BST<T, V>::node_pointer set_tree(){
+    auto b2 = new binaryTreeNode<pair<T, V>>(pair<T, V>(2, "2"), nullptr, nullptr);
+    auto b5 = new binaryTreeNode<pair<T, string>>(pair<T, V>(5, "5"), nullptr, nullptr);
+    auto b7 = new binaryTreeNode<pair<T, V>>(pair<T, V>(7, "7"), nullptr, nullptr);
+    auto b10 = new binaryTreeNode<pair<T, V>>(pair<T, V>(10, "10"), nullptr, nullptr);
+    auto b3 = new binaryTreeNode<pair<T, V>>(pair<T, V>(3, "3"), b2, nullptr);
+    auto b1 = new binaryTreeNode<pair<T, V>>(pair<T, V>(1, "1"), nullptr, b3);
+    auto b6 = new binaryTreeNode<pair<T, V>>(pair<T, V>(6, "6"), b5, b7);
+    auto b4 = new binaryTreeNode<pair<T, V>>(pair<T, V>(4, "4"), b1, b6);
+    auto b9 = new binaryTreeNode<pair<T, V>>(pair<T, V>(9, "9"), nullptr, b10);
+    auto b11 = new binaryTreeNode<pair<T, V>>(pair<T, V>(11, "11"), b9, nullptr);
+    auto b8 = new binaryTreeNode<pair<T, V>>(pair<T, V>(8, "8"), b4, b11);
     
     b2->setparent(b3);
     b3->setparent(b1);
@@ -781,19 +782,26 @@ void main_BST(){
     b9->setparent(b11);
     b10->setparent(b9);
     b11->setparent(b8);
+    return b8;
+}
 
-    BST<int, string> bst(b8);
+
+void main_BST(){
+    auto root = set_tree<int, string>();
+    BST<int, string> bst(root);
     bst.insert(pair<int, string>(18, "18"));
     bst.insert(pair<int, string>(16, "16"));
-    bst.remove(5);
-    // auto p = bst.search(12);
+    // bst.remove(5);
+    auto p = bst.search(8);
+    cout << p->height();
     // if(p)
     //     cout << p->element.first << " " << p->element.second << endl;
     // else
     //     cout << "not found" << endl;
+    cout << endl;
     bst.inOrder(myvisit<int, string>);
     cout << endl;
-    bst.outputRange(0, 18);
+    // bst.outputRange(0, 18);
     // bst.inOrder(myvisit<int, string>);
     // cout << endl;
     // bst.remove(11);
@@ -810,4 +818,9 @@ void main_BST(){
     //     myvisit<int, string>(n2);
     // myvisit<int, string>(bst.min());
     // myvisit<int, string>(bst.max());
+}
+
+void main_AVL(){
+    auto root = set_tree<int, string>();
+    AVL<int, string> avl(root);
 }

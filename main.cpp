@@ -134,7 +134,8 @@ int main()
     // main_array_BT();gggvv
     // main_vector_move();
     // main_binary_tree();
-    main_BST();
+    // main_BST();
+    main_AVL();
     // main_delete_noheap();
     // main_max_heap();
     // main_exams();

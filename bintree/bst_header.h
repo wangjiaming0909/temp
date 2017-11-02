@@ -3,8 +3,8 @@
 
 
 #include "bst.h"
-#include "bst_implemention.h"
-
-
+#include "bst_implement.h"
+#include "avl.h"
+#include "avl_implement.h"
 
 #endif // _BST_HEADER_H_
