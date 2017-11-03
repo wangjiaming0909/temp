@@ -1,9 +1,12 @@
 #ifndef _AVL_H_
 #define _AVL_H_
 
-#define bacFac(x) (((x)->leftChild)->heigt2 - ((x)->rightChild->height2)
+#define bacFac(x) (stature((x)->leftChild) - stature((x)->rightChild))
 #define balanced(x) (bacFac(x) == 0)
 #define AVLBalanced(x) ((-2 < bacFac(x)) && (bacFac(x) < 2))
+#define tallchild(x) (stature((x)->leftChild) > stature((x)->rightChild) \
+? (x)->leftChild : (x)->rightChild)
+
 template <typename T, typename V>
 class AVL : public BST<T, V>{
 public:

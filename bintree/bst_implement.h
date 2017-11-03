@@ -164,12 +164,54 @@ void BST<T, V>::outputRange(const T& low, const T& hi){
         }
     }
 }
-/*
+
 template <typename T, typename V>
 typename BST<T, V>::node_pointer 
-BST<T, V>::connect34(node_pointer a, node_pointer b, node_pointer c,
-    node_pointer t0, node_pointer t1, node_pointer t2, node_pointer t3){
-    
+BST<T, V>::rotateAt(node_pointer s){//
+    assert(s);
+    auto p = s->parent;
+    auto g = p->parent;
+    assert(p); assert(g);
+    if(p == g->leftChild){//右旋
+        if(s == p->rightChild){//左旋加右旋
+            s->parent = g->parent;
+            if(g == g->parent->leftChild)
+                g->parent->leftChild = s;
+            else
+                g->parent->rightChild = s;
+            return this->connect34(p, s, g, p->leftChild, s->leftChild, s->rightChild, g->rightChild);
+        }else{//右旋
+            p->parent = g->parent;
+            if(g->parent){
+                if(g == g->parent->leftChild) g->parent->leftChild = p;
+                else g->parent->rightChild = p;
+            }
+            return this->connect34(s, p, g, s->leftChild, s->rightChild, p->rightChild, p->rightChild);
+        }
+    }else{//左旋
+        if(s == p->leftChild){//右旋加左旋
+            s->parent = g->rightChild;
+            return this->connect34(s, g, p, g->leftChild, s->rightChild, s->leftChild, p->rightChild);
+        }else{//左旋
+            //由于调用的是同一个connect34,因此画个图，调换g，s，调换T0, T3,调换T1,T2
+            p->parent = g->parent;
+            return this->connect34(g, p, s, s->rightChild, s->leftChild, p->leftChild, g->leftChild);
+        }
+    }
 }
-*/
+
+template <typename T, typename V>
+typename BST<T, V>::node_pointer 
+BST<T, V>::connect34(node_pointer s, node_pointer p, node_pointer g,
+    node_pointer t0, node_pointer t1, node_pointer t2, node_pointer t3){
+    s->leftChild = t0; s->rightChild = t1; s->parent = p; this->updateHeight(s);
+    p->leftChild = s; p->rightChild = g; this->updateHeight(p);
+    g->leftChild =t2; g->rightChild = t3; g->parent = p; this->updateHeight(g);
+    if(t0) t0->parent = s; 
+    if(t1) t1->parent = s; 
+    if(t2) t2->parent = g; 
+    if(t3) t3->parent = g;
+    return p;
+}
+
 #endif // _BST_IMP_H_

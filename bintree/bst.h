@@ -31,7 +31,7 @@ public:
     void outputRange(const T& low, const T& hi);//输出在low和hi范围内的元素
 
 protected:    
-    binaryTreeNode<T>* connect34(
+    node_pointer connect34(
         node_pointer, node_pointer, node_pointer,
         node_pointer, node_pointer, node_pointer,
         node_pointer

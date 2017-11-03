@@ -823,22 +823,28 @@ void main_BST(){
 
 void main_AVL(){
     auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), nullptr, nullptr);
-    BST<int, string> bst(b8);
-    bst.insert(make_pair<int, string>(4, "4"));
-    bst.insert(make_pair<int, string>(11, "11"));
-    bst.insert(make_pair<int, string>(9, "9"));
-    bst.insert(make_pair<int, string>(10, "10"));
-    bst.insert(make_pair<int, string>(6, "6"));
-    bst.insert(make_pair<int, string>(7, "7"));
-    bst.insert(make_pair<int, string>(1, "1"));
-    bst.insert(make_pair<int, string>(3, "3"));
-    bst.insert(make_pair<int, string>(2, "2"));
-    bst.insert(make_pair<int, string>(5, "5"));
-
-    bst.inOrder(myvisit<int, string>);
+    // BST<int, string> bst(b8);
+    // bst.insert(make_pair<int, string>(4, "4"));
+    // bst.insert(make_pair<int, string>(11, "11"));
+    // bst.insert(make_pair<int, string>(9, "9"));
+    // bst.insert(make_pair<int, string>(10, "10"));
+    // bst.insert(make_pair<int, string>(6, "6"));
+    // bst.insert(make_pair<int, string>(7, "7"));
+    // bst.insert(make_pair<int, string>(1, "1"));
+    // bst.insert(make_pair<int, string>(3, "3"));
+    // bst.insert(make_pair<int, string>(2, "2"));
+    // bst.insert(make_pair<int, string>(5, "5"));
+    AVL<int, string> avl(b8);
+    avl.insert(make_pair<int, string>(5, "5"));
+    // auto p = avl.search(4);
+    // cout << p->height2 << endl;
+    avl.insert(make_pair<int, string>(11, "11"));
+    avl.insert(make_pair<int, string>(3, "3"));
+    avl.insert(make_pair<int, string>(4, "4"));
+    avl.insert(make_pair<int, string>(2, "2"));
+    avl.inOrder(myvisit<int, string>);
     cout << endl;
-    auto p = bst.search(8);
-    cout << p->height2 << endl;
-    auto p2 = bst.search(2);
-    cout << p2->height2 << endl;
+    // cout << p->height2 << endl;
+    // auto p2 = bst.search(2);
+    // cout << p2->height2 << endl;
 }
