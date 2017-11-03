@@ -12,7 +12,7 @@ typename AVL<T, V>::node_pointer AVL<T, V>::insert(const pair<T, V>& p){
         return node;
     } 
     auto g = _hot->parent;//没有找到该节点,插入
-    if(p.first < _hot->element.first){
+    if(p.first < _hot->element.first){//判断插入左边还是右边
         node = new binaryTreeNode<pair<T, V>>(p, nullptr, nullptr, _hot);
         _hot->leftChild = node;
         this->updateHeightAbove(_hot);
@@ -33,7 +33,15 @@ typename AVL<T, V>::node_pointer AVL<T, V>::insert(const pair<T, V>& p){
 }
 
 template <typename T, typename V>
-bool AVL<T, V>::remove(const T& ){
+bool AVL<T, V>::remove(const T& t){
+    auto node = this->search(t);
+    if(!node) return false;
+    BST<T, V>::remove(t);
+    for(auto g = _hot; g; g = g->parent){
+        if(!AVLBalanced(g))
+            this->rotateAt(tallchild(tallchild(g)));
+        this->updateHeight(g);
+    }
     return true;
 }
 #endif //_AVL_IMPELEMENT_H_

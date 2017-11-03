@@ -841,7 +841,16 @@ void main_AVL(){
     avl.insert(make_pair<int, string>(11, "11"));
     avl.insert(make_pair<int, string>(3, "3"));
     avl.insert(make_pair<int, string>(4, "4"));
+    avl.insert(make_pair<int, string>(0, "0"));
     avl.insert(make_pair<int, string>(2, "2"));
+    avl.insert(make_pair<int, string>(15, "15"));
+    avl.insert(make_pair<int, string>(20, "20"));
+    avl.insert(make_pair<int, string>(50, "50"));
+    avl.insert(make_pair<int, string>(30, "30"));
+    avl.insert(make_pair<int, string>(13, "13"));
+    avl.remove(5);
+    avl.remove(3);
+    avl.remove(0);
     avl.inOrder(myvisit<int, string>);
     cout << endl;
     // cout << p->height2 << endl;

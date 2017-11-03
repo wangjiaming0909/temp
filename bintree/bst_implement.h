@@ -175,27 +175,43 @@ BST<T, V>::rotateAt(node_pointer s){//
     if(p == g->leftChild){//右旋
         if(s == p->rightChild){//左旋加右旋
             s->parent = g->parent;
-            if(g == g->parent->leftChild)
-                g->parent->leftChild = s;
-            else
-                g->parent->rightChild = s;
+            if(g->parent){
+                if(g == g->parent->leftChild)
+                   g->parent->leftChild = s;
+                else
+                   g->parent->rightChild = s;
+            }else
+                this->root = s;
             return this->connect34(p, s, g, p->leftChild, s->leftChild, s->rightChild, g->rightChild);
         }else{//右旋
             p->parent = g->parent;
             if(g->parent){
                 if(g == g->parent->leftChild) g->parent->leftChild = p;
                 else g->parent->rightChild = p;
+            }else{//g->parent is null 说明，g是根，因此需要更换根节点
+                this->root = p;
             }
-            return this->connect34(s, p, g, s->leftChild, s->rightChild, p->rightChild, p->rightChild);
+            return this->connect34(s, p, g, s->leftChild, s->rightChild, p->rightChild, g->rightChild);
         }
     }else{//左旋
         if(s == p->leftChild){//右旋加左旋
-            s->parent = g->rightChild;
-            return this->connect34(s, g, p, g->leftChild, s->rightChild, s->leftChild, p->rightChild);
+            s->parent = g->parent;
+            if(g->parent){
+                if(g == g->parent->leftChild) g->parent->leftChild = s;
+                else g->parent->rightChild = s;               
+            }else
+                this->root = s;
+            return this->connect34(g, s, p, g->leftChild, s->leftChild, s->rightChild, p->rightChild);
         }else{//左旋
             //由于调用的是同一个connect34,因此画个图，调换g，s，调换T0, T3,调换T1,T2
             p->parent = g->parent;
-            return this->connect34(g, p, s, s->rightChild, s->leftChild, p->leftChild, g->leftChild);
+            if(g->parent){
+                if(g == g->parent->leftChild) g->parent->leftChild = p;
+                else g->parent->rightChild = p;
+            }else
+                this->root = p;
+            // return this->connect34(g, p, s, s->rightChild, s->leftChild, p->leftChild, g->leftChild);
+            return this->connect34(g, p, s, g->leftChild, p->leftChild, s->leftChild, s->rightChild);
         }
     }
 }
@@ -205,8 +221,8 @@ typename BST<T, V>::node_pointer
 BST<T, V>::connect34(node_pointer s, node_pointer p, node_pointer g,
     node_pointer t0, node_pointer t1, node_pointer t2, node_pointer t3){
     s->leftChild = t0; s->rightChild = t1; s->parent = p; this->updateHeight(s);
-    p->leftChild = s; p->rightChild = g; this->updateHeight(p);
     g->leftChild =t2; g->rightChild = t3; g->parent = p; this->updateHeight(g);
+    p->leftChild = s; p->rightChild = g; this->updateHeight(p);
     if(t0) t0->parent = s; 
     if(t1) t1->parent = s; 
     if(t2) t2->parent = g; 
