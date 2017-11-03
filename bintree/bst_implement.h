@@ -55,6 +55,7 @@ typename BST<T, V>::node_pointer BST<T,V>::insert(const pair<T, V>& t){
     else
         _hot->rightChild = p;
     p->parent = _hot;
+    this->updateHeightAbove(p);
     return p;
 }
 
@@ -100,43 +101,6 @@ typename BST<T, V>::node_pointer BST<T, V>::predecessor(node_pointer node){
                           将y替换t，将y的左孩子设置为t的左孩子，y的右孩子设置为t的右孩子
                           y的parent设置为t的parent
 */
-/*
-template <typename T, typename V>
-bool BST<T, V>::remove(const T& t){
-    node_pointer r = nullptr;//备用根节点
-    auto node = search(t);
-    if(!node)//node not found 
-        return false;
-    //t只有一个孩子，或者没有孩子，直接将自己替换为孩子
-    if(!node->leftChild){//不需要管其右孩子是否有节点，直接移植就可以
-        node->rightChild->transplantTo(node);
-        r = node->rightChild;
-    }
-    else if(!node->rightChild){
-        node->leftChild->transplantTo(node);
-        r = node->leftChild;
-    }
-    else{//node有两个孩子
-        auto succ = min(node->rightChild);//后继
-        if(succ->parent == node)//y是t的右孩子
-            succ->transplantTo(node);
-        else{//y不是t的右孩子
-            //将y的右孩子移植到y的位置
-            succ->rightChild->transplantTo(succ);
-            succ->transnodeto(node);
-            r = succ;
-        }       
-        // succ->leftChild = node->leftChild;
-        // succ->rightChild = node->rightChild;
-        // node->leftChild->parent = succ;
-        // node->rightChild->parent = succ;
-    }
-    this->dispose(node);
-    if(this->root == node)
-        this->root = r;
-    return true;
-}
-*/
 
 template <typename T, typename V>
 void BST<T, V>::transplant(node_pointer dest, node_pointer source){
@@ -169,6 +133,7 @@ bool BST<T, V>::remove(const T& t){
         succ->leftChild = node->leftChild;
         succ->leftChild->parent = succ;
     }
+    this->updateHeightAbove(node);
     return true;
 }
 
@@ -199,4 +164,12 @@ void BST<T, V>::outputRange(const T& low, const T& hi){
         }
     }
 }
+/*
+template <typename T, typename V>
+typename BST<T, V>::node_pointer 
+BST<T, V>::connect34(node_pointer a, node_pointer b, node_pointer c,
+    node_pointer t0, node_pointer t1, node_pointer t2, node_pointer t3){
+    
+}
+*/
 #endif // _BST_IMP_H_

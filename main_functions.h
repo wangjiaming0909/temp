@@ -794,6 +794,7 @@ void main_BST(){
     // bst.remove(5);
     auto p = bst.search(8);
     cout << p->height();
+    cout << p->height2;
     // if(p)
     //     cout << p->element.first << " " << p->element.second << endl;
     // else
@@ -821,6 +822,23 @@ void main_BST(){
 }
 
 void main_AVL(){
-    auto root = set_tree<int, string>();
-    AVL<int, string> avl(root);
+    auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), nullptr, nullptr);
+    BST<int, string> bst(b8);
+    bst.insert(make_pair<int, string>(4, "4"));
+    bst.insert(make_pair<int, string>(11, "11"));
+    bst.insert(make_pair<int, string>(9, "9"));
+    bst.insert(make_pair<int, string>(10, "10"));
+    bst.insert(make_pair<int, string>(6, "6"));
+    bst.insert(make_pair<int, string>(7, "7"));
+    bst.insert(make_pair<int, string>(1, "1"));
+    bst.insert(make_pair<int, string>(3, "3"));
+    bst.insert(make_pair<int, string>(2, "2"));
+    bst.insert(make_pair<int, string>(5, "5"));
+
+    bst.inOrder(myvisit<int, string>);
+    cout << endl;
+    auto p = bst.search(8);
+    cout << p->height2 << endl;
+    auto p2 = bst.search(2);
+    cout << p2->height2 << endl;
 }

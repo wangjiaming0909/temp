@@ -76,19 +76,23 @@ int fx(int x){
 
 /*-----------------------------tree--------------------------*/
 //二叉树节点类型
+
+#define stature(p) ((p) ? (p)->height2 : -1)
+
 template <class T>
 struct binaryTreeNode{
     T element;
     binaryTreeNode *leftChild, *rightChild, *parent;
 
-    binaryTreeNode(): leftChild(nullptr), rightChild(nullptr), parent(nullptr){}
+    binaryTreeNode(): leftChild(nullptr), rightChild(nullptr), parent(nullptr), height2(0){}
     binaryTreeNode(const binaryTreeNode& theElement) : 
-        element(theElement), leftChild(nullptr), rightChild(nullptr){}
+        element(theElement), leftChild(nullptr), rightChild(nullptr), height2(0){}
     binaryTreeNode( const T& theElement, 
                     binaryTreeNode *theLeftChild, 
                     binaryTreeNode *theRightChild,
                     binaryTreeNode *theparent = nullptr)
-       : element(theElement), leftChild(theLeftChild), rightChild(theRightChild), parent(theparent){}
+       : element(theElement), leftChild(theLeftChild), 
+       rightChild(theRightChild), parent(theparent), height2(0){}
     
     void setparent(binaryTreeNode<T> *p)
     {this->parent = p;}
@@ -110,6 +114,7 @@ struct binaryTreeNode{
         }
         return level;
     }
+    int height2;
 };
 
 //binaryTree abstract data structure
@@ -168,6 +173,8 @@ public:
     void swap_trees();//swap all the left and right child in the tree 
     // size_t max_nodes_level();
     int height() const;
+    virtual int updateHeight(binaryTreeNode<T>* t);//
+    void updateHeightAbove(binaryTreeNode<T>*t);
 protected:
     binaryTreeNode<T> *root;
     int treeSize;
@@ -190,6 +197,19 @@ protected:
     static void goalongleftbranch(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
     static void goalongleftbranch2(binaryTreeNode<T> *, stack<binaryTreeNode<T> *> &);
 };
+
+template <typename T>
+int linkedBinaryTree<T>::updateHeight(binaryTreeNode<T> *t){
+    return t->height2 = 1 + std::max(stature(t->leftChild), stature(t->rightChild));
+}
+
+template <typename T>
+void linkedBinaryTree<T>::updateHeightAbove(binaryTreeNode<T> *t){
+    while(t){
+        updateHeight(t);
+        t = t->parent;
+    }
+}
 
 template <class T>
 void (*linkedBinaryTree<T>::visit)(binaryTreeNode<T> *) = myvisit;
