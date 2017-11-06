@@ -6,8 +6,11 @@ class Splay : public BST<T, V>{
 public:
     typedef BST<T, V> _Base_type;
     typedef typename _Base_type::node_pointer node_pointer;
+    using _Base_type::_hot;
+    using _Base_type::root;
     
     //由于查找需要将元素上移，因此需要重写search
+    Splay(node_pointer r) : _Base_type(r){}
     node_pointer search(const T&);
     node_pointer insert(const pair<T, V> &);
     bool remove(const T&);

@@ -857,3 +857,11 @@ void main_AVL(){
     // auto p2 = bst.search(2);
     // cout << p2->height2 << endl;
 }
+
+void main_splay(){
+    auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), nullptr, nullptr);
+    Splay<int, string> sp(b8);
+    sp.insert(make_pair<int, string>(4, "4"));
+    sp.insert(make_pair<int, string>(5, "5"));
+    sp.remove(5);
+}
