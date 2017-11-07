@@ -8,5 +8,7 @@
 #include "avl_implement.h"
 #include "splay.h"
 #include "splay_implement.h"
+#include "btree.h"
+#include "btree_implement.h"
 
 #endif // _BST_HEADER_H_

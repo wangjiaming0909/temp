@@ -136,7 +136,8 @@ int main()
     // main_binary_tree();
     // main_BST();
     // main_AVL();
-    main_splay();
+    // main_splay();
+    main_btree();
     // main_delete_noheap();
     // main_max_heap();
     // main_exams();

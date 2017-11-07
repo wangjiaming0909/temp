@@ -865,3 +865,7 @@ void main_splay(){
     sp.insert(make_pair<int, string>(5, "5"));
     sp.remove(5);
 }
+
+void main_btree(){
+    BTree<string> bt(3);
+}

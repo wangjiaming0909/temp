@@ -27,22 +27,46 @@
     // },
     "tasks": [
         {
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "windows": {
                 "command": "mingw32-make",
                 "args": [
                     "-fwindows.makefile"
                 ]
             },
-            "label": "clean",
-            "type": "shell",
-            "command": "mingw32-make -fwindows.makefile clean",
+            "linux": {
+                "command": "make",
+                "args": [
+                    "-flinux.makefile"
+                ]
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            },
             "problemMatcher": [
                 "$gcc"
+            ]
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "mingw32-make",
+            "args": [
+                "clean",
+                "-fwindows.makefile"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }       
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
     ]
 }
