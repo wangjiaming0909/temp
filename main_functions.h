@@ -868,4 +868,5 @@ void main_splay(){
 
 void main_btree(){
     BTree<string> bt(3);
+    bt.search("3");
 }
