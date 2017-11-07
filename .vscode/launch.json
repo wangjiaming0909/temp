@@ -30,17 +30,17 @@
             "request": "launch",
             "type": "cppdbg",
             "stopAtEntry": true,
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",
             "args": [],
             "linux": {
-                "program": "${workspaceRoot}/a.out",
+                "program": "${workspaceFolder}/a.out",
                 "miDebuggerPath": "/usr/bin/gdb"
             },
             "windows": {
-                "program": "${workspaceRoot}/a.exe",
+                "program": "${workspaceFolder}/a.exe",
                 "miDebuggerPath": "C:/MinGW/bin/gdb.exe"
             },
             "setupCommands": [
