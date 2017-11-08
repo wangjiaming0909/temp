@@ -35,6 +35,7 @@
             "externalConsole": true,
             "MIMode": "gdb",
             "args": [],
+            "internalConsoleOptions": "neverOpen",
             "linux": {
                 "program": "${workspaceFolder}/a.out",
                 "miDebuggerPath": "/usr/bin/gdb"
