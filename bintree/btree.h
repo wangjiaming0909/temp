@@ -18,6 +18,7 @@ public:
     node_pointer root(){return _root;}
     bool empty() const{return !_root;} 
     node_pointer search(const T&);
+    bool insert(const T&);
 protected:
     int _size;//存放的关键码总数
     int _order;//B-树的阶，至少为3-创建时指定，一般不能修改

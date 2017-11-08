@@ -1,7 +1,7 @@
 #ifndef _BST_HEADER_H_
 #define _BST_HEADER_H_
 
-
+#include "search.h"
 #include "bst.h"
 #include "bst_implement.h"
 #include "avl.h"
