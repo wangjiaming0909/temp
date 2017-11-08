@@ -4,13 +4,16 @@ namespace Se{
     
 template <typename T, typename V>
 int _binsearch(T &t, std::vector<V> &v, int lo, int hi){
+    int mid = 0;
     while(lo < hi){
-        auto mid = (lo + hi) >> 1;
+        mid = (lo + hi) >> 1;
         if(t == v[mid]) return mid;//找到
         else if(t < v[mid]) hi = mid;//在左边一半区域
         else lo = mid + 1;//在右边一半区域
     }
-    return lo;
+    if(v[mid] > t)
+        return -1;
+    return mid;//返回不大于待查找的元素的最大的元素索引
 }
     
 template <typename T, typename V>

@@ -7,12 +7,15 @@ BTree<T>::search(const T& t){
     node_pointer v = _root;
     _hot = nullptr;
     while(v){
-        auto it = Se::binsearch(t, v->key);
+        auto it = Se::binsearch(t, v->key);//返回不大于t的最大元素索引,或者是找到的元素的索引
+        //it+1 就是待插入的位置
         if(size_t(it) < v->key.size() && v->key[it] == t){//found the element
             return v;//返回该节点，虽然该节点中有好几个元素
         }
         _hot = v;//not found the element, set _hot
-        v = v->child[it + 1];//set v to the right child, return to the while loop
+        if(size_t(it+1) >= v->child.size())
+            return nullptr;
+        v = v->child[it+1];//set v to the right child, return to the while loop
     }
     return nullptr;
 }
@@ -23,9 +26,9 @@ bool BTree<T>::insert(const T &t){
     if(node) return false;//找到了该节点，就return false
     //没有找到元素t，此时_hot是t应该插入的节点，在此节点中查找t应该插入的位置
     auto r = Se::binsearch(t, _hot->key);
-    _hot->key.insert(_hot->key.begin() + r + 1, t);
-    _hot->child.insert(_hot->child.begin() + r + 2, nullptr);
-    _size++;
+    _hot->key.insert(_hot->key.begin() + r + int(bool(_size)), t);
+    _hot->child.insert(_hot->child.begin() + r + int(bool(_size)), nullptr);
+    _size++;;
     //solveOverfolw(_hot);
     return true;
 }

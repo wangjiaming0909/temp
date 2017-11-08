@@ -881,5 +881,11 @@ void main_btree(){
     cout << endl;
     bt.insert("2");
     bt.inOrder(myvisit);
+    cout << endl;
+    bt.insert("3");
+    bt.inOrder(myvisit);
+    cout << endl;
+    bt.insert("0");
+    bt.inOrder(myvisit);
     bt.search("3");
 }
