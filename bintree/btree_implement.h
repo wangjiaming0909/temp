@@ -69,13 +69,15 @@ void BTree<T>::solveOverflow(node_pointer node){
     //4, 处理到达根节点，依然上溢
 
     //否则，出现了上溢
-    int mid_index = node->child.size() / 2;//中间节点的索引
+    int mid_index = _order / 2;//中间节点的索引
     T temp = node->key[mid_index];//暂存该将被上移的节点
     
     //构造1个新的节点，暂存, 右边的还是用之前的node
+    //构造一个新的节点时，child数组中存在一个空的指针, 最好先删除
     node_pointer l = new node_type();
+    l->child.resize(0);
     //对node中的前mid_index个元素进行删除,以及其之间的child指针
-    for(int i = 0; i < mid_index - 1; i++){
+    for(int i = 0; i < mid_index; i++){
         l->child.push_back(node->child[0]);
         node->child.erase(node->child.begin());
         l->key.push_back(node->key[0]);
