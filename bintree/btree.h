@@ -19,11 +19,14 @@ public:
     bool empty() const{return !_root;} 
     node_pointer search(const T&);
     bool insert(const T&);
+    void inOrder(void (*visit)(const T&));
+    void _inOrder(node_pointer);
 protected:
     int _size;//存放的关键码总数
     int _order;//B-树的阶，至少为3-创建时指定，一般不能修改
     node_pointer _root;
     node_pointer _hot;
+    void (*_visit)(const T&);
 };
 
 #endif //_BTREE_H_

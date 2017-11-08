@@ -866,10 +866,20 @@ void main_splay(){
     sp.remove(5);
 }
 
+template <typename T>
+void myvisit(const T &t){
+    cout << t << " ";
+}
+
 void main_btree(){
     BTree<string> bt(3);
     bt.insert("1");
-    bt.insert("2");
+    bt.inOrder(myvisit);
+    cout << endl;
     bt.insert("5");
+    bt.inOrder(myvisit);
+    cout << endl;
+    bt.insert("2");
+    bt.inOrder(myvisit);
     bt.search("3");
 }

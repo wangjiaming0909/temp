@@ -8,7 +8,7 @@ BTree<T>::search(const T& t){
     _hot = nullptr;
     while(v){
         auto it = Se::binsearch(t, v->key);
-        if(it != -1){//found the element
+        if(size_t(it) < v->key.size() && v->key[it] == t){//found the element
             return v;//返回该节点，虽然该节点中有好几个元素
         }
         _hot = v;//not found the element, set _hot
@@ -28,6 +28,27 @@ bool BTree<T>::insert(const T &t){
     _size++;
     //solveOverfolw(_hot);
     return true;
+}
+
+template <typename T>
+void BTree<T>::inOrder(void (*visit)(const T&)){
+    if(!_root) return;
+    _visit = visit;
+    _inOrder(_root);
+}
+
+template <typename T>
+void BTree<T>::_inOrder(node_pointer node){
+    auto keysize = node->key.size();
+    auto childsize = node->child.size();
+    for(size_t i = 0; i < childsize; i++){
+        if(node->child[i]){
+            _inOrder(node->child[i]);
+        }
+        if(i < keysize){
+            _visit(node->key[i]);
+        }else break;
+    }
 }
     
 #endif //_BTREE_IMPLEMENT_H_
