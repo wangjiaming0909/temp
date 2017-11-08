@@ -27,6 +27,8 @@ protected:
     node_pointer _root;
     node_pointer _hot;
     void (*_visit)(const T&);
+    void solveOverflow(node_pointer);
+    void solveUnderflow(node_pointer);
 };
 
 #endif //_BTREE_H_

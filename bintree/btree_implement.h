@@ -29,7 +29,7 @@ bool BTree<T>::insert(const T &t){
     _hot->key.insert(_hot->key.begin() + r + int(bool(_size)), t);
     _hot->child.insert(_hot->child.begin() + r + int(bool(_size)), nullptr);
     _size++;;
-    //solveOverfolw(_hot);
+    solveOverflow(_hot);
     return true;
 }
 
@@ -54,4 +54,56 @@ void BTree<T>::_inOrder(node_pointer node){
     }
 }
     
+//分裂
+template <typename T>
+void BTree<T>::solveOverflow(node_pointer node){
+    if(size_t(_order) >= node->child.size())//node的孩子个数小于阶数，没有出现上溢
+        return ;
+    //1, 首先，上溢处理是需要递归向上处理的，
+    //向上将一个元素向上移动，可能会导致上一层的节点上溢
+    //这个递归向上的过程，通过对solveOverflow函数的递归调用实现
+    //2, 选出当前节点的中间节点, d/2,从当前节点删除，d是阶数
+    //并将该节点的key以及child数组分裂为两个节点(构造两个的新的节点)
+    //设置好指针****
+    //3, 将该节点添加到当前节点的parent节点的适当位置,设置好指针
+    //4, 处理到达根节点，依然上溢
+
+    //否则，出现了上溢
+    int mid_index = node->child.size() / 2;//中间节点的索引
+    T temp = node->key[mid_index];//暂存该将被上移的节点
+    
+    //构造1个新的节点，暂存, 右边的还是用之前的node
+    node_pointer l = new node_type();
+    //对node中的前mid_index个元素进行删除,以及其之间的child指针
+    for(int i = 0; i < mid_index - 1; i++){
+        l->child.push_back(node->child[0]);
+        node->child.erase(node->child.begin());
+        l->key.push_back(node->key[0]);
+        node->key.erase(node->key.begin());
+    }
+    //还剩下mid_index之气的指针没有添加到l中，添加之后，从node中删除
+    l->child.push_back(node->child[0]);
+    node->child.erase(node->child.begin());
+    //再删除mid_index 节点, 且此元素的值已经保存下来了
+    node->key.erase(node->key.begin());
+    //添加parent中
+    if(node->parent){
+        auto i = Se::binsearch(temp, node->parent->key);
+        node->parent->key.insert(node->parent->key.begin() + i + 1, temp);
+        node->parent->child.insert(node->parent->child.begin() + i+2, node);
+        node->parent->child[i+1] = l;
+        l->parent = node->parent;
+        solveOverflow(node->parent);
+    }else{//如果node已经时根节点，则需要新建一个节点作为根
+        auto newroot = new node_type(temp, l, node);
+        l->parent = newroot;
+        node->parent = newroot;
+        _root = newroot;
+    }
+}
+
+template <typename T>
+void BTree<T>::solveUnderflow(node_pointer node){
+
+}
 #endif //_BTREE_IMPLEMENT_H_

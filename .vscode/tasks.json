@@ -59,14 +59,23 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "mingw32-make",
-            "args": [
-                "clean",
-                "-fwindows.makefile"
-            ],
             "problemMatcher": [
                 "$gcc"
-            ]
+            ],
+            "windows": {
+                "command": "mingw32-make",
+                "args": [
+                    "clean",
+                    "-fwindows.makefile"
+                ]
+            },
+            "linux": {
+                "command": "make",
+                "args": [
+                    "clean",
+                    "-flinux.makefile"
+                ]
+            }
         }
     ]
 }
