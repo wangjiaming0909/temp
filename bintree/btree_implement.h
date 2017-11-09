@@ -93,9 +93,9 @@ void BTree<T>::solveOverflow(node_pointer node){
     //添加parent中
     if(node->parent){
         auto i = Se::binsearch(temp, node->parent->key);
-        node->parent->key.insert(node->parent->key.begin() + i + 1, temp);
-        node->parent->child.insert(node->parent->child.begin() + i+2, node);
-        node->parent->child[i+1] = l;
+        node->parent->key.insert(node->parent->key.begin() + i, temp);
+        node->parent->child.insert(node->parent->child.begin() + i + 1, node);
+        node->parent->child[i] = l;
         l->parent = node->parent;
         solveOverflow(node->parent);
     }else{//如果node已经时根节点，则需要新建一个节点作为根
@@ -104,6 +104,11 @@ void BTree<T>::solveOverflow(node_pointer node){
         node->parent = newroot;
         _root = newroot;
     }
+}
+
+template <typename T>
+bool BTree<T>::remove(const T &t){
+
 }
 
 template <typename T>
