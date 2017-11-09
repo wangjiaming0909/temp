@@ -891,5 +891,6 @@ void main_btree(){
     bt.insert("4");
     bt.insert("6");
     bt.inOrder(myvisit);
+    bt.remove("7");
     cout << endl;
 }
