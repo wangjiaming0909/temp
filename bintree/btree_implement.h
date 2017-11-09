@@ -8,14 +8,16 @@ BTree<T>::search(const T& t){
     _hot = nullptr;
     while(v){
         auto it = Se::binsearch(t, v->key);//返回不大于t的最大元素索引,或者是找到的元素的索引
-        //it+1 就是待插入的位置
+        //it 就是待插入的位置
+        //可能出现it已经超出key的范围,需要做个判断先
         if(size_t(it) < v->key.size() && v->key[it] == t){//found the element
             return v;//返回该节点，虽然该节点中有好几个元素
         }
         _hot = v;//not found the element, set _hot
-        if(size_t(it+1) >= v->child.size())
-            return nullptr;
-        v = v->child[it+1];//set v to the right child, return to the while loop
+        //如果it+1 >= child.size,说明it > key.size, 说明当前节点v中所有元素都小于t,
+        // if(size_t(it+1) >= v->child.size())
+            // return nullptr;
+        v = v->child[it];//set v to the right child, return to the while loop
     }
     return nullptr;
 }
@@ -26,8 +28,8 @@ bool BTree<T>::insert(const T &t){
     if(node) return false;//找到了该节点，就return false
     //没有找到元素t，此时_hot是t应该插入的节点，在此节点中查找t应该插入的位置
     auto r = Se::binsearch(t, _hot->key);
-    _hot->key.insert(_hot->key.begin() + r + int(bool(_size)), t);
-    _hot->child.insert(_hot->child.begin() + r + int(bool(_size)), nullptr);
+    _hot->key.insert(_hot->key.begin() + r, t);
+    _hot->child.insert(_hot->child.begin() + r + 1, nullptr);
     _size++;;
     solveOverflow(_hot);
     return true;

@@ -99,7 +99,7 @@ struct binaryTreeNode{
 
     int height(){//当回当前节点的高度，即子树的高度加1
         queue<binaryTreeNode<T> *> q;
-        if(!this) return 0;
+        // if(!this) return 0;
         q.push(this);
         int level = 0;
         while(!q.empty()){

@@ -872,7 +872,7 @@ void myvisit(const T &t){
 }
 
 void main_btree(){
-    BTree<string> bt(2);
+    BTree<string> bt(3);
     bt.insert("1");
     bt.inOrder(myvisit);
     cout << endl;
@@ -887,5 +887,8 @@ void main_btree(){
     cout << endl;
     bt.insert("0");
     bt.inOrder(myvisit);
-    bt.search("3");
+    bt.insert("7");
+    bt.insert("8");
+    bt.insert("4");
+    // bt.search("3");
 }
