@@ -14,6 +14,7 @@
 #include <thread>
 #include <boost/pool/pool_alloc.hpp>
 #include "bintree/bst_header.h"
+#include <map>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -907,4 +908,8 @@ void main_btree(){
     // }
 
     // cout << endl;
+}
+
+void main_map(){
+    map<int, string> m;
 }

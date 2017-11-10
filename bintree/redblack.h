@@ -9,7 +9,7 @@ public:
     node_pointer insert(const element_type &);
     bool remove(const T&);
 protected:
-    int updateHieght(node_pointer);
+    int updateHeight(node_pointer);
     void solveDoubleRed(node_pointer);
     void solveDoubleBlack(node_pointer);
 };

@@ -110,6 +110,7 @@ int main()
     // main_ds1_20();
     // main_ds1_2();
     // main_multi_set_map();
+    main_map();
     // main_insertsort();
     // main_merge_sort();
     // main_binary_search();
@@ -137,7 +138,7 @@ int main()
     // main_BST();
     // main_AVL();
     // main_splay();
-    main_btree();
+    // main_btree();
     // main_delete_noheap();
     // main_max_heap();
     // main_exams();
