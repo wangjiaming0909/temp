@@ -871,6 +871,7 @@ void myvisit(const T &t){
     cout << t << " ";
 }
 
+
 void main_btree(){
     BTree<string> bt(3);
     bt.insert("1");
@@ -882,11 +883,28 @@ void main_btree(){
     bt.insert("8");
     bt.insert("4");
     bt.insert("6");
+    bt.insert("99");
+    bt.insert("43");
+    
     bt.inOrder(myvisit);
     cout << endl;
     bt.remove("7");
+    bt.inOrder(myvisit);
+    cout << endl;
     bt.remove("8");
+    bt.inOrder(myvisit);
+    cout << endl;
     bt.remove("6");
     bt.inOrder(myvisit);
     cout << endl;
+
+    // BTree<int> bt2(10);
+    // for(int i = 0; i < 50; i++){
+    //     bt2.insert(rand());
+    //     bt2.inOrder(myvisit);
+    //     cout << endl;
+    //     cout << endl;
+    // }
+
+    // cout << endl;
 }

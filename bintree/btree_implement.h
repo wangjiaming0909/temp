@@ -95,12 +95,15 @@ void BTree<T>::solveOverflow(node_pointer node)
     //对node中的前mid_index个元素进行删除,以及其之间的child指针
     for (int i = 0; i < mid_index; i++){
         l->child.push_back(node->child[0]);
+        //如果被移动到l中的指针不是空指针，需要将其父节点设置为l，否则，父指针将错乱
+        if(node->child[0]) node->child[0]->parent = l;
         node->child.erase(node->child.begin());
         l->key.push_back(node->key[0]);
         node->key.erase(node->key.begin());
     }
     //还剩下mid_index之气的指针没有添加到l中，添加之后，从node中删除
     l->child.push_back(node->child[0]);
+    if(node->child[0]) node->child[0]->parent = l;
     node->child.erase(node->child.begin());
     //再删除mid_index 节点, 且此元素的值已经保存下来了
     node->key.erase(node->key.begin());
@@ -115,10 +118,10 @@ void BTree<T>::solveOverflow(node_pointer node)
     }
     else{ //如果node已经时根节点，则需要新建一个节点作为根
         auto newroot = new node_type(temp, l, node);
-        l->parent = newroot;
-        node->parent = newroot;
+        // l->parent = newroot;
+        // node->parent = newroot;
         _root = newroot;
-        newroot->parent = nullptr;
+        // newroot->parent = nullptr;
     }
 }
 
@@ -251,10 +254,14 @@ void BTree<T>::solveUnderflow(node_pointer node)
         brother->key.push_back(p->key[index_of_node_in_p_child - 1]);
         // brother->child.push_back(nullptr);
         brother->child.push_back(node->child[0]);
+        if(node->child[0]) node->child[0]->parent = brother;
+        node->child.erase(node->child.begin());
         //再插入node中的元素
         for(int i = 0; size_t(i) < node->key.size(); i++){
             brother->key.push_back(node->key[i]);
-            brother->child.push_back(nullptr);
+            brother->child.push_back(node->child[0]);
+            if(node->child[0]) node->child[0]->parent = brother;
+            node->child.erase(node->child.begin());
         }
         //删除p中的中间元素
         p->key.erase(p->key.begin() + index_of_node_in_p_child - 1);
@@ -263,10 +270,14 @@ void BTree<T>::solveUnderflow(node_pointer node)
         delete node;
     }else{//右兄弟, p中的索引是 index_of_node_in_p_child
         node->key.push_back(p->key[index_of_node_in_p_child]);
-        node->child.push_back(nullptr);
+        node->child.push_back(brother->child[0]);
+        if(brother->child[0]) brother->child[0]->parent = node;
+        brother->child.erase(brother->child.begin());
         for(int i = 0; size_t(i) < brother->key.size(); i++){
             node->key.push_back(brother->key[i]);
-            node->child.push_back(nullptr);
+            node->child.push_back(brother->child[0]);
+            if(brother->child[0]) brother->child[0]->parent = node;
+            brother->child.erase(brother->child.begin());
         }
         p->key.erase(p->key.begin() + index_of_node_in_p_child);
         p->child.erase(p->child.begin() + index_of_node_in_p_child + 1);
