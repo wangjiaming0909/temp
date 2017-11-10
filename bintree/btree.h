@@ -30,6 +30,10 @@ protected:
     void (*_visit)(const T&);
     void solveOverflow(node_pointer);
     void solveUnderflow(node_pointer);
+private:
+    //在vector中查找当前节点的位置,用指针作为比较
+    //为了解决可能存在node中并没有元素,不能通过元素比较得到其在父节点中的位置
+    int _search(const vector<node_pointer> &, node_pointer);
 };
 
 #endif //_BTREE_H_

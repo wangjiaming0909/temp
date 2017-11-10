@@ -36,7 +36,6 @@ bool BTree<T>::insert(const T &t)
     _hot->key.insert(_hot->key.begin() + r, t);
     _hot->child.insert(_hot->child.begin() + r + 1, nullptr);
     _size++;
-    ;
     solveOverflow(_hot);
     return true;
 }
@@ -109,7 +108,7 @@ void BTree<T>::solveOverflow(node_pointer node)
     if (node->parent){
         auto i = Se::binsearch(temp, node->parent->key);
         node->parent->key.insert(node->parent->key.begin() + i, temp);
-        node->parent->child.insert(node->parent->child.begin() + i + 1, node);
+        node->parent->child.insert(node->parent->child.begin() + i, l);
         node->parent->child[i] = l;
         l->parent = node->parent;
         solveOverflow(node->parent);
@@ -119,6 +118,7 @@ void BTree<T>::solveOverflow(node_pointer node)
         l->parent = newroot;
         node->parent = newroot;
         _root = newroot;
+        newroot->parent = nullptr;
     }
 }
 
@@ -147,13 +147,13 @@ bool BTree<T>::remove(const T &t)
             succ = succ->child[0];
         //交换
         node->key[index_of_e] = succ->key[0];
-        succ->key[0] = t;
+        // succ->key[0] = t;
         node = succ;
         index_of_e = 0;
     } //处理完成后，继续进行删除，并且节点已调整完
-    //node是叶节点,删除位置为 index_of_e, 且此时node是叶节点
-    node->key.erase(node->key.begin());
-    node->child.erase(node->child.begin());
+    //node是叶节点,删除位置为 index_of_e, 且此时node是叶节点, 删除index_of_e之后的child指针
+    node->key.erase(node->key.begin() + index_of_e);
+    node->child.erase(node->child.begin() + index_of_e + 1);
     solveUnderflow(node);
     return true;
 }
@@ -175,7 +175,7 @@ void BTree<T>::solveUnderflow(node_pointer node)
     //判断是否下溢, node的元素个数小于_order / 2
     //每个节点的元素个数至少是 _order/2 取上整，减一
     //而_order/2 是 _order/2 取下整
-    if (node->key.size() >= _order / 2) //没有下溢
+    if (node->key.size() >= size_t(_order / 2)) //没有下溢
         return;
     //下溢了
     //定义三个节点，父节点， 左兄弟，右兄弟
@@ -185,17 +185,20 @@ void BTree<T>::solveUnderflow(node_pointer node)
     if(!p){//node已经是根
         //此时，node应该是一个空的节点，其第一个child应设置为root，高度减少1
         _root = node->child[0];
+        _root->parent = nullptr;
         delete node;
+        return;
     }
     //找到node在p中的位置,是指node在p中child中的索引
-    auto index_of_node_in_p_child = Se::binsearch(node->key[0], p->key);
+    // auto index_of_node_in_p_child = Se::binsearch(node->key[0], p->key) + 1;
+    auto index_of_node_in_p_child = _search(p->child, node);
     //判断这个index是不是第一个或者最后一个
     //因为如果是第一个或者最后一个会导致下面两个有可能出现数组越界
-    if(index_of_node_in_p_child == 0)//判断是不是第一个
+    if(index_of_node_in_p_child != 0)//判断是不是第一个
          l = p->child[index_of_node_in_p_child - 1]; //左兄弟
     // else
         // node_pointer l = nullptr;//没有左兄弟
-    if(index_of_node_in_p_child == p->key.size())//node已经是p的最后一个节点， r = nullptr
+    if(size_t(index_of_node_in_p_child) != p->key.size())//node已经是p的最后一个节点， r = nullptr
         r = p->child[index_of_node_in_p_child + 1]; //右兄弟
     // else
         // node_pointer r = nullptr;
@@ -203,7 +206,7 @@ void BTree<T>::solveUnderflow(node_pointer node)
     //(1)有左兄弟
     if(l){
         //1,如果左兄弟可以借
-        if(l->key.size() > _order/2){//必须是大于了，如果是等于，则借出一个导致自己下溢
+        if(l->key.size() > size_t(_order/2)){//必须是大于了，如果是等于，则借出一个导致自己下溢
             //右旋
             //需要两个元素，l的最大值，p->key[index_of_node_in_p_child - 1]
             //往node的最左边插入p->key[index_of_node_in_p_child - 1]
@@ -224,7 +227,7 @@ void BTree<T>::solveUnderflow(node_pointer node)
     //(2)有右兄弟,此时左兄弟已经判断过了，要是有并且可以借，已经借了,说明没有左兄弟，或者不能借
     if(r){
         //右兄弟可以借
-        if(r->key.size() > _order/2){
+        if(r->key.size() > size_t(_order/2)){
             //左旋
             //设置node
             node->key.push_back(p->key[index_of_node_in_p_child]);
@@ -246,9 +249,10 @@ void BTree<T>::solveUnderflow(node_pointer node)
     if(brother == l){//左兄弟,p中的索引就是 index_of_node_in_p_child - 1
         //将p总的中间元素插入brother的最后
         brother->key.push_back(p->key[index_of_node_in_p_child - 1]);
-        brother->child.push_back(nullptr);
+        // brother->child.push_back(nullptr);
+        brother->child.push_back(node->child[0]);
         //再插入node中的元素
-        for(int i = 0; i < node->key.size(); i++){
+        for(int i = 0; size_t(i) < node->key.size(); i++){
             brother->key.push_back(node->key[i]);
             brother->child.push_back(nullptr);
         }
@@ -260,7 +264,7 @@ void BTree<T>::solveUnderflow(node_pointer node)
     }else{//右兄弟, p中的索引是 index_of_node_in_p_child
         node->key.push_back(p->key[index_of_node_in_p_child]);
         node->child.push_back(nullptr);
-        for(int i = 0; i < brother->key.size(); i++){
+        for(int i = 0; size_t(i) < brother->key.size(); i++){
             node->key.push_back(brother->key[i]);
             node->child.push_back(nullptr);
         }
@@ -268,6 +272,16 @@ void BTree<T>::solveUnderflow(node_pointer node)
         p->child.erase(p->child.begin() + index_of_node_in_p_child + 1);
         delete brother;
     }
-    solveOverflow(p);
+    solveUnderflow(p);
+}
+
+template <typename T>
+int BTree<T>::_search(const vector<node_pointer> &v, node_pointer node){
+    if(!node) return -1;
+    for(int i = 0; size_t(i) < v.size(); i++){
+        if(v[i] == node)
+            return i;
+    }
+    return -1;
 }
 #endif //_BTREE_IMPLEMENT_H_
