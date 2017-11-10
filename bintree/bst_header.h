@@ -10,5 +10,7 @@
 #include "splay_implement.h"
 #include "btree.h"
 #include "btree_implement.h"
+#include "redblack.h"
+#include "redblack_imp.h"
 
 #endif // _BST_HEADER_H_
