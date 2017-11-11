@@ -15,7 +15,10 @@ RedBlack<T, V>::insert(const element_type &e){
     if(node)//if 找到该节点，更新该节点信息
         node->element.second = e->second;
     //否则，创建新节点，插入
-    node = new node_type(e, -1, _hot, nullptr, nullptr);
+    node = new node_type(e, -1, _hot, nullptr, nullptr);//-1 为黑色
+    _size++;
+    solveDoubleRed(node);
+    return node ? node : _hot->parent;
 }
 
 template <typename T, typename V>
