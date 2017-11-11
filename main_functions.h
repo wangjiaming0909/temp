@@ -62,6 +62,17 @@ void main_selectsort(){
     cout << endl;
 }
 
+void main_stl(){
+    vector<int, JJ::alloctor<int>> v;
+    v.push_back(12);
+    vector<string, JJ::alloctor<string>> v2;
+    vector<int, std::allocator<int>> v3;
+    // vector<string, std::alloc> v4;
+    v2.push_back("qwe");
+    cout << v[0] << " " << v2[0] << endl;
+}
+
+
 void main_merge_sort(){
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     // int *p = algorithms::merge_sort(nums, 0, 9);
@@ -912,4 +923,8 @@ void main_btree(){
 
 void main_map(){
     map<int, string> m;
+}
+
+void main_redblack(){
+    RedBlack<int, string> rb;
 }
