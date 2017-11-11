@@ -21,6 +21,7 @@ public:
     typedef typename BST<T, V>::node_type node_type;
     using _Base_type::_hot;
     using _Base_type::treeSize;
+    using _Base_type::root;
 
     RedBlack(node_pointer root) : _Base_type(root){}
     node_pointer insert(const element_type &);

@@ -928,6 +928,10 @@ void main_map(){
 void main_redblack(){
     auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), RB_BLACK, -1, nullptr, nullptr);
     RedBlack<int, string> rb(b8);
-    cout << b8->height2 << endl;
     rb.insert(make_pair<int, string>(1, "1"));
+    rb.insert(make_pair<int, string>(6, "6"));
+    rb.insert(make_pair<int, string>(4, "4"));
+    rb.insert(make_pair<int, string>(13, "13"));
+    rb.insert(make_pair<int, string>(22, "22"));
+    rb.inOrder(myvisit);
 }
