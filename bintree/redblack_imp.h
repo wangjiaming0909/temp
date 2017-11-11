@@ -50,9 +50,10 @@ void RedBlack<T, V>::solveDoubleBlack(node_pointer node){
         无需重构，旋转
         只需简单调整3个节点的颜色,而且 node颜色不用变, 调整另外三个接点就ok了
        */
-    if(node){
+    //u是黑色的
+    node_pointer p = node->parent;
+    if(){
         
     }
-    
 }
 #endif // _REDBLACK_IMP_H_
