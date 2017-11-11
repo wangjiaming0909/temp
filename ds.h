@@ -79,6 +79,11 @@ int fx(int x){
 
 #define stature(p) ((p) ? (p)->height2 : -1)
 
+typedef enum {
+    RB_RED,
+    RB_BLACK
+} RBColor;
+
 template <class T>
 struct binaryTreeNode{
     T element;
@@ -115,6 +120,7 @@ struct binaryTreeNode{
         return level;
     }
     int height2;
+    RBColor color;
 };
 
 //binaryTree abstract data structure

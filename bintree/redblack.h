@@ -1,6 +1,17 @@
 #ifndef _REDBLACK_H_
 #define _REDBLACK_H_
 
+
+
+#define IsBlack(p) (!(p) || (RB_BLACK == (p)->color))
+#define IsRed(p) (! IsBlack(p))
+/*
+ #define BlackHeightUpdated(x) ( \
+//     (stature((x).leftChild) == stature((x).rightChild)) &&\
+//     ((x).height)
+// )
+*/
+
 template <typename T, typename V>
 class RedBlack : public BST<T, V>{
 public:
