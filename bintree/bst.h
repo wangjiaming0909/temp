@@ -18,6 +18,7 @@ public:
     typedef binaryTreeNode<pair<T, V>>*     node_pointer;
     typedef binaryTreeNode<pair<T, V>>      node_type;
     typedef linkedBinaryTree<pair<T, V>>    _Base_type;
+    using _Base_type::treeSize;
 
     BST(node_pointer r) : _Base_type(r){}
     virtual node_pointer search(const T&);

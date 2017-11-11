@@ -926,5 +926,8 @@ void main_map(){
 }
 
 void main_redblack(){
-    RedBlack<int, string> rb;
+    auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), RB_BLACK, -1, nullptr, nullptr);
+    RedBlack<int, string> rb(b8);
+    cout << b8->height2 << endl;
+    rb.insert(make_pair<int, string>(1, "1"));
 }

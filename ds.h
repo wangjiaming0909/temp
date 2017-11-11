@@ -101,11 +101,12 @@ struct binaryTreeNode{
     
     binaryTreeNode( const T& theElement, 
                     RBColor c,
+                    int height,
                     binaryTreeNode *theLeftChild, 
                     binaryTreeNode *theRightChild,
                     binaryTreeNode *theparent = nullptr)
        : element(theElement), leftChild(theLeftChild), 
-       rightChild(theRightChild), parent(theparent), height2(0), color(c){}
+       rightChild(theRightChild), parent(theparent), height2(height), color(c){}
     
     void setparent(binaryTreeNode<T> *p)
     {this->parent = p;}

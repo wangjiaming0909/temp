@@ -20,8 +20,9 @@ public:
     typedef pair<T, V> element_type;
     typedef typename BST<T, V>::node_type node_type;
     using _Base_type::_hot;
-    using _Base_type::_size;
+    using _Base_type::treeSize;
 
+    RedBlack(node_pointer root) : _Base_type(root){}
     node_pointer insert(const element_type &);
     bool remove(const T&);
 protected:
