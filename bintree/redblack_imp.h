@@ -20,7 +20,9 @@ RedBlack<T, V>::insert(const element_type &e){
         _hot->leftChild = node;
     else
         _hot->rightChild = node;
-    solveDoubleRed(node);
+
+    if(_hot == RB_RED)
+       solveDoubleRed(node);
     treeSize++;
     return node ? node : _hot->parent;
 }
@@ -36,8 +38,21 @@ void RedBlack<T, V>::solveDoubleRed(node_pointer node){
 
 }
 
+//解决双红缺陷
 template <typename T, typename V>
 void RedBlack<T, V>::solveDoubleBlack(node_pointer node){
-
+    /* 双红缺陷有两种情况
+      1, node 的uncle 节点时黑色
+        则只需进行一次一次或者两次旋转， 调整两个节点颜色完成重平衡
+        且此法是一次性完成，不平衡不会向上传递
+        可套用avl树中的3+4重构算法, 重构完后，调整两个节点颜色
+      2, node 的uncle节点是红色
+        无需重构，旋转
+        只需简单调整3个节点的颜色,而且 node颜色不用变, 调整另外三个接点就ok了
+       */
+    if(node){
+        
+    }
+    
 }
 #endif // _REDBLACK_IMP_H_

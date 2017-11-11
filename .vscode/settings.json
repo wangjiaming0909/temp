@@ -50,7 +50,7 @@
     },
     "git.ignoreLimitWarning": true,
     "vim.disableAnnoyingNeovimMessage": true,
-    "window.zoomLevel": 2,
+    "window.zoomLevel": 1,
     "git.enableSmartCommit": true,
     "editor.fontSize": 16,
     "editor.cursorStyle": "line-thin",
