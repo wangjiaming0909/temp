@@ -113,7 +113,7 @@
     //     "editor.background": "#14141417",
     //     "editor.foreground": "#ffffff"
     // },
-    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.colorTheme": "Monokai Dimmed",
     "explorer.confirmDragAndDrop": false,
     "workbench.activityBar.visible": false,
     "workbench.panel.location": "bottom"
