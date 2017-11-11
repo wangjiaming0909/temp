@@ -99,6 +99,14 @@ struct binaryTreeNode{
        : element(theElement), leftChild(theLeftChild), 
        rightChild(theRightChild), parent(theparent), height2(0){}
     
+    binaryTreeNode( const T& theElement, 
+                    RBColor c,
+                    binaryTreeNode *theLeftChild, 
+                    binaryTreeNode *theRightChild,
+                    binaryTreeNode *theparent = nullptr)
+       : element(theElement), leftChild(theLeftChild), 
+       rightChild(theRightChild), parent(theparent), height2(0), color(c){}
+    
     void setparent(binaryTreeNode<T> *p)
     {this->parent = p;}
 

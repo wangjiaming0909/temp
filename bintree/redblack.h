@@ -16,7 +16,11 @@ template <typename T, typename V>
 class RedBlack : public BST<T, V>{
 public:
     typedef typename BST<T, V>::node_pointer node_pointer;
+    typedef BST<T, V> _Base_type;
     typedef pair<T, V> element_type;
+    typedef typename BST<T, V>::node_type node_type;
+    using _Base_type::_hot;
+
     node_pointer insert(const element_type &);
     bool remove(const T&);
 protected:
