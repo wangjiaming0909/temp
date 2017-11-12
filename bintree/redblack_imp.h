@@ -29,7 +29,47 @@ RedBlack<T, V>::insert(const element_type &e){
 
 template <typename T, typename V>
 bool RedBlack<T, V>::remove(const T& e){
-    
+    auto x = this->search(e);
+    if(!x) return false;
+    //先找出x的后继节点
+    auto succ = this->successor(x);
+    //1, 如果succ 为nullptr,说明当前节点为叶节点(非外部节点)
+    //直接查看该节点颜色,并转入相应处理代码
+    if(!succ){
+        if(x->color == RB_RED){//红色
+            _Base_type::remove(e);
+            return true;
+        }//Black---转入双黑处理
+        if(root == x) {//此树为空
+            delete root;
+            root = nullptr;
+        }
+       solveDoubleBlack(x);
+    }//succ 不为nullptr
+    //交换x与succ元素值,不交换颜色
+    swap_two_nodes_but_color(x, succ);
+    if(succ->color == RB_RED){//如果succ是红色,则可以直接删除
+        if(succ == succ->parent->leftChild)
+            succ->parent->leftChild = nullptr;
+        else 
+            succ->parent->rightChild = nullptr;
+        delete succ;
+        return true;
+    }   
+    //如果succ是黑色
+    if(succ->rightChild && succ->rightChild->color == RB_RED){
+        if(succ == succ->parent->leftChild){
+            succ->rightChild->color = RB_BLACK;
+            succ->parent->leftChild = succ->rightChild;
+            succ->rightChild->parent = succ->parent;
+        }else{
+            succ->rightChild->color = RB_BLACK;
+            succ->parent->rightChild = succ->rightChild;
+            succ->rightChild->parent = succ->parent;
+        }
+        delete succ;
+    }else//此时,succ是黑色的,且左孩子为null, 右孩子也必为null,为了平衡黑高度
+        solveDoubleBlack(succ);
     return true;
 }
 
@@ -72,13 +112,103 @@ void RedBlack<T, V>::solveDoubleRed(node_pointer node){
         //g如果是根节点,则不可以将g改为红色, 但此时,不更改根节点的颜色,也不会导致黑高度变化
         if(g != root){
             g->color = RB_RED;
-            solveDoubleRed(g);
+            if(!(g->parent == root))
+                solveDoubleRed(g);
         }
     }
 }
 
 template <typename T, typename V>
-void RedBlack<T, V>::solveDoubleBlack(node_pointer node){
-    
+void RedBlack<T, V>::solveDoubleBlack(node_pointer x){
+    /* x 不会是树根 
+       x 的左右都是外部节点
+       x 是黑色的
+       */
+    auto p = x->parent;
+    node_pointer s = nullptr;//x的兄弟
+    bool left = true;
+    if(x == p->leftChild)
+        s = p->rightChild;
+    else {
+        s = p->leftChild;
+        left = false;
+    }
+    node_pointer sl = nullptr, sr = nullptr;
+    if(s->leftChild)
+        sl = s->leftChild;
+    if(s->rightChild)
+        sr = s->rightChild;
+
+    if(s->color == RB_BLACK){//s为黑色 进入BB-1, BB-2R, BB-2B
+        //进入BB-1, 处理完可以直接退出
+        RBColor old_p_color = p->color;
+        p->color = RB_BLACK;
+        if(sl && sl->color == RB_RED){//s左孩子是红色
+            this->rotateAt(sl);
+            if(left){
+                sl->color = old_p_color;
+                p->leftChild = nullptr;
+            }else{
+                s->color = old_p_color;
+                p->rightChild = nullptr;
+                sl->color = RB_BLACK;
+            }
+            delete x;
+            return;
+        }else if(sr && sr->color == RB_RED){
+            this->rotateAt(sr);
+            if(left){
+                s->color = old_p_color;
+                sr->color = RB_BLACK;
+                p->leftChild = nullptr;
+            }else{
+                sr->color = old_p_color;
+                p->rightChild = nullptr;
+            }
+            delete x;
+            return;
+        }
+        if((!sl ||(sl && sl->color == RB_BLACK)) 
+        && (!sr || (sr && sr->color == RB_BLACK)) 
+        && p->color == RB_RED){//s的左右都是外部节点,进入BB-2R
+            p->color = RB_BLACK;
+            s->color = RB_RED;
+            if(left){
+                p->leftChild = nullptr;
+            }else{
+                p->rightChild = nullptr;
+            }
+        }else if((!sl ||(sl && sl->color == RB_BLACK))
+        && (!sr || (sr && sr->color == RB_BLACK))
+        && p->color == RB_BLACK){//p是黑色的,进入BB-2B
+            s->color = RB_RED;
+            if(left){
+                p->leftChild = x->rightChild;
+            }else{
+                p->rightChild = x->leftChild;
+            }
+            solveDoubleBlack(p);
+        }
+    }else{//s为红, 进入BB-3
+        // RBColor old_p_color = p->color;
+        if(sl){
+            this->rotateAt(sl);
+            p->color = RB_RED;
+            // sl
+        }else{
+            this->rotateAt(sr);
+
+        }
+    }
+    delete x;
+}
+
+template <typename T, typename V>
+void RedBlack<T, V>::swap_two_nodes_but_color(node_pointer l, node_pointer r){
+    pair<T, V> temp = l->element;
+    l->element.first = r->element.first;
+    l->element.second = r->element.second;
+    r->element.first = temp.first;
+    r->element.second = temp.second;
 }
 #endif // _REDBLACK_IMP_H_

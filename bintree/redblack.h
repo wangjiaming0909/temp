@@ -30,6 +30,7 @@ protected:
     int updateHeight(node_pointer);
     void solveDoubleRed(node_pointer);
     void solveDoubleBlack(node_pointer);
+    void swap_two_nodes_but_color(node_pointer l, node_pointer r);
 };
 
 

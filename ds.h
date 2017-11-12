@@ -458,7 +458,21 @@ void myvisit(binaryTreeNode<string> *x){
 }
 template <typename T, typename V>
 void myvisit(binaryTreeNode<pair<T, V>> *x){
-    std::cout << x->element.second << " " << std::flush;
+    binaryTreeNode<pair<T, V>>* p = x->parent ? x->parent : nullptr;
+    binaryTreeNode<pair<T, V>>* l = x->leftChild ? x->leftChild : nullptr;
+    binaryTreeNode<pair<T, V>>* r = x->rightChild ? x->rightChild : nullptr;
+
+    V pcontent = p ? p->element.second : V();
+    V lcontent = l ? l->element.second : V();
+    V rcontent = r ? r->element.second : V();
+
+    std::cout << std::left << std::setw(3)
+    << x->element.second << std::setw(3) 
+    << "l: " << setw(6) << lcontent << setw(3)
+    << "r: " << setw(6) << rcontent << setw(3)
+    << "p: " << setw(6) << pcontent << setw(3)
+    << "c: " << setw(6) << (x->color == ds::RB_BLACK ? "B" : "R") 
+    << std::endl;
 }
 
 /*--------------------------数组描述的二叉树----------------------------*/
