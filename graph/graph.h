@@ -15,7 +15,7 @@ typedef enum{
 }VStatus;
 
 typedef enum{
-    UNDETERMINTED,
+    UNDETERMINED,
     TREE,
     CROSS,
     FORWARD,

@@ -26,28 +26,28 @@ struct Edge{
 };
 
 template <typename Tv, typename Te>
-class Graph_Matrix : public Graph<Te, Te>{
+class Graph_Matrix : public graph<Tv, Te>{
 private:
     std::vector<std::vector<Tv>> v;//顶点
     std::vector<std::vector<Edge<Te>* >> e;//边
 public:
-    Graph_Matrix(){n = e = 0;}
+    Graph_Matrix(){this->n = e = 0;}
     ~Graph_Matrix(){
-        for(int j = 0; j < n; j++)
-            for(int k = 0; k < n; k++)
-                delete E[j][k];
+        for(int j = 0; j < this->n; j++)
+            for(int k = 0; k < this->n; k++)
+                delete e[j][k];
     }
     virtual Tv& vertex(int i){return v[i].data;}//数据
     virtual int inDegree(int i){return v[i].inDegree;}//入度
     virtual int outDegree(int i){return v[i].outDegree;}//出度
-    virtual int firstNbr(int i){return nextNbr(i, n);}//首个邻接顶点
+    virtual int firstNbr(int i){return nextNbr(i, this->n);}//首个邻接顶点
     virtual int nextNbr(int i, int j){
         while((-1 < j) && (!exists(i, --j)));
         return j;
     }  
 
     virtual bool exists(int i, int j){
-        return (0 <= i) && (i < n) && (0 <= j) && (j < n) && e[i][j] != NULL;
+        return (0 <= i) && (i < this->n) && (0 <= j) && (j < this->n) && e[i][j] != NULL;
     }
 };
 

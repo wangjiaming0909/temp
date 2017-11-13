@@ -15,6 +15,7 @@
 #include <boost/pool/pool_alloc.hpp>
 #include "bintree/bst_header.h"
 #include <map>
+#include "graph/graph_headers.h"
 // #include <windows.h>
 // #include "microtime.h"
 
