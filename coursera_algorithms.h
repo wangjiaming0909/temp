@@ -243,7 +243,7 @@ void max_heap_insert(int *arr, size_t &heap_size, int key){//O(lgn)
 }
 
 void build_heap2(int *arr, size_t heap_size){//O(nlgn)
-    int buf[heap_size] = {0};
+    int buf[heap_size];
     size_t size = 1;
     buf[1] = arr[1];
     for (size_t i = 2; i <= heap_size; i++){//O(n) * O(lgn)
@@ -357,9 +357,9 @@ list<int> mergelists(vector<list<int>> &v){//O(nlgk)
     }
         //取每一个list的最小元素创建最小堆
     list<int> ret;
-    int minheap[k+1] = {0};//存最小堆
-    int minheaptemp[k] = {0};
-    size_t index[k] = {0};//存最小堆中每个元素对应的list索引
+    int minheap[k+1];//存最小堆
+    int minheaptemp[k];
+    size_t index[k];//存最小堆中每个元素对应的list索引
     for (size_t i = 0; i < k; i++){//O(k)
         minheap[i+1] = v[i].front();
         minheaptemp[i] = v[i].front();
