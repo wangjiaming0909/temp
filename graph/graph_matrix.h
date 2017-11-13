@@ -1,10 +1,3 @@
-/*************************************************************************
-	> File Name: graph_matrix.h
-	> Author: 
-	> Mail: 
-	> Created Time: Mon 13 Nov 2017 11:11:57 AM CST
- ************************************************************************/
-
 #ifndef _GRAPH_MATRIX_H
 #define _GRAPH_MATRIX_H
 #include <vector>
@@ -48,6 +41,14 @@ public:
     virtual int inDegree(int i){return v[i].inDegree;}//入度
     virtual int outDegree(int i){return v[i].outDegree;}//出度
     virtual int firstNbr(int i){return nextNbr(i, n);}//首个邻接顶点
+    virtual int nextNbr(int i, int j){
+        while((-1 < j) && (!exists(i, --j)));
+        return j;
+    }  
+
+    virtual bool exists(int i, int j){
+        return (0 <= i) && (i < n) && (0 <= j) && (j < n) && e[i][j] != NULL;
+    }
 };
 
 #endif
