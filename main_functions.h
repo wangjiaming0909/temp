@@ -45,7 +45,8 @@
 //     return time2.wMilliseconds - time1.wMilliseconds;
 // }
 
-void main_insertsort(){
+void main_insertsort()
+{
     using algorithms::insert_sort;
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     // int nums[4] = {2,3,1,0};
@@ -55,7 +56,8 @@ void main_insertsort(){
     cout << endl;
 }
 
-void main_selectsort(){
+void main_selectsort()
+{
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     int *p = algorithms::selectsort2(nums, 10);
     for (int i = 0; i < 10; i++)
@@ -63,7 +65,8 @@ void main_selectsort(){
     cout << endl;
 }
 
-void main_stl(){
+void main_stl()
+{
     vector<int, JJ::alloctor<int>> v;
     v.push_back(12);
     vector<string, JJ::alloctor<string>> v2;
@@ -73,14 +76,15 @@ void main_stl(){
     cout << v[0] << " " << v2[0] << endl;
 }
 
-
-void main_merge_sort(){
+void main_merge_sort()
+{
     int nums[10] = {2, 3, 1, 62, 12, 7, 95, 21, 6, 33};
     // int *p = algorithms::merge_sort(nums, 0, 9);
     algorithms::merge_sort3(nums, 0, 9);
     for (int i = 0; i < 10; i++)
         cout << nums[i] << " ";
-    cout << endl << algorithms::mergetimes << endl;
+    cout << endl
+         << algorithms::mergetimes << endl;
 }
 
 void main_binary_search()
@@ -232,13 +236,14 @@ void main_ds1_19()
 
 void main_ds1_20()
 {
-    for(int i = 0; i < 99; i++){
+    for (int i = 0; i < 99; i++)
+    {
         cout << ds::fibonacci2(1, 2, i) << endl;
     }
-    for(int i = 0; i < 67; i ++){
+    for (int i = 0; i < 67; i++)
+    {
         cout << "第" << i << "项: " << ds::fibonacci(i) << endl;
     }
-
 }
 void main_ds1_21()
 {
@@ -519,7 +524,8 @@ void main_courera_max_heap()
         cout << std::right << setw(3) << arr[i] << " ";
 }
 
-void main_priority_queue(){
+void main_priority_queue()
+{
     int arr[30] = {0, 3, 5, 6, 7, 20, 8, 2, 9, 12, 15, 30, 17};
     size_t heap_size = 12;
     // coursera::heap_sort(arr, heap_size);
@@ -536,7 +542,8 @@ void main_priority_queue(){
 }
 
 //exams P92
-void main_6_5_1(){
+void main_6_5_1()
+{
     int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
     size_t heap_size = 12;
     coursera::build_heap(arr, heap_size);
@@ -548,7 +555,8 @@ void main_6_5_1(){
     cout << endl;
 }
 
-void main_min_heap(){
+void main_min_heap()
+{
     int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
     size_t heap_size = 12;
     coursera::build_min_heap(arr, heap_size);
@@ -556,7 +564,8 @@ void main_min_heap(){
     cout << endl;
     int min = coursera::heap_extract_min(arr, heap_size);
     coursera::levelOrder(arr, heap_size);
-    cout << endl << std::right << setw(3) << "min: " << min << endl;
+    cout << endl
+         << std::right << setw(3) << "min: " << min << endl;
     coursera::heap_decrease_key(arr, 3, 0);
     coursera::levelOrder(arr, heap_size);
     cout << endl;
@@ -568,7 +577,8 @@ void main_min_heap(){
     cout << endl;
 }
 
-void main_offer_1(){
+void main_offer_1()
+{
     vector<vector<int>> arr = {
         {1, 2, 3, 4, 5},
         {2, 3, 4, 5, 6},
@@ -579,7 +589,8 @@ void main_offer_1(){
     cout << offer::offer_1_2(arr, 7) << endl;
 }
 
-void main_merge_lists(){
+void main_merge_lists()
+{
     list<int> l1 = {1, 2, 3, 4, 5};
     list<int> l2 = {2, 4, 5, 7, 9};
     list<int> l3 = {3, 4, 5, 6, 8};
@@ -596,11 +607,12 @@ void main_merge_lists(){
     v.push_back(l6);
 
     list<int> l = coursera::mergelists(v);
-    for(auto &it : l)
+    for (auto &it : l)
         cout << it << " ";
 }
 
-void main_build_maxheap2(){
+void main_build_maxheap2()
+{
     // int arr[30] = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
     int arr[30] = {0, 4, 3, 5, 6, 7};
     size_t heap_size = 5;
@@ -608,10 +620,10 @@ void main_build_maxheap2(){
     coursera::build_heap(arr, heap_size);
     coursera::levelOrder(arr, heap_size);
     cout << endl;
-    
 }
 
-void main_template_(){
+void main_template_()
+{
     // string *sp = ::new (nothrow) string;
     // vector<int, JJ::alloctor<int>> vp;
     // vp.push_back(1);
@@ -619,11 +631,12 @@ void main_template_(){
     // print(*sp);
 }
 
-void main_quicksort(){
+void main_quicksort()
+{
     int arr[30] = {30, 100, 19, 10, 5, 6, 2, 3, 1, 4, 9, 20};
     // int arr[30] = {2, 3, 1, 5, 6, 4, 19, 10, 9, 30, 100, 20};
     // int arr[30] = {9, 3, 18, 5, 6, 12, 19, 10, 21, 7, 4, 20};
-    
+
     // int arr[30] = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
     // int arr[30] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     // algorithms::quicksort(arr, 0, 11);
@@ -636,20 +649,18 @@ void main_quicksort(){
     cout << endl
          << "compare: " << algorithms::num << endl
          << "partition: " << algorithms::num2 << endl;
-
 }
 
-
-
-void main_matrix_multiply(){
-    vector<vector<int>> ma= {
+void main_matrix_multiply()
+{
+    vector<vector<int>> ma = {
         {1, 1, 1, 1, 1, 1},
         {2, 2, 2, 2, 2, 2},
         {3, 3, 3, 3, 3, 3},
         {4, 4, 4, 4, 4, 4},
         {5, 5, 5, 5, 5, 5}};
 
-    vector<vector<int>> mb= {
+    vector<vector<int>> mb = {
         {1, 2, 3, 4},
         {1, 2, 3, 4},
         {1, 2, 3, 4},
@@ -658,16 +669,18 @@ void main_matrix_multiply(){
         {1, 2, 3, 4}};
     vector<vector<int>> ret;
     ret.resize(5);
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 5; i++)
+    {
         ret[i].resize(4);
     }
-        algorithms::square_matrix_multiply(ma, mb, 5, 4, 6, ret);
+    algorithms::square_matrix_multiply(ma, mb, 5, 4, 6, ret);
     algorithms::visitmatrix(ma);
     algorithms::visitmatrix(mb);
     algorithms::visitmatrix(ret);
 }
 
-void main_counting_sort(){
+void main_counting_sort()
+{
     // int arr[30] = {2, 3, 20, 5, 6, 6, 19, 10, 20, 5, 3, 20};
     int arr[30] = {21, 12, 42, 123, 124, 42, 12, 32, 16, 86, 456, 33, 237, 886, 764};
     int B[30];
@@ -680,24 +693,29 @@ void main_counting_sort(){
         cout << arr[i] << " ";
     cout << endl;
 }
-class test_trivial{
-public:
-  test_trivial(){
-      cout << "default constructor called" << endl;
-  }
-  test_trivial(int _a) : a(_a) {
-      cout << "test_trivial called" << endl;
-  }
-  test_trivial(const test_trivial &){
-      cout << "copy constructor called" << endl;
-  }
-  test_trivial &operator=(const test_trivial &) = default;
+class test_trivial
+{
+  public:
+    test_trivial()
+    {
+        cout << "default constructor called" << endl;
+    }
+    test_trivial(int _a) : a(_a)
+    {
+        cout << "test_trivial called" << endl;
+    }
+    test_trivial(const test_trivial &)
+    {
+        cout << "copy constructor called" << endl;
+    }
+    test_trivial &operator=(const test_trivial &) = default;
 
-private:
-  int a;
+  private:
+    int a;
 };
 //关于vector的size与capacity
-void main_vector_size_capacity(){
+void main_vector_size_capacity()
+{
     // vector<test_trivial> v2(2,2);
     // vector<test_trivial> v2(2);
     vector<int> v(3, 3);
@@ -713,10 +731,11 @@ void main_vector_size_capacity(){
     cout << v.size() << " " << v.capacity() << endl;
 }
 
-void main_vector_insert(){
+void main_vector_insert()
+{
     // int buf[10] = {10};
     // int *ia = ::new(buf) int(1);
-//    vector<test_trivial> v2(2, test_trivial(2));
+    //    vector<test_trivial> v2(2, test_trivial(2));
     // vector<test_trivial, boost::pool_allocator<test_trivial>> v3(2, boost::pool_allocator<test_trivial>());
     vector<int, boost::pool_allocator<int>> v4(2, boost::pool_allocator<int>());
     // vector<int, boost::pool_allocator<>>
@@ -725,53 +744,64 @@ void main_vector_insert(){
     v1.insert(v1.begin() + 1, 2);
 }
 
-class Base{
+class Base
+{
   public:
-    void print(){cout << "asd" << endl;}
-    virtual void print2(){cout << "virtual" << endl;}
+    void print() { cout << "asd" << endl; }
+    virtual void print2() { cout << "virtual" << endl; }
     virtual ~Base() {}
 };
 
-class D : public Base{
+class D : public Base
+{
   public:
-    virtual void print2(){cout << "D" << endl; }
+    virtual void print2() { cout << "D" << endl; }
 };
 
-void main_dynamic_cast(){
+void main_dynamic_cast()
+{
     Base b, *bp = &b;
     // D d, *bp = &d;
     if (D *dp = dynamic_cast<D *>(bp))
     {
         dp->print2();
         cout << "cast success" << endl;
-    }else
+    }
+    else
         cout << "cast fail" << endl;
 
     Base &br = b;
-    try{
+    try
+    {
         D &dr = dynamic_cast<D &>(br);
         dr.print2();
         cout << "cast success" << endl;
-    }catch(bad_cast){
+    }
+    catch (bad_cast)
+    {
         cout << "bad_cast" << endl;
     }
 }
 
-void main_thread(){
+void main_thread()
+{
     std::thread thr(main_delete_noheap);
 }
 
-void main_shellsort(){
+void main_shellsort()
+{
     int arr[30] = {21, 12, 42, 123, 124, 42, 12, 32, 16, 86, 456, 33, 237, 886, 764};
     algorithms::shellsort(arr, 15);
-    for (int i = 0; i < 15; i++){
+    for (int i = 0; i < 15; i++)
+    {
         cout << arr[i] << " ";
     }
     cout << endl;
 }
 
 template <typename T, typename V>
-typename BST<T, V>::node_pointer set_tree(){
+typename BST<T, V>::node_pointer set_tree()
+{
     auto b2 = new binaryTreeNode<pair<T, V>>(pair<T, V>(2, "2"), nullptr, nullptr);
     auto b5 = new binaryTreeNode<pair<T, string>>(pair<T, V>(5, "5"), nullptr, nullptr);
     auto b7 = new binaryTreeNode<pair<T, V>>(pair<T, V>(7, "7"), nullptr, nullptr);
@@ -783,7 +813,7 @@ typename BST<T, V>::node_pointer set_tree(){
     auto b9 = new binaryTreeNode<pair<T, V>>(pair<T, V>(9, "9"), nullptr, b10);
     auto b11 = new binaryTreeNode<pair<T, V>>(pair<T, V>(11, "11"), b9, nullptr);
     auto b8 = new binaryTreeNode<pair<T, V>>(pair<T, V>(8, "8"), b4, b11);
-    
+
     b2->setparent(b3);
     b3->setparent(b1);
     b1->setparent(b4);
@@ -798,8 +828,8 @@ typename BST<T, V>::node_pointer set_tree(){
     return b8;
 }
 
-
-void main_BST(){
+void main_BST()
+{
     auto root = set_tree<int, string>();
     BST<int, string> bst(root);
     bst.insert(pair<int, string>(18, "18"));
@@ -834,7 +864,8 @@ void main_BST(){
     // myvisit<int, string>(bst.max());
 }
 
-void main_AVL(){
+void main_AVL()
+{
     auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), nullptr, nullptr);
     // BST<int, string> bst(b8);
     // bst.insert(make_pair<int, string>(4, "4"));
@@ -871,7 +902,8 @@ void main_AVL(){
     // cout << p2->height2 << endl;
 }
 
-void main_splay(){
+void main_splay()
+{
     auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), nullptr, nullptr);
     Splay<int, string> sp(b8);
     sp.insert(make_pair<int, string>(4, "4"));
@@ -880,12 +912,13 @@ void main_splay(){
 }
 
 template <typename T>
-void myvisit(const T &t){
+void myvisit(const T &t)
+{
     cout << t << " ";
 }
 
-
-void main_btree(){
+void main_btree()
+{
     BTree<string> bt(3);
     bt.insert("1");
     bt.insert("5");
@@ -898,7 +931,7 @@ void main_btree(){
     bt.insert("6");
     bt.insert("99");
     bt.insert("43");
-    
+
     bt.inOrder(myvisit);
     cout << endl;
     bt.remove("7");
@@ -922,11 +955,13 @@ void main_btree(){
     // cout << endl;
 }
 
-void main_map(){
+void main_map()
+{
     map<int, string> m;
 }
 
-void main_redblack(){
+void main_redblack()
+{
     auto b8 = new binaryTreeNode<pair<int, string>>(pair<int, string>(8, "8"), RB_BLACK, -1, nullptr, nullptr);
     RedBlack<int, string> rb(b8);
     rb.inOrder(myvisit);
@@ -968,4 +1003,9 @@ void main_redblack(){
     rb.remove(22);
     rb.inOrder(myvisit);
     cout << endl;
+}
+
+void main_graph()
+{
+    Graph_Matrix<Vertex<int>, Edge<int>> graph;
 }
