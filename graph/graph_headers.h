@@ -7,6 +7,8 @@
 
 #ifndef _GRAPH_HEADERS_H
 #define _GRAPH_HEADERS_H
-#include "graph.h"
-#include "graph_matrix.h"
+#include "graph2.h"
+// #include "graph_matrix.h"
+#include "graph_search.h"
+#include "dfs.h"
 #endif

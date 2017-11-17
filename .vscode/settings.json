@@ -46,7 +46,12 @@
         "ratio": "cpp",
         "chrono": "cpp",
         "algorithm": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "cstddef": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp",
+        "mutex": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "vim.disableAnnoyingNeovimMessage": true,

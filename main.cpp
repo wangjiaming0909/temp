@@ -7,9 +7,11 @@
 #include "boost_test.h"
 using namespace std;
 
-int main(){
+int main()
+{
     // main_redblack();
-    main_graph();
+    // main_graph();
+    main_graph2();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3
