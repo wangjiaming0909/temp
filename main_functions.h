@@ -901,6 +901,30 @@ void main_redblack() {
 
 void main_graph() {
   Graph_Matrix<Vertex<int>, Edge<int>> graph;
+  graph.insert(0);
   graph.insert(1);
-  cout << 123 << endl;
+  graph.insert(2);
+  graph.insert(3);
+  graph.insert(4);
+  graph.insert(5);
+  graph.insert(6);
+  graph.insert(7);
+  graph.insert(8);
+  graph.insert(9);
+  graph.insert(10);
+  graph.insert(11);
+  graph.insert(Edge<int>(0), 0, 1);
+  graph.insert(Edge<int>(1), 1, 2);
+  graph.insert(Edge<int>(2), 2, 10);
+  graph.insert(Edge<int>(2), 2, 5);
+  graph.insert(Edge<int>(3), 3, 11);
+  graph.insert(Edge<int>(4), 4, 8);
+//   graph.insert(Edge<int>(5), 5, 2);
+  graph.insert(Edge<int>(6), 6, 4);
+  graph.insert(Edge<int>(7), 7, 3);
+  graph.insert(Edge<int>(8), 8, 3);
+  graph.insert(Edge<int>(9), 9, 1);
+  graph.insert(Edge<int>(10), 10, 1);
+  graph.insert(Edge<int>(11), 11, 2);
+  graph.bfs(6);
 }
