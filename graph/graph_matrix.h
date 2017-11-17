@@ -75,13 +75,14 @@ class Graph_Matrix : public graph<Tv, Te>
 2, 节点个数加1
 3, 为新增的节点添加一个数组,即为e增加一个元素,且每个元素都是nullptr
 4, 在v的数组中添加这个节点 */
-        for (int i = 0; i < num_v; i++)
+        for (int i = 0; i < this->num_v; i++)
         {
             e[i].push_back(nullptr); //
         }
-        num_v++;
-        e.push_back(vector<Edge<Tv> *>(n, (Edge<Tv> *)nullptr));
+        this->num_v++;
+        e.push_back(vector<Edge<Te> *>(this->num_v, (Edge<Te> *)nullptr));
         v.push_back(Vertex<Tv>(thevertex));
+        return 0;
     }
     virtual Tv remove(int i)
     {
@@ -92,13 +93,14 @@ class Graph_Matrix : public graph<Tv, Te>
         for (int j = 0; j < this->num_v; j++)
             if (e[i][j] != nullptr)
                 delete e[i][j];
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < this->num_v; j++)
         {
             if (e[j][i] != nullptr)
                 delete e[j][i];
             e[j].erase(e[j].begin() + i);
         }
-        v.erase(v.begin() + i);
+        auto re = v.erase(v.begin() + i);
+        return re->data;
     }
     //边
     virtual bool exists(int i, int j)
@@ -108,32 +110,26 @@ class Graph_Matrix : public graph<Tv, Te>
     }
     virtual void insert(Te const &te, int i, int j, int k)
     { //最后一个参数是权重
+        if(exists(i, j)) return ;
+        e[i][j] = new Edge<Te>(te, k);
+        this->num_e++;
+        v[i].outDegree++;
+        v[j].inDegree++;
     }
     virtual Te remove(int i, int j)
     {
         //删除顶点i和j之间的边
+        Te ebak = edge(i, j);
+        delete e[i][j];
+        e[i][j] = nullptr;
+        this->num_e--;
+        v[i].outDegree--;
+        v[j].inDegree--;
+        return ebak;
     }
-    virtual EType &type(int i, int j) {}
-    virtual Te &edge(int i, int j) {}
-    virtual int &weight(int i, int j) {}
-
-    // algorithms
-    void bfs(int i) {}
-    void dfs(int i) {}
-    void bcc(int i) {}
-    std::stack<Tv> *tsort(int i)
-    { //拓扑排序
-    }
-    void prim(int i)
-    { //最小生成树
-    }
-    void dijkstra(int i)
-    { //最短路径
-    }
-    template <typename PU>
-    void pfs(int i, PU pu)
-    { //优先级搜索框架
-    }
+    virtual EType &type(int i, int j) {return e[i][j]->type;}
+    virtual Te &edge(int i, int j) {return e[i][j]->data;}
+    virtual int &weight(int i, int j) {return e[i][j]->weight;}
 };
 
 #endif

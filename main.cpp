@@ -8,7 +8,8 @@
 using namespace std;
 
 int main(){
-    main_redblack();
+    // main_redblack();
+    main_graph();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3
