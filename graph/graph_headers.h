@@ -11,4 +11,5 @@
 // #include "graph_matrix.h"
 #include "graph_search.h"
 #include "dfs.h"
+#include "dfspaths.h"
 #endif

@@ -5,7 +5,6 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include <list>
 
 namespace gra
 {
@@ -38,15 +37,15 @@ class graph
         _adj[w].insert(_adj[w].begin(), v);
         _e++;
     }
-    std::list<int> &adj(int v)
+    std::vector<int> &adj(int v)
     { //和v相邻的所有顶点
         return _adj[v];
     }
 
   private:
-    int _v;                           //顶点数目
-    int _e;                           //边的数目
-    std::vector<std::list<int>> _adj; //临接表
+    int _v;                             //顶点数目
+    int _e;                             //边的数目
+    std::vector<std::vector<int>> _adj; //临接表
   private:
     void readstring(std::ifstream &is)
     {
