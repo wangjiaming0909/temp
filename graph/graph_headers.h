@@ -12,4 +12,5 @@
 #include "graph_search.h"
 #include "dfs.h"
 #include "dfspaths.h"
+#include "bfs.h"
 #endif

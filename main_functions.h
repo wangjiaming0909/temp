@@ -1037,16 +1037,28 @@ void main_graph2()
         cout << "open failed" << endl;
     }
     gra::graph g(is);
-    gra::dfs df(g, s, g.V());
-    gra::dfs df2(g, 7, g.V());
-    gra::dfs df3(g, 9, g.V());
-    cout << endl;
-    gra::dfspath dfsp(g, s, g.V());
-    if (dfsp.haspathto(3))
-    {
-        stack<int> path = dfsp.pathto(3);
-        while (!path.empty())
-        {
+    // gra::dfs df(g, s, g.V());
+    // gra::dfs df2(g, 7, g.V());
+    // gra::dfs df3(g, 9, g.V());
+    // cout << endl;
+
+    //dfs
+    // gra::dfspath dfsp(g, s, g.V());
+    // if (dfsp.haspathto(3))
+    // {
+    //     stack<int> path = dfsp.pathto(3);
+    //     while (!path.empty())
+    //     {
+    //         cout << path.top() << " " << std::flush;
+    //         path.pop();
+    //     }
+    // }
+
+    //bfs
+    gra::bfs bfssss(g, s, g.V());
+    if(bfssss.haspathto(3)){
+        stack<int> path = bfssss.pathto(3);
+        while(!path.empty()){
             cout << path.top() << " " << std::flush;
             path.pop();
         }
