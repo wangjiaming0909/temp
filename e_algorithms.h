@@ -510,8 +510,9 @@ const T& maxheap<T>::top(){
     return heap[1];
 }
 
+//删除最大值
 template <class T>
-void maxheap<T>::pop(){
+void maxheap<T>::pop(){//O(lgn)
 //heapsize - 1  需要重排堆
 //获取最后一位的元素
     T lastelement = heap[heapsize--];
