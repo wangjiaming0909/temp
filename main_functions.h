@@ -1031,7 +1031,7 @@ void main_graph2()
 {
     ifstream is;
     int s = 0; //顶点
-    is.open("./graph/graphs/mediaG.txt", _S_in);
+    is.open("./graph/graphs/tinyG.txt", _S_in);
     if (!is)
     {
         cout << "open failed" << endl;
@@ -1072,5 +1072,8 @@ void main_graph2()
 
     gra::digraph dig(is);
     gra::digraph reversed_dipraph = dig.reverse();
+    gra::directedDFS ddfs(dig, s);
+    cout << ddfs.marked(6) << endl;
+    cout << ddfs.marked(9) << endl;
     // cout << df.marked(s) << endl;
 }
