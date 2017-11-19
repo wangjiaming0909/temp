@@ -1031,12 +1031,12 @@ void main_graph2()
 {
     ifstream is;
     int s = 0; //顶点
-    is.open("./graph/graphs/tinyG.txt", _S_in);
+    is.open("./graph/graphs/mediaG.txt", _S_in);
     if (!is)
     {
         cout << "open failed" << endl;
     }
-    gra::graph g(is);
+    // gra::graph g(is);
     // gra::dfs df(g, s, g.V());
     // gra::dfs df2(g, 7, g.V());
     // gra::dfs df3(g, 9, g.V());
@@ -1055,13 +1055,22 @@ void main_graph2()
     // }
 
     //bfs
-    gra::bfs bfssss(g, s, g.V());
-    if(bfssss.haspathto(3)){
-        stack<int> path = bfssss.pathto(3);
-        while(!path.empty()){
-            cout << path.top() << " " << std::flush;
-            path.pop();
-        }
-    }
+    // gra::bfs bfssss(g, s, g.V());
+    // if(bfssss.haspathto(3)){
+    //     stack<int> path = bfssss.pathto(3);
+    //     while(!path.empty()){
+    //         cout << path.top() << " " << std::flush;
+    //         path.pop();
+    //     }
+    // }
+
+    // gra::CC connected_conponents(g);
+    // cout << connected_conponents.connected(s, 6) << endl;
+    // cout << connected_conponents.connected(s, 9) << endl;
+    // gra::cycle cyc(g);
+    // cout << cyc.hascycle() << endl;
+
+    gra::digraph dig(is);
+    gra::digraph reversed_dipraph = dig.reverse();
     // cout << df.marked(s) << endl;
 }

@@ -38,10 +38,10 @@ public:
     CC(graph &g){
         _marked.resize(g.V());
         _id.resize(g.V());
-        for(int s = 0; i < g.V(); i++){
+        for(int s = 0; s < g.V(); s++){
             if(!_marked[s]){
                 _dfs(g, s);
-                count++;
+                _count++;
             }
         }
     }
@@ -57,7 +57,7 @@ public:
 private:
     void _dfs(graph &g, int s){
         _marked[s] = true;
-        _id[s] = count;
+        _id[s] = _count;
         for(auto w : g.adj(s)){
             if(!_marked[w])
                 _dfs(g, w);
@@ -66,7 +66,30 @@ private:
 private:
     std::vector<int> _marked;
     std::vector<int> _id;
-    int _count;
+    int _count = 0;
+};
+
+class cycle{
+public:
+    cycle(graph &g){
+        _marked.resize(g.V());
+        for(int i = 0; i < g.V(); i++){
+            if(!_marked[i])
+                _dfs(g, i, i);
+        }
+    }
+    void _dfs(graph &g, int v, int parent_of_v){
+        _marked[v] = true;
+        for(auto w : g.adj(v)){
+            if(!_marked[w])
+                _dfs(g, w, v);
+            else if(w != parent_of_v) _hascycle = true;
+        }
+    }
+    bool hascycle(){return _hascycle;}
+private:
+    std::vector<bool> _marked;
+    bool _hascycle;
 };
 }
 

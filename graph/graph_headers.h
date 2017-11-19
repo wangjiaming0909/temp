@@ -13,4 +13,5 @@
 #include "dfs.h"
 #include "dfspaths.h"
 #include "bfs.h"
+#include "digraph.h"
 #endif

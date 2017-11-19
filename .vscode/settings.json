@@ -118,7 +118,7 @@
     //     "editor.background": "#14141417",
     //     "editor.foreground": "#ffffff"
     // },
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Monokai",
     "explorer.confirmDragAndDrop": false,
     "workbench.activityBar.visible": false,
     "workbench.panel.location": "bottom"
