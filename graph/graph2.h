@@ -59,11 +59,11 @@ class graph
         _adj.resize(_v);
         while (getline(is, text))
         {
-            line = istringstream(text);
+            istringstream line2(text);
             string word;
-            line >> word;
+            line2 >> word;
             int vertex1 = stoi(word);
-            line >> word;
+            line2 >> word;
             int vertex2 = stoi(word);
             addEdge(vertex1, vertex2);
         }

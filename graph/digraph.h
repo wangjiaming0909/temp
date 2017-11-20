@@ -42,11 +42,11 @@ private:
         _adj.resize(_v);
         while (getline(is, text))
         {
-            line = istringstream(text);
+            istringstream line2(text);
             string word;
-            line >> word;
+            line2 >> word;
             int vertex1 = stoi(word);
-            line >> word;
+            line2 >> word;
             int vertex2 = stoi(word);
             addedge(vertex1, vertex2);
         }
@@ -85,17 +85,41 @@ public:
     directedCycle(digraph &g){
         _marked.resize(g.V());
         _edgeTo.resize(g.V());
-        
+        _onStack.resize(g.V());
+        for(int i = 0; i < g.V(); i++){
+            if(!_marked[i])
+                _dfs(g, i);
+        }
     }
-    bool hasCycle(){return !_cycle.empty();}
+    stack<int> cycle(){
+        return _cycle;
+    }
+    bool hasCycle(){return _hascycle;}
 private:
     void _dfs(digraph &g, int s){
-
+        _onStack[s] = true;
+        _marked[s] = true;
+        _cycle.push(s);
+        for(auto w : g.adj(s)){
+            if(_hascycle)
+                return;
+            else if(!_marked[w]){
+                _edgeTo[w] = s;
+                _dfs(g, w);
+            }else if(_onStack[w]){
+                _hascycle = true;
+                for(int i = s; i != w; i = _edgeTo[i]){
+                    _cycle.push(i);
+                }
+            }
+        }
     }
 private:
     std::vector<bool>   _marked;
     std::vector<int>    _edgeTo;
     std::stack<int>     _cycle;
+    std::vector<bool>   _onStack;
+    bool                _hascycle;
 };
 
 }//namespace gra

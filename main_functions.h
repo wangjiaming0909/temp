@@ -1070,10 +1070,30 @@ void main_graph2()
     // gra::cycle cyc(g);
     // cout << cyc.hascycle() << endl;
 
+
+    // cout << df.marked(s) << endl;
+}
+
+void main_digraph(){
+    ifstream is;
+    int s = 0; //顶点
+    is.open("./graph/graphs/tinyDG.txt", _S_in);
+    if (!is)
+    {
+        cout << "open failed" << endl;
+    }
     gra::digraph dig(is);
     gra::digraph reversed_dipraph = dig.reverse();
     gra::directedDFS ddfs(dig, s);
-    cout << ddfs.marked(6) << endl;
+    cout << ddfs.marked(5) << endl;
     cout << ddfs.marked(9) << endl;
-    // cout << df.marked(s) << endl;
+    cout << ddfs.marked(2) << endl;
+    gra::directedCycle directedC(dig);
+    if(directedC.hasCycle()){
+        stack<int> cycle = directedC.cycle();
+        while(!cycle.empty()){
+            cout << cycle.top() << " ";
+            cycle.pop();
+        }
+    }
 }
