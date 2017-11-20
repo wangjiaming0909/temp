@@ -86,6 +86,7 @@ public:
         _marked.resize(g.V());
         _edgeTo.resize(g.V());
         _onStack.resize(g.V());
+        _hascycle = false;
         for(int i = 0; i < g.V(); i++){
             if(!_marked[i])
                 _dfs(g, i);
@@ -96,10 +97,12 @@ public:
     }
     bool hasCycle(){return _hascycle;}
 private:
+//只是检测有没有环,有环就之后每一次dfs都直接return,因为已经设置_hascycle = true了
     void _dfs(digraph &g, int s){
+        //从s开始的路径上,首先将其的_onStack设置为true,
+        //当在此路径上,遇到某一个已经设置了_onStack则说明构成了一个环
         _onStack[s] = true;
         _marked[s] = true;
-        _cycle.push(s);
         for(auto w : g.adj(s)){
             if(_hascycle)
                 return;
@@ -108,11 +111,12 @@ private:
                 _dfs(g, w);
             }else if(_onStack[w]){
                 _hascycle = true;
-                for(int i = s; i != w; i = _edgeTo[i]){
+                for(int i = s; i != w; i = _edgeTo[i])
                     _cycle.push(i);
-                }
+                _cycle.push(w);
             }
         }
+        _onStack[s] = false;//到此处说明当前节点已经访问完毕了,且当前节点以及当前节点指向的所有节点的集合中没有构成环,因此将其设置为false,
     }
 private:
     std::vector<bool>   _marked;
@@ -122,6 +126,90 @@ private:
     bool                _hascycle;
 };
 
+
+class DepthFirstOrder{
+public:
+    DepthFirstOrder(digraph &g){
+        _marked.resize(g.V());
+        for(int i = 0; i < g.V(); i++){
+            if(!_marked[i])
+                _dfs(g, i);
+        }
+    }
+    std::queue<int> pre(){return _pre;}
+    std::queue<int> post(){return _post;}
+    std::stack<int> reversepost(){return _reversepost;}
+private:
+    void _dfs(digraph &g, int s){
+        _pre.push(s);
+        _marked[s] = true;
+        for(auto w : g.adj(s)){
+            if(!_marked[w]){
+                _dfs(g, w);
+            }
+        }
+        _post.push(s);
+        _reversepost.push(s);
+    }
+private:
+    std::queue<int>     _pre;
+    std::queue<int>     _post;
+    std::stack<int>     _reversepost;
+    std::vector<int>    _marked;
+};
+
+class Topological{
+public:
+    //首先检查该有向图是否包含环,如果包含环直接返回空
+    //如果不包含,则取得深度优先搜索的顶点逆后序,即为拓扑排序
+    Topological(digraph &g){
+        directedCycle cycleFinder(g);
+        _hasCycle = cycleFinder.hasCycle();
+        if(!_hasCycle){
+            DepthFirstOrder dfs(g);
+            _order = dfs.reversepost();
+        }
+    }
+    std::stack<int> order(){
+        if(_hasCycle) return std::stack<int>();
+        return _order;
+    }
+private:
+    std::stack<int>     _order;
+    bool                _hasCycle;    
+};
+
+class KosarajuSCC{
+public:
+    KosarajuSCC(digraph &g){
+        _marked.resize(g.V());
+        _id.resize(g.V());
+        _count = 0;
+        digraph tmp = g.reverse();
+        DepthFirstOrder order(tmp);
+        for(auto w = order.reversepost().top(); !order.reversepost().empty(); order.reversepost().pop()){
+            if(!_marked[w]){
+                _dfs(g, w);
+                _count++;
+            }
+        }
+    }
+    bool strongly_connected(int v, int w){return _id[v] == _id[w];}
+    int id(int v){return _id[v];}
+    int count(){return _count;}
+private:
+    void _dfs(digraph &g, int s){
+        _marked[s] = true;
+        _id[s] = _count;
+        for(auto w : g.adj(s))
+            if(!_marked[w])
+                _dfs(g, w);
+    }
+private:
+    std::vector<int> _marked;
+    std::vector<int> _id;//强联通分量的标志符
+    int  _count;//强联通分量的数量
+};  
 }//namespace gra
 
 #endif // _DIGRAPH_H_
