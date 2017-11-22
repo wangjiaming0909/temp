@@ -17,6 +17,7 @@
 #include "graph/graph_headers.h"
 #include "stl.h"
 #include <fstream>
+#include <deque>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -1030,7 +1031,7 @@ void main_graph()
 void main_graph2()
 {
     ifstream is;
-    int s = 0; //顶点
+    // int s = 0; //顶点
     is.open("./graph/graphs/tinyG.txt", _S_in);
     if (!is)
     {
@@ -1096,4 +1097,8 @@ void main_digraph(){
             cycle.pop();
         }
     }
+}
+
+void main_deque(){
+    deque<int> deq(3);
 }

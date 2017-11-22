@@ -12,7 +12,8 @@ int main()
     // main_redblack();
     // main_graph();
     // main_graph2();
-    main_digraph();
+    // main_digraph();
+    main_deque();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3
