@@ -1100,5 +1100,5 @@ void main_digraph(){
 }
 
 void main_deque(){
-    deque<int> deq(3);
+    deque<int> deq;
 }
