@@ -1100,5 +1100,14 @@ void main_digraph(){
 }
 
 void main_deque(){
-    deque<int> deq;
+    deque<int> deq(2)
+    ;
+    cout << _Deque_iterator<int, int&, int*>::_S_buffer_size() << endl;
+    cout << deq.size() << " " << deq.max_size() << endl;
+    auto ref = deq[100];
+    auto it = deq.begin();
+    cout << it._S_buffer_size() << endl;
+    it++;
+    // cout << deq._M_impl._M_map_size() << endl;
+    cout << ref << endl;
 }
