@@ -51,7 +51,8 @@
         "cstring": "cpp",
         "ctime": "cpp",
         "iomanip": "cpp",
-        "mutex": "cpp"
+        "mutex": "cpp",
+        "stack": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "vim.disableAnnoyingNeovimMessage": true,
