@@ -26,7 +26,7 @@ SOURCES = main.cpp
 LIB = 
 OBJECTS = main.o
 INCLUDES = D:/boost_1_64_0/
-CPPFLAGS = -Wall -Wextra -std=c++11 -O0 -c -g2 -ggdb -Wfatal-errors
+CPPFLAGS = -Wall -Wextra -std=c++11 -O0 -c -g2 -ggdb -Wfatal-errors -Og
 
 all:$(TARGET)
 
