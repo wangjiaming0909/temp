@@ -14,7 +14,9 @@ int main()
     // main_graph2();
     // main_digraph();
     // main_deque();
-    main_count_if();
+    // main_count_if();
+    main_bind();
+    // main_type_traits();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3

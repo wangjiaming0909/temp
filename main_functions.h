@@ -509,9 +509,27 @@ void main_minheap()
 
 void main_type_traits()
 {
-    cout << std::is_array<int>::value << endl;
-    cout << std::is_array<int *>::value << endl;
-    cout << std::is_array<int[10]>::value << endl;
+    typedef int arr[10];  
+    typedef int arr2[];
+    cout << std::boolalpha << std::is_array<int>::value << endl;//false
+    cout << std::is_array<int *>::value << endl;//false
+    cout << std::is_array<int[10]>::value << endl;//true
+    cout << std::is_array<arr>::value << endl;//ture, 定长数组类型
+    cout << std::is_array<arr2>::value << endl;//ture, 不定数组类型
+    cout << std::is_array<arr2>() << endl;//ture,调用integral_constant的operator _Tp()
+#if __cplusplus > 201103L
+    auto  a = is_array<arr2>();
+    cout << a() << endl;
+#endif
+
+    typedef void f();
+    typedef void ff(f);
+    typedef void fff(ff, ff, f);
+    typedef void ffff(fff, fff);
+    cout << is_function<f>::value << " " 
+         << is_function<ff>::value << " " 
+         << is_function<fff>::value << " "
+         << is_function<ffff>::value << endl;
 }
 
 void main_courera_max_heap()
@@ -1145,9 +1163,24 @@ void main_count_if(){
     v2.push_back("");
     function<bool (const string&)> f = &string::empty;
     auto n = find_if(v2.begin(), v2.end(), f);
-    auto fp = &string::empty;
-    auto n3 = find_if(v2.begin(), v2.end(), mem_fn(fp));
-    mem_fun
+    // auto fp = &string::empty;
+    // auto n3 = find_if(v2.begin(), v2.end(), mem_fn(fp));
+    // auto n4 = find_if(v2.begin(), v2.end(), bind(&string::empty, placeholders::_1));
 
     cout << *n << endl;
+}
+
+void print_bind(int a, string s){
+    cout << a << " " << s << endl;
+}
+
+void print_bind2(string s, int a){
+    cout << a << " " << s << endl;
+}
+void main_bind(){
+    vector<string> v = {"12", "sd", "ge"};
+    auto bd = bind(print_bind2, placeholders::_1, 2);
+    // auto bd2 = bind(&string::empty, placeholders::_1);
+    for_each(v.begin(), v.end(), bind(print_bind2, placeholders::_1, 2));
+    for_each(v.begin(), v.end(), bind(print_bind, 2, placeholders::_1));
 }
