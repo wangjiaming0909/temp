@@ -1115,3 +1115,39 @@ void main_deque(){
 void main_stl_rb_tree(){
     // _Rb_tree<int, string, >
 }
+
+template <typename T>
+class test_template;
+
+/*
+template <typename T>
+class test_template<T (T, T)>{
+public:
+    test_template(){}
+    T print(){
+        cout << 123 << endl;
+    }
+};
+*/
+
+void main_count_if(){
+    vector<int> v = {1,2,3,4,5,6,7,8,9};
+    // auto n = count_if(v.begin(), v.end(), bind2nd(less<int>(), 2));
+    // auto n1 = count_if(v.begin(), v.end(), not1(bind2nd(less<int>(), 2)));
+    // auto n = count_if(v.begin(), v.end(), bind(less<int>(), std::placeholders::_1, 12));
+    // typedef int func(int, int);
+    // test_template<func> f;
+    // f.print();
+
+    string s = "abcdefg";
+    vector<string> v2;
+    v2.push_back(s);
+    v2.push_back("");
+    function<bool (const string&)> f = &string::empty;
+    auto n = find_if(v2.begin(), v2.end(), f);
+    auto fp = &string::empty;
+    auto n3 = find_if(v2.begin(), v2.end(), mem_fn(fp));
+    mem_fun
+
+    cout << *n << endl;
+}

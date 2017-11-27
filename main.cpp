@@ -13,7 +13,8 @@ int main()
     // main_graph();
     // main_graph2();
     // main_digraph();
-    main_deque();
+    // main_deque();
+    main_count_if();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3
