@@ -1111,3 +1111,7 @@ void main_deque(){
     // cout << deq._M_impl._M_map_size() << endl;
     cout << ref << endl;
 }
+
+void main_stl_rb_tree(){
+    // _Rb_tree<int, string, >
+}
