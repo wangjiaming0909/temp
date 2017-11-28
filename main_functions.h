@@ -174,6 +174,8 @@ size_t hasher(const _A &a) { return hash<string>()(a.str()); }
 
 void main_multi_set_map()
 {
+    // unordered_set<_A, decltype(hasher), decltype(eqOp)> uq;
+
     // unordered_set
     using SD_multiset = unordered_set<_A, decltype(hasher) *, decltype(eqOp) *>;
     SD_multiset sd_set(4, hasher, eqOp); // 4代表容器中元素的个数
@@ -979,7 +981,12 @@ void main_btree()
     // cout << endl;
 }
 
-void main_map() { map<int, string> m; }
+void main_map() { 
+    map<int, string> m; 
+    m.insert({1, "1"});
+    m.insert({2, "2"});
+    cout << m.at(1);
+}
 
 void main_redblack()
 {
@@ -1217,11 +1224,13 @@ void main_bind(){
     // auto f_mem_fn = mem_fn(&WJM::PRINT);
 }
 
-
 void main_set(){
-    set<int> setint = {1,3,4,5,6};
-    auto p = setint.lower_bound(1);
-    cout << *p << endl;
-    auto p2 = setint.upper_bound(1);
-    cout << *p2 << endl;
+    // set<int> setint = {1,3,4,5,6};
+    // auto p = setint.lower_bound(1);
+    // cout << *p << endl;
+    // auto p2 = setint.upper_bound(1);
+    // cout << *p2 << endl;
+
+    cout << typeid(decltype(main_bind)).name() << endl;
+    cout << typeid(decltype(main_bind)*).name() << endl;
 }
