@@ -1191,10 +1191,28 @@ void print_bind(int a, string s){
 void print_bind2(string s, int a){
     cout << a << " " << s << endl;
 }
+
+void print_bind3(double d, int a){
+    cout << d << a << endl;
+}
+class WJM{
+public:
+    bool PRINT(int d){
+        cout << 123 << endl;
+        return d;
+    }
+    int a;
+};
+
 void main_bind(){
     vector<string> v = {"12", "sd", "ge"};
-    auto bd = bind(print_bind2, placeholders::_1, 2);
+    // function<void (double, int)> func = &print_bind3;
+    function<bool (WJM&, int)> funcs = &WJM::PRINT;
+    function<bool (const string&)> funcstring = &string::empty;
+    auto bd = bind(print_bind3, placeholders::_1, 2);
     // auto bd2 = bind(&string::empty, placeholders::_1);
     for_each(v.begin(), v.end(), bind(print_bind2, placeholders::_1, 2));
     for_each(v.begin(), v.end(), bind(print_bind, 2, placeholders::_1));
+
+    auto f_mem_fn = mem_fn(&WJM::PRINT);
 }
