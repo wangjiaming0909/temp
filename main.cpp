@@ -15,7 +15,8 @@ int main()
     // main_digraph();
     // main_deque();
     // main_count_if();
-    main_bind();
+    // main_bind();
+    main_set();
     // main_type_traits();
 }
 

@@ -18,6 +18,7 @@
 #include "stl.h"
 #include <fstream>
 #include <deque>
+#include <set>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -509,8 +510,8 @@ void main_minheap()
 
 void main_type_traits()
 {
-    typedef int arr[10];  
-    typedef int arr2[];
+    // typedef int arr[10];  
+    // typedef int arr2[];
 //     cout << std::boolalpha << std::is_array<int>::value << endl;//false
 //     cout << std::is_array<int *>::value << endl;//false
 //     cout << std::is_array<int[10]>::value << endl;//true
@@ -522,28 +523,28 @@ void main_type_traits()
 //     cout << a() << endl;
 // #endif
 
-    typedef void f();
-    typedef void ff(f);
-    typedef void fff(ff, ff, f);
-    typedef void ffff(fff, fff);
-    int d = 12;
-    const volatile int& cv_ref = d;
+    // typedef void f();
+    // typedef void ff(f);
+    // typedef void fff(ff, ff, f);
+    // typedef void ffff(fff, fff);
+    // int d = 12;
+    // const volatile int& cv_ref = d;
 //     cout << is_function<f>::value << " " 
 //          << is_function<ff>::value << " " 
 //          << is_function<fff>::value << " "
 //          << is_function<ffff>::value << endl;
 
     //decay
-    cout << "const volatile: " << endl;
-    cout << typeid(cv_ref).name() << " "
-         << typeid(decay<decltype(cv_ref)>::type).name() << endl;
-    //函数类型，返回函数指针
-    cout << "function: "<< endl << typeid(f).name() << " ";
-    cout << typeid(decay<f>::type).name() << endl;
-    //数组返回指针
-    cout << "array: " << endl << typeid(arr2).name() << " " 
-         << typeid(decay<arr>::type).name() << endl;
-    cout << "is_enum: " << endl << is_enum<arr>::value << endl;
+    // cout << "const volatile: " << endl;
+    // cout << typeid(cv_ref).name() << " "
+    //      << typeid(decay<decltype(cv_ref)>::type).name() << endl;
+    // //函数类型，返回函数指针
+    // cout << "function: "<< endl << typeid(f).name() << " ";
+    // cout << typeid(decay<f>::type).name() << endl;
+    // //数组返回指针
+    // cout << "array: " << endl << typeid(arr2).name() << " " 
+    //      << typeid(decay<arr>::type).name() << endl;
+    // cout << "is_enum: " << endl << is_enum<arr>::value << endl;
 }
 
 void main_courera_max_heap()
@@ -1180,7 +1181,6 @@ void main_count_if(){
     // auto fp = &string::empty;
     // auto n3 = find_if(v2.begin(), v2.end(), mem_fn(fp));
     // auto n4 = find_if(v2.begin(), v2.end(), bind(&string::empty, placeholders::_1));
-
     cout << *n << endl;
 }
 
@@ -1209,10 +1209,19 @@ void main_bind(){
     // function<void (double, int)> func = &print_bind3;
     function<bool (WJM&, int)> funcs = &WJM::PRINT;
     function<bool (const string&)> funcstring = &string::empty;
-    auto bd = bind(print_bind3, placeholders::_1, 2);
+    // auto bd = bind(print_bind3, placeholders::_1, 2);
     // auto bd2 = bind(&string::empty, placeholders::_1);
     for_each(v.begin(), v.end(), bind(print_bind2, placeholders::_1, 2));
     for_each(v.begin(), v.end(), bind(print_bind, 2, placeholders::_1));
 
-    auto f_mem_fn = mem_fn(&WJM::PRINT);
+    // auto f_mem_fn = mem_fn(&WJM::PRINT);
+}
+
+
+void main_set(){
+    set<int> setint = {1,3,4,5,6};
+    auto p = setint.lower_bound(1);
+    cout << *p << endl;
+    auto p2 = setint.upper_bound(1);
+    cout << *p2 << endl;
 }
