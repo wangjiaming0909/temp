@@ -511,25 +511,39 @@ void main_type_traits()
 {
     typedef int arr[10];  
     typedef int arr2[];
-    cout << std::boolalpha << std::is_array<int>::value << endl;//false
-    cout << std::is_array<int *>::value << endl;//false
-    cout << std::is_array<int[10]>::value << endl;//true
-    cout << std::is_array<arr>::value << endl;//ture, 定长数组类型
-    cout << std::is_array<arr2>::value << endl;//ture, 不定数组类型
-    cout << std::is_array<arr2>() << endl;//ture,调用integral_constant的operator _Tp()
-#if __cplusplus > 201103L
-    auto  a = is_array<arr2>();
-    cout << a() << endl;
-#endif
+//     cout << std::boolalpha << std::is_array<int>::value << endl;//false
+//     cout << std::is_array<int *>::value << endl;//false
+//     cout << std::is_array<int[10]>::value << endl;//true
+//     cout << std::is_array<arr>::value << endl;//ture, 定长数组类型
+//     cout << std::is_array<arr2>::value << endl;//ture, 不定数组类型
+//     cout << std::is_array<arr2>() << endl;//ture,调用integral_constant的operator _Tp()
+// #if __cplusplus > 201103L
+//     auto  a = is_array<arr2>();
+//     cout << a() << endl;
+// #endif
 
     typedef void f();
     typedef void ff(f);
     typedef void fff(ff, ff, f);
     typedef void ffff(fff, fff);
-    cout << is_function<f>::value << " " 
-         << is_function<ff>::value << " " 
-         << is_function<fff>::value << " "
-         << is_function<ffff>::value << endl;
+    int d = 12;
+    const volatile int& cv_ref = d;
+//     cout << is_function<f>::value << " " 
+//          << is_function<ff>::value << " " 
+//          << is_function<fff>::value << " "
+//          << is_function<ffff>::value << endl;
+
+    //decay
+    cout << "const volatile: " << endl;
+    cout << typeid(cv_ref).name() << " "
+         << typeid(decay<decltype(cv_ref)>::type).name() << endl;
+    //函数类型，返回函数指针
+    cout << "function: "<< endl << typeid(f).name() << " ";
+    cout << typeid(decay<f>::type).name() << endl;
+    //数组返回指针
+    cout << "array: " << endl << typeid(arr2).name() << " " 
+         << typeid(decay<arr>::type).name() << endl;
+    cout << "is_enum: " << endl << is_enum<arr>::value << endl;
 }
 
 void main_courera_max_heap()

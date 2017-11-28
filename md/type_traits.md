@@ -56,3 +56,43 @@ struct is_array<_Tp[]> : public true_type { };
     { typedef _Tp   type; };
 ```
 
+### decay
+```c++
+// Decay trait for arrays and functions, used for perfect forwarding
+// in make_pair, make_tuple, etc.
+template<typename _Up, 
+    bool _IsArray = is_array<_Up>::value,
+    bool _IsFunction = is_function<_Up>::value> 
+struct __decay_selector;
+
+template<typename _Up> 
+struct __decay_selector<_Up, false, false>
+{ typedef typename remove_cv<_Up>::type __type; };
+
+template<typename _Up> 
+struct __decay_selector<_Up, true, false>
+{ typedef typename remove_extent<_Up>::type* __type; };
+
+template<typename _Up> 
+struct __decay_selector<_Up, false, true>
+{ typedef typename add_pointer<_Up>::type __type; };
+
+/// decay
+template<typename _Tp> 
+class decay { 
+    typedef typename remove_reference<_Tp>::type __remove_type;
+public:
+    //如果去掉reference之后是一个数组，就返回一个指针
+    //如果去掉reference之后是一个函数类型，就返回一个函数指针
+    //标准库这么说：
+    /*This behavior is similar to the 
+        lvalue-to-rvalue,
+        array-to-pointer, and 
+        function-to-pointer conversions
+applied when an lvalue expression is used as an rvalue, 
+but alse strips cv-qualifiers from class types in order to more
+closely model by-value argument passing*/
+    typedef typename __decay_selector<__remove_type>::__type type;
+};
+```
+
