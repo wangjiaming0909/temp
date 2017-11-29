@@ -19,6 +19,7 @@
 #include <fstream>
 #include <deque>
 #include <set>
+#include <unordered_set>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -1233,4 +1234,83 @@ void main_set(){
 
     cout << typeid(decltype(main_bind)).name() << endl;
     cout << typeid(decltype(main_bind)*).name() << endl;
+}
+
+template <typename _Tp>
+struct eqop{};
+
+template <>
+struct eqop<string>{
+    bool operator()(const string &lh, const string &rh) const{
+        return lh == rh;
+    }
+};
+template <typename _Tp>
+struct hash_func{};
+
+template <>
+struct hash_func<int>{
+    size_t operator()(const int a) const {return a;}
+};
+
+template <>
+struct hash_func<string>{
+    size_t operator()(const string& s) const{return s.size();}
+};
+
+template <typename _Tp>
+class INIT_SET{};
+
+template <>
+struct INIT_SET<int>{
+    void init_set_insert(unordered_set<int, hash_func<int>> &s, int i){
+        s.insert(i);
+    }
+};
+
+template <>
+struct INIT_SET<string>{
+    void init_set_insert(unordered_set<string, hash_func<string>, eqop<string>> &s, int i){
+        s.insert(to_string(i));
+    }
+};
+
+template <typename _Set_type>
+void init_us(_Set_type &us){
+    typedef typename _Set_type::key_type value_type;
+    for(int i = 0; i < 1000; i++){
+        INIT_SET<value_type>().init_set_insert(us, i);
+    }
+}
+
+size_t f_hash_string(const string &s){
+    return s.size();
+}
+
+bool eq_string(const string& s1, const string& s2){
+    return s1 == s2;
+}
+
+void main_hash_set_map(){
+    //unordered_set<int>
+    unordered_set<int, hash_func<int>> us_int(10);
+    init_us(us_int);
+    auto it_int = us_int.find(100);
+    cout << *it_int << endl;
+
+    //unordered_set<string>
+    unordered_set<string, hash_func<string>, eqop<string>> us_string(10);
+    init_us(us_string);
+    auto it_string = us_string.find("100");
+    cout << *it_string << endl << typeid(*it_string).name() << endl;
+
+    // //使用函数指针类型的模板参数
+    using us_set_hash_type = unordered_set<string, decltype(f_hash_string)*, decltype(eq_string)*>;
+    us_set_hash_type us_f(12, f_hash_string, eq_string);
+    us_f.insert("12");
+    us_f.insert("13");
+    us_f.insert("11");
+
+    auto it_us123 = us_f.find("12");
+    cout << *it_us123 << endl;
 }

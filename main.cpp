@@ -17,9 +17,10 @@ int main()
     // main_count_if();
     // main_bind();
     // main_set();
-    main_multi_set_map();
+    // main_multi_set_map();
     // main_type_traits();
     // main_map();
+    main_hash_set_map();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3

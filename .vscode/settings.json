@@ -53,7 +53,8 @@
         "iomanip": "cpp",
         "mutex": "cpp",
         "stack": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "unordered_set": "cpp"
     },
     "git.ignoreLimitWarning": true,
     "vim.disableAnnoyingNeovimMessage": true,
