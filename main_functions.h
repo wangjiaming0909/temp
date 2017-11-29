@@ -20,6 +20,8 @@
 #include <deque>
 #include <set>
 #include <unordered_set>
+#include <numeric>
+#include <ext/numeric>
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -1313,4 +1315,19 @@ void main_hash_set_map(){
 
     auto it_us123 = us_f.find("12");
     cout << *it_us123 << endl;
+}
+
+int accu_f(int a, int b){
+    return a + b;
+}
+void main_stl_algorithms(){
+    vector<int> v = {2,65,12,62,12,512,121,25124,12};
+    // std::sort(v.begin(), v.end());
+    auto i1 = accumulate(v.begin(), v.end(), 0);
+    auto i2 = accumulate(v.begin(), v.end(), 0, accu_f);
+    cout << i1 - i2 << endl;
+    auto i3 = __gnu_cxx::power(2, 10);
+    cout << i3 << endl;
+    // fill_n
+    iter_swap(v.begin(), v.end());
 }

@@ -20,7 +20,8 @@ int main()
     // main_multi_set_map();
     // main_type_traits();
     // main_map();
-    main_hash_set_map();
+    // main_hash_set_map();
+    main_stl_algorithms();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3
