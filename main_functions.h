@@ -1327,7 +1327,41 @@ void main_stl_algorithms(){
     auto i2 = accumulate(v.begin(), v.end(), 0, accu_f);
     cout << i1 - i2 << endl;
     auto i3 = __gnu_cxx::power(2, 10);
-    cout << i3 << endl;
+        cout << i3 << endl;
     // fill_n
     iter_swap(v.begin(), v.end());
+}
+
+namespace cpp_inside{
+class Base{
+public:
+    virtual void print(){cout << 123 << endl;}
+    int _base;   
+};
+
+class A1 : virtual public Base{
+public:
+    virtual void print(){cout << 12 << endl;}
+    int _a1;
+};
+
+class A2 : virtual public Base{
+public:
+    virtual void print(){cout << 34<< endl;}
+    int _a2;
+};
+
+class D : public A1, public A2{
+public:
+    virtual void print(){cout << 6 << endl;}
+    int _d;
+};
+}
+
+void main_cpp_(){
+    cpp_inside::Base base, *pbase = &base;
+    cpp_inside::A1 a1, *pa1 = &a1;
+    cpp_inside::A2 a2, *pa2 = &a2;
+    cpp_inside::D d, *pd = &d;
+    base.print();
 }
