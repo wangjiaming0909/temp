@@ -1359,9 +1359,30 @@ public:
 }
 
 void main_cpp_(){
-    cpp_inside::Base base, *pbase = &base;
-    cpp_inside::A1 a1, *pa1 = &a1;
-    cpp_inside::A2 a2, *pa2 = &a2;
-    cpp_inside::D d, *pd = &d;
-    base.print();
+    // cpp_inside::Base base, *pbase = &base;
+    // cpp_inside::A1 a1, *pa1 = &a1;
+    // cpp_inside::A2 a2, *pa2 = &a2;
+    // cpp_inside::D d, *pd = &d;
+    // base.print();
+}
+
+namespace opt_new{
+template <typename T>
+class Base{
+public:
+    Base(int base = 0) : _base(base){}
+    void *operator new(size_t s) throw() {
+        if(s != sizeof(Base))
+            return ::operator new(s);
+        return nullptr;
+    }
+    void print(){cout << 123 << endl;}
+    int _base;
+    T _t;
+};
+}
+
+void main_opt_new(){
+    opt_new::Base<double> *pbase = new opt_new::Base<double>;
+    pbase->print();
 }

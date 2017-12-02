@@ -22,7 +22,10 @@ int main()
     // main_map();
     // main_hash_set_map();
     // main_stl_algorithms();
-    main_cpp_();
+    // main_cpp_();
+    main_opt_new();
+    // cout << 123 << endl;
+
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3

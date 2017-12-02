@@ -9,7 +9,7 @@ $(target):$(objects)
 #	g++ -O1 $^ -L. -la -o $@ 
 	g++  $^ -o $@  -lpthread
 	@echo ok...
-	rm *.o
+	# rm *.o
 
 $(objects):%.o:%.cpp
 # @echo compiling...
@@ -18,7 +18,7 @@ $(objects):%.o:%.cpp
 	
 
 clean:FORCE
-	rm -f *.o 
+	# rm -f *.o 
 	rm -f *.exe
 	rm -f *.out
 	@echo ok..
