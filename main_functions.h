@@ -22,6 +22,7 @@
 #include <unordered_set>
 #include <numeric>
 #include <ext/numeric>
+#include "boost_tests/timer_tests.h"
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -1385,4 +1386,18 @@ public:
 void main_opt_new(){
     opt_new::Base<double> *pbase = new opt_new::Base<double>;
     pbase->print();
+}
+
+
+void main_hello(){
+    using namespace boost_test;
+    hello(1);
+}
+
+void main_timer(){
+    using namespace boost_test;
+    test_timer::test();
+    test_timer::test2();
+    test_timer::test3();
+    getchar();
 }

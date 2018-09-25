@@ -18,7 +18,7 @@ $(objects):%.o:%.cpp
 	
 
 clean:FORCE
-	# rm -f *.o 
+	rm -f *.o 
 	rm -f *.exe
 	rm -f *.out
 	@echo ok..

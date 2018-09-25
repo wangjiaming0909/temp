@@ -24,7 +24,9 @@ int main()
     // main_stl_algorithms();
     // main_cpp_();
     // main_opt_new();
-    cout << 123 << endl;
+    // cout << 123 << endl;
+    // main_hello();
+    main_timer();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3
