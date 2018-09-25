@@ -8,7 +8,6 @@
                 "/usr/include/c++/5/",
                 "/usr/include/",
                 "/usr/include/x86_64-linux-gnu/c++/5/"
-                
             ],
             "browse": {
                 "path": [
@@ -25,12 +24,10 @@
         {
             "name": "Win32",
             "includePath": [
-                "D:/Qt5.5.1/Tools/mingw492_32/i686-w64-mingw32/include/c++",
-                "D:/Qt5.5.1/Tools/mingw492_32/i686-w64-mingw32/include/c++/i686-w64-mingw32",
+                "C:/Users/jwang284/OneDrive - Schlumberger/virtualM/tools/boost_1_68_0/boost_1_68_0",
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/um",
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/shared",
                 "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt",
-                "D:/boost_1_64_0/",
                 "${workspaceRoot}"
             ],
             "defines": [
@@ -40,12 +37,10 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "D:/Qt5.5.1/Tools/mingw492_32/i686-w64-mingw32/include/c++",
-                    "D:/Qt5.5.1/Tools/mingw492_32/i686-w64-mingw32/include/c++/i686-w64-mingw32",
+                    "C:/Users/jwang284/OneDrive - Schlumberger/virtualM/tools/boost_1_68_0/boost_1_68_0",
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/um",
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/shared",
                     "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt",
-                    "D:/boost_1_64_0/",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
@@ -53,5 +48,5 @@
             }
         }
     ],
-    "version": 3
+    "version": 4
 }

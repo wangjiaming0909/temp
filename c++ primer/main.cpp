@@ -76,3 +76,18 @@ int main01()
     // main_regex();
     return 0;
 }
+
+void Composition::GetData(){
+	switch(interval){
+	case ByDay:
+		aggregatorByDay.aggregate();
+		break;
+	case ByWeek:
+		aggregatorByWeek.aggregate();
+		break;
+	}
+}
+
+void Composition::GetData(){
+    aggregator.agregate();
+}

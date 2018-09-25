@@ -25,7 +25,7 @@ HEADERS = boost_test.h\
 SOURCES = main.cpp	
 LIB = 
 OBJECTS = main.o
-INCLUDES = D:/boost_1_64_0/
+INCLUDES = C:/Users/jwang284/"OneDrive - Schlumberger"/virtualM/tools/boost_1_68_0/boost_1_68_0
 CPPFLAGS = -Wall -Wextra -std=c++11 -O0 -c -g2 -ggdb -Wfatal-errors -Og
 
 all:$(TARGET)
