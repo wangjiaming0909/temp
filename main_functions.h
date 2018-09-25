@@ -1396,8 +1396,9 @@ void main_hello(){
 
 void main_timer(){
     using namespace boost_test;
-    test_timer::test();
-    test_timer::test2();
-    test_timer::test3();
+    // test_timer::test();
+    // test_timer::test2();
+    // test_timer::test3();
+    test_timer::test4();
     getchar();
 }

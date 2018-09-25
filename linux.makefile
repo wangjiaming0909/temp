@@ -1,13 +1,13 @@
 target = a.out
 objects = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
-LIB = a
+LIB = /boost_1_68_0/stage/lib
 
 all:$(target)
 
 $(target):$(objects) 
 	@echo linking...
 #	g++ -O1 $^ -L. -la -o $@ 
-	g++  $^ -o $@  -lpthread
+	g++  $^ -o $@ -L LIB -lpthread
 	@echo ok...
 	# rm *.o
 

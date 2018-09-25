@@ -2,6 +2,7 @@
 #include <boost/timer.hpp>
 #include <boost/progress.hpp>
 #include <unistd.h>
+#include <boost/date_time/gregorian/gregorian.hpp>
 namespace boost_test{
 
 void hello(int i){
@@ -32,6 +33,11 @@ public:
                 ++pd;
             }
         }
+    }
+    static void test4(){
+        using namespace boost::gregorian;
+        date d(2018, 1, 1);
+        std::cout << d << std::endl;
     }
 };
 
