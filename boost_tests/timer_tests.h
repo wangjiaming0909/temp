@@ -36,8 +36,20 @@ public:
     }
     static void test4(){
         using namespace boost::gregorian;
+        using namespace std;
         date d(2018, 1, 1);
-        std::cout << d << std::endl;
+        std::cout << not_a_date_time << std::endl;//just the enum int value
+        cout << neg_infin << endl;
+        cout << pos_infin << endl;
+        cout << min_date_time << endl;
+        cout << max_date_time << endl;
+        cout << not_special << endl;
+        // cout << NumSpecialValues << endl;
+        cout << d << endl;
+    }
+
+    static void testday_clock(){
+        using namespace day_lock;
     }
 };
 
