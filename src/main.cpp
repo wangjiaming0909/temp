@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include "boost_test.h"
+#include "al/003longestSubString.h"
 using namespace std;
 
 int main()
@@ -27,7 +28,10 @@ int main()
     // cout << 123 << endl;
     // main_hello();
     // main_timer();
-    main_multi_param_of_template_param();
+    // main_multi_param_of_template_param();
+
+    LONGESTSUBSTRING::test();
+
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3
