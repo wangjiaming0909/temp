@@ -31,7 +31,8 @@ int main()
     // main_multi_param_of_template_param();
 
     // al::NlongestSubString::test();
-    al::Nmedian_of_two_stored_vector::test();
+    // al::Nmedian_of_two_stored_vector::test();
+    al::Nlongest_palindromic_strstring::test();
 
 }
 

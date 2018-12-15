@@ -4,6 +4,7 @@
 namespace al{
     namespace NlongestSubString{ void test(); }
     namespace Nmedian_of_two_stored_vector{ void test(); }
+    namespace Nlongest_palindromic_strstring{void test(); }
 }
 
 #endif // _LEETCODE_H_
