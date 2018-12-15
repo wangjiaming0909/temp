@@ -71,7 +71,6 @@
         "*.ipp": "cpp"
     },
     "git.ignoreLimitWarning": true,
-    "vim.disableAnnoyingNeovimMessage": true,
     "window.zoomLevel": 1,
     "git.enableSmartCommit": true,
     "editor.fontSize": 16,
@@ -90,8 +89,6 @@
     // "workbench.colorTheme": "Monokai",
     // "window.openFilesInNewWindow": "on",
     // "window.openFoldersInNewWindow": "on",
-    "window.restoreFullscreen": true,
-    "window.menuBarVisibility": "toggle",
     "zenMode.hideStatusBar": false,
     "zenMode.restore": true,
     //debug
@@ -107,14 +104,12 @@
     // "editor.fontFamily": "Ubuntu Italic"
     // "editor.fontFamily": "Tlwg Typo Regular"
     // "editor.fontFamily": "Times Ne  w Roman"
-    "terminal.integrated.rightClickCopyPaste": true,
     "terminal.integrated.fontFamily": "'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "terminal.integrated.cursorBlinking": true,
     "debug.internalConsoleOptions": "neverOpen",
     "workbench.quickOpen.closeOnFocusLost": false,
     "editor.stablePeek": true,
     "editor.wordBasedSuggestions": true,
-    "typescript.useCodeSnippetsOnMethodSuggest": true,
     "editor.tabCompletion": true,
     "C_Cpp.autocomplete": "Default",
     "C_Cpp.errorSquiggles": "Disabled",
@@ -136,7 +131,5 @@
     //     "editor.foreground": "#ffffff"
     // },
     "workbench.colorTheme": "Monokai Dimmed",
-    "explorer.confirmDragAndDrop": false,
-    "workbench.activityBar.visible": false,
-    "workbench.panel.location": "bottom"
+    "explorer.confirmDragAndDrop": false
 }
