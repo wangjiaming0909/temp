@@ -7,9 +7,12 @@
 #include <string>
 #include <functional>
 #include <initializer_list>
+#include <thread>
 //定义一个非类型模版参数
 template <unsigned N, unsigned M>
 int compare(const char (&p1)[N], const char (&p2)[M]){
+    (void)p1;
+    (void)p2;
     return N - M;
 }
 
@@ -127,6 +130,7 @@ namespace JJ{
     template <class T>
     T calc(T lhs, T rhs){
         std::cout << lhs << " " << rhs << std::endl;
+        return lhs;
     }
     template <class T>
     const T& my_max(const T &t1, const T &t2){
@@ -135,12 +139,14 @@ namespace JJ{
 
     template <typename It>
     auto return_r_ref(It beg, It end) ->decltype(*beg + 0){//返就是一个右值引用，不是引用类型
+        (void)end;
         return *beg;
     }
 
     //检查左右值引用模版的调用问题
     template <typename T>
     void ref(const T &l){
+        (void)l;
         std::cout << "l" << std::endl;
     }
     // template <typename T>
@@ -185,6 +191,7 @@ namespace JJ{
     }
     template <typename T>
     void f(const T *t){
+        (void)t;
         std::cout << "f 2" << std::endl;
     }
 
@@ -195,15 +202,8 @@ namespace JJ{
     }
     template <class T>
     void g(const T *t){
+        (void)t;
         std::cout << "g 2" << std::endl;
-    }
-    //可变参数模版
-    template <typename ...Args>
-    void g(Args ... args){
-        using std::cout;
-        using std::endl;
-        cout << sizeof...(Args) << endl;
-        cout << sizeof...(args) << endl;
     }
 
     template <class T>
@@ -215,6 +215,15 @@ namespace JJ{
     ostream &print(ostream &os, const T&t, const Args&... rest){
         os << t << ", ";
         return print(os, rest...);//少了const T&t，因此每次调用包内少一个参数，最终调用非模版的函数
+    }
+    //可变参数模版
+    template <typename ...Args>
+    void g(Args ... args){
+        using std::cout;
+        using std::endl;
+        cout << sizeof...(Args) << endl;
+        cout << sizeof...(args) << endl;
+        print(cout, args...);
     }
     using std::cout;
     using std::endl;

@@ -150,8 +150,8 @@ void test_16_50()
     int *p = &i;
     const int ci = 0, *p2 = &ci;
     string s = "qwe";
-    string *sp = &s;
-    const string *s2 = sp;
+    // string *sp = &s;
+    // const string *s2 = sp;
     JJ::g(42);
     JJ::g(p); //
     JJ::g(ci);
@@ -164,8 +164,8 @@ void test_16_50()
 
 void main_g_()
 {
-    string s1, s2;
-    int a1, a2;
+    string s1{}, s2{};
+    int a1 = 0, a2 = 0;
     JJ::g(s1, a1, a2, s2);
 }
 
@@ -231,9 +231,9 @@ void main_exception(){
 }
 
 namespace abc{
-    void print(int x){cout << "int" << endl;}
-    void print(const string &s){cout << "string" << endl;}
-    void print(double d){cout << "double2" << endl;}
+    void print(int x){cout << "int" << x << endl;}
+    void print(const string &s){cout << "string" << s << endl;}
+    void print(double d){cout << "double2" << d << endl;}
 
 
     class A{
@@ -252,7 +252,7 @@ namespace abc{
 }
 
 void print(double d){
-    cout << "double" << endl;
+    cout << "double" << d << endl;
 }
 
 void main_multiple_inheritance(){
@@ -266,8 +266,8 @@ void main_multiple_inheritance(){
 void main_multiple_inheritance2(){
 
     using _MULTI_INHERITANCE2::VMI;
-    using PRINT = string& (VMI::*)(const string &s) const;
-    PRINT prt = &VMI::print;
+    // using PRINT = string& (VMI::*)(const string &s) const;
+    // PRINT prt = &VMI::print;
     // VMI vmi;
     // vmi.print();
     // cout << vmi.ival << " ";
@@ -284,13 +284,14 @@ void main_type_info(){
     << typeid(_MULTI_INHERITANCE2::VMI).name() << endl;
 
     using type::type_;
-    type_ ty = type_::d;
+    // type_ ty = type_::d;
     // int ty2 = type_::d;//限定作用域枚举不会进行隐式转换
 }
 
 void main_my_add_const(){
     // i = 13;
 }
+
 
 
 #endif //MAIN_FUNCTION_H_

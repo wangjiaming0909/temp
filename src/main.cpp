@@ -26,7 +26,8 @@ int main()
     // main_opt_new();
     // cout << 123 << endl;
     // main_hello();
-    main_timer();
+    // main_timer();
+    main_multi_param_of_template_param();
 }
 
 //bb2baeeec14e0ff29b4035f2dea60245e338fcc3

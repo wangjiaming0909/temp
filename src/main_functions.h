@@ -23,6 +23,7 @@
 #include <numeric>
 #include <ext/numeric>
 #include "boost_tests/timer_tests.h"
+#include "primer/template.h"
 // #include <windows.h>
 // #include "microtime.h"
 
@@ -1401,4 +1402,8 @@ void main_timer(){
     // test_timer::test3();
     test_timer::test4();
     getchar();
+}
+
+void main_multi_param_of_template_param(){
+    JJ::g(1, 2, 2,2);
 }

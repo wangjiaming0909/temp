@@ -1,25 +1,37 @@
-target = a.out
-objects = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
+CC = g++
+FLAGS = -Wall -Wextra -std=c++17 -c -O0 -g2 -ggdb -Wfatal-errors
+DEFS = 
+DEFINES = $(patsubst %, -D%, $(DEFS))
+
+SOURCE_DIR = ./src
+BUILD_DIR = ./build
+OBJ_DIR = $(BUILD_DIR)/obj
+
+MKDIR = mkdir -p
+RM = rm -rf
+
+SOURCES = $(shell find $(SOURCE_DIR) -type f -name '*.cpp')
+OBJECTS = $(patsubst $(SOURCE_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES) )
+
+TARGET = $(BUILD_DIR)/a.out
 LIB = /boost_1_68_0/stage/lib
+INCLUDES = /boost_1_68_0
 
-all:$(target)
+LD_FLAGS = -pthread
 
-$(target):$(objects) 
-	@echo linking...
-#	g++ -O1 $^ -L. -la -o $@ 
-	g++  $^ -o $@ -L LIB -lpthread
-	@echo ok...
-	# rm *.o
+all: $(BUILD_DIR) $(TARGET)
 
-$(objects):%.o:%.cpp
-# @echo compiling...
-	@rm -f *.out
-	g++ -Wall -Wextra -std=c++11 -I /boost_1_68_0/ -c -O0  $< -o $@ -g2 -ggdb -Wfatal-errors
-	
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -L $(LIB) $(LD_FLAGS) -o $@
+	@echo "OK...."
 
-clean:FORCE
-	rm -f *.o 
-	rm -f *.exe
-	rm -f *.out
-	@echo ok..
+$(BUILD_DIR):
+	$(MKDIR) $@
+
+$(OBJECTS): $(OBJ_DIR)/%.o : $(SOURCE_DIR)/%.cpp
+	$(MKDIR) $(dir $@)
+	$(CC) $(DEFINES) $(FLAGS) $< -I $(INCLUDES) -o $@
+
+clean: FORCE
+	$(RM) $(OBJECTS) $(TARGET)
 FORCE:

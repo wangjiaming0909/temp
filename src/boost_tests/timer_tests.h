@@ -49,7 +49,6 @@ public:
     }
 
     static void testday_clock(){
-        using namespace day_lock;
     }
 };
 

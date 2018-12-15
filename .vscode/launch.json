@@ -37,7 +37,7 @@
             "args": [],
             "internalConsoleOptions": "neverOpen",
             "linux": {
-                "program": "${workspaceFolder}/a.out",
+                "program": "${workspaceFolder}/build/a.out",
                 "miDebuggerPath": "/usr/bin/gdb"
             },
             "windows": {
