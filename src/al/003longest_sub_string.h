@@ -10,7 +10,8 @@
 #include "../timer.h"
 using namespace std;
 
-namespace LONGESTSUBSTRING{
+namespace al{
+namespace NlongestSubString{
 
 /*
 a a s d s w a 
@@ -80,6 +81,7 @@ void test(){
     assert(ret2 == 1);
 }
 
-}
+} // namespace longestSubString
+}//namespace al
 
 #endif // _AL_LONGESTSUBSTRING_H_

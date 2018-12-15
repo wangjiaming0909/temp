@@ -14,8 +14,8 @@ public:
     }
     ~timer() {
         cout 
-            << std::left << std::setw(20) << s_ 
-            << std::left << std::setw(24) << timer_.elapsed() 
+            << std::left << std::setw(48) << s_ 
+            << std::left << std::setw(24) << std::fixed << timer_.elapsed() 
             << endl;
     }
 

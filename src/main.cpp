@@ -5,7 +5,8 @@
 #include <string>
 #include <sstream>
 #include "boost_test.h"
-#include "al/003longestSubString.h"
+#include "al/003longest_sub_string.h"
+#include "al/004median_of_two_sorted_vector.h"
 using namespace std;
 
 int main()
@@ -30,7 +31,8 @@ int main()
     // main_timer();
     // main_multi_param_of_template_param();
 
-    LONGESTSUBSTRING::test();
+    // al::NlongestSubString::test();
+    al::Nmedian_of_two_stored_vector::test();
 
 }
 
