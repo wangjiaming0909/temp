@@ -8,6 +8,7 @@
 #include <boost/timer.hpp>
 #include <iomanip>
 #include "../timer.h"
+#include "leetcode.h"
 using namespace std;
 
 namespace al{
@@ -63,8 +64,6 @@ size_t longestSubString2(const string s) {//do some refactor
     }
     return ret;
 }
-
-
 
 void test(){
     string s1{"tmmzuxasasdqweadqweasdqwdasdqweasdqwedsadwqeasdgrthgjhghkjlyuoiyurgdfsdfdfqwerafsdgqwefsdpogopdjgowjkfopewgrpeasdqpwfqpqiowersdasdqwegfdfuiqtvzxcnmihfiowircjpoqjwfwekwkggslfqowejhfashdqljgnqweqafasdqwerqwrigt"};

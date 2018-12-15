@@ -1,12 +1,11 @@
-#include "main_functions.h"
-#include "stl.h"
+// #include "main_functions.h"
+// #include "stl.h"
 #include <vector>
 #include <queue>
 #include <string>
 #include <sstream>
-#include "boost_test.h"
-#include "al/003longest_sub_string.h"
-#include "al/004median_of_two_sorted_vector.h"
+// #include "boost_test.h"
+#include "al/leetcode.h"
 using namespace std;
 
 int main()
