@@ -1,10 +1,9 @@
 #ifndef _LEETCODE_H_
 #define _LEETCODE_H_
 
-namespace al{
-    namespace NlongestSubString{ void test(); }
-    namespace Nmedian_of_two_stored_vector{ void test(); }
-    namespace Nlongest_palindromic_strstring{void test(); }
-}
+class ILeetCode{
+public:
+    virtual void test() = 0;
+};
 
 #endif // _LEETCODE_H_

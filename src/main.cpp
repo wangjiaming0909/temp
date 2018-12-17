@@ -5,7 +5,7 @@
 #include <string>
 #include <sstream>
 // #include "boost_test.h"
-#include "al/leetcode.h"
+#include "al/leetcode_headers.h"
 using namespace std;
 
 int main()
@@ -30,9 +30,9 @@ int main()
     // main_timer();
     // main_multi_param_of_template_param();
 
-    // al::NlongestSubString::test();
-    // al::Nmedian_of_two_stored_vector::test();
-    al::Nlongest_palindromic_strstring::test();
+    // al::LongestSubString().test();
+    al::Median_of_two_stored_vector().test();
+    // al::Longest_palindromic_strstring().test();
 
 }
 

@@ -1,48 +1,45 @@
-TARGET = a.exe
-HEADERS = boost_test.h\
-			coursera_algorithms.h\
-			ds.h\
-			e_algorithms.h\
-			main_functions.h\
-			stl.h\
-			\
-			bintree/avl_implement.h\
-			bintree/avl.h\
-			bintree/bst_header.h\
-			bintree/bst_implement.h\
-			bintree/bst.h\
-			bintree/btnode.h\
-			bintree/btree_implement.h\
-			bintree/btree.h\
-			bintree/redblack.h\
-			bintree/search.h\
-			bintree/splay_implement.h\
-			bintree/splay.h\
-			\
-			graph/graph.h\
-			graph/graph_headers.h\
-			graph/graph_matrix.h
-SOURCES = main.cpp	
+BUILD_DIR = ./build
+TARGET = $(BUILD_DIR)/a.exe
+OBJ_DIR = $(BUILD_DIR)
+SRC = src
+
+SOURCES = $(wildcard *.cpp $(SRC)/**/*.cpp)
+NODIR = $(notdir $(SOURCES))
+OBJECTS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(NODIR))
+
 LIB = 
-OBJECTS = main.o
 INCLUDES = C:/Users/jwang284/"OneDrive - Schlumberger"/virtualM/tools/boost_1_68_0/boost_1_68_0
-CPPFLAGS = -Wall -Wextra -std=c++11 -O0 -c -g2 -ggdb -Wfatal-errors -Og
+CPPFLAGS = -Wall -Wextra -std=c++17 -O0 -c -g2 -ggdb -Wfatal-errors -Og
+MKDIR = mkdir -p
 
-all:$(TARGET)
+MAIN = $(SRC)/main.cpp
+MAIN_OBJ = $(BUILD_DIR)/main.o
 
-$(TARGET): $(OBJECTS)
+
+all: $(BUILD_DIR) $(TARGET)
+# all: 
+# 	@echo $(SOURCES)
+# 	@echo $(notdir $(SOURCES))
+# 	@echo $(OBJECTS)
+# 	@echo $(dir $(SOURCES))
+
+$(MAIN_OBJ): $(MAIN)
+	g++ $(CPPFLAGS) -I $(INCLUDES) $< -o $@ 
+
+$(BUILD_DIR):
+	$(MKDIR) $@
+
+$(TARGET): $(OBJECTS) $(MAIN_OBJ)
 	@echo linking...
 	g++ $^ -o $@
 	@echo ok...
-	rm $(OBJECTS)
 
-$(OBJECTS): $(SOURCES) $(HEADERS)
-	@rm -f $(TARGET)
+$(OBJECTS): $(SOURCES) 
+	@$(MKDIR) $(dir $(SOURCES))
 	g++ $(CPPFLAGS) -I $(INCLUDES) $< -o $@ 
 	
 clean: FORCE
-	rm -f *.o 
-	rm -f *.exe
-	rm -f *.out
+	rm -f build/*.o 
+	rm -f build/*.exe
 	@echo ok..
 FORCE:

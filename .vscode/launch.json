@@ -41,7 +41,7 @@
                 "miDebuggerPath": "/usr/bin/gdb"
             },
             "windows": {
-                "program": "${workspaceFolder}/a.exe",
+                "program": "${workspaceFolder}/build/a.exe",
                 "miDebuggerPath": "C:/MinGW/bin/gdb.exe"
             },
             "setupCommands": [
