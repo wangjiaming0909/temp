@@ -1,5 +1,5 @@
 #include "al/leetcode_headers.h"
-#include "tests/tests_headers.h"
+// #include "tests/tests_headers.h"
 using namespace std;
 
 int main()
@@ -10,5 +10,6 @@ int main()
 
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
-    tests::test_double_add();
+    // tests::test_double_add();
+    al::Longest_palindromic_strstring().test();
 }
