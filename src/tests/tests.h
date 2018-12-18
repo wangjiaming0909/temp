@@ -124,8 +124,34 @@ void lambda_and_auto_and_universal_reference(){
         return std::forward<decltype(func)>(func)(std::forward<decltype(param)>(param)...);
     };
     int i = 0;
-    auto ret = timeFuncInvocation(test_double_add_not_const, i);
+    auto ret = timeFuncInvocation(test_double_add_not_const, i);//i will be changed by the function
     cout << ret << endl;
+}
+
+template <typename T>
+void test_std_ref(T&& t){
+    t++;
+}
+
+void test_std_ref2(int& i){
+    i++;
+}
+
+void test_std_ref2_with_pointer(int *ip){
+    (*ip)++;
+    (void)ip;
+}
+void std_ref(){
+    int i = 10;
+    auto f = std::bind(test_std_ref2, i);
+    f();
+    cout << i << endl;
+    auto f2 = std::bind(test_std_ref2, std::ref(i));
+    f2();
+    cout << i << endl;
+    auto f3 = std::bind(test_std_ref2_with_pointer, &i);
+    f3();
+    cout << i << endl;
 }
 
 } // tests

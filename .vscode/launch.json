@@ -29,7 +29,7 @@
             "name": "(gdb) Launch",
             "request": "launch",
             "type": "cppdbg",
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "MIMode": "gdb",
