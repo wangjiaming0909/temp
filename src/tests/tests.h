@@ -51,6 +51,34 @@ void test_vector_with_reference(){
     v_int_ref[0].get() = 12;
     cout << i << endl;
 }
+
+void process(const string& s){
+    cout << "process Lvalue: " << s << endl;
+}
+void process(string&& s){
+    cout << "process Rvalue: " << s << endl;
+}
+template <typename T>
+void doProcess(T&& param){
+    //无论最终推倒出的param是一个左值还是一个右值，直接调用的都是 void process(const string& s);
+    //因为右值引用其本身也是一个左值.
+    process(param);
+    //利用forward可以保持原来的左右值属性，调用对应的左右值版本
+    process(std::forward<T>(param));
+    //无论param是左值还是右值，调用forward的版本都是左值引用的版本，除非你forward再forward才会调用右值的版本
+    //let's have a try
+    //第一个forward(右边的)先调用左值的版本，第二个才调用右值的版本
+    process(std::forward<T>(std::forward<T>(param)));
+}
+
+//remenber one thing: 右值引用本身时一个左值引用
+void rl_value_test(){
+    string s = "123";
+    doProcess(s);
+    //invoke the lvalue version
+    //because rvalue_reference itself is a lvalue_reference
+    doProcess(std::move(s));
+}
     
 } // tests
 

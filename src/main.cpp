@@ -12,7 +12,8 @@ int main()
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
     // tests::passing_arguments_to_thread();
     // tests::test_decltype();
-    tests::test_vector_with_reference();
+    // tests::test_vector_with_reference();
+    tests::rl_value_test();
     // tests::test_double_add();
     // al::Longest_palindromic_strstring().test();
 }
