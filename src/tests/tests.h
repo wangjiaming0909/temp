@@ -58,6 +58,18 @@ void process(const string& s){
 void process(string&& s){
     cout << "process Rvalue: " << s << endl;
 }
+
+//doProcess_before 的行为和forward一样
+//不做forward都会调用左值引用的版本 
+template <typename T>
+void doProcess_before(T& param){
+    cout << "doProcess_before, lvaue " << param << endl;
+}
+template <typename T>
+void doProcess_before(T&& param){
+    cout << "doProcess_before, rvalue " << param << endl;
+}
+
 template <typename T>
 void doProcess(T&& param){
     //无论最终推倒出的param是一个左值还是一个右值，直接调用的都是 void process(const string& s);
@@ -69,17 +81,32 @@ void doProcess(T&& param){
     //let's have a try
     //第一个forward(右边的)先调用左值的版本，第二个才调用右值的版本
     process(std::forward<T>(std::forward<T>(param)));
+
+    doProcess_before(param);//调用左值引用的版本
 }
 
-//remenber one thing: 右值引用本身时一个左值引用
+// template <typename T>
+// void doProcess(T& param){
+//     cout << "doProcess: " << "lvalue" << param << endl;
+// }
+
+//remenber one thing: 右值引用本身是一个左值引用
 void rl_value_test(){
     string s = "123";
+    //虽然说你定义为右值引用，但是当你把它当作参数传递出去的时候,
+    //别人接受到的参数其实还是左值引用，因为右值引用自己就是一个左值引用
+    //因此除非你做特殊的转型，才能把右值引用传递出去，like, move, forward, 或者static_cast
+    string&& s_rref = "123";
     doProcess(s);
     //invoke the lvalue version
     //because rvalue_reference itself is a lvalue_reference
+
+    //别人还是把他当左值引用哦，虽然你定义成了右值引用
+    //你想要别人把他当作右值引用，就只能move，forward，或者cast了
+    doProcess(s_rref);
     doProcess(std::move(s));
+    doProcess(static_cast<string&&>(s_rref));
 }
-    
 } // tests
 
 #endif // _TESTS_TESTS
