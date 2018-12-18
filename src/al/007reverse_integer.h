@@ -24,7 +24,7 @@ public:
                 v_.push_back(remainer);
             x /= 10;
         }
-        for(int i = 0; i < v_.size(); i++){
+        for(int i = 0; i < static_cast<int>(v_.size()); i++){
             int power = v_.size() - i - 1;
             ret += std::pow(10, power) * v_[i];
         }

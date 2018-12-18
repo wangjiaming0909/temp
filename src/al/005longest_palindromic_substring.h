@@ -20,7 +20,7 @@ public:
             size_t len1 = expandAroundCenter(s, i, i);//i is the center
             size_t len2 = expandAroundCenter(s, i, i+1);// (i and i+1) is the center
             size_t len = std::max(len1, len2);            
-            if(len > end - start){//if the new len is longer than the recorded longest one
+            if(static_cast<int>(len) > end - start){//if the new len is longer than the recorded longest one
                 start = i - (len - 1) / 2;//update start
                 end = i + len / 2;//update end
             }
@@ -37,7 +37,7 @@ public:
         }
         vector<int> v(manacherStr.size(), 0);
         int mx = 0, id = 0, resLen = 0, resCenter = 0;
-        for(int i = 0; i < manacherStr.size(); i++){
+        for(int i = 0; i < static_cast<int>(manacherStr.size()); i++){
 
             v[i] = mx > i ? std::min(v[2 * id - i], mx - i) : 1;
             while(manacherStr[i + v[i]] == manacherStr[i - v[i]]) 

@@ -16,5 +16,6 @@ int main()
     // tests::rl_value_test();
     // tests::test_double_add();
     // al::Longest_palindromic_strstring().test();
-    al::Reverse_interger().test();
+    // al::Reverse_interger().test();
+    tests::lambda_and_auto_and_universal_reference();
 }

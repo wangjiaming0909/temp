@@ -21,6 +21,8 @@ int test_double_add_not_const(int& length){
         d += 0.3;
         cout << d << endl;
     }
+    length = 2;
+    return length;
 }
 
 void passing_arguments_to_thread(){
@@ -31,16 +33,24 @@ void passing_arguments_to_thread(){
     thread1.join();
 }
 
-template <class Fun, typename... Args>
-int result_of_Fun(Fun f, Args... args){
-    typedef decltype(std::declval<Fun>()(std::declval<Args>()...)) Fun_type;
-    cout << typeid(Fun_type).name();
-}
+// template <class Fun, typename... Args>
+// int result_of_Fun(Fun&& f, Args&&... args){
+//     (void)f;
+//     typedef decltype(std::declval<Fun>()(std::declval<Args>()...)) Fun_type;
+//     cout << typeid(Fun_type).name() << endl;;
+//     return 1;
+// }
+template <class Fun, class... Args>
+struct result_of_func{
+    // using result_type = decltype(std::forward<Func>())
+    // std::result_of<int>
+};
 
 void test_decltype(){
-    int i = 10;
-    std::add_lvalue_reference<typename std::remove_reference<int>::type>::type j = std::ref(i);
-    result_of_Fun(test_double_add_not_const, std::ref(i));
+    // int i = 10;
+    // std::add_lvalue_reference<typename std::remove_reference<int>::type>::type j = std::ref(i);
+    // std::remove_reference<int>::type&& j2 = 1;
+    // result_of_Fun(test_double_add_not_const, j2);
 }
 
 void test_vector_with_reference(){
@@ -107,6 +117,17 @@ void rl_value_test(){
     doProcess(std::move(s));
     doProcess(static_cast<string&&>(s_rref));
 }
+
+void lambda_and_auto_and_universal_reference(){
+    auto timeFuncInvocation = [] (auto&& func, auto&&... param){
+        al::timer _{__func__};
+        return std::forward<decltype(func)>(func)(std::forward<decltype(param)>(param)...);
+    };
+    int i = 0;
+    auto ret = timeFuncInvocation(test_double_add_not_const, i);
+    cout << ret << endl;
+}
+
 } // tests
 
 #endif // _TESTS_TESTS
