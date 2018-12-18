@@ -29,21 +29,20 @@
             "name": "(gdb) Launch",
             "request": "launch",
             "type": "cppdbg",
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "MIMode": "gdb",
             "args": [],
-            "internalConsoleOptions": "neverOpen",
+            "externalConsole": true,
+            "internalConsoleOptions":"neverOpen",
             "linux": {
                 "program": "${workspaceFolder}/build/a.out",
-                "miDebuggerPath": "/usr/bin/gdb",
-                "externalConsole": false
+                "miDebuggerPath": "/usr/bin/gdb"
             },
             "windows": {
                 "program": "${workspaceFolder}/build/a.exe",
-                "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
-                "externalConsole": true,
+                "miDebuggerPath": "C:/MinGW/bin/gdb.exe"
             },
             "setupCommands": [
                 {
