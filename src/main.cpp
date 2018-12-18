@@ -1,4 +1,4 @@
-// #include "al/leetcode_headers.h"
+#include "al/leetcode_headers.h"
 #include "tests/tests_headers.h"
 using namespace std;
 
@@ -13,7 +13,8 @@ int main()
     // tests::passing_arguments_to_thread();
     // tests::test_decltype();
     // tests::test_vector_with_reference();
-    tests::rl_value_test();
+    // tests::rl_value_test();
     // tests::test_double_add();
     // al::Longest_palindromic_strstring().test();
+    al::Reverse_interger().test();
 }

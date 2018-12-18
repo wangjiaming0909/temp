@@ -10,14 +10,14 @@ using namespace std;
 
 namespace al{
 
-class Median_of_two_stored_vector : public ILeetCode{
+class Median_of_two_sorted_vector : public ILeetCode{
 public:
-    double median_of_two_stored_vector(const vector<int>& nums1, const vector<int>& nums2){
+    double median_of_two_sorted_vector(const vector<int>& nums1, const vector<int>& nums2){
         al::timer _{__func__};
         if(nums1.size() == 0){
-            return median_of_two_stored_vector(nums2, nums2);
+            return median_of_two_sorted_vector(nums2, nums2);
         }else if(nums2.size() == 0){
-            return median_of_two_stored_vector(nums1, nums1);
+            return median_of_two_sorted_vector(nums1, nums1);
         }
         int v1_start = 0, v1_end = nums1.size() - 1;
         int v2_start = 0, v2_end = nums2.size() - 1;
@@ -32,10 +32,10 @@ public:
             }else{
                 if(v2_start < v2_end - 1){
                     vector<int> v{nums2.begin() + v2_start, nums2.begin() + v2_end + 1};
-                    return median_of_two_stored_vector(v, v);
+                    return median_of_two_sorted_vector(v, v);
                 }else if(v1_start < v1_end - 1){
                     vector<int> v{nums1.begin() + v1_start, nums1.begin() + v1_end};
-                    return median_of_two_stored_vector(v, v);
+                    return median_of_two_sorted_vector(v, v);
                 }else{
                     break;
                 }
@@ -55,7 +55,7 @@ public:
         }
     }
 
-    double median_of_two_stored_vector2(const vector<int>& nums1, const vector<int>& nums2){
+    double median_of_two_sorted_vector2(const vector<int>& nums1, const vector<int>& nums2){
         al::timer _{__func__};
         bool even = 0;
         int size1 = nums1.size();
@@ -94,7 +94,7 @@ public:
         else return tree.top();
     }
 
-    double median_of_two_stored_vector3(const vector<int>& nums1, const vector<int>& nums2){
+    double median_of_two_sorted_vector3(const vector<int>& nums1, const vector<int>& nums2){
         al::timer _{__func__};
         bool even = 0;
         int size1 = nums1.size();
@@ -150,11 +150,11 @@ public:
         // v1 = {1,2,3,4};
         // v2 = {5,6,7,8,9};
         double ret = 0;
-        ret = median_of_two_stored_vector(v1, v2);
+        ret = median_of_two_sorted_vector(v1, v2);
         cout << ret << endl;
-        ret = median_of_two_stored_vector2(v1, v2);
+        ret = median_of_two_sorted_vector2(v1, v2);
         cout << ret << endl;
-        ret = median_of_two_stored_vector3(v1, v2);
+        ret = median_of_two_sorted_vector3(v1, v2);
         cout << ret << endl;
     }
 };
