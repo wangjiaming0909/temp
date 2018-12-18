@@ -32,17 +32,18 @@
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole":false,
             "MIMode": "gdb",
             "args": [],
             "internalConsoleOptions": "neverOpen",
             "linux": {
                 "program": "${workspaceFolder}/build/a.out",
-                "miDebuggerPath": "/usr/bin/gdb"
+                "miDebuggerPath": "/usr/bin/gdb",
+                "externalConsole": false
             },
             "windows": {
                 "program": "${workspaceFolder}/build/a.exe",
-                "miDebuggerPath": "C:/MinGW/bin/gdb.exe"
+                "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
+                "externalConsole": true,
             },
             "setupCommands": [
                 {
