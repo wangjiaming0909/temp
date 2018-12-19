@@ -154,6 +154,30 @@ void std_ref(){
     cout << i << endl;
 }
 
+static string _name = "";
+template <typename T>
+void setName(T&& name){
+    _name = std::move(name);
+}
+
+void setName_no_template(const string& name){
+    _name = name;
+}
+
+void setName_no_template(string&& name){
+    _name = std::move(name);
+}
+
+void test_string_literal(){
+    //传的是一个char的数组, 因此setName收到的是一个数组的引用
+    //name这个universal ref 就会被初始化为数组的左值引用
+    //之后进行move操作，再调用string的move constructor
+    setName("wangjiaming");
+    //传递是一个char的数组，但是其实setName_no_template函数接受的是一个string的右值引用
+    //因此需要据这个char数组构造一个string临时对象，再进行move
+    setName_no_template("wangjiaming");
+}
+
 } // tests
 
 #endif // _TESTS_TESTS

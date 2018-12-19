@@ -9,7 +9,7 @@ int main()
     // al::Longest_palindromic_strstring().test();
 
 
-    tests::std_thread_test().test_that_all_parameters_passed_is_copied();
+    // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
     // tests::passing_arguments_to_thread();
     // tests::test_decltype();
     // tests::test_vector_with_reference();
@@ -19,4 +19,5 @@ int main()
     // al::Reverse_interger().test();
     // tests::lambda_and_auto_and_universal_reference();
     // tests::std_ref();
+    tests::test_string_literal();
 }
