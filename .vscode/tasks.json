@@ -2,29 +2,6 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    // "linux": {
-    //     "command": "make",
-    //     "isShellCommand": true,
-    //     "showOutput": "always",
-    //     "tasks": [
-    //         {
-    //             "taskName": "all",
-    //             "isBuildCommand": true,
-    //             "isBackground": true,
-    //             "args": [
-    //                "-flinux.makefile" 
-    //             ],
-    //             "problemMatcher": "$msCompile"
-    //         },
-    //         {
-    //             "taskName": "clean",
-    //             "args": [
-    //                 "-flinux.makefile"
-    //             ],
-    //             "problemMatcher": "$msCompile"
-    //         }
-    //     ]
-    // },
     "tasks": [
         {
             "label": "make",
@@ -57,6 +34,10 @@
             ]
         },
         {
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
             "label": "clean",
             "type": "shell",
             "problemMatcher": [
