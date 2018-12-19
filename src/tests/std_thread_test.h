@@ -38,14 +38,14 @@ public:
         cout << a << endl;
         cout << "-----------------------" << endl;
 
-        using func_type = decltype(&nonmem_thread_call_with_reference);
-        using param_type = decltype(*(&s));
-        using param_type2 = decltype(s);
-        using result_type = typename std::result_of<func_type(int&)>::type;//ok
+        // using func_type = decltype(&nonmem_thread_call_with_reference);
+        // using param_type = decltype(*(&s));
+        // using param_type2 = decltype(s);
+        // using result_type = typename std::result_of<func_type(int&)>::type;//ok
         // using result_type = typename std::result_of<func_type(param_type)>::type;//not ok
         // using result_type = typename std::result_of<func_type(param_type2)>::type;//not ok
         // using result_type = typename std::result_of<func_type()>::type;
-        using result_type = typename std::result_of<func_type(reference_wrapper<int>)>::type;//ok  std::ref
+        // using result_type = typename std::result_of<func_type(reference_wrapper<int>)>::type;//ok  std::ref
         // typedef typename std::result_of<decltype(nonmem_thread_call_with_reference)(decltype(s))>
     }   
 public:
