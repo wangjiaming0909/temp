@@ -84,6 +84,7 @@ class decay {
 public:
     //如果去掉reference之后是一个数组，就返回一个指针
     //如果去掉reference之后是一个函数类型，就返回一个函数指针
+    //如果去掉reference之后既不是函数又不是数组，cv也去掉
     //标准库这么说：
     /*This behavior is similar to the 
         lvalue-to-rvalue,
@@ -94,5 +95,10 @@ but alse strips cv-qualifiers from class types in order to more
 closely model by-value argument passing*/
     typedef typename __decay_selector<__remove_type>::__type type;
 };
+```
+
+### result_of
+```c++
+//result_of
 ```
 

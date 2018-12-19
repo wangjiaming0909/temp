@@ -14,6 +14,10 @@ void nonmem_thread_call_with_reference(int& s){
     cout << "in nonmem_thread_call_with_reference: " << s << endl;
 }
 
+void nonmem_thread_call_with_value(int s){
+    s = 1;
+    cout << "nonmem_thread_call_with_value" << s << endl;
+}
 class std_thread_test{
 public:
 //every parameters that passed to thread constructor is copied 
@@ -24,6 +28,14 @@ public:
         // std::thread thread1{std::bind(&std_thread_test::thread_call_with_reference, this, s_ref)};
         //it seems that even though we passed a reference into the thread, it's a value instead
         std::thread thread1{&std_thread_test::thread_call_with_reference, this, std::ref(s_ref)};
+        //TODO 为什么传递std::ref就可以成功呢?
+
+        //传值或者指针都是可以通过编译的，但是传递引用是不可以的
+        //因为在进行类型推断的时候，最终得到的只是值类型，将值类型的函数参数与函数名字进行匹配
+        //如果传递引用，就会匹配失败，但是传值或者指针就会成功
+        int in_i = 1;
+        std::thread thread_int(nonmem_thread_call_with_value, in_i);
+
         thread1.join();
         cout << s << endl;
         cout << "-----------------------" << endl;
