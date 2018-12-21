@@ -148,6 +148,8 @@ void merge(int *nums, size_t p, size_t q, size_t r){
     mergetimes++;
 }
 
+//优缺点:
+/* */
 int *merge_sort(int *nums, size_t p, size_t r){//-------------------加上merge   O(nlgn)
     if(p < r){
         size_t q = (p+r) / 2;

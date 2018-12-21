@@ -125,6 +125,9 @@ void BTree<T>::solveOverflow(node_pointer node)
     }
 }
 
+//TODO 最简单版本的binsearch, 返回不大于对应元素的最大值
+
+
 template <typename T>
 bool BTree<T>::remove(const T &t)
 {
