@@ -178,6 +178,13 @@ void test_string_literal(){
     setName_no_template("wangjiaming");
 }
 
+void debug_shared_ptr_and_reference_count(){
+    shared_ptr<int> p{new int(10)};
+    shared_ptr<int> p2 = p;
+    p.~shared_ptr<int>();//主动调用析构函数
+    p2.~shared_ptr<int>();
+}//在程序结束时还会再调用一次析构函数，因此析构函数被调用了四次
+
 } // tests
 
 #endif // _TESTS_TESTS
