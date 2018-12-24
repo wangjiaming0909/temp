@@ -4,6 +4,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <memory>
 using namespace std;
 
 namespace tests {
@@ -184,6 +185,23 @@ void debug_shared_ptr_and_reference_count(){
     p.~shared_ptr<int>();//主动调用析构函数
     p2.~shared_ptr<int>();
 }//在程序结束时还会再调用一次析构函数，因此析构函数被调用了四次
+
+void weak_ptr_test(){
+    //初始化时, ref_count的use_count和weak_count会初始化为1
+    shared_ptr<int> sp = make_shared<int>(10);
+    //每将一个新的shared_ptr绑定到指针上, ref_count的use_count会加1, weak_count不会加1
+    //每将一个新的weak_ptr绑定到指针上, ref_count的use_count不会加1, weak_count会加1
+    //因此绑定在当前指针上的weak_ptr的数量 = weak_count - 1 (初始化为1)
+    //每当一个shared_ptr从当前指针解绑时, ref_count的use_count会减1, weak_count不会减1 
+    //每当一个weak_ptr从当前指针解绑时, ref_count的use_count不会变, weak_count会减1
+    //当所有weak_ptr都解绑了, weak_count为1, use_count是绑定在当前指针上的shared_pr个数
+    //当最后一个shared_ptr解绑时, 首先调用release, delete 指针, 之后destroy, delete this(delete 自己) 
+    shared_ptr<int> sp2 = sp;
+    cout << sp.use_count() << endl;//1
+    weak_ptr<int> wp = sp;
+    cout << sp.use_count() << endl;//1
+    cout << wp.use_count() << endl;//1
+}
 
 } // tests
 

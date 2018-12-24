@@ -94,7 +94,6 @@
         "xutility": "cpp"
     },
     "git.ignoreLimitWarning": true,
-    "window.zoomLevel": -1,
     "git.enableSmartCommit": true,
     "editor.fontSize": 16,
     "editor.cursorStyle": "line-thin",

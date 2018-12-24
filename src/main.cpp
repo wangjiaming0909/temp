@@ -20,5 +20,6 @@ int main()
     // tests::lambda_and_auto_and_universal_reference();
     // tests::std_ref();
     // tests::test_string_literal();
-    tests::debug_shared_ptr_and_reference_count();
+    // tests::debug_shared_ptr_and_reference_count();
+    tests::weak_ptr_test();
 }
