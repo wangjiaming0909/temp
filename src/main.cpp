@@ -21,5 +21,6 @@ int main()
     // tests::std_ref();
     // tests::test_string_literal();
     // tests::debug_shared_ptr_and_reference_count();
-    tests::weak_ptr_test();
+    // tests::weak_ptr_test();
+    tests::constructor_throwing_test();
 }

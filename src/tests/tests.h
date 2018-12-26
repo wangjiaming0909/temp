@@ -203,6 +203,60 @@ void weak_ptr_test(){
     cout << wp.use_count() << endl;//1
 }
 
+class constructor_no_throwing_class {
+public:
+	constructor_no_throwing_class() {
+
+	}
+};
+
+class constructor_throwing_class {
+public:
+	constructor_throwing_class() {
+		throw runtime_error("error");
+	}
+};
+
+class memoryleak_when_throwing {
+public:
+	memoryleak_when_throwing() {
+		try {
+			name_ = "wangjiaming";
+			p2_ = new constructor_no_throwing_class();
+			p_ = new constructor_throwing_class();
+		}
+		catch (...) {
+			clean_up();
+			throw;
+		}
+	}
+	~memoryleak_when_throwing() {
+		cout << "in destructor..." << endl;
+		clean_up();
+		cout << "in destructor..." << endl;
+	}
+
+private:
+	void clean_up() {
+		delete p2_;
+		delete p_;
+		cout << "deleting" << endl;
+	}
+private:
+	constructor_no_throwing_class* p2_;
+	constructor_throwing_class* p_;
+	string name_;
+};
+
+void constructor_throwing_test(){
+	try {
+		memoryleak_when_throwing _{};
+	}
+	catch (...) {
+		cout << "catched.." << endl;
+	}
+}
+
 } // tests
 
 #endif // _TESTS_TESTS
