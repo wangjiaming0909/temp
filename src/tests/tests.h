@@ -219,7 +219,7 @@ public:
 
 class memoryleak_when_throwing {
 public:
-	memoryleak_when_throwing() {
+	memoryleak_when_throwing() : p_(0), p2_(0){
 		try {
 			name_ = "wangjiaming";
 			p2_ = new constructor_no_throwing_class();
@@ -243,8 +243,8 @@ private:
 		cout << "deleting" << endl;
 	}
 private:
-	constructor_no_throwing_class* p2_;
 	constructor_throwing_class* p_;
+	constructor_no_throwing_class* p2_;
 	string name_;
 };
 
