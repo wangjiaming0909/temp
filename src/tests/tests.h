@@ -257,6 +257,33 @@ void constructor_throwing_test(){
 	}
 }
 
+class base_class_constructor_with_param{
+public:
+    base_class_constructor_with_param(int i) : i_(i){}
+    virtual void pure_virtual_function() = 0;
+private:
+    int i_;
+};
+
+//如果derived_class不是template class 那么在编译这个类的时候， 需要检查其父类， 发现没有给父类构造函数传递参数, 因此编译不会通过
+//然而如果使用了template， 此时，编译时只会进行很简单的检查语法， 并不会去检查其父类， 因此是可以编译通过的
+template <typename T>
+class derived_class : public base_class_constructor_with_param{
+public:
+    derived_class(T* p) : p_(p){}//未传递参数给父类
+    virtual void pure_virtual_function () override {
+        cout << "pure_virtual_function" << endl;
+    }
+private:
+    T* p_;
+};
+
+void test_base_class_constructor_with_param(){
+    //当你构造对象的时候， 他就会报错了，因为确实不存在父类的默认构造函数,尽管在编译时并没有进行很具体的检查
+    // derived_class _{};
+    // derived_class.pure_virtual_function();
+}
+
 } // tests
 
 #endif // _TESTS_TESTS
