@@ -5,6 +5,7 @@
 #include <thread>
 #include <vector>
 #include <memory>
+#include <bitset>
 using namespace std;
 
 namespace tests {
@@ -283,6 +284,12 @@ void test_base_class_constructor_with_param(){
     // derived_class _{};
     // derived_class.pure_virtual_function();
 }
+
+//TODO bitset 的实现, 校验环的实现, 初始化效率很高
+//? 选择排序，有交换和平移(把当前元素提出来, 放到最后)两种
+//? 交换适合数组和链表， 但是平移只适合链表
+//? cycle 是什么？ 一个长度为n的随机序列的cycle的个数的期望值是ln(n)
+    //? 交换时其实不需要交换的次数就是cycle的个数
 
 } // tests
 

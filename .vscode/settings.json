@@ -152,6 +152,6 @@
     //     "editor.background": "#14141417",
     //     "editor.foreground": "#ffffff"
     // },
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Default Light+",
     "explorer.confirmDragAndDrop": false
 }
