@@ -152,6 +152,5 @@
     //     "editor.background": "#14141417",
     //     "editor.foreground": "#ffffff"
     // },
-    "workbench.colorTheme": "Default Light+",
     "explorer.confirmDragAndDrop": false
 }

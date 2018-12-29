@@ -206,9 +206,15 @@ void weak_ptr_test(){
 
 class constructor_no_throwing_class {
 public:
-	constructor_no_throwing_class() {
+	constructor_no_throwing_class(int i) : i_(i){
 
 	}
+    ~constructor_no_throwing_class(){
+        cout << "constructor_no_throwing_class destructor called.. " << i_ << endl;
+    }
+
+private:
+    int i_;
 };
 
 class constructor_throwing_class {
@@ -220,10 +226,10 @@ public:
 
 class memoryleak_when_throwing {
 public:
-	memoryleak_when_throwing() : p_(0), p2_(0){
+	memoryleak_when_throwing() : p_(0), p2_(0), e_(2){
 		try {
 			name_ = "wangjiaming";
-			p2_ = new constructor_no_throwing_class();
+			p2_ = new constructor_no_throwing_class(1);
 			p_ = new constructor_throwing_class();
 		}
 		catch (...) {
@@ -246,6 +252,7 @@ private:
 private:
 	constructor_throwing_class* p_;
 	constructor_no_throwing_class* p2_;
+    constructor_no_throwing_class e_;
 	string name_;
 };
 
