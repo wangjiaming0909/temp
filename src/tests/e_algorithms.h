@@ -288,6 +288,7 @@ size_t count_inversions(int *nums, size_t p, size_t r){
     return inversions;
 }
 //return inversions
+//每当从右侧拿出元素时,左侧还剩下的元素个数就是横跨左右两个序列的逆序对
 size_t merge_inversions(int *nums, const size_t p, const size_t q, const size_t r){
     size_t n1 = q - p + 1;
     size_t n2 = r - q;
