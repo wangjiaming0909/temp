@@ -13,6 +13,7 @@ using namespace std;
 namespace algorithms
 {
 
+//
 /*--------------------1-insertsort-------------------O(n2)-------------*/
 //升序排序
 int *insert_sort(int *nums, int n)
@@ -150,7 +151,7 @@ void merge(int *nums, size_t p, size_t q, size_t r){
 
 //优缺点:
 /* */
-int *merge_sort(int *nums, size_t p, size_t r){//-------------------加上merge   O(nlgn)
+int *merge_sort(int *nums, size_t p, size_t r){//-------------------加上merge   O(nlgn)stable
     if(p < r){
         size_t q = (p+r) / 2;
         merge_sort(nums, p, q);
