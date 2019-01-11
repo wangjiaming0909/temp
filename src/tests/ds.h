@@ -218,8 +218,13 @@ int linkedBinaryTree<T>::updateHeight(binaryTreeNode<T> *t){
     return t->height2 = 1 + std::max(stature(t->leftChild), stature(t->rightChild));
 }
 
+//可以及时终止这种向上的高度更新, 但是最终的复杂度还值得推敲
+//高度更新有两种模式, 可是是懒惰式的或者激进式的
+//每次添加或者删除的时候,暂时不更新高度,等到需要查询高度的时候再更新
+//或者每次操作都更新高度
+//取决于操作与查询的次数
 template <typename T>
-void linkedBinaryTree<T>::updateHeightAbove(binaryTreeNode<T> *t){
+void linkedBinaryTree<T>::updateHeightAbove(binaryTreeNode<T> *t){//O(depth(t))
     while(t){
         updateHeight(t);
         t = t->parent;
@@ -307,13 +312,13 @@ void linkedBinaryTree<T>::preOrder3(binaryTreeNode<T> *t){
     stack<binaryTreeNode<T> *> s;
     while(true){
         visitalongleftbranch(t, s);
-        if (s.empty())
-            break;
+        if (s.empty()) break;
         t = s.top();
         s.pop();
     }
 }
 
+//一路push左孩子
 template <typename T>
 void linkedBinaryTree<T>::goalongleftbranch(binaryTreeNode<T> *t, stack<binaryTreeNode<T> *> &s){
     binaryTreeNode<T> *tt = t;
@@ -323,8 +328,9 @@ void linkedBinaryTree<T>::goalongleftbranch(binaryTreeNode<T> *t, stack<binaryTr
     }
 }
 
-
 //非递归版本的中序遍历
+//中序遍历表现为: 在遍历的时候,顺序其实从左到右的顺序
+//首先一直朝左到头,访问这个元素, 访问其根,再到其右
 template <typename T>
 void linkedBinaryTree<T>::inOrder2(binaryTreeNode<T> *t){
     stack<binaryTreeNode<T> *> s;
@@ -431,10 +437,8 @@ void linkedBinaryTree<T>::levelOrder(binaryTreeNode<T> *t){
             q.push(t->leftChild);
         if(t->rightChild != NULL)
             q.push(t->rightChild);
-        try{t = q.front();}
-        catch(...){
-            return ;
-        }
+        try { t = q.front(); } 
+        catch (...){ return ; }
         q.pop();
     }
 }
