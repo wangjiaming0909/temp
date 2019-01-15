@@ -22,6 +22,8 @@ int main()
     // tests::test_string_literal();
     // tests::debug_shared_ptr_and_reference_count();
     // tests::weak_ptr_test();
-    tests::constructor_throwing_test();
+    // tests::constructor_throwing_test();
     // tests::test_base_class_constructor_with_param();
+    tests::test_test_strcpy2();
+    tests::test_test_strcpy();
 }

@@ -6,6 +6,8 @@
 #include <vector>
 #include <memory>
 #include <bitset>
+#include <string>
+#include <string.h>
 using namespace std;
 
 namespace tests {
@@ -297,6 +299,47 @@ void test_base_class_constructor_with_param(){
 //? 交换适合数组和链表， 但是平移只适合链表
 //? cycle 是什么？ 一个长度为n的随机序列的cycle的个数的期望值是ln(n)
     //? 交换时其实不需要交换的次数就是cycle的个数
+
+
+void test_strcpy(char* dest, const char* source){
+    while(*(dest++) = *(source++)){
+        ;
+    }
+}
+
+void test_strcpy2(char* dest, const char* source){
+    do{
+        *dest = *source;
+        dest++;
+        source++;
+    }while(*source != '\0');
+}
+
+void test_test_strcpy(){
+    std::string str = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    const char* p = str.c_str();
+    char* dest = new char[100];
+    memset(dest, 0, 100);
+    al::timer _{__func__};
+    for(int i = 0; i < 10000000; i++){
+        test_strcpy(dest, p);
+        assert(strncmp(dest, p, strlen(p)) == 0);
+    }
+    delete dest;
+}
+
+void test_test_strcpy2(){
+    std::string str = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    const char* p = str.c_str();
+    char* dest = new char[100];
+    memset(dest, 0, 100);
+    al::timer _{__func__};
+    for(int i = 0; i < 10000000; i++){
+        test_strcpy2(dest, p);
+        assert(strncmp(dest, p, strlen(p)) == 0);
+    }
+    delete dest;
+}
 
 } // tests
 
