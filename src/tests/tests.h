@@ -341,6 +341,30 @@ void test_test_strcpy2(){
     delete dest;
 }
 
+class abstract_class{
+public:
+    virtual void func1() = 0;
+    void func2(){
+        cout << 456 << endl;
+    }
+};
+
+class concrete_class : private abstract_class{
+public:
+    //虽然func1是private继承, 但是将它声明为public override 就可以使其变为public
+    virtual void func1() override {
+        cout << 123 << endl;
+        func2();
+    }
+};
+
+void test_private_inhertence(){
+    concrete_class _{};
+    _.func1();
+    //_.func2();//private function 
+}
+
+
 } // tests
 
 #endif // _TESTS_TESTS
