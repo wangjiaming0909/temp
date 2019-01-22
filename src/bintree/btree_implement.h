@@ -25,6 +25,7 @@ BTree<T>::search(const T &t)
     return nullptr;
 }
 
+//只会插入到叶子节点上(?)
 template <typename T>
 bool BTree<T>::insert(const T &t)
 {
@@ -128,6 +129,7 @@ void BTree<T>::solveOverflow(node_pointer node)
 //TODO 最简单版本的binsearch, 返回不大于对应元素的最大值
 
 
+//任何一个内部节点的前驱或者后继都是一个叶子节点
 template <typename T>
 bool BTree<T>::remove(const T &t)
 {
