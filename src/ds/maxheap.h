@@ -4,6 +4,9 @@
 #include "max_priority_queue.h"
 #include <vector>
 namespace ds{
+//完全二叉树用数组表示较为理想
+//完全二叉堆
+//最后的内部节点是n/2 - 1
 template <class T>
 class maxheap : public maxpriorityqueue<T>{
 public:
@@ -20,6 +23,8 @@ public:
 private:
     std::vector<T>      heap_;
     int                 capacity_;//capacity of array heap_ 
+    //heapsize no need
+    //heapsize == heap_.size()
     int                 heapsize_;//nums of elements in heap_
 };
 
@@ -42,8 +47,10 @@ T maxheap<T>::remove(int i){
     return ret;
 }
 
+//O(logn), 期望的复杂度是O(1), 因为插入的节点期望上升2层就会停止
 template <class T>
 void maxheap<T>::push(const T& theElement){
+    //no need to explicitly resize, use push_back instead
     if(heapsize_ == capacity_) heap_.resize(2*heapsize_);
     int currentnode = ++heapsize_;//新插入的节点index为heapsize+1
     while(currentnode != 1 && heap_[currentnode / 2] < theElement){//如果父节点小于新插入的节点
@@ -69,6 +76,7 @@ const T& maxheap<T>::top(){
     return heap_[1];
 }
 
+//O(logn), 期望的复杂度也是O(logn)
 //删除最大值
 template <class T>
 void maxheap<T>::pop(){//O(lgn)

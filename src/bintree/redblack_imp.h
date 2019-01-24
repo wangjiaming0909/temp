@@ -77,7 +77,7 @@ bool RedBlack<T, V>::remove(const T& e){
 template <typename T, typename V>
 void RedBlack<T, V>::solveDoubleRed(node_pointer node){
 /* 双红缺陷有两种情况
-      1, node 的uncle 节点时黑色
+      1, node 的uncle 节点shi黑色
         则只需进行一次一次或者两次旋转， 调整两个节点颜色完成重平衡
         且此法是一次性完成，不平衡不会向上传递
         可套用avl树中的3+4重构算法, 重构完后，调整两个节点颜色
