@@ -7,6 +7,24 @@
 #include <list>
 using namespace std;
 
+/*
+ 散列函数取余法的缺点:
+    1, 不动点 hash(0) == 0
+    2, 原本相邻的点在散列后还是相邻的
+
+    MAD  Multiply - Add - Divide
+    hash(key) = (a * key + b) % M
+
+    线性探测: LOAD factor最好在50以下
+    查找时, 先用hash函数计算位置,如果不是要查找的元素,继续查找,一直到找到第一个空桶
+    删除: LAZY removal, 标记为删除的就行
+    RE-hash: 只能全部取出来,重新插入到新的散列表中
+
+    平方探测:平均探测次数相对线性探测较小, 
+    但是: 素数表长, LOAD factor < 0.5 才能保证不会一直循环找不到合适的位置插入
+*/
+
+
 #ifndef UINT_MAX
     #define UINT_MAX 65535
 #endif
