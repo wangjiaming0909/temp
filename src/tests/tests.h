@@ -8,6 +8,7 @@
 #include <bitset>
 #include <string>
 #include <string.h>
+#include "../recipes/bytebuf/bytebuf.h"
 using namespace std;
 
 namespace tests {
@@ -302,7 +303,7 @@ void test_base_class_constructor_with_param(){
 
 
 void test_strcpy(char* dest, const char* source){
-    while(*(dest++) = *(source++)){
+    while((*(dest++) = *(source++))){
         ;
     }
 }
@@ -362,6 +363,11 @@ void test_private_inhertence(){
     concrete_class _{};
     _.func1();
     //_.func2();//private function 
+}
+
+void test_bytebuf(){
+    bytebuf buf{};
+
 }
 
 

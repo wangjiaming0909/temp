@@ -26,5 +26,6 @@ int main()
     // tests::test_base_class_constructor_with_param();
     // tests::test_test_strcpy2();
     // tests::test_test_strcpy();
-    tests::test_private_inhertence();
+    // tests::test_private_inhertence();
+    tests::test_bytebuf();
 }
