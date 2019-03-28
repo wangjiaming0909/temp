@@ -19,6 +19,7 @@ namespace algorithms
 //当序列位完全有序时,O(n)
 //并且插入排序是online算法,不需要知道全部的数据就可以一步一步排序
 //升序排序
+//**插入排序, 抓扑克牌, 每次抓到牌都是 在已有的牌中,从大到小(从后向前)查找插入的位置
 int *insert_sort(int *nums, int n)
 {
     for (int j = 1; j < n; j++)
@@ -67,6 +68,7 @@ int *insert_sort3(int *nums, int n){
 
 /*--------------------1-insertsort-------------------*/
 /*--------------------2-selectsort-------------------*/
+//*选择排序,遍历一遍,找到最大的或者最小的,往前或者往最后扔,重新遍历剩下的部分
 int* selectsort(int *nums, size_t n){//及时终止
     bool sorted = false;;
     for(size_t i = n-1; (i > 0) && !sorted; i--){//从后往前排，最大的往后扔
