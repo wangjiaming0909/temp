@@ -13,3 +13,5 @@ nbproject/**
 *.config
 *.user
 log
+
+.vscode/ipch/**

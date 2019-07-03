@@ -1,5 +1,5 @@
 CC = g++
-FLAGS = -Wall -Wextra -std=c++17 -c -O0 -ggdb -Wfatal-errors
+FLAGS = -Wall -Wextra -std=c++17 -c  -ggdb -Wfatal-errors -fexceptions
 DEFS = 
 DEFINES = $(patsubst %, -D%, $(DEFS))
 
