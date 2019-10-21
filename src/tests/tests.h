@@ -9,6 +9,7 @@
 #include <string>
 #include <string.h>
 #include "../recipes/bytebuf/bytebuf.h"
+#include "../bintree/btree.h"
 using namespace std;
 
 namespace tests {
@@ -368,6 +369,99 @@ void test_private_inhertence(){
 void test_bytebuf(){
     bytebuf buf{};
 
+}
+
+void parseCommand(const string& word)
+{
+    switch (word[0])
+    {
+    case 'o':
+        cout << "o " << endl;;
+        break;
+    case 'i':
+        cout << "i " << endl;;
+        break;
+    case 'd':
+        cout << "d " << endl;;
+        break;
+    case 'q':
+        return;
+    
+    default:
+        cout << "example: o 3: reset order, i 1: insert 1, d1: delete 1, q: quit";
+        break;
+    }
+
+}
+void parseNum(const string& word)
+{
+
+}
+
+void test_btree()
+{
+    std::unique_ptr<BTree<int>> btp{};
+    std::string line;
+    std::string word;
+    std::string command;
+    int number = 0;;
+    int index = 0;
+    int nu = 0;
+    while(1)
+    {
+        cout << endl << "$ ";
+        std::getline(std::cin, line);
+        istringstream iss{line};
+
+        while(std::getline(iss, word, ' '))
+        {
+            switch (index)
+            {
+            case 0:
+                command = word;
+                index++;
+                break;
+
+            case 1:
+                nu = std::stoi(word);
+                switch (command[0])
+                {
+                case 'o':
+                    btp.reset(new BTree<int>{nu});
+                    break;
+                case 'i':
+                    if (!btp) 
+                    {
+                        cout << "use o first";
+                        break;
+                    }
+                    btp->insert(nu);
+                    btp->inOrder(std::cout, btp->root());
+                    break;
+                case 'd':
+                    if (!btp) 
+                    {
+                        cout << "use o first";
+                        break;
+                    }
+                    btp->remove(nu);
+                    btp->inOrder(std::cout, btp->root());
+                    break;
+                case 'q':
+                    return;
+                
+                default:
+                    cout << "example: o 3: reset order, i 1: insert 1, d1: delete 1, q: quit";
+                    break;
+                }
+                index = 0;
+                break;
+            
+            default:
+                break;
+            }
+        }
+    }
 }
 
 

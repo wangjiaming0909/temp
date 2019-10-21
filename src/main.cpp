@@ -1,5 +1,6 @@
 #include "al/leetcode_headers.h"
 #include "tests/tests_headers.h"
+#include "bintree/btree.h"
 using namespace std;
 
 int main()
@@ -28,4 +29,21 @@ int main()
     // tests::test_test_strcpy();
     // tests::test_private_inhertence();
     tests::test_bytebuf();
+
+    tests::test_btree();
+
+    // BTree<int> btree{5};
+    // btree.insert(1);
+    // btree.insert(2);
+    // btree.inOrder(std::cout, btree.root());
+    // btree.insert(3);
+    // btree.inOrder(std::cout, btree.root());
+    // btree.insert(4);
+    // btree.inOrder(std::cout, btree.root());
+    // btree.insert(5);
+    // btree.inOrder(std::cout, btree.root());
+    // // btree.inOrder([](const int& i){cout << i << " " << endl;});
+    // btree.remove(3);
+    // btree.inOrder(std::cout, btree.root());
+
 }

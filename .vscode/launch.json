@@ -12,7 +12,7 @@
             "MIMode": "gdb",
             "args": [],
             "externalConsole": true,
-            "internalConsoleOptions":"neverOpen",
+            "internalConsoleOptions":"openOnFirstSessionStart",
             "linux": {
                 "program": "${workspaceFolder}/build/a.out",
                 "miDebuggerPath": "/usr/bin/gdb"
