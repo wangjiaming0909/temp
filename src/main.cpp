@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    // al::LongestSubString().test();
+    al::LongestSubString().test();
     // al::Median_of_two_stored_vector().test();
     // al::Longest_palindromic_strstring().test();
 
@@ -28,9 +28,9 @@ int main()
     // tests::test_test_strcpy2();
     // tests::test_test_strcpy();
     // tests::test_private_inhertence();
-    tests::test_bytebuf();
+    // tests::test_bytebuf();
 
-    tests::test_btree();
+    // tests::test_btree();
 
     // BTree<int> btree{5};
     // btree.insert(1);

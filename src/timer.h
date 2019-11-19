@@ -9,7 +9,7 @@ using namespace std;
 namespace al{
 class timer{
 public:
-    timer(const string s) : timer_(), s_(s){
+    timer(const string& s) : timer_(), s_(s){
 
     }
     ~timer() {

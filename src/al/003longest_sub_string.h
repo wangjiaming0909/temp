@@ -26,7 +26,7 @@ a a s d s w a
 class LongestSubString : public ILeetCode{
 public:
     size_t longestSubString(const string s) {
-        al::timer _{__func__};
+        // al::timer _{__func__};
         size_t start = 0, end = 0;   
         size_t ret = 0;
         unordered_map<char, size_t> char_map{};
@@ -49,7 +49,7 @@ public:
     }
 
     size_t longestSubString2(const string s) {//do some refactor
-        al::timer _{__func__};
+        // al::timer _{__func__};
         size_t start = 0, end = 0;   
         size_t ret = 0;
         unordered_map<char, size_t> char_map{};
@@ -63,19 +63,71 @@ public:
         }
         return ret;
     }
+
+    size_t LongestSubString3(const string& s)
+    {
+        // al::timer _{__func__};
+        if(s.size() == 0) return 0;
+        unordered_map<char, size_t> map{};
+        size_t i = 0, j = 0;
+        size_t ret = 0;
+        while(1)
+        {
+            if(j >= s.size()) break;
+            map[s[j]] = j;
+            if(map.size() != j - i + 1)
+            {
+                if(i == map[s[i]]) map.erase(s[i]);
+                i++;
+            } 
+            ret = std::max(ret, j - i + 1);
+            j++;
+        }
+        return ret;
+    }
     virtual void test() override{
         string s1{"tmmzuxasasdqweadqweasdqwdasdqweasdqwedsadwqeasdgrthgjhghkjlyuoiyurgdfsdfdfqwerafsdgqwefsdpogopdjgowjkfopewgrpeasdqpwfqpqiowersdasdqwegfdfuiqtvzxcnmihfiowircjpoqjwfwekwkggslfqowejhfashdqljgnqweqafasdqwerqwrigt"};
         string s2{"w"};
+
+        assert(longestSubString(s1) == LongestSubString3(s1));
+        assert(longestSubString(s2) == LongestSubString3(s2));
 
         int ret1 = 0;
         for(int i = 0; i < 10; i++){
             ret1 = longestSubString2(s1);
             ret1 = longestSubString(s1);
+            ret1 = LongestSubString3(s1);
         }
         cout << "ret1: " << ret1 << endl;
         int ret2 = longestSubString2(s2);
         cout << "ret2: " << ret2 << endl;
         assert(ret2 == 1);
+
+        {
+            al::timer _{"1"};
+            for(int i =0; i < 1000; i++)
+            {
+                auto r = longestSubString(s1);
+            }
+        }
+
+        {
+            al::timer _{"2"};
+            for(int i =0; i < 1000; i++)
+            {
+                auto r = longestSubString2(s1);
+            }
+        }
+        {
+            al::timer _{"3"};
+            for(int i =0; i < 1000; i++)
+            {
+                auto r = LongestSubString3(s1);
+            }
+        }
+
+
+
     }
 };
 
