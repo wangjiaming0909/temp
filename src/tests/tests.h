@@ -31,6 +31,7 @@ int test_double_add_not_const(int& length){
     return length;
 }
 
+#if !_WIN32
 void passing_arguments_to_thread(){
     int a = 10;
     // thread thread1(test_double_add, a);
@@ -38,6 +39,7 @@ void passing_arguments_to_thread(){
     thread thread1(test_double_add, std::ref(a));
     thread1.join();
 }
+#endif
 
 // template <class Fun, typename... Args>
 // int result_of_Fun(Fun&& f, Args&&... args){
@@ -393,7 +395,7 @@ void parseCommand(const string& word)
     }
 
 }
-void parseNum(const string& word)
+void parseNum(const string&)
 {
 
 }
@@ -404,7 +406,6 @@ void test_btree()
     std::string line;
     std::string word;
     std::string command;
-    int number = 0;;
     int index = 0;
     int nu = 0;
     while(1)

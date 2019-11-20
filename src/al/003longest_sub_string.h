@@ -107,7 +107,7 @@ public:
             al::timer _{"1"};
             for(int i =0; i < 1000; i++)
             {
-                auto r = longestSubString(s1);
+                longestSubString(s1);
             }
         }
 
@@ -115,14 +115,14 @@ public:
             al::timer _{"2"};
             for(int i =0; i < 1000; i++)
             {
-                auto r = longestSubString2(s1);
+                longestSubString2(s1);
             }
         }
         {
             al::timer _{"3"};
             for(int i =0; i < 1000; i++)
             {
-                auto r = LongestSubString3(s1);
+                LongestSubString3(s1);
             }
         }
 

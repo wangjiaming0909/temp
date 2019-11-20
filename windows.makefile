@@ -8,8 +8,8 @@ NODIR = $(notdir $(SOURCES))
 OBJECTS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(NODIR))
 
 LIB = 
-INCLUDES = C:/Users/jwang284/"OneDrive - Schlumberger"/virtualM/tools/boost_1_68_0/boost_1_68_0
-CPPFLAGS = -Wall -Wextra -std=gnu++17 -c -ggdb3 -fexceptions -mthreads -W 
+INCLUDES = C:/Users/Jiaming/Desktop/codes/boost_1_70_0
+CPPFLAGS = -Wall -Wextra -std=gnu++17 -c -ggdb3 -fexceptions -mthreads -W -O0
 MKDIR = mkdir -p
 
 MAIN = $(SRC)/main.cpp

@@ -1,5 +1,6 @@
 #ifndef TESTS_STD_THREAD_H_
 #define TESTS_STD_THREAD_H_
+#if !_WIN32
 
 #include <thread>
 #include <string>
@@ -71,4 +72,7 @@ public:
     }
 };
 }
+
+#endif
+
 #endif // TESTS_STD_THREAD_H_
