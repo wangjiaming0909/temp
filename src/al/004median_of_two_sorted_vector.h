@@ -198,7 +198,9 @@ public:
 
 		while (lo <= hi)   //二分
 		{
-			c1 = (lo + hi) / 2;  //c1是二分的结果
+			// if c1-1, c2+1
+			// if c1+1, c2-1
+			c1 = (lo + hi) / 2;  
 			c2 = m + n - c1;
 
 			LMax1 = (c1 == 0) ? INT32_MIN : nums1[(c1 - 1) / 2];
@@ -206,13 +208,14 @@ public:
 			LMax2 = (c2 == 0) ? INT32_MIN : nums2[(c2 - 1) / 2];
 			RMin2 = (c2 == 2 * m) ? INT32_MAX : nums2[c2 / 2];
 
-			if (LMax1 > RMin2)
-				hi = c1 - 1;
-			else if (LMax2 > RMin1)
-				lo = c1 + 1;
+			if (LMax1 > RMin2)// if nums1's mid >= nums2's mid
+				hi = c1 - 1; // c1-1, c2+1, 1 move left, 2 move right
+			else if (LMax2 > RMin1) // if nums2's mid >= nums1's mid
+				lo = c1 + 1; //c1+1, c2-1, 1 move right, 2 move left
 			else
 				break;
 		}
+		//only when lmax1-rmin1 has overlap with lmax2-rmin2
 		return (max(LMax1, LMax2) + min(RMin1, RMin2)) / 2.0;
     }
 
