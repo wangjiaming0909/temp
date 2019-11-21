@@ -162,6 +162,76 @@ public:
 
         while(end1 - start1 > 0 && end2 - start2 > 0)
         {
+          // if(end1 - start1 == 1 && end2 - start2 == 1) return (*start1 + *start2) / 2.0;
+          // mid1 = calculateMid(nums1, start1, end1, &pos1);
+          // mid2 = calculateMid(nums2, start2, end2, &pos2);
+
+          // if(mid1 == mid2) return mid1;
+          // numToDelete = std::min(pos1, pos2) + 1;
+          // for(int i = 0; i < numToDelete; i++)
+          // {
+                if(end1 - start1 == 1 && end2 - start2 == 1) return (*start1 + *start2) / 2.0;
+                if(*start1 > *start2)start2++;else start1++;
+                if(*(end1-1) < *(end2-1)) end2--; else end1--;
+//            }
+        }
+
+        if(end1 - start1 > 0)
+        {
+            return calculateMid(nums1, start1, end1, &pos1);
+        }
+        return calculateMid(nums2, start2, end2, &pos2);
+    }
+
+    double median_of_two_sorted_vector5(const vector<int>& nums1, const vector<int>& nums2){
+        al::timer _{__func__};
+        int n = nums1.size();
+		int m = nums2.size();
+
+		if (n > m)  //保证数组1一定最短
+		{
+			return median_of_two_sorted_vector5(nums2, nums1);
+		}
+
+		// Ci 为第i个数组的割,比如C1为2时表示第1个数组只有2个元素。LMaxi为第i个数组割后的左元素。RMini为第i个数组割后的右元素。
+		int LMax1, LMax2, RMin1, RMin2, c1, c2, lo = 0, hi = 2 * n;  //我们目前是虚拟加了'#'所以数组1是2*n长度
+
+		while (lo <= hi)   //二分
+		{
+			c1 = (lo + hi) / 2;  //c1是二分的结果
+			c2 = m + n - c1;
+
+			LMax1 = (c1 == 0) ? INT32_MIN : nums1[(c1 - 1) / 2];
+			RMin1 = (c1 == 2 * n) ? INT32_MAX : nums1[c1 / 2];
+			LMax2 = (c2 == 0) ? INT32_MIN : nums2[(c2 - 1) / 2];
+			RMin2 = (c2 == 2 * m) ? INT32_MAX : nums2[c2 / 2];
+
+			if (LMax1 > RMin2)
+				hi = c1 - 1;
+			else if (LMax2 > RMin1)
+				lo = c1 + 1;
+			else
+				break;
+		}
+		return (max(LMax1, LMax2) + min(RMin1, RMin2)) / 2.0;
+    }
+
+    double median_of_two_sorted_vector6(vector<int>& nums1, vector<int>& nums2)
+    {
+        al::timer _{__func__};
+        auto start1 = nums1.begin();
+        auto end1 = nums1.end();
+        auto start2 = nums2.begin();
+        auto end2 = nums2.end();
+
+        int pos1 = 0;
+        int pos2 = 0;
+        double mid1 = 0;
+        double mid2 = 0;
+        int numToDelete = 0;
+
+        while(end1 - start1 > 0 && end2 - start2 > 0)
+        {
             if(end1 - start1 == 1 && end2 - start2 == 1) return (*start1 + *start2) / 2.0;
             mid1 = calculateMid(nums1, start1, end1, &pos1);
             mid2 = calculateMid(nums2, start2, end2, &pos2);
@@ -169,15 +239,29 @@ public:
             if(mid1 == mid2) return mid1;
             if(mid1 < mid2)
             {
-                numToDelete = std::min(pos1, pos2) + 1;
-                start1 += numToDelete;
-                end2 -= numToDelete;
+                numToDelete = std::min(pos1, pos2);
+                if(numToDelete == 0)
+                {
+                    if(*start1 >= *start2) start2++; else start1++;
+                    if(*(end1-1) >= *(end2-1)) end1--; else end2--;
+                }else 
+                {
+                    start1 += numToDelete;
+                    end2 -= numToDelete;
+                }
             }
             else 
             {
-                numToDelete = std::min(pos1, pos2) + 1;
-                start2 += numToDelete;
-                end1 -= numToDelete;
+                numToDelete = std::min(pos1, pos2);
+                if(numToDelete == 0)
+                {
+                    if(*start1 >= *start2) start2++; else start1++;
+                    if(*(end1-1) >= *(end2-1)) end1--; else end2--;
+                }else 
+                {
+                    end1 -= numToDelete;
+                    start2 += numToDelete;
+                }
             }
         }
 
@@ -187,6 +271,7 @@ public:
         }
         return calculateMid(nums2, start2, end2, &pos2);
     }
+
     
     virtual void test() override{
         vector<int> v1{1,1,1,1,1,1,1,1,1,1,4,4,5,6,7,8,9,10,11,223,1212};
@@ -214,6 +299,85 @@ public:
         ret = median_of_two_sorted_vector3(v1, v2);
         cout << ret << endl;
         ret = median_of_two_sorted_vector4(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector5(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector6(v1, v2);
+        cout << ret << endl;
+
+        v1 = {1, 2};
+        v2 = {-1, 3};
+        ret = median_of_two_sorted_vector(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector2(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector3(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector4(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector5(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector6(v1, v2);
+        cout << ret << endl;
+
+        v1 = {1, 3};
+        v2 = {2};
+        ret = median_of_two_sorted_vector(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector2(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector3(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector4(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector5(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector6(v1, v2);
+        cout << ret << endl;
+
+        v1 = {2};
+        v2 = {1,3,4};
+        ret = median_of_two_sorted_vector(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector2(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector3(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector4(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector5(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector6(v1, v2);
+        cout << ret << endl;
+
+        v1 = {1,2,5};
+        v2 = {3,4,6};
+        ret = median_of_two_sorted_vector(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector2(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector3(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector4(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector5(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector6(v1, v2);
+        cout << ret << endl;
+
+        v1 = {1,5,6};
+        v2 = {2,3,4};
+        ret = median_of_two_sorted_vector(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector2(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector3(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector4(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector5(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector6(v1, v2);
         cout << ret << endl;
     }
 };
