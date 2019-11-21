@@ -10,7 +10,8 @@ int main()
     // al::Median_of_two_stored_vector().test();
     // al::Longest_palindromic_strstring().test();
     // al::NumSubarrayBoundedMax().test();
-    al::Median_of_two_sorted_vector().test();
+    // al::Median_of_two_sorted_vector().test();
+		al::Reverse_interger().test();
 
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();

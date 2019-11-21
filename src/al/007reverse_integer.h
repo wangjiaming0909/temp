@@ -44,31 +44,51 @@ public:
         }
         return ret > INT32_MAX || ret < INT32_MIN  ? 0 :ret;
     }
+
+	int reverse3(int x)
+	{
+        al::timer _{__func__};
+		if(x == 0) return 0;
+		int64_t ret = 0;
+		while(x != 0)
+		{
+			auto a = x % 10;
+			x /= 10;
+			ret = 10*ret + a;
+		}
+		return ret > INT32_MAX || ret < INT32_MIN ? 0 : ret;
+	}
     virtual void test() override{
         int input = 123;
         int ret = 321;
         assert(reverse(input) == ret);
         assert(reverse2(input) == ret);
+        assert(reverse3(input) == ret);
         input = 1;
         ret = 1;
         assert(reverse(input) == ret);
         assert(reverse2(input) == ret);
+        assert(reverse3(input) == ret);
         input = 120;
         ret = 21;
         assert(reverse(input) == ret);
         assert(reverse2(input) == ret);
+        assert(reverse3(input) == ret);
         input = 0;
         ret = 0;
         assert(reverse(input) == ret);
         assert(reverse2(input) == ret);
+        assert(reverse3(input) == ret);
         input = -120;
         ret = -21;
         assert(reverse(input) == ret);
         assert(reverse2(input) == ret);
+        assert(reverse3(input) == ret);
         input = 1534236469;
         ret = 0;
         assert(reverse(input) == ret);
         assert(reverse2(input) == ret);
+        assert(reverse3(input) == ret);
     }
 };
 
