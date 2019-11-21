@@ -131,6 +131,62 @@ public:
         }
         else return tree.top();
     }
+
+    double calculateMid(const vector<int>& v, vector<int>::iterator begin, vector<int>::iterator end, int* pos)
+    {
+        if(v.size() == 0) return 0;
+        if(end <= begin) return 0;
+        *pos = (end - begin - 1) / 2;
+        if((end - begin) % 2 == 0)
+        {
+            return (*(begin + *pos) + *(begin + *pos + 1)) / 2.0;
+        }
+        return *(begin + *pos);
+    }
+
+    double median_of_two_sorted_vector4(vector<int>& nums1, vector<int>& nums2)
+    {
+        al::timer _{__func__};
+        auto start1 = nums1.begin();
+        auto end1 = nums1.end();
+        auto start2 = nums2.begin();
+        auto end2 = nums2.end();
+        auto size1 = nums1.size();
+        auto size2 = nums2.size();
+
+        int pos1 = 0;
+        int pos2 = 0;
+        double mid1 = 0;
+        double mid2 = 0;
+        int numToDelete = 0;
+
+        while(end1 - start1 > 0 && end2 - start2 > 0)
+        {
+            if(end1 - start1 == 1 && end2 - start2 == 1) return (*start1 + *start2) / 2.0;
+            mid1 = calculateMid(nums1, start1, end1, &pos1);
+            mid2 = calculateMid(nums2, start2, end2, &pos2);
+
+            if(mid1 == mid2) return mid1;
+            if(mid1 < mid2)
+            {
+                numToDelete = std::min(pos1, pos2) + 1;
+                start1 += numToDelete;
+                end2 -= numToDelete;
+            }
+            else 
+            {
+                numToDelete = std::min(pos1, pos2) + 1;
+                start2 += numToDelete;
+                end1 -= numToDelete;
+            }
+        }
+
+        if(end1 - start1 > 0)
+        {
+            return calculateMid(nums1, start1, end1, &pos1);
+        }
+        return calculateMid(nums2, start2, end2, &pos2);
+    }
     
     virtual void test() override{
         vector<int> v1{1,1,1,1,1,1,1,1,1,1,4,4,5,6,7,8,9,10,11,223,1212};
@@ -143,6 +199,7 @@ public:
         for(int i = 0; i < size1; i++){
             v1[i] = i;
         }
+        v1 = {1};
         v2.resize(size2);
         for(int i = 0; i < size2; i++){
             v2[i] = i*2 + 190;
@@ -155,6 +212,8 @@ public:
         ret = median_of_two_sorted_vector2(v1, v2);
         cout << ret << endl;
         ret = median_of_two_sorted_vector3(v1, v2);
+        cout << ret << endl;
+        ret = median_of_two_sorted_vector4(v1, v2);
         cout << ret << endl;
     }
 };

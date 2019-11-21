@@ -5,11 +5,12 @@ using namespace std;
 
 int main()
 {
-    al::AddTwoNumbers().test();
+    //al::AddTwoNumbers().test();
     // al::LongestSubString().test();
     // al::Median_of_two_stored_vector().test();
     // al::Longest_palindromic_strstring().test();
     // al::NumSubarrayBoundedMax().test();
+    al::Median_of_two_sorted_vector().test();
 
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
