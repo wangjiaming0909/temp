@@ -13,7 +13,8 @@ int main()
     // al::Median_of_two_sorted_vector().test();
 		// al::Reverse_interger().test();
     // al::Atoi().test();
-    al::IsPalindrome().test();
+    // al::IsPalindrome().test();
+    al::MaxAria().test();
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
     // tests::passing_arguments_to_thread();

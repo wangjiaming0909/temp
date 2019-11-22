@@ -151,14 +151,9 @@ public:
         auto end1 = nums1.end();
         auto start2 = nums2.begin();
         auto end2 = nums2.end();
-        auto size1 = nums1.size();
-        auto size2 = nums2.size();
 
         int pos1 = 0;
         int pos2 = 0;
-        double mid1 = 0;
-        double mid2 = 0;
-        int numToDelete = 0;
 
         while(end1 - start1 > 0 && end2 - start2 > 0)
         {
