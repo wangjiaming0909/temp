@@ -11,6 +11,7 @@
 #include "011MaxAria.h"
 #include "014longestCommonPrefix.h"
 #include "015ThreeSum.h"
+#include "019removeNthFromEnd.h"
 #include "795_numSubarrayBoundedMax.h"
 
 #endif // AL_LEETCODE_HEADERS
