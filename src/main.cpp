@@ -20,7 +20,8 @@ int main()
     // al::RemoveNthFromEnd().test();
     // al::GenerateParenthesis().test();
 	// al::MergeKLists().test();
-	al::SwapPairs().test();
+	// al::SwapPairs().test();
+	al::ReverseKGroup().test();
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
     // tests::passing_arguments_to_thread();
