@@ -7,17 +7,6 @@
 namespace al
 {
 
-template <typename T>
-struct TreeNode
-{
-    TreeNode(T &v) : val(v){}
-    T val;
-    TreeNode *left = nullptr;
-    TreeNode *right = nullptr;
-    int leftN = 0;
-    int rightN = 0;
-};
-
 class GenerateParenthesis : public ILeetCode
 {
 public:

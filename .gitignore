@@ -15,3 +15,5 @@ nbproject/**
 log
 
 .vscode/ipch/**
+.clangd/**
+compile_commands.json

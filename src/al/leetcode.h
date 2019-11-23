@@ -14,6 +14,14 @@ struct ListNode {
     int val;
     ListNode *next;
     ListNode(int x) : val(x), next(nullptr) {}
+	bool operator>(const ListNode& node) const
+	{
+		return val > node.val;
+	}
+	bool operator<(const ListNode& node) const
+	{
+		return val < node.val;
+	}
 };
 
 void printList(ListNode* head)
