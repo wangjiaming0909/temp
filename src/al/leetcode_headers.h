@@ -16,6 +16,7 @@
 #include "023MergeKLists.h"
 #include "024SwapPairs.h"
 #include "025ReverseKGroup.h"
+#include "026RemoveDuplicates.h"
 #include "795_numSubarrayBoundedMax.h"
 
 #endif // AL_LEETCODE_HEADERS
