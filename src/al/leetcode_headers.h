@@ -14,6 +14,7 @@
 #include "019removeNthFromEnd.h"
 #include "022generateParenthesis.h"
 #include "023MergeKLists.h"
+#include "024SwapPairs.h"
 #include "795_numSubarrayBoundedMax.h"
 
 #endif // AL_LEETCODE_HEADERS
