@@ -17,3 +17,7 @@ log
 .vscode/ipch/**
 .clangd/**
 compile_commands.json
+
+temp.cflags
+temp.cxxflags
+temp.pro

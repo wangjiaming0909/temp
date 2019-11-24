@@ -1,6 +1,7 @@
 #ifndef _LEETCODE_H_
 #define _LEETCODE_H_
 #include <iostream>
+#include <vector>
 using namespace std;
 
 namespace al{
@@ -30,6 +31,16 @@ void printList(ListNode* head)
     {
         cout << head->val << " -> ";
         head = head->next;
+    }
+    cout << endl;
+}
+
+template <typename T>
+void printVector(const vector<T>& v)
+{
+    for(auto& i : v)
+    {
+        cout << i << " ";
     }
     cout << endl;
 }

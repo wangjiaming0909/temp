@@ -3,12 +3,10 @@
 
 
 namespace al
-
 {
 
 class RemoveDuplicates : public ILeetCode
 {
-
 public:
 
 	int removeDuplicates(vector<int>& nums)
@@ -45,9 +43,6 @@ public:
 		removeDuplicates(v);
 		print(v);
 	}
-
-
-
 };
 
 }
