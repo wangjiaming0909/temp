@@ -19,6 +19,7 @@
 #include "026RemoveDuplicates.h"
 #include "028kmpsearch.h"
 #include "029Divide.h"
+#include "032longestValidParentheses.h"
 #include "795_numSubarrayBoundedMax.h"
 
 #endif // AL_LEETCODE_HEADERS
