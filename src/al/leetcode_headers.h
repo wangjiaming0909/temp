@@ -20,6 +20,7 @@
 #include "028kmpsearch.h"
 #include "029Divide.h"
 #include "032longestValidParentheses.h"
+#include "033search.h"
 #include "795_numSubarrayBoundedMax.h"
 
 #endif // AL_LEETCODE_HEADERS
