@@ -26,7 +26,9 @@ int main()
 //   al::KmpSearch().test();
     // al::Divide().test();
 //    al::LongestValidParentheses().test();
-    al::ArraySearch().test();
+//    al::ArraySearch().test();
+//    al::SearchRange().test();
+    al::SearchInsert().test();
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
     // tests::passing_arguments_to_thread();
