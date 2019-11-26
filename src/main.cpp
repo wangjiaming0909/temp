@@ -28,7 +28,9 @@ int main()
 //    al::LongestValidParentheses().test();
 //    al::ArraySearch().test();
 //    al::SearchRange().test();
-    al::SearchInsert().test();
+//    al::SearchInsert().test();
+//    al::ValidSudoku().test();
+    al::SolveSudoku().test();
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
     // tests::passing_arguments_to_thread();

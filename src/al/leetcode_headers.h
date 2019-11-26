@@ -23,6 +23,8 @@
 #include "033search.h"
 #include "034SearchRange.h"
 #include "035SearchInsert.h"
+#include "036IsValidSudoku.h"
+#include "037SolveSudoku.h"
 #include "795_numSubarrayBoundedMax.h"
 
 #endif // AL_LEETCODE_HEADERS
