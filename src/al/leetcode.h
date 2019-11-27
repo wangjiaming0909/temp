@@ -43,7 +43,7 @@ void printVector(const vector<T>& v)
     {
         cout << i << " ";
     }
-    cout << endl;
+//    cout << endl;
 }
 
 template <typename T>
