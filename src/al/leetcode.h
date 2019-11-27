@@ -2,6 +2,7 @@
 #define _LEETCODE_H_
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
 
 namespace al{
@@ -41,6 +42,17 @@ void printVector(const vector<T>& v)
     for(auto& i : v)
     {
         cout << i << " ";
+    }
+    cout << endl;
+}
+
+template <typename T>
+void printStack(stack<T>& s)
+{
+    while(!s.empty())
+    {
+        cout << s.top() << " ";
+        s.pop();
     }
     cout << endl;
 }
