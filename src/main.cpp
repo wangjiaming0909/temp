@@ -31,7 +31,9 @@ int main()
 //    al::SearchInsert().test();
 //    al::ValidSudoku().test();
 //    al::SolveSudoku().test();
-    al::CombinationSum().test();
+//    al::CombinationSum().test();
+    al::FirstMissingPositive().test();
+
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
     // tests::passing_arguments_to_thread();
