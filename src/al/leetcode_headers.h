@@ -25,6 +25,7 @@
 #include "035SearchInsert.h"
 #include "036IsValidSudoku.h"
 #include "037SolveSudoku.h"
+#include "038combinationsum.h"
 #include "795_numSubarrayBoundedMax.h"
 
 #endif // AL_LEETCODE_HEADERS
