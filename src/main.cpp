@@ -33,7 +33,8 @@ int main()
 //    al::SolveSudoku().test();
 //    al::CombinationSum().test();
 //    al::FirstMissingPositive().test();
-    al::CanJump().test();
+//    al::CanJump().test();
+    al::LengthOfLIS().test();
 
 
     // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
