@@ -14,8 +14,8 @@ SOURCES = $(shell find $(SOURCE_DIR) -type f -name '*.cpp')
 OBJECTS = $(patsubst $(SOURCE_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES) )
 
 TARGET = $(BUILD_DIR)/a.out
-LIB = /boost_1_68_0/stage/lib
-INCLUDES = /boost_1_68_0
+LIB = /boost_1_72_0/stage/lib
+INCLUDES = /boost_1_72_0
 
 LD_FLAGS = -pthread
 
