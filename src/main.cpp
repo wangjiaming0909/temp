@@ -1,3 +1,4 @@
+#include "al/001twosum.h"
 #include "al/leetcode_headers.h"
 #include "tests/tests_headers.h"
 #include "bintree/btree.h"
@@ -5,12 +6,13 @@ using namespace std;
 
 int main()
 {
-  al::AddTwoNumbers().test();
+  //al::TwoSum().test();
+  //al::AddTwoNumbers().test();
   // al::LongestSubString().test();
   // al::Median_of_two_stored_vector().test();
   // al::Longest_palindromic_strstring().test();
   // al::NumSubarrayBoundedMax().test();
-  // al::Median_of_two_sorted_vector().test();
+  al::Median_of_two_sorted_vector().test();
   // al::Reverse_interger().test();
   // al::Atoi().test();
   // al::IsPalindrome().test();
@@ -72,5 +74,5 @@ int main()
   // // btree.inOrder([](const int& i){cout << i << " " << endl;});
   // btree.remove(3);
   // btree.inOrder(std::cout, btree.root());
-
+  cout << 123 << endl;
 }

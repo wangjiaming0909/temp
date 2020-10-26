@@ -11,32 +11,28 @@ class AddTwoNumbers : public ILeetCode
 public:
     ListNode* addTwoNumbers1(ListNode* l1, ListNode* l2)
     {
-        auto p1 = l1;
-        auto p2 = l2;
-        bool forward = false;
-        ListNode *target = new ListNode{0};
-        auto p = target;
-        while(p1 != nullptr || p2 != nullptr)
-        {
-            auto p1v = p1 ? p1->val : 0;
-            auto p2v = p2 ? p2->val : 0;
-            auto val = p1v + p2v + (forward ? 1 : 0);
-            forward = val >= 10 ? true : false;
-            val = val % 10;
-            p->next = new ListNode{val};
-            p = p->next;
-            p1 = p1 ? p1->next : p1;
-            p2 = p2 ? p2->next : p2;
+      bool forward = false;
+      ListNode *p = nullptr;
+      ListNode *target = nullptr;
+      while(l1 != nullptr || l2 != nullptr) {
+        auto val= (l1 ? l1->val : 0) +  (l2 ? l2->val : 0) + (forward ? 1 : 0);
+        forward = val >= 10 ? true : false;
+        val = val % 10;
+        if (!target) {
+          p = new ListNode{val};
+          target = p;
+        } else {
+          p->next = new ListNode{val};
         }
+        p = p->next;
+        l1 = l1 ? l1->next : l1;
+        l2 = l2 ? l2->next : l2;
+      }
 
-        if(forward)
-        {
-            p->next = new ListNode{1};
-        }
-        auto ret = target->next;
-        delete target;
-        target = nullptr;
-        return ret;
+      if(forward) {
+        p->next = new ListNode{1};
+      }
+      return target;
     }
     void test() override 
     {
