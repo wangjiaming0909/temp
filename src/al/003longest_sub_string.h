@@ -85,12 +85,38 @@ public:
         }
         return ret;
     }
+
+
+    size_t LongestSubString4(const string& s) {
+              unsigned int begin = 0, end = 0, max = 0;
+        std::unordered_map<char, unsigned int> m;
+
+        while (end < s.size()) {
+            auto it = m.find(s[end]);
+            if (it == m.end() || it->second < begin) {
+                m[s[end]] = end;
+                max = std::max(max, end - begin + 1);
+                if (max > 12) assert(0);
+            } else {
+                begin = it->second + 1;
+                it->second = end;
+            }
+            end++;
+        }
+        return max;
+    }
+
     virtual void test() override{
+        //string s1{"tmmzuxasasdqweadqweasdqwdasdqweasdqwedsadwqeasdgrthgjhghkjlyuoiyurgdfsdfdfqwerafsdgqwefsdpogopdjgowjkfopewgrpeasdqpwfqpqiowersdasdqwegfdfuiqtvzxcnmihfiowircjpoqjwfwekwkggslfqowejhfashdqljgnqweqafasdqwerqwrigt"};
         string s1{"tmmzuxasasdqweadqweasdqwdasdqweasdqwedsadwqeasdgrthgjhghkjlyuoiyurgdfsdfdfqwerafsdgqwefsdpogopdjgowjkfopewgrpeasdqpwfqpqiowersdasdqwegfdfuiqtvzxcnmihfiowircjpoqjwfwekwkggslfqowejhfashdqljgnqweqafasdqwerqwrigt"};
         string s2{"w"};
+        s2 ="pwwkew";
+
 
         assert(longestSubString(s1) == LongestSubString3(s1));
         assert(longestSubString(s2) == LongestSubString3(s2));
+        assert(longestSubString(s2) == LongestSubString4(s2));
+        assert(longestSubString(s1) == LongestSubString4(s1));
 
         int ret1 = 0;
         for(int i = 0; i < 10; i++){

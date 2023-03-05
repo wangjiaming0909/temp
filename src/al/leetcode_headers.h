@@ -28,6 +28,7 @@
 #include "037SolveSudoku.h"
 #include "038combinationsum.h"
 #include "041firstmissingpositive.h"
+#include "042trap_water.h"
 #include "055canjump.h"
 #include "300lengthoflis.h"
 #include "795_numSubarrayBoundedMax.h"

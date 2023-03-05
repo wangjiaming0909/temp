@@ -4,15 +4,15 @@
 #include "bintree/btree.h"
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
 {
   //al::TwoSum().test();
-  //al::AddTwoNumbers().test();
+  // al::AddTwoNumbers().test();
   // al::LongestSubString().test();
   // al::Median_of_two_stored_vector().test();
   // al::Longest_palindromic_strstring().test();
   // al::NumSubarrayBoundedMax().test();
-  al::Median_of_two_sorted_vector().test();
+  // al::Median_of_two_sorted_vector().test();
   // al::Reverse_interger().test();
   // al::Atoi().test();
   // al::IsPalindrome().test();
@@ -26,7 +26,7 @@ int main()
   // al::ReverseKGroup().test();
   // al::RemoveDuplicates().test();
   //   al::KmpSearch().test();
-  // al::Divide().test();
+  //al::Divide().test_with_param(al::ILeetCode::get_params(argc, argv));
   //    al::LongestValidParentheses().test();
   //    al::ArraySearch().test();
   //    al::SearchRange().test();
@@ -37,6 +37,7 @@ int main()
   //    al::FirstMissingPositive().test();
   //    al::CanJump().test();
   //al::LengthOfLIS().test();
+  al::TrapWater().test();
 
 
   // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
@@ -74,5 +75,4 @@ int main()
   // // btree.inOrder([](const int& i){cout << i << " " << endl;});
   // btree.remove(3);
   // btree.inOrder(std::cout, btree.root());
-  cout << 123 << endl;
 }

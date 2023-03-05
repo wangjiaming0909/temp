@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include "../timer.h"
 #include <string>
+
 #include <vector>
 
 using namespace std;
@@ -54,14 +55,59 @@ public:
         return s.substr((resCenter - resLen) / 2, resLen - 1);
     }
 
+    string longestPalindrome2(const string& s) {
+      vector<vector<int>> dp;
+      dp.resize(s.size());
+      for (int i = 0; i < s.size(); ++i){
+        dp[i].resize(s.size(), 0);
+      }
+      int max = 1, max_i = 0, max_j = 0;
+
+      for (int j = 1; j < s.size(); ++j) {
+        for (int i = j - 1; i >= 0; --i) {
+          if (s[i] == s[j]) {
+            if (j < i + 3) dp[i][j] = j-i+1;
+            else dp[i][j] = dp[i+1][j-1] == 0 ? 0 : dp[i+1][j-1] + 2;
+
+            if (max < dp[i][j]) {
+              max = dp[i][j]; max_i = i; max_j = j;
+            }
+          } else {
+            dp[i][j] = 0;
+          }
+        }
+      }
+
+      return s.substr(max_i, max);
+    }
+
+
+    void test(const string &s) {
+        auto ret = longestPalindrome(s);
+        cout << ret << endl;
+        //ret = longestPalindrome_Manacher(s);
+        //cout << ret << endl;
+        ret = longestPalindrome2(s);
+        cout << ret << endl;
+    }
 
     virtual void test() override{
         string s{"tmmzuxasasdqweadqweasdqwdasdqweasdqwedsadwqeasdgrthgjhghkjlyuoiyurgdfsdfdfqwerafsdgqwefsdpogopdjgowjkfopewgrpeasdqpwfqpqiowersdasdqwegfdfuiqtvzxcnmihfiowircjpoqjwfwekwkggslfqowejhfashdqljgnqweqaasdjkwwqdandasdasdfghjklplkjhgfdsalkjwdansxcdjfqpwjdasndcnhasdwjhqndacansclsnvlwkdjfqpejtpqwtpjgskjffasdqwerqwrigt"};
-        // s = "asddsa";
-        auto ret = longestPalindrome(s);
-        cout << ret << endl;
-        ret = longestPalindrome_Manacher(s);
-        cout << ret << endl;
+        test(s);
+        s = "asdsa";
+        test(s);
+        s = "aaaa";
+        test(s);
+        s = "asddsa";
+        test(s);
+        s = "babad";
+        test(s);
+        s = "aacabdkacaa";
+        test(s);
+        s = "cbb";
+        test(s);
+        s = "a";
+        test(s);
     }
 
 private:
