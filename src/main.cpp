@@ -37,7 +37,7 @@ int main(int argc, char** argv)
   //    al::FirstMissingPositive().test();
   //    al::CanJump().test();
   //al::LengthOfLIS().test();
-  al::TrapWater().test();
+  //al::TrapWater().test();
 
 
   // tests::std_thread_test().test_that_all_parameters_passed_is_copied();
@@ -75,4 +75,5 @@ int main(int argc, char** argv)
   // // btree.inOrder([](const int& i){cout << i << " " << endl;});
   // btree.remove(3);
   // btree.inOrder(std::cout, btree.root());
+  Multiply().test();
 }
