@@ -95,5 +95,107 @@ struct Multiply : public al::ILeetCode
     cout << "0 * 0 = " << multiply("0", "0") << endl;
     cout << "9 * 99 = " << multiply("9", "99") << endl;
     cout << "140 * 721 = " << multiply("140", "721") << endl;
+
+    cout << "000 fast path: " << fastest_path044({0,0,0}) << endl;
+
+    auto ret = fastest_path044({2,3,1,1,0});
+    cout << "23110 fast path: " << ret << endl;
+    ret = fastest_path044({7,0,9,6,9,6,1,7,9,0,1,2,9,0,3});
+    cout << "{7,0,9,6,9,6,1,7,9,0,1,2,9,0,3} fast path: " << ret << endl;
+
+    cout << "gas: [1,2,3,4,5] cost = [3,4,5,1,2] should be 3, actually: " << can_complete_circuit134({1,2,3,4,5}, {3,4,5,1,2}) << endl;
+
+    cout << " gas = [2,3,4], cost = [3,4,3] should be -1, actually: " << can_complete_circuit134({2,3,4}, {3,4,3}) << endl;
+    cout << " gas = [0,0,0,0,0,0,1,0], cost = [0,0,0,0,0,0,0,0] should be 6, actually: " 
+      << can_complete_circuit134({0,0,0,0,0,0,1,0}, {0,0,0,0,0,0,0,0}) << endl;
+
+    cout << " gas = [3,1,1], cost = [1,2,2] should be 0, actually: " 
+      << can_complete_circuit134({3,1,1}, {1,2,2}) << endl;
+
+    largestNumber({0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
   }
+
+  int fastest_path044(vector<int> nums) {
+    if (nums[0] == 0) return 0;
+    int max_pos = 0;
+    int steps = 0;
+    int cur_max_pos = 0;
+    for (int i = 0; i < nums.size()-1; ++i) {
+      max_pos = std::max(max_pos, i + nums[i]);
+      if (cur_max_pos == i) {
+        cur_max_pos = max_pos;
+        steps++;
+      }
+    }
+    return steps;
+  }
+
+  int can_complete_circuit134(vector<int> gas, vector<int> cost) {
+    int step = 0;
+    int total = 0;
+    int min_gas = INT32_MAX;
+
+    for (int i = 0; i < gas.size(); ++i) {
+      int g = gas[i] - cost[i];
+      total += g;
+      if (min_gas > total) {
+        min_gas = total;
+        step = i;
+      }
+    }
+    if (total >= 0) return step + 1 >= gas.size() ? 0 : step + 1;
+    string s;
+    auto it = s.begin();
+    if (*it == 's') {
+    }
+    return -1;
+
+#if 0
+    auto size = gas.size();
+
+    int max = 0;
+    int cur_max = 0;
+
+    vector<int> checks;
+    for (int i = 0; i < gas.size(); ++i) {
+      if (gas[i] >= cost[i]) checks.push_back(i);
+    }
+
+    int target_x = -1;
+    for (int i = 0; i < checks.size(); ++i) {
+      int x = target_x = checks[i];
+      int g = gas[x];
+      int c = cost[x];
+
+      while (g >= c) {
+        x = x + 1 >= gas.size() ? 0 : x + 1;
+        if (x == target_x) break;
+        g += gas[x];
+        c += cost[x];
+      }
+      if (x != target_x) target_x = -1;
+      else break;
+    }
+    return target_x;
+#endif
+  }
+
+      string largestNumber(vector<int> nums) {
+        vector<string> s;
+        for (int i = 0; i < nums.size(); ++i) {
+            s.push_back(std::to_string(nums[i]));
+        }
+
+        std::sort(s.begin(), s.end(), [](const string& s1,const string& s2) {
+            return s1+s2 > s2+s1;
+        });
+        stringstream ss;
+        for (int i = 0; i < s.size(); ++i) {
+            ss << s[i];
+        }
+        string ret = ss.str();
+        auto it = ret.begin();
+        if (*it == '0') return "0";
+        return ret;
+    }
 };
