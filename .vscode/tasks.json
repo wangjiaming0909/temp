@@ -19,9 +19,7 @@
             },
             "linux": {
                 "command": "make",
-                "args": [
-                    "-flinux.makefile"
-                ]
+                "args": ["-j"]
             },
             "presentation": {
                 "echo": false,

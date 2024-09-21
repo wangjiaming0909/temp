@@ -2,33 +2,32 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "program": "",
             "name": "(gdb) Launch",
-            "request": "launch",
             "type": "cppdbg",
-            "stopAtEntry": true,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "MIMode": "gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/a.out",
             "args": [],
-            "externalConsole": true,
-            "internalConsoleOptions":"openOnFirstSessionStart",
-            "linux": {
-                "program": "${workspaceFolder}/build/a.out",
-                "miDebuggerPath": "/usr/bin/gdb"
-            },
-            "windows": {
-                "program": "${workspaceFolder}/build/a.exe",
-                "miDebuggerPath": "C:/MinGW/bin/gdb.exe"
-            },
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
-                    "ignoreFailures": false
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
                 }
             ]
-
         }
+
+        
+        
+
     ]
 }

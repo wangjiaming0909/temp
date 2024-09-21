@@ -131,8 +131,8 @@
     "debug.internalConsoleOptions": "neverOpen",
     "workbench.quickOpen.closeOnFocusLost": false,
     "editor.stablePeek": true,
-    "editor.wordBasedSuggestions": true,
-    "editor.tabCompletion": true,
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.tabCompletion": "onlySnippets",
     "C_Cpp.autocomplete": "Default",
     "C_Cpp.errorSquiggles": "Disabled",
     // "workbench.colorCustomizations": {

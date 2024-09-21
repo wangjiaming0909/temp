@@ -16,7 +16,7 @@ int main(int argc, char** argv)
   // al::IsPalindrome().test();
   // al::MaxAria().test();
   // al::LongestCommonPrefix().test();
-  // al::ThreeSum().test();
+ al::ThreeSum().test();
   // al::RemoveNthFromEnd().test();
   // al::GenerateParenthesis().test();
   // al::MergeKLists().test();
@@ -73,5 +73,5 @@ int main(int argc, char** argv)
   // // btree.inOrder([](const int& i){cout << i << " " << endl;});
   // btree.remove(3);
   // btree.inOrder(std::cout, btree.root());
-  Multiply().test();
+  // Multiply().test();
 }

@@ -13,6 +13,7 @@ class ThreeSum : public ILeetCode
 public:
     vector<vector<int>> threeSum(vector<int>& nums)
     {
+        return threeSum2(nums);
         if(nums.size() < 3) return vector<vector<int>>();
         vector<vector<int>> ret{};
         int i = 1, l = 0, r = nums.size() - 1;
@@ -61,6 +62,43 @@ public:
         return ret;
     }
 
+    // assume from [begin, end) are sorted
+    std::vector<std::pair<int, int>> twoSum(vector<int>::const_iterator begin,
+                               vector<int>::const_iterator end, int target) {
+        std::vector<std::pair<int, int>> ret;
+        if (begin == end - 1) return {};
+        end--;
+        int sum = *begin + *end;
+        while(begin < end){
+            if(sum > target){
+                end = end - 1;
+            } else if (sum < target) {
+                begin = begin + 1;
+            } else {
+                ret.emplace_back(*begin, *end);
+                while (begin + 1 <  end && *begin == *(begin + 1)) begin++;
+                begin++;
+            }
+            if (begin < end) sum = *begin + *end;
+        }
+        return ret;
+    }
+
+    vector<vector<int>> threeSum2(vector<int> &nums) {
+        std::sort(nums.begin(), nums.end());
+        std::vector<std::vector<int>> res;
+
+        for(int i = 0; i < nums.size(); ++i){
+            if (i > 0 && nums[i] == nums[i-1]) continue;
+            int cur = nums[i];
+            auto twoSumRes = twoSum(nums.begin() + i + 1, nums.end(), 0 - cur);
+            for (int j = 0; j < twoSumRes.size(); ++j) {
+                vector<int> threeInt = {cur, twoSumRes[j].first, twoSumRes[j].second};
+                res.push_back(threeInt);
+            }
+        }
+        return res;
+    }
     void test() override 
     {
         vector<int> v{-1, 0, 1, 2, -1, -4};
@@ -95,6 +133,18 @@ public:
 
         v = {-5, -5, 1, 1, 4, 4};
         ret = threeSum(v);
+        print(ret);
+        cout << endl;
+
+        v = {-2, -1, -1, 0, 0,0, 1, 2, 2, 3};
+        auto r = twoSum(v.begin(), v.end(), 0);
+        cout << "two sum == 0:" << endl;
+        for(int i = 0; i < r.size(); ++i){
+            cout << r[i].first << ", " << r[i].second << endl;
+        }
+
+        v = {0, 0, 0, 0};
+        ret = threeSum2(v);
         print(ret);
         cout << endl;
 

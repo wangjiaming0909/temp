@@ -1,5 +1,5 @@
 CC = g++
-FLAGS = -std=c++17 -c  -ggdb -Wfatal-errors -fexceptions
+FLAGS = -std=c++17 -c  -ggdb -Wfatal-errors -fexceptions -O0
 DEFS = 
 DEFINES = $(patsubst %, -D%, $(DEFS))
 
@@ -15,8 +15,8 @@ LEET_HDRS = $(shell find $(SOURCE_DIR) -type f -name '*.h')
 OBJECTS = $(patsubst $(SOURCE_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES) )
 
 TARGET = $(BUILD_DIR)/a.out
-LIB = /boost_1_72_0/stage/lib
-INCLUDES = /boost_1_72_0
+LIB = 
+INCLUDES = /usr/include
 
 LD_FLAGS = -pthread
 
