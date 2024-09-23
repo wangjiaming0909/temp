@@ -15,7 +15,7 @@ LEET_HDRS = $(shell find $(SOURCE_DIR) -type f -name '*.h')
 OBJECTS = $(patsubst $(SOURCE_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES) )
 
 TARGET = $(BUILD_DIR)/a.out
-LIB = 
+LIB = /usr/lib
 INCLUDES = /usr/include
 
 LD_FLAGS = -pthread
